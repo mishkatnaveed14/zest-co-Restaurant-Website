@@ -12,3 +12,26 @@
   width: 100%;
   color: var(--text-light);
 }
+.contact-info ul{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 100%;
+  list-style: none;
+  gap: 30px;
+}
+.contact-info ul li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.contact-info ul li i {
+  font-size: 18px;
+  color: var(--accent-gold);
+}
+.contact-info ul li a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 14px;
+}
