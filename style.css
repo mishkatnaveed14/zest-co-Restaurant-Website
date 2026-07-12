@@ -5,7 +5,8 @@
   --accent-gold: #C5A880;   
   --accent-gold-bright: #D4AF37;
   --border: rgba(197,168,128,.18);
-}
+}   
+/* upper bar styles start */
 .top-bar {
   background-color: var(--main-bg);
   /* height: 50px; */
@@ -52,3 +53,102 @@
 .contact-info ul li a:hover {
   color: var(--accent-gold);
 }
+/* upper bar styles end */
+
+/* ===== LOGO ===== */
+/* Header and Navbar Main Style */
+.custom-navbar {
+    background-color: var(--primary-bg) !important; /* Restho dark theme base */
+    padding: 15px 0;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 🎯 Logo Styling (Restho style smooth transition) */
+.logo img {
+    min-width: 130px;
+    max-width: 150px;
+    height: auto;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+/* Nav Links Styling */
+.custom-navbar .nav-link {
+    color: var(--secondary-bg) !important;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 18px !important;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+/* Hover & Active State Indicator Line (Restho Concept) */
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link.active {
+    color: var(--accent-gold) !important;
+}
+
+/* Dropdown Menu Customization */
+.custom-navbar .dropdown-menu {
+    background-color: #222222;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.custom-navbar .dropdown-item {
+    color: var(--secondary-bg);
+    font-size: 14px;
+    padding: 8px 20px;
+}
+
+.custom-navbar .dropdown-item:hover {
+    background-color: var(--accent-gold);
+    color: var(--primary-bg);
+}
+
+/* Right Side Actions (Search icon & Premium Button) */
+.search-icon-btn {
+    color: var(--secondary-bg);
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.search-icon-btn:hover {
+    color: var(--accent-gold);
+}
+
+/* Restho "Book A Table" Solid Button */
+.book-btn {
+    background-color: var(--accent-gold);
+    color: var(--primary-bg) !important;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.4s ease;
+    border: 1px solid var(--accent-gold);
+}
+
+.book-btn:hover {
+    background-color: transparent;
+    color: var(--accent-gold) !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+}
+
+/* Mobile Toggler White/Gold Tint */
+.custom-navbar .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+.custom-navbar .navbar-toggler-icon {
+    filter: invert(1); /* Toggler icon ko dark background par visible karne ke liye */
+}
+
