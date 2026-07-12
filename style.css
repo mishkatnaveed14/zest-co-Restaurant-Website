@@ -178,7 +178,7 @@
     text-transform: uppercase;
     text-decoration: none;
     padding: 12px 28px;
-    border-radius: 30px;
+    border-radius: 10px 0px 10px 0px;
     border: 1px solid var(--accent-gold-bright);
     position: relative;
     overflow: hidden;
