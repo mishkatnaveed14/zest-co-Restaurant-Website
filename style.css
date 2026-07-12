@@ -8,11 +8,13 @@
 }
 .top-bar {
   background-color: var(--main-bg);
-  height: 50px;
+  /* height: 50px; */
+  padding: 10px 0;
   width: 100%;
   color: var(--text-light);
    display: flex;
     align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .open-time p {
   margin: 0;
@@ -20,13 +22,14 @@
 }
 .contact-info ul{
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   padding: 0px;
   margin: 0px;
   height: 100%;
   list-style: none;
-  gap: 30px;
+  gap: 20px;
 }
 .contact-info ul li {
   display: flex;
@@ -45,4 +48,7 @@
   align-items: center;
   gap: 8px;
 
+}
+.contact-info ul li a:hover {
+  color: var(--accent-gold);
 }
