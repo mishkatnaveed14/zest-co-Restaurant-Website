@@ -6,3 +6,9 @@
   --accent-gold-bright: #D4AF37;
   --border: rgba(197,168,128,.18);
 }
+.top-bar {
+  background-color: var(--main-bg);
+  height: 50px;
+  width: 100%;
+  color: var(--text-light);
+}
