@@ -1,3 +1,63 @@
+@media (max-width: 991px) {
+    .main-navbar .navbar-collapse {
+        background-color: var(--main-bg);
+        padding: 20px;
+        margin-top: 15px;
+        border-top: 1px solid var(--border);
+    }
+    
+    .nav-dropdown {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background-color: transparent;
+        padding-left: 15px;
+        display: none;
+    }
+    
+    .main-navbar .nav-item:hover .nav-dropdown {
+        display: block;
+    }
+
+    .navbar-actions {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 15px;
+        margin-top: 15px;
+        text-align: center;
+    }
+    
+    .nav-btn {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .main-navbar .navbar-toggler {
+        border-color: var(--border);
+    }
+    
+    .main-navbar .navbar-toggler-icon {
+        filter: invert(1);
+    }
+    .header-logo img {
+        height: 65px; 
+    }
+}
+
+@media (min-width: 992px) {
+    .main-navbar .nav-item:hover .nav-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    .main-navbar .nav-item:hover .nav-arrow {
+        transform: rotate(180deg);
+        color: var(--accent-gold-bright);
+    }
+}
+
 @media only screen and (max-width: 426px) {
     .contact-info ul {
        gap : 3px;

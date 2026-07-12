@@ -60,7 +60,7 @@
 /* --- Header & Navigation Layout --- */
 .main-navbar {
     background-color: var(--main-bg) !important;
-    padding: 20px 0;
+    padding: 25px 0;
     border-bottom: 1px solid var(--border);
     position: relative;
     z-index: 999;
@@ -68,12 +68,14 @@
 
 /* Logo Sizing */
 .header-logo img {
-    max-height: 45px;
+    max-height: 80px;
     width: auto;
     transition: transform 0.3s ease;
+  object-fit: contain;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .header-logo img:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
 }
 
 /* Navbar Navigation Items */
@@ -126,17 +128,7 @@
 }
 
 /* Desktop Hover Toggle for Dropdowns */
-@media (min-width: 992px) {
-    .main-navbar .nav-item:hover .nav-dropdown {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
-    .main-navbar .nav-item:hover .nav-arrow {
-        transform: rotate(180deg);
-        color: var(--accent-gold-bright);
-    }
-}
+
 
 .nav-dropdown li a {
     display: block;
@@ -226,49 +218,4 @@
     width: 100%;
 }
 
-/* 📱 Responsive Mobile Adjustments */
-@media (max-width: 991px) {
-    .main-navbar .navbar-collapse {
-        background-color: var(--main-bg);
-        padding: 20px;
-        margin-top: 15px;
-        border-top: 1px solid var(--border);
-    }
-    
-    .nav-dropdown {
-        position: relative;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        box-shadow: none;
-        background-color: transparent;
-        padding-left: 15px;
-        display: none;
-    }
-    
-    .main-navbar .nav-item:hover .nav-dropdown {
-        display: block;
-    }
-
-    .navbar-actions {
-        flex-direction: column;
-        align-items: stretch !important;
-        gap: 15px;
-        margin-top: 15px;
-        text-align: center;
-    }
-    
-    .nav-btn {
-        text-align: center;
-        width: 100%;
-    }
-    
-    .main-navbar .navbar-toggler {
-        border-color: var(--border);
-    }
-    
-    .main-navbar .navbar-toggler-icon {
-        filter: invert(1);
-    }
-}
 
