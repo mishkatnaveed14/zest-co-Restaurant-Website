@@ -123,62 +123,84 @@
     </header> -->
 
 
-    <header class="site-header">
-    <nav class="navbar navbar-expand-lg custom-navbar">
-        <div class="container"> <!-- fluid ki jagah container use kiya premium look ke liye -->
+<header class="site-header">
+    <nav class="navbar navbar-expand-lg main-navbar">
+        <div class="container-xl">
             
-            <!-- Logo Area -->
-            <a class="navbar-brand logo" href="#">
-                <img src="./images/logo.png" class="img-fluid" alt="Logo image">
+            <!-- Logo -->
+            <a class="navbar-brand header-logo" href="#">
+                <img src="./images/logo.png" alt="Zest & Co. Logo">
             </a>
 
-            <!-- Mobile Toggler Button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
+            <!-- Mobile Menu Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavbar" aria-controls="primaryNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Navbar Links & Right Actions -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Navbar Links & Right Side Actions -->
+            <div class="collapse navbar-collapse" id="primaryNavbar">
+                
                 <!-- Center Links -->
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Menu
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Breakfast</a></li>
-                            <li><a class="dropdown-item" href="#">Lunch</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Dinner</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">HOME <i class="bi bi-chevron-down nav-arrow"></i></a>
+                        <ul class="nav-dropdown">
+                            <li><a href="#">Home One</a></li>
+                            <li><a href="#">Home Two</a></li>
+                            <li><a href="#">Home Three</a></li>
                         </ul>
                     </li>
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Pages
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Our Team</a></li>
-                            <li><a class="dropdown-item" href="#">FAQ</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">MENU <i class="bi bi-chevron-down nav-arrow"></i></a>
+                        <ul class="nav-dropdown">
+                            <li><a href="#">Menu List 01</a></li>
+                            <li><a href="#">Menu List 02</a></li>
+                            <li><a href="#">Food Category</a></li>
                         </ul>
                     </li>
-                    
-                    <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">PAGES <i class="bi bi-chevron-down nav-arrow"></i></a>
+                        <ul class="nav-dropdown">
+                            <li><a href="#">Chef</a></li>
+                            <li><a href="#">Gallery</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">BLOG <i class="bi bi-chevron-down nav-arrow"></i></a>
+                        <ul class="nav-dropdown">
+                            <li><a href="#">Blog Grid</a></li>
+                            <li><a href="#">Blog Standard</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">CONTACT</a>
+                    </li>
                 </ul>
 
-                <!-- Right Side Action Area (Restho Style) -->
-                <div class="nav-right d-flex align-items-center gap-3">
-                    <a href="#" class="search-icon-btn"><i class="bi bi-search"></i></a>
-                    <a href="#" class="book-btn">Book A Table</a>
+                <!-- Right Side Actions (Call & Button) -->
+                <div class="navbar-actions d-flex align-items-center">
+                    <!-- Call Section -->
+                    <div class="header-call d-none d-xl-flex align-items-center">
+                        <div class="call-icon">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+                        <div class="call-info">
+                            <span>Call Now</span>
+                            <a href="tel:+9988776345">+998-8776345</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Primary Call to Action Button -->
+                    <a href="#" class="nav-btn">
+                        <span>Connect Now</span>
+                    </a>
                 </div>
-            </div>
 
+            </div>
         </div>
     </nav>
 </header>

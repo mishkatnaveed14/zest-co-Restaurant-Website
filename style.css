@@ -57,98 +57,218 @@
 
 /* ===== LOGO ===== */
 /* Header and Navbar Main Style */
-.custom-navbar {
-    background-color: var(--primary-bg) !important; /* Restho dark theme base */
-    padding: 15px 0;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* 🎯 Logo Styling (Restho style smooth transition) */
-.logo img {
-    min-width: 130px;
-    max-width: 150px;
-    height: auto;
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.logo img:hover {
-    transform: scale(1.05);
-}
-
-/* Nav Links Styling */
-.custom-navbar .nav-link {
-    color: var(--secondary-bg) !important;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 10px 18px !important;
-    transition: color 0.3s ease;
+/* --- Header & Navigation Layout --- */
+.main-navbar {
+    background-color: var(--main-bg) !important;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
     position: relative;
+    z-index: 999;
 }
 
-/* Hover & Active State Indicator Line (Restho Concept) */
-.custom-navbar .nav-link:hover,
-.custom-navbar .nav-link.active {
-    color: var(--accent-gold) !important;
+/* Logo Sizing */
+.header-logo img {
+    max-height: 45px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+.header-logo img:hover {
+    transform: scale(1.02);
 }
 
-/* Dropdown Menu Customization */
-.custom-navbar .dropdown-menu {
-    background-color: #222222;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    border-radius: 4px;
-    margin-top: 10px;
+/* Navbar Navigation Items */
+.main-navbar .nav-item {
+    position: relative;
+    padding: 0 4px;
 }
 
-.custom-navbar .dropdown-item {
-    color: var(--secondary-bg);
-    font-size: 14px;
-    padding: 8px 20px;
-}
-
-.custom-navbar .dropdown-item:hover {
-    background-color: var(--accent-gold);
-    color: var(--primary-bg);
-}
-
-/* Right Side Actions (Search icon & Premium Button) */
-.search-icon-btn {
-    color: var(--secondary-bg);
-    font-size: 18px;
-    text-decoration: none;
+.main-navbar .nav-link {
+    color: var(--text-light) !important;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 10px 16px !important;
     transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-.search-icon-btn:hover {
+.main-navbar .nav-link:hover,
+.main-navbar .nav-link.active {
+    color: var(--accent-gold-bright) !important;
+}
+
+.nav-arrow {
+    font-size: 11px;
+    transition: transform 0.3s ease;
+}
+
+/* 🎯 Dropdown Menu Animations */
+.nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--card-bg);
+    min-width: 220px;
+    list-style: none;
+    padding: 15px 0;
+    margin: 0;
+    border-radius: 0 0 4px 4px;
+    border-top: 3px solid var(--accent-gold-bright);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    
+    /* Animation Initial State */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Desktop Hover Toggle for Dropdowns */
+@media (min-width: 992px) {
+    .main-navbar .nav-item:hover .nav-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    .main-navbar .nav-item:hover .nav-arrow {
+        transform: rotate(180deg);
+        color: var(--accent-gold-bright);
+    }
+}
+
+.nav-dropdown li a {
+    display: block;
+    padding: 10px 25px;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav-dropdown li a:hover {
+    color: var(--accent-gold-bright);
+    padding-left: 30px; /* Subtle sliding animation */
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* 📞 Header Call Info Block */
+.navbar-actions {
+    gap: 30px;
+}
+
+.header-call {
+    gap: 12px;
+}
+
+.call-icon {
+    width: 45px;
+    height: 45px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-gold-bright);
+    font-size: 18px;
+}
+
+.call-info span {
+    display: block;
+    font-size: 12px;
     color: var(--accent-gold);
 }
 
-/* Restho "Book A Table" Solid Button */
-.book-btn {
-    background-color: var(--accent-gold);
-    color: var(--primary-bg) !important;
+.call-info a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* ⚡ Premium Fill-In Button Style */
+.nav-btn {
+    background-color: transparent;
+    color: var(--text-light);
     font-size: 14px;
     font-weight: 600;
-    text-decoration: none;
-    padding: 10px 24px;
-    border-radius: 4px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.4s ease;
-    border: 1px solid var(--accent-gold);
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 30px; /* Smooth rounded shape */
+    border: 1px solid var(--accent-gold-bright);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    display: inline-block;
+    transition: color 0.4s ease;
 }
 
-.book-btn:hover {
-    background-color: transparent;
-    color: var(--accent-gold) !important;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+.nav-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--accent-gold-bright);
+    z-index: -1;
+    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Mobile Toggler White/Gold Tint */
-.custom-navbar .navbar-toggler {
-    border-color: rgba(255, 255, 255, 0.1);
+.nav-btn:hover {
+    color: var(--main-bg) !important; /* Changes text color when background fills */
 }
-.custom-navbar .navbar-toggler-icon {
-    filter: invert(1); /* Toggler icon ko dark background par visible karne ke liye */
+
+.nav-btn:hover::before {
+    width: 100%;
+}
+
+/* 📱 Responsive Mobile Adjustments */
+@media (max-width: 991px) {
+    .main-navbar .navbar-collapse {
+        background-color: var(--main-bg);
+        padding: 20px;
+        margin-top: 15px;
+        border-top: 1px solid var(--border);
+    }
+    
+    .nav-dropdown {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background-color: transparent;
+        padding-left: 15px;
+        display: none;
+    }
+    
+    .main-navbar .nav-item:hover .nav-dropdown {
+        display: block;
+    }
+
+    .navbar-actions {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 15px;
+        margin-top: 15px;
+        text-align: center;
+    }
+    
+    .nav-btn {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .main-navbar .navbar-toggler {
+        border-color: var(--border);
+    }
+    
+    .main-navbar .navbar-toggler-icon {
+        filter: invert(1);
+    }
 }
 
