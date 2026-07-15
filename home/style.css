@@ -180,7 +180,7 @@
     text-decoration: none;
     padding: 12px 28px;
     border-radius: 10px 0px 10px 0px;
-    border: 1px solid var(--accent-gold-bright);
+    border: 1px solid var(--accent-gold);
     position: relative;
     overflow: hidden;
     z-index: 1;
@@ -201,7 +201,7 @@
 }
 
 .nav-btn:hover {
-    color: var(--accent-gold-bright) !important; 
+    color: var(--accent-gold) !important; 
 }
 
 .nav-btn:hover::before {
