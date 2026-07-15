@@ -53,7 +53,8 @@
         margin-top: 0px;
     }
     /* nav bar end */
-    /* hero section */
+
+    /* hero section  (slider)*/
       .slide-card {
     min-height: auto;
     padding: 22px;
@@ -76,6 +77,7 @@
 }
 
 @media (min-width: 992px) {
+    /* nav bar */
     .main-navbar .nav-item:hover .nav-dropdown {
         opacity: 1;
         visibility: visible;
@@ -86,6 +88,8 @@
         transform: rotate(180deg);
         color: var(--accent-gold-bright);
     }
+    /* nav bar end */
+
 }
 @media (max-width: 576px) {
     /* slider */
@@ -97,6 +101,7 @@
   .slide-content h1 {
     font-size: 30px;
   }
+  /* /slider end */
 }
 @media only screen and (max-width: 426px) {
     /* nav bar */
