@@ -291,7 +291,7 @@ body {
   color: #111;
   opacity: .95;
 }
-
+/* 
 .btn-outline-gold {
   border: 1px solid var(--border);
   color: var(--text-light);
@@ -304,7 +304,7 @@ body {
 .btn-outline-gold:hover {
   background: rgba(197,168,128,.1);
   color: var(--text-light);
-}
+}  */
 
 .slide-image {
   position: relative;
