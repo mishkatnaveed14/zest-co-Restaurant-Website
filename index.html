@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zest & Co.</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+      <!-- Swiper.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <!-- google fonts cdn -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- boostrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+</head>
+
+<body>
+    <!-- upper part start -->
+    <div class="top-bar bg-black">
+        <div class="container-lg container-fluid gy-2">
+            <div class="row align-items-center">
+                <!-- <div class="col-lg-5 col-md-5 d-flex align-items-center justify-content-md-start justify-content-center"> -->
+                <div class="col-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
+                    <div class="open-time">
+                        <p>
+                            <span style="font-weight: 600; color: var(--accent-gold)">Opening Hour:</span>
+                            9.00 am to 10.00 pm
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-7 d-flex justify-content-center justify-content-md-end">
+                    <!-- <div class="col-lg-7 col-md-7 d-flex justify-content-end"> -->
+                    <div class="contact-info">
+                        <ul>
+                            <li>
+                                <a href="mailto:zest.co@gmail.com" class="email">
+                                    <i class="bi bi-envelope"></i>
+                                    zest.co@gmail.com
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://maps.google.com/?q=Road-01, Block-B, West Karachi City" target="_blank"
+                                    class="location d-flex align-items-center">
+                                    <i class="bi bi-geo-alt"></i>
+                                    Road-01, Block-B, West Karachi City
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- upper part end  -->
+    <!-- navbar start  -->
+      <header class="site-header">
+        <nav class="navbar navbar-expand-lg main-navbar">
+            <div class="container-xl">
+                <!-- Logo -->
+                <a class="navbar-brand header-logo" href="#">
+                    <img src="./assets/images/logo.png" alt="Zest & Co. Logo">
+                </a>
+
+                <!-- Toggler (Mobile View) -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavbar"
+                    aria-controls="primaryNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="primaryNavbar">
+                    <!-- Nav links -->
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">ABOUT</a>
+                        </li>
+                        <li class="nav-item dropdown-holder">
+                            <a class="nav-link" href="#">MENU <i class="bi bi-chevron-down nav-arrow"></i></a>
+                            <ul class="nav-dropdown">
+                                <li><a href="#">Menu List 01</a></li>
+                                <li><a href="#">Menu List 02</a></li>
+                                <li><a href="#">Food Category</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown-holder">
+                            <a class="nav-link" href="#">PAGES <i class="bi bi-chevron-down nav-arrow"></i></a>
+                            <ul class="nav-dropdown">
+                                <li><a href="#">Chef</a></li>
+                                <li><a href="#">Gallery</a></li>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown-holder">
+                            <a class="nav-link" href="#">BLOG <i class="bi bi-chevron-down nav-arrow"></i></a>
+                            <ul class="nav-dropdown">
+                                <li><a href="#">Blog Grid</a></li>
+                                <li><a href="#">Blog Standard</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">CONTACT</a>
+                        </li>
+                    </ul>
+
+                    <!-- Right Actions -->
+                    <div class="navbar-actions d-flex align-items-center">
+                        <div class="header-call d-none d-xl-flex align-items-center">
+                            <div class="call-icon">
+                                <i class="bi bi-telephone"></i>
+                            </div>
+                            <div class="call-info">
+                                <span>Call Now</span>
+                                <a href="tel:+9988776345">+998-8776345</a>
+                            </div>
+                        </div>
+                        <a href="#" class="nav-btn">
+                            <span>Connect Now</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- navbar end -->
+
+<!------ hero section start ---------->
+     <section class="hero-carousel-section">
+    <div id="home2Carousel" class="carousel slide home2-carousel" data-bs-ride="carousel">
+      
+      <div class="carousel-indicators custom-indicators">
+        <button type="button" data-bs-target="#home2Carousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+        <button type="button" data-bs-target="#home2Carousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#home2Carousel" data-bs-slide-to="2"></button>
+      </div>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="slide-card">
+            <div class="row align-items-center g-0">
+              <div class="col-lg-6 order-2 order-lg-1">
+                <div class="slide-content">
+                  <span class="slide-badge">Best Taste</span>
+                  <h1>Delicious Food For Your Special Moments</h1>
+                  <p>
+                    Fresh ingredients, premium taste, and beautiful presentation.
+                    Perfect for dinners, events, and family time.
+                  </p>
+                  <div class="slide-actions">
+                    <a href="#" class="btn nav-btn">Order Now</a>
+                    <a href="#" class="btn btn-gold ">View Menu</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2">
+                <div class="slide-image">
+                  <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" alt="Food 1">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="slide-card">
+            <div class="row align-items-center g-0">
+              <div class="col-lg-6 order-2 order-lg-1">
+                <div class="slide-content">
+                  <span class="slide-badge">Fresh & Healthy</span>
+                  <h1>Premium Meals Made With Love</h1>
+                  <p>
+                    Elegant dishes, warm atmosphere, and quality service.
+                    Enjoy the perfect dining experience.
+                  </p>
+                  <div class="slide-actions">
+                    <a href="#" class="btn nav-btn">Book Table</a>
+                    <a href="#" class="btn btn-gold">Explore</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2">
+                <div class="slide-image">
+                  <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1200&q=80" alt="Food 2">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="slide-card">
+            <div class="row align-items-center g-0">
+              <div class="col-lg-6 order-2 order-lg-1">
+                <div class="slide-content">
+                  <span class="slide-badge">Special Offer</span>
+                  <h1>Luxury Dining Experience With Golden Touch</h1>
+                  <p>
+                    Modern restaurant vibes with a classy dark theme.
+                    Designed to make your homepage look premium.
+                  </p>
+                  <div class="slide-actions">
+                    <a href="#" class="btn nav-btn">Reserve Now</a>
+                    <a href="#" class="btn btn-gold">Learn More</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2">
+                <div class="slide-image">
+                  <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80" alt="Food 3">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev custom-control" type="button" data-bs-target="#home2Carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <button class="carousel-control-next custom-control" type="button" data-bs-target="#home2Carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
+    </div>
+  </section>
+  <!------------- hero section end ------------->
+   <section class="restho-new-items py-5">
+        <div class="container">
+
+            <!-- Premium Animated Header -->
+            <div class="text-center mb-5 header-container">
+                <span class="sub-title d-flex align-items-center justify-content-center gap-2">
+                    <span class="gold-diamond">✦</span> Our New Item <span class="gold-diamond">✦</span>
+                </span>
+                <h2 class="section-title"> New Items List</h2>
+                <div class="header-line mx-auto mt-2"></div>
+            </div>
+
+            <!-- Main 3-Card Interactive Grid -->
+            <div class="row g-4 align-items-stretch justify-content-center mb-5">
+
+                <!-- Left Card: Special Offer -->
+                <div class="col-lg-4 col-md-6">
+                    <div
+                        class="premium-card special-offer-card h-100 d-flex flex-column justify-content-between p-5 text-center">
+                        <div class="card-top">
+                            <span class="offer-badge">Special Offer</span>
+                            <h3 class="offer-heading mt-4">Our New Item has special offer</h3>
+                        </div>
+
+                        <div class="discount-container mx-auto mt-4">
+                            <div class="dashed-border-inner">
+                                <p class="discount-label">After Discount</p>
+                                <h2 class="discount-value">20% <span class="off-text">OFF</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Middle Card: Interactive Active Food Card -->
+                <div class="col-lg-4 col-md-6">
+                    <div
+                        class="premium-card dynamic-food-card h-100 d-flex flex-column align-items-center text-center p-4 justify-content-between">
+                        <div class="food-img-container mt-3">
+                            <div class="gold-ring-animation"></div>
+                            <img id="active-food-img" src="" alt="Food Item"
+                                class="img-fluid rounded-circle active-food-pic">
+                        </div>
+
+                        <div class="food-details-wrapper my-4">
+                            <span id="active-food-price" class="premium-price-badge">$0.00</span>
+                            <h3 id="active-food-title" class="premium-food-title">Loading...</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Card: Private Event Booking -->
+                <div class="col-lg-4 col-md-6">
+                    <div
+                        class="premium-card private-event-card h-100 p-0 overflow-hidden position-relative d-flex flex-column justify-content-end">
+                        <div class="event-parallax-bg"
+                            style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800');">
+                        </div>
+                        <div class="overlay-gradient"></div>
+
+                        <div class="event-content text-center p-5 position-relative">
+                            <span class="reserve-badge mb-2">✦ Reserve ✦</span>
+                            <h3 class="event-heading mb-4">For Your Private Event</h3>
+                            <a href="#/checkout" class="btn btn-gold-premium py-3 px-4">Book Table</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Minimalist Navigation & Swiper Slider -->
+            <!-- Bottom Minimalist Navigation & Swiper Slider -->
+            <!-- Bottom Minimalist Navigation & Swiper Slider -->
+            <div class="row justify-content-center mt-5">
+                <div class="col-xl-8 col-lg-10 d-flex align-items-center justify-content-between gap-3">
+
+                    <!-- Premium Left Button -->
+                    <button class="nav-btn-custom prev-btn" aria-label="Previous Slide">
+                        <i class="bi bi-chevron-left arrow-icon"></i>
+                    </button>
+
+                    <!-- Swiper Container -->
+                    <div class="swiper food-thumbs-swiper flex-grow-1 mx-2">
+                        <div class="swiper-wrapper" id="swiper-items-wrapper">
+                            <!-- Dynamically Appended in JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Premium Right Button -->
+                    <button class="nav-btn-custom next-btn" aria-label="Next Slide">
+                        <i class="bi bi-chevron-right arrow-icon"></i>
+                    </button>
+
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+
+</html>
