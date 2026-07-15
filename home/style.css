@@ -2,6 +2,7 @@
   --main-bg: #0B0C10;        
   --card-bg: #1F2833;        
   --text-light: #F5F5F7;     
+  --text-dark: black;     
   --accent-gold: #C5A880;   
   --accent-gold-bright: #D4AF37;
   --border: rgba(197,168,128,.18);
@@ -171,7 +172,7 @@
     font-weight: 600;
 }
 .nav-btn {
-    background-color: transparent;
+    background-color: var(--accent-gold-bright);
     color: var(--text-light);
     font-size: 14px;
     font-weight: 600;
@@ -194,13 +195,13 @@
     left: 0;
     width: 0;
     height: 100%;
-    background-color: var(--accent-gold-bright);
+    background-color: var(--text-light);
     z-index: -1;
     transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .nav-btn:hover {
-    color: var(--main-bg) !important; 
+    color: var(--accent-gold-bright) !important; 
 }
 
 .nav-btn:hover::before {
