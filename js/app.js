@@ -131,149 +131,92 @@ const foodItems = [
 
 document.addEventListener("DOMContentLoaded", () => {
   const swiperWrapper = document.getElementById("swiper-items-wrapper");
-
-  foodItems.forEach((item) => {
-    const slide = document.createElement("div");
-    slide.className = "swiper-slide d-flex justify-content-center";
-    slide.innerHTML = `
-      <div class="swiper-slide-thumb">
-        <img src="${item.image}" alt="${item.title}">
-      </div>
-    `;
-    swiperWrapper.appendChild(slide);
-  });
-
-  const swiper = new Swiper(".food-thumbs-swiper", {
-    slidesPerView: 3,
-    spaceBetween: 24,
-    centeredSlides: true,
-    loop: true,
-    slideToClickedSlide: true,
-    navigation: {
-      nextEl: ".next-btn",
-      prevEl: ".prev-btn",
-    },
-    breakpoints: {
-      480: { slidesPerView: 4, spaceBetween: 24 },
-      768: { slidesPerView: 5, spaceBetween: 30 },
-      1024: { slidesPerView: 6, spaceBetween: 35 },
-    },
-  });
-
   const activeImg = document.getElementById("active-food-img");
   const activeTitle = document.getElementById("active-food-title");
   const activePrice = document.getElementById("active-food-price");
   const dynamicCard = document.querySelector(".dynamic-food-card");
 
-  let currentItemIndex = null;
+  if (swiperWrapper) {
+    foodItems.forEach((item) => {
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide d-flex justify-content-center";
+      slide.innerHTML = `
+        <div class="swiper-slide-thumb">
+          <img src="${item.image}" alt="${item.title}" loading="lazy">
+        </div>
+      `;
+      swiperWrapper.appendChild(slide);
+    });
+  }
 
-  function updateActiveFood(index) {
-    if (currentItemIndex === index) return;
-    currentItemIndex = index;
-    const food = foodItems[index];
+  if (window.Swiper) {
+    const swiper = new Swiper(".food-thumbs-swiper", {
+      slidesPerView: 3,
+      spaceBetween: 24,
+      centeredSlides: true,
+      loop: true,
+      slideToClickedSlide: true,
+      navigation: {
+        nextEl: ".next-btn",
+        prevEl: ".prev-btn",
+      },
+      breakpoints: {
+        480: { slidesPerView: 4, spaceBetween: 24 },
+        768: { slidesPerView: 5, spaceBetween: 30 },
+        1024: { slidesPerView: 6, spaceBetween: 35 },
+      },
+    });
 
-    const tl = gsap.timeline();
+    let currentItemIndex = null;
 
-    tl.to(activeImg, {
-      opacity: 0,
-      scale: 0.75,
-      rotation: -15,
-      y: 40,
-      filter: "blur(4px)",
-      duration: 0.25,
-      ease: "power2.in",
-    })
-      .to(
-        [activeTitle, activePrice],
-        {
-          opacity: 0,
-          y: 15,
-          duration: 0.18,
-          stagger: 0.04,
-          ease: "power2.in",
-        },
-        "-=0.2",
-      )
+    function updateActiveFood(index) {
+      if (currentItemIndex === index || !activeImg || !activeTitle || !activePrice) return;
+      currentItemIndex = index;
+      const food = foodItems[index];
+      if (!food) return;
 
-      .call(() => {
+      activeImg.style.opacity = "0";
+      activeTitle.style.opacity = "0";
+      activePrice.style.opacity = "0";
+
+      setTimeout(() => {
         activeImg.src = food.image;
         activeTitle.textContent = food.title;
         activePrice.textContent = `Price - ${food.price}`;
+        activeImg.style.opacity = "1";
+        activeTitle.style.opacity = "1";
+        activePrice.style.opacity = "1";
+      }, 70);
+    }
 
-        gsap.set(activeImg, {
-          y: -50,
-          rotation: 15,
-          scale: 0.8,
-          filter: "blur(0px)",
-        });
-        gsap.set([activeTitle, activePrice], { y: -15 });
-      })
+    if (dynamicCard && activeImg) {
+      dynamicCard.addEventListener("mousemove", (e) => {
+        const cardRect = dynamicCard.getBoundingClientRect();
+        const cardX = e.clientX - cardRect.left;
+        const cardY = e.clientY - cardRect.top;
+        const tiltX = (cardY / cardRect.height - 0.5) * 8;
+        const tiltY = (cardX / cardRect.width - 0.5) * -8;
 
-      .to(activeImg, {
-        opacity: 1,
-        scale: 1,
-        rotation: 0,
-        y: 0,
-        duration: 0.6,
-        ease: "back.out(1.8)",
-      })
-      .to(
-        [activeTitle, activePrice],
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.35,
-          stagger: 0.08,
-          ease: "power3.out",
-        },
-        "-=0.35",
-      );
+        dynamicCard.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        activeImg.style.transform = `translate(${(cardX / cardRect.width - 0.5) * 10}px, ${(cardY / cardRect.height - 0.5) * 10}px)`;
+      });
+
+      dynamicCard.addEventListener("mouseleave", () => {
+        dynamicCard.style.transform = "rotateX(0) rotateY(0)";
+        activeImg.style.transform = "translate(0,0)";
+      });
+    }
+
+    swiper.on("slideChange", () => {
+      updateActiveFood(swiper.realIndex);
+    });
+
+    updateActiveFood(0);
+  } else if (activeImg && activeTitle && activePrice && foodItems[0]) {
+    activeImg.src = foodItems[0].image;
+    activeTitle.textContent = foodItems[0].title;
+    activePrice.textContent = `Price - ${foodItems[0].price}`;
   }
-
-  dynamicCard.addEventListener("mousemove", (e) => {
-    const cardRect = dynamicCard.getBoundingClientRect();
-    const cardX = e.clientX - cardRect.left;
-    const cardY = e.clientY - cardRect.top;
-
-    const tiltX = (cardY / cardRect.height - 0.5) * 12;
-    const tiltY = (cardX / cardRect.width - 0.5) * -12;
-
-    gsap.to(dynamicCard, {
-      rotateX: tiltX,
-      rotateY: tiltY,
-      transformPerspective: 1000,
-      duration: 0.3,
-      ease: "power2.out",
-    });
-
-    gsap.to(activeImg, {
-      x: (cardX / cardRect.width - 0.5) * 15,
-      y: (cardY / cardRect.height - 0.5) * 15,
-      duration: 0.3,
-      ease: "power2.out",
-    });
-  });
-
-  dynamicCard.addEventListener("mouseleave", () => {
-    gsap.to(dynamicCard, {
-      rotateX: 0,
-      rotateY: 0,
-      duration: 0.6,
-      ease: "power3.out",
-    });
-    gsap.to(activeImg, {
-      x: 0,
-      y: 0,
-      duration: 0.6,
-      ease: "power3.out",
-    });
-  });
-
-  swiper.on("slideChange", () => {
-    updateActiveFood(swiper.realIndex);
-  });
-
-  updateActiveFood(0);
 });
 //-------- new item section end------------
 
@@ -517,126 +460,68 @@ function setSpotlight(idx) {
 
 /* ================= NAVBAR / MOBILE MENU ================= */
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 30);
-});
+if (navbar) {
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 30);
+  });
+}
 
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  mobileMenu.classList.toggle('open');
-});
-mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  hamburger.classList.remove('active');
-  mobileMenu.classList.remove('open');
-}));
+if (hamburger && mobileMenu) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+    });
+  });
+}
 
 /* ================= FORMS ================= */
-document.getElementById('reserveForm').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const msg = document.getElementById('reserveConfirm');
-  msg.textContent = "Table request received — we'll confirm by phone shortly.";
-  e.target.reset();
-});
-
-document.getElementById('newsletterForm').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const msg = document.getElementById('newsletterConfirm');
-  msg.textContent = "You're on the list!";
-  e.target.reset();
-});
-
-document.getElementById('watchBtn').addEventListener('click', () => {
-  window.scrollTo({ top: document.getElementById('popular').offsetTop - 60, behavior: 'smooth' });
-});
-
-document.getElementById('year').textContent = new Date().getFullYear();
-
-/* ================= GSAP ANIMATIONS ================= */
-if (window.gsap) {
-  gsap.registerPlugin(ScrollTrigger);
-
-  // hero entrance
-  gsap.timeline({ defaults: { ease: 'power3.out' } })
-    .to('.eyebrow[data-reveal]', { opacity: 1, y: 0, duration: 0.6 }, 0.1)
-    .to('.hero-title span', { opacity: 1, y: 0, duration: 0.7, stagger: 0.12 }, 0.25)
-    .to('.hero-desc[data-reveal]', { opacity: 1, y: 0, duration: 0.6 }, 0.55)
-    .to('.hero-actions[data-reveal]', { opacity: 1, y: 0, duration: 0.6 }, 0.68)
-    .to('.hero-stats[data-reveal]', { opacity: 1, y: 0, duration: 0.6 }, 0.8)
-    .fromTo('.hero-img-frame', { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.9, stagger: 0.15 }, 0.3)
-    .fromTo('.hero-badge-card', { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.6 }, 1.1);
-
-  // count-up stats
-  document.querySelectorAll('.stat-num').forEach((el) => {
-    const target = parseInt(el.dataset.count, 10);
-    gsap.to(el, {
-      textContent: target,
-      duration: 1.8,
-      ease: 'power2.out',
-      snap: { textContent: 1 },
-      delay: 1.1,
-      onUpdate: function () { el.textContent = Math.floor(el.textContent); }
-    });
+const reserveForm = document.getElementById('reserveForm');
+if (reserveForm) {
+  reserveForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const msg = document.getElementById('reserveConfirm');
+    if (msg) msg.textContent = "Table request received — we'll confirm by phone shortly.";
+    e.target.reset();
   });
-
-  // floating parallax on hero images (mousemove)
-  const heroVisual = document.querySelector('.hero-visual');
-  if (heroVisual) {
-    heroVisual.addEventListener('mousemove', (e) => {
-      const rect = heroVisual.getBoundingClientRect();
-      const relX = (e.clientX - rect.left) / rect.width - 0.5;
-      const relY = (e.clientY - rect.top) / rect.height - 0.5;
-      gsap.to('.img-a', { x: relX * 16, y: relY * 16, duration: 0.6, ease: 'power2.out' });
-      gsap.to('.img-b', { x: relX * -12, y: relY * -12, duration: 0.6, ease: 'power2.out' });
-      gsap.to('.hero-badge-card', { x: relX * 10, y: relY * 10, duration: 0.6, ease: 'power2.out' });
-    });
-  }
-
-  // generic scroll reveals
-  gsap.utils.toArray('.craft-card[data-reveal], .chef-card[data-reveal]').forEach((el, i) => {
-    gsap.fromTo(el, { opacity: 0, y: 40 }, {
-      opacity: 1, y: 0, duration: 0.7, delay: (i % 4) * 0.08,
-      scrollTrigger: { trigger: el, start: 'top 88%' }
-    });
-  });
-
-  // section heads
-  gsap.utils.toArray('.section-head').forEach((el) => {
-    gsap.fromTo(el, { opacity: 0, y: 30 }, {
-      opacity: 1, y: 0, duration: 0.8,
-      scrollTrigger: { trigger: el, start: 'top 85%' }
-    });
-  });
-
-  // spotlight
-  gsap.fromTo('.spotlight-feature', { opacity: 0, x: -40 }, {
-    opacity: 1, x: 0, duration: 0.8,
-    scrollTrigger: { trigger: '.spotlight-grid', start: 'top 80%' }
-  });
-  gsap.fromTo('.spotlight-thumbs', { opacity: 0, x: 40 }, {
-    opacity: 1, x: 0, duration: 0.8,
-    scrollTrigger: { trigger: '.spotlight-grid', start: 'top 80%' }
-  });
-
-  // popular carousel reveal
-  gsap.fromTo('.dish-card', { opacity: 0, y: 50 }, {
-    opacity: 1, y: 0, duration: 0.7, stagger: 0.12,
-    scrollTrigger: { trigger: '#carousel', start: 'top 85%' }
-  });
-
-  // reserve CTA
-  gsap.fromTo('.reserve-inner > *', { opacity: 0, y: 30 }, {
-    opacity: 1, y: 0, duration: 0.7, stagger: 0.1,
-    scrollTrigger: { trigger: '.reserve-inner', start: 'top 85%' }
-  });
-
-  // navbar entrance
-  gsap.fromTo('.navbar', { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' });
-} else {
-  // fallback: just show everything if GSAP failed to load
-  document.querySelectorAll('[data-reveal]').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
 }
+
+const newsletterForm = document.getElementById('newsletterForm');
+if (newsletterForm) {
+  newsletterForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const msg = document.getElementById('newsletterConfirm');
+    if (msg) msg.textContent = "You're on the list!";
+    e.target.reset();
+  });
+}
+
+const watchBtn = document.getElementById('watchBtn');
+if (watchBtn) {
+  watchBtn.addEventListener('click', () => {
+    const popularSection = document.getElementById('popular');
+    if (popularSection) {
+      window.scrollTo({ top: popularSection.offsetTop - 60, behavior: 'smooth' });
+    }
+  });
+}
+
+const year = document.getElementById('year');
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
+
+/* ================= SIMPLE REVEALS ================= */
+document.querySelectorAll('.section-head, .spotlight-feature, .spotlight-thumbs, .dish-card, [data-reveal]').forEach((el) => {
+  el.style.opacity = '1';
+  el.style.transform = 'none';
+});
 
 /* ================= EMBER PARTICLES (canvas) ================= */
 (function emberField() {
