@@ -1,28 +1,42 @@
 :root {
   /* Dark Elements (Navbar, Hero, Top Bar) */
-  --nav-bg: #121315;          /* Rich Matte Charcoal Black */
-  --nav-text-light: #F5F5F7;  /* Pure Minimalist White */
-  --accent-gold: #C5A880;     /* Muted Classic Gold */
-  --accent-gold-bright: #D4AF37; /* Bright Luxury Gold */
+  --nav-bg: #121315;
+  /* Rich Matte Charcoal Black */
+  --nav-text-light: #F5F5F7;
+  /* Pure Minimalist White */
+  --accent-gold: #C5A880;
+  /* Muted Classic Gold */
+  --accent-gold-bright: #D4AF37;
+  /* Bright Luxury Gold */
   --border-nav: rgba(197, 168, 128, 0.18);
 
   /* Light Elements (New Item Section & Inner Cards) */
-  --section-light-bg: #FCFAF6;  /* Luxury Creamy White */
-  --card-light-bg: #FFFFFF;     /* Pure High-contrast White */
-  --text-dark: #1E1F22;         /* Solid Dark Grey */
-  --text-muted: #6B7280;        /* Slate Gray */
+  --section-light-bg: #FCFAF6;
+  /* Luxury Creamy White */
+  --card-light-bg: #FFFFFF;
+  /* Pure High-contrast White */
+  --text-dark: #1E1F22;
+  /* Solid Dark Grey */
+  --text-muted: #6B7280;
+  /* Slate Gray */
   --border-card: rgba(197, 168, 128, 0.22);
   --card-shadow: 0 20px 45px rgba(197, 168, 128, 0.08);
-  --gold-soft-tint: #FAF5EC;    /* Warm Gold Cream */
+  --gold-soft-tint: #FAF5EC;
+  /* Warm Gold Cream */
 
   /* Theme & Base Globals */
-  --main-bg: #FCFAF6;           /* Rich Ivory White (Clean Light Theme) */
-  --card-bg: #FFFFFF;           /* Pure White for Premium pop */
+  --main-bg: #FCFAF6;
+  /* Rich Ivory White (Clean Light Theme) */
+  --card-bg: #FFFFFF;
+  /* Pure White for Premium pop */
   --text-light: #F5F5F7;
   --border: rgba(197, 168, 128, .18);
-  --gold-bright: #D4AF37;       /* Bright Gold accents */
-  --gold-soft-bg: #FAF5EC;      /* Golden Cream tint */
-  --border-light: rgba(197, 168, 128, 0.22); /* Ultra Thin Gold Borders */
+  --gold-bright: #D4AF37;
+  /* Bright Gold accents */
+  --gold-soft-bg: #FAF5EC;
+  /* Golden Cream tint */
+  --border-light: rgba(197, 168, 128, 0.22);
+  /* Ultra Thin Gold Borders */
 }
 
 
@@ -100,7 +114,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .main-navbar {
@@ -116,10 +130,10 @@ body {
 .header-logo img {
   height: 90px;
   width: auto;
-  transition: transform 0.3s ease;
   margin-top: 5px;
   object-fit: contain;
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);}
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 
 .header-logo img:hover {
   transform: scale(1.05);
@@ -135,7 +149,8 @@ body {
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.8px;
-  padding: 28px 18px !important; /* Centers within navigation bar */
+  padding: 28px 18px !important;
+  /* Centers within navigation bar */
   transition: color 0.3s ease;
   display: flex;
   align-items: center;
@@ -276,6 +291,7 @@ body {
 .nav-btn:hover::before {
   width: 100%;
 }
+
 /* -------------navbar end------------ */
 /* ---------------carousel hero section start --------------*/
 
@@ -434,7 +450,10 @@ body {
 .restho-new-items::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: radial-gradient(rgba(197, 168, 128, 0.05) 1.5px, transparent 1.5px);
   background-size: 24px 24px;
   pointer-events: none;
@@ -486,7 +505,10 @@ body {
 .premium-card::after {
   content: '';
   position: absolute;
-  top: 0; left: -150%; width: 100%; height: 100%;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
   transform: skewX(-25deg);
   transition: 0.75s;
@@ -564,12 +586,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: baseline;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 /* --- Middle Card: Live Interactive Active Plate --- */
 .dynamic-food-card {
-  perspective: 1000px; /* Enables 3D Tilt effect on plate container */
+  perspective: 1000px;
+  /* Enables 3D Tilt effect on plate container */
 }
 
 .food-img-container {
@@ -589,20 +612,32 @@ body {
   font-size: 12px;
   color: var(--accent-gold-bright);
   animation: floatParticle 6s infinite ease-in-out;
-  left: 20px; top: 30px;
+  left: 20px;
+  top: 30px;
 }
+
 .food-img-container::after {
   content: '✦';
   position: absolute;
   font-size: 10px;
   color: var(--accent-gold);
   animation: floatParticle 8s infinite ease-in-out;
-  right: 30px; bottom: 20px;
+  right: 30px;
+  bottom: 20px;
 }
 
 @keyframes floatParticle {
-  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.3; }
-  50% { transform: translateY(-15px) rotate(180deg) scale(1.3); opacity: 0.9; }
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(180deg) scale(1.3);
+    opacity: 0.9;
+  }
 }
 
 .active-food-pic {
@@ -611,7 +646,7 @@ body {
   object-fit: cover;
   border: 8px solid var(--card-light-bg);
   border-radius: 50%;
-  box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
   z-index: 2;
   transition: filter 0.3s ease;
 }
@@ -619,7 +654,10 @@ body {
 /* Luxury Pulsing Backlight Ring */
 .gold-ring-animation {
   position: absolute;
-  top: 5px; left: 5px; right: 5px; bottom: 5px;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
   border-radius: 50%;
   border: 2px dotted var(--accent-gold);
   box-shadow: 0 0 30px rgba(197, 168, 128, 0.2);
@@ -627,12 +665,27 @@ body {
 }
 
 @keyframes rotateClockwise {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
+
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 20px rgba(197, 168, 128, 0.15); transform: scale(1); }
-  50% { box-shadow: 0 0 45px rgba(197, 168, 128, 0.4); transform: scale(1.03); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(197, 168, 128, 0.15);
+    transform: scale(1);
+  }
+
+  50% {
+    box-shadow: 0 0 45px rgba(197, 168, 128, 0.4);
+    transform: scale(1.03);
+  }
 }
 
 .food-details-wrapper {
@@ -651,7 +704,7 @@ body {
   border-radius: 30px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   letter-spacing: 0.5px;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .premium-food-title {
@@ -674,7 +727,10 @@ body {
 
 .event-parallax-bg {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
   transition: transform 1.2s cubic-bezier(0.15, 1, 0.3, 1);
@@ -686,7 +742,10 @@ body {
 
 .overlay-gradient {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(to top, rgba(18, 19, 21, 0.95) 30%, rgba(18, 19, 21, 0.3) 100%);
   z-index: 1;
 }
@@ -723,7 +782,7 @@ body {
   padding: 3px;
   cursor: pointer;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
   background: #FFFFFF;
 }
 
@@ -744,6 +803,7 @@ body {
   transform: scale(1.25) translateY(-5px);
   box-shadow: 0 12px 25px rgba(197, 168, 128, 0.3);
 }
+
 /* navigation styling */
 .nav-btn-custom {
   background: rgba(255, 255, 255, 0.85);
@@ -762,7 +822,8 @@ body {
   color: var(--text-dark);
   position: relative;
   overflow: hidden;
-  flex-shrink: 0; /* Prevents shrinking on smaller viewports */
+  flex-shrink: 0;
+  /* Prevents shrinking on smaller viewports */
 }
 
 /* Luxury Arrow Icon inside */
@@ -814,4 +875,5 @@ body {
   transform: scale(0.94);
   box-shadow: 0 4px 15px rgba(197, 168, 128, 0.2);
 }
+
 /* ------------new item section end----------- */
