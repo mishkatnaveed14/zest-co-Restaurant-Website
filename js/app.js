@@ -131,148 +131,440 @@ const foodItems = [
 
 document.addEventListener("DOMContentLoaded", () => {
   const swiperWrapper = document.getElementById("swiper-items-wrapper");
-
-  foodItems.forEach((item) => {
-    const slide = document.createElement("div");
-    slide.className = "swiper-slide d-flex justify-content-center";
-    slide.innerHTML = `
-      <div class="swiper-slide-thumb">
-        <img src="${item.image}" alt="${item.title}">
-      </div>
-    `;
-    swiperWrapper.appendChild(slide);
-  });
-
-  const swiper = new Swiper(".food-thumbs-swiper", {
-    slidesPerView: 3,
-    spaceBetween: 24,
-    centeredSlides: true,
-    loop: true,
-    slideToClickedSlide: true,
-    navigation: {
-      nextEl: ".next-btn",
-      prevEl: ".prev-btn",
-    },
-    breakpoints: {
-      480: { slidesPerView: 4, spaceBetween: 24 },
-      768: { slidesPerView: 5, spaceBetween: 30 },
-      1024: { slidesPerView: 6, spaceBetween: 35 },
-    },
-  });
-
   const activeImg = document.getElementById("active-food-img");
   const activeTitle = document.getElementById("active-food-title");
   const activePrice = document.getElementById("active-food-price");
   const dynamicCard = document.querySelector(".dynamic-food-card");
 
-  let currentItemIndex = null;
+  if (swiperWrapper) {
+    foodItems.forEach((item) => {
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide d-flex justify-content-center";
+      slide.innerHTML = `
+        <div class="swiper-slide-thumb">
+          <img src="${item.image}" alt="${item.title}" loading="lazy">
+        </div>
+      `;
+      swiperWrapper.appendChild(slide);
+    });
+  }
 
-  function updateActiveFood(index) {
-    if (currentItemIndex === index) return;
-    currentItemIndex = index;
-    const food = foodItems[index];
+  if (window.Swiper) {
+    const swiper = new Swiper(".food-thumbs-swiper", {
+      slidesPerView: 3,
+      spaceBetween: 24,
+      centeredSlides: true,
+      loop: true,
+      slideToClickedSlide: true,
+      navigation: {
+        nextEl: ".next-btn",
+        prevEl: ".prev-btn",
+      },
+      breakpoints: {
+        480: { slidesPerView: 4, spaceBetween: 24 },
+        768: { slidesPerView: 5, spaceBetween: 30 },
+        1024: { slidesPerView: 6, spaceBetween: 35 },
+      },
+    });
 
-    const tl = gsap.timeline();
+    let currentItemIndex = null;
 
-    tl.to(activeImg, {
-      opacity: 0,
-      scale: 0.75,
-      rotation: -15,
-      y: 40,
-      filter: "blur(4px)",
-      duration: 0.25,
-      ease: "power2.in",
-    })
-      .to(
-        [activeTitle, activePrice],
-        {
-          opacity: 0,
-          y: 15,
-          duration: 0.18,
-          stagger: 0.04,
-          ease: "power2.in",
-        },
-        "-=0.2",
-      )
+    function updateActiveFood(index) {
+      if (currentItemIndex === index || !activeImg || !activeTitle || !activePrice) return;
+      currentItemIndex = index;
+      const food = foodItems[index];
+      if (!food) return;
 
-      .call(() => {
+      activeImg.style.opacity = "0";
+      activeTitle.style.opacity = "0";
+      activePrice.style.opacity = "0";
+
+      setTimeout(() => {
         activeImg.src = food.image;
         activeTitle.textContent = food.title;
         activePrice.textContent = `Price - ${food.price}`;
+        activeImg.style.opacity = "1";
+        activeTitle.style.opacity = "1";
+        activePrice.style.opacity = "1";
+      }, 70);
+    }
 
-        gsap.set(activeImg, {
-          y: -50,
-          rotation: 15,
-          scale: 0.8,
-          filter: "blur(0px)",
-        });
-        gsap.set([activeTitle, activePrice], { y: -15 });
-      })
+    if (dynamicCard && activeImg) {
+      dynamicCard.addEventListener("mousemove", (e) => {
+        const cardRect = dynamicCard.getBoundingClientRect();
+        const cardX = e.clientX - cardRect.left;
+        const cardY = e.clientY - cardRect.top;
+        const tiltX = (cardY / cardRect.height - 0.5) * 8;
+        const tiltY = (cardX / cardRect.width - 0.5) * -8;
 
-      .to(activeImg, {
-        opacity: 1,
-        scale: 1,
-        rotation: 0,
-        y: 0,
-        duration: 0.6,
-        ease: "back.out(1.8)",
-      })
-      .to(
-        [activeTitle, activePrice],
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.35,
-          stagger: 0.08,
-          ease: "power3.out",
-        },
-        "-=0.35",
-      );
+        dynamicCard.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        activeImg.style.transform = `translate(${(cardX / cardRect.width - 0.5) * 10}px, ${(cardY / cardRect.height - 0.5) * 10}px)`;
+      });
+
+      dynamicCard.addEventListener("mouseleave", () => {
+        dynamicCard.style.transform = "rotateX(0) rotateY(0)";
+        activeImg.style.transform = "translate(0,0)";
+      });
+    }
+
+    swiper.on("slideChange", () => {
+      updateActiveFood(swiper.realIndex);
+    });
+
+    updateActiveFood(0);
+  } else if (activeImg && activeTitle && activePrice && foodItems[0]) {
+    activeImg.src = foodItems[0].image;
+    activeTitle.textContent = foodItems[0].title;
+    activePrice.textContent = `Price - ${foodItems[0].price}`;
   }
-
-  dynamicCard.addEventListener("mousemove", (e) => {
-    const cardRect = dynamicCard.getBoundingClientRect();
-    const cardX = e.clientX - cardRect.left;
-    const cardY = e.clientY - cardRect.top;
-
-    const tiltX = (cardY / cardRect.height - 0.5) * 12;
-    const tiltY = (cardX / cardRect.width - 0.5) * -12;
-
-    gsap.to(dynamicCard, {
-      rotateX: tiltX,
-      rotateY: tiltY,
-      transformPerspective: 1000,
-      duration: 0.3,
-      ease: "power2.out",
-    });
-
-    gsap.to(activeImg, {
-      x: (cardX / cardRect.width - 0.5) * 15,
-      y: (cardY / cardRect.height - 0.5) * 15,
-      duration: 0.3,
-      ease: "power2.out",
-    });
-  });
-
-  dynamicCard.addEventListener("mouseleave", () => {
-    gsap.to(dynamicCard, {
-      rotateX: 0,
-      rotateY: 0,
-      duration: 0.6,
-      ease: "power3.out",
-    });
-    gsap.to(activeImg, {
-      x: 0,
-      y: 0,
-      duration: 0.6,
-      ease: "power3.out",
-    });
-  });
-
-  swiper.on("slideChange", () => {
-    updateActiveFood(swiper.realIndex);
-  });
-
-  updateActiveFood(0);
 });
 //-------- new item section end------------
+
+
+
+
+/* ================= DATA ================= */
+const DISHES = [
+  {
+    name: "Beef Machal",
+    desc: "Bone-in cutlet finished over open flame, rested with rosemary and cracked pepper.",
+    price: 25,
+    reviews: 20,
+    rating: 4,
+    img: "https://images.pexels.com/photos/410648/pexels-photo-410648.jpeg?auto=compress&cs=tinysrgb&w=700",
+    featured: false
+  },
+  {
+    name: "Beef Biryani",
+    desc: "48-hour dum-cooked rice, tender beef, whole chillies and a whisper of saffron.",
+    price: 28,
+    reviews: 37,
+    rating: 5,
+    img: "https://images.pexels.com/photos/1630495/pexels-photo-1630495.jpeg?auto=compress&cs=tinysrgb&w=700",
+    featured: true
+  },
+  {
+    name: "Thai Soup",
+    desc: "Overnight broth, soft egg, scallion and chilli oil, served bubbling hot.",
+    price: 21,
+    reviews: 54,
+    rating: 4,
+    img: "https://images.pexels.com/photos/12984982/pexels-photo-12984982.jpeg?auto=compress&cs=tinysrgb&w=700",
+    featured: false
+  },
+  {
+    name: "Fired Chicken",
+    desc: "Double-brined, double-fried, resting on herb salt with a citrus dip.",
+    price: 14,
+    reviews: 62,
+    rating: 5,
+    img: "https://images.pexels.com/photos/16892378/pexels-photo-16892378.jpeg?auto=compress&cs=tinysrgb&w=700",
+    featured: false
+  },
+  {
+    name: "Ramen Bowl",
+    desc: "Hand-pulled noodles, chashu pork, marinated egg, nori and scallion oil.",
+    price: 19,
+    reviews: 45,
+    rating: 5,
+    img: "https://images.pexels.com/photos/17593641/pexels-photo-17593641.jpeg?auto=compress&cs=tinysrgb&w=700",
+    featured: false
+  }
+];
+
+const SPOTLIGHT_ITEMS = [
+  {
+    name: "Golden Fried Chicken",
+    desc: "Double-brined overnight, dredged twice, fried to a shattering crust and rested on herb salt.",
+    price: "$14",
+    img: "https://images.pexels.com/photos/16892378/pexels-photo-16892378.jpeg?auto=compress&cs=tinysrgb&w=900"
+  },
+  {
+    name: "Steamed Dumplings",
+    desc: "Hand-folded parcels, minced beef and ginger, steamed to order and served with black vinegar.",
+    price: "$9",
+    img: "https://images.pexels.com/photos/7172851/pexels-photo-7172851.jpeg?auto=compress&cs=tinysrgb&w=900"
+  },
+  {
+    name: "Chef's Fried Rice",
+    desc: "Wok-tossed jasmine rice, charred scallion and a soft crown of egg.",
+    price: "$12",
+    img: "https://images.pexels.com/photos/1630495/pexels-photo-1630495.jpeg?auto=compress&cs=tinysrgb&w=900"
+  },
+  {
+    name: "Ramen Bowl",
+    desc: "Hand-pulled noodles in an 18-hour broth, chashu pork and marinated egg.",
+    price: "$19",
+    img: "https://images.pexels.com/photos/12984979/pexels-photo-12984979.jpeg?auto=compress&cs=tinysrgb&w=900"
+  },
+  {
+    name: "Grilled Wings",
+    desc: "Charcoal-kissed wings glazed twice, finished with a squeeze of lime.",
+    price: "$11",
+    img: "https://images.pexels.com/photos/10648394/pexels-photo-10648394.jpeg?auto=compress&cs=tinysrgb&w=900"
+  }
+];
+
+/* ================= BUILD CAROUSEL ================= */
+const track = document.getElementById('carTrack');
+const dotsWrap = document.getElementById('carDots');
+
+function starString(n) {
+  return '★'.repeat(n) + '☆'.repeat(5 - n);
+}
+
+DISHES.forEach((d) => {
+  const card = document.createElement('div');
+  card.className = 'dish-card';
+  card.innerHTML = `
+    <div class="dish-img-wrap">
+      <div class="price-blob ${d.featured ? 'gold' : 'white'}">$${d.price}</div>
+      <img src="${d.img}" alt="${d.name}" loading="lazy">
+    </div>
+    <div class="dish-body">
+      <div class="dish-rating">
+        <span class="stars">${starString(d.rating)}</span>
+        <span class="reviews">Review(${d.reviews})</span>
+      </div>
+      <h3>${d.name}</h3>
+      <p>${d.desc}</p>
+    </div>
+  `;
+  track.appendChild(card);
+});
+
+// duplicate a couple of cards at the end for a seamless-ish loop feel on wide screens
+DISHES.slice(0, 2).forEach((d) => {
+  const card = document.createElement('div');
+  card.className = 'dish-card clone';
+  card.innerHTML = `
+    <div class="dish-img-wrap">
+      <div class="price-blob ${d.featured ? 'gold' : 'white'}">$${d.price}</div>
+      <img src="${d.img}" alt="${d.name}" loading="lazy">
+    </div>
+    <div class="dish-body">
+      <div class="dish-rating">
+        <span class="stars">${starString(d.rating)}</span>
+        <span class="reviews">Review(${d.reviews})</span>
+      </div>
+      <h3>${d.name}</h3>
+      <p>${d.desc}</p>
+    </div>
+  `;
+  track.appendChild(card);
+});
+
+const totalDots = DISHES.length;
+for (let i = 0; i < totalDots; i++) {
+  const dot = document.createElement('span');
+  if (i === 0) dot.classList.add('active');
+  dot.addEventListener('click', () => goToSlide(i));
+  dotsWrap.appendChild(dot);
+}
+
+let currentSlide = 0;
+let cardWidthWithGap = 0;
+let visibleCount = 3;
+
+function measure() {
+  const cards = track.querySelectorAll('.dish-card');
+  if (!cards.length) return;
+  const style = getComputedStyle(track);
+  const gap = parseFloat(style.gap) || 30;
+  cardWidthWithGap = cards[0].getBoundingClientRect().width + gap;
+  if (window.innerWidth <= 640) visibleCount = 1;
+  else if (window.innerWidth <= 1080) visibleCount = 2;
+  else visibleCount = 3;
+}
+
+function goToSlide(i) {
+  currentSlide = ((i % totalDots) + totalDots) % totalDots;
+  const dots = dotsWrap.querySelectorAll('span');
+  dots.forEach((d, idx) => d.classList.toggle('active', idx === currentSlide));
+  const offset = currentSlide * cardWidthWithGap;
+  if (window.gsap) {
+    gsap.to(track, { x: -offset, duration: 0.7, ease: 'power3.out' });
+  } else {
+    track.style.transform = `translateX(-${offset}px)`;
+  }
+}
+
+document.getElementById('carPrev').addEventListener('click', () => {
+  goToSlide(currentSlide - 1);
+  restartAutoplay();
+});
+document.getElementById('carNext').addEventListener('click', () => {
+  goToSlide(currentSlide + 1);
+  restartAutoplay();
+});
+
+let autoplayTimer;
+function restartAutoplay() {
+  clearInterval(autoplayTimer);
+  autoplayTimer = setInterval(() => goToSlide(currentSlide + 1), 4200);
+}
+
+// swipe support
+let startX = 0, isDragging = false;
+track.addEventListener('pointerdown', (e) => { isDragging = true; startX = e.clientX; });
+window.addEventListener('pointerup', (e) => {
+  if (!isDragging) return;
+  isDragging = false;
+  const diff = e.clientX - startX;
+  if (Math.abs(diff) > 40) {
+    if (diff < 0) goToSlide(currentSlide + 1);
+    else goToSlide(currentSlide - 1);
+    restartAutoplay();
+  }
+});
+
+window.addEventListener('resize', () => { measure(); goToSlide(currentSlide); });
+window.addEventListener('load', () => { measure(); goToSlide(0); restartAutoplay(); });
+
+/* ================= SPOTLIGHT GALLERY ================= */
+const thumbsWrap = document.getElementById('spotlightThumbs');
+const spotImg = document.getElementById('spotlightImg');
+const spotName = document.getElementById('spotlightName');
+const spotDesc = document.getElementById('spotlightDesc');
+const spotPrice = document.getElementById('spotlightPrice');
+
+SPOTLIGHT_ITEMS.forEach((item, idx) => {
+  const thumb = document.createElement('div');
+  thumb.className = 'thumb' + (idx === 0 ? ' active' : '');
+  thumb.innerHTML = `<img src="${item.img}" alt="${item.name}"><span class="thumb-label">${item.name}</span>`;
+  thumb.addEventListener('click', () => setSpotlight(idx));
+  thumbsWrap.appendChild(thumb);
+});
+
+function setSpotlight(idx) {
+  const item = SPOTLIGHT_ITEMS[idx];
+  const thumbs = thumbsWrap.querySelectorAll('.thumb');
+  thumbs.forEach((t, i) => t.classList.toggle('active', i === idx));
+
+  if (window.gsap) {
+    gsap.to(spotImg, {
+      opacity: 0, duration: 0.22, onComplete: () => {
+        spotImg.src = item.img;
+        gsap.to(spotImg, { opacity: 1, duration: 0.35 });
+      }
+    });
+    gsap.fromTo('#spotlightName, #spotlightDesc, #spotlightPrice',
+      { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, stagger: 0.05 });
+  } else {
+    spotImg.src = item.img;
+  }
+  spotName.textContent = item.name;
+  spotDesc.textContent = item.desc;
+  spotPrice.textContent = item.price;
+}
+
+/* ================= NAVBAR / MOBILE MENU ================= */
+const navbar = document.getElementById('navbar');
+if (navbar) {
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 30);
+  });
+}
+
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+if (hamburger && mobileMenu) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+    });
+  });
+}
+
+/* ================= FORMS ================= */
+const reserveForm = document.getElementById('reserveForm');
+if (reserveForm) {
+  reserveForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const msg = document.getElementById('reserveConfirm');
+    if (msg) msg.textContent = "Table request received — we'll confirm by phone shortly.";
+    e.target.reset();
+  });
+}
+
+const newsletterForm = document.getElementById('newsletterForm');
+if (newsletterForm) {
+  newsletterForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const msg = document.getElementById('newsletterConfirm');
+    if (msg) msg.textContent = "You're on the list!";
+    e.target.reset();
+  });
+}
+
+const watchBtn = document.getElementById('watchBtn');
+if (watchBtn) {
+  watchBtn.addEventListener('click', () => {
+    const popularSection = document.getElementById('popular');
+    if (popularSection) {
+      window.scrollTo({ top: popularSection.offsetTop - 60, behavior: 'smooth' });
+    }
+  });
+}
+
+const year = document.getElementById('year');
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
+
+/* ================= SIMPLE REVEALS ================= */
+document.querySelectorAll('.section-head, .spotlight-feature, .spotlight-thumbs, .dish-card, [data-reveal]').forEach((el) => {
+  el.style.opacity = '1';
+  el.style.transform = 'none';
+});
+
+/* ================= EMBER PARTICLES (canvas) ================= */
+(function emberField() {
+  const canvas = document.getElementById('emberCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, particles;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize() {
+    w = canvas.width = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight;
+  }
+
+  function makeParticles() {
+    const count = Math.min(46, Math.floor(w / 30));
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * w,
+      y: h + Math.random() * h,
+      r: Math.random() * 1.8 + 0.6,
+      speed: Math.random() * 0.6 + 0.25,
+      drift: (Math.random() - 0.5) * 0.4,
+      alpha: Math.random() * 0.5 + 0.25
+    }));
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      p.y -= p.speed;
+      p.x += p.drift;
+      if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(212,175,55,${p.alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(tick);
+  }
+
+  resize();
+  makeParticles();
+  window.addEventListener('resize', () => { resize(); makeParticles(); });
+
+  if (!prefersReduced) tick();
+})();
