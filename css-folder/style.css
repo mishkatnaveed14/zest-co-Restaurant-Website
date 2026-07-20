@@ -873,3 +873,38 @@
 }
 
 /* ------------new item section end----------- */
+/* ----------------Contact Page Styling------------ */
+  .contact-hero-section{
+    /* background:  linear-gradient(rgb(30, 31, 34), #343a40), ('../assets/images/contact-body-page.png'); */
+    background:  linear-gradient(to bottom, rgba(14, 18, 21,.8)),url('../assets/images/contact-hero-bg.avif');
+    background-size: cover;
+    /* z-index: 1; */
+    width: 100%;
+    height: 100vh;
+    
+  }
+  .contact-hero-icon{
+    width: 60px;
+    object-fit: cover;
+  }
+  .contact-hero-section h1{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-align: center;
+    
+  }
+  .line {
+  width: 100px;
+  height: 1px;
+  background-color: white;
+  position: relative;
+  bottom: 8px;
+}
+  .contact-hero-section p{
+    font-size: 1rem;
+    color: var(--text-light);
+    text-align: center;
+  }
+/* ----------------Contact Page End------------ */
