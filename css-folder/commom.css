@@ -1,0 +1,301 @@
+:root {
+    /* Dark Elements (Navbar, Hero, Top Bar) */
+    --nav-bg: #121315;
+    /* Rich Matte Charcoal Black */
+    --nav-text-light: #F5F5F7;
+    /* Pure Minimalist White */
+    --accent-gold: #C5A880;
+    /* Muted Classic Gold */
+    --accent-gold-bright: #D4AF37;
+    /* Bright Luxury Gold */
+    --border-nav: rgba(197, 168, 128, 0.18);
+
+    /* Light Elements (New Item Section & Inner Cards) */
+    --section-light-bg: #FCFAF6;
+    /* Luxury Creamy White */
+    --card-light-bg: #FFFFFF;
+    /* Pure High-contrast White */
+    --text-dark: #1E1F22;
+    /* Solid Dark Grey */
+    --text-muted: #6B7280;
+    /* Slate Gray */
+    --border-card: rgba(197, 168, 128, 0.22);
+    --card-shadow: 0 20px 45px rgba(197, 168, 128, 0.08);
+    --gold-soft-tint: #FAF5EC;
+    /* Warm Gold Cream */
+
+    /* Theme & Base Globals */
+    --main-bg: #FCFAF6;
+    /* Rich Ivory White (Clean Light Theme) */
+    --card-bg: #FFFFFF;
+    /* Pure White for Premium pop */
+    --text-light: #F5F5F7;
+    --border: rgba(197, 168, 128, .18);
+    --gold-bright: #D4AF37;
+    /* Bright Gold accents */
+    --gold-soft-bg: #FAF5EC;
+    /* Golden Cream tint */
+    --border-light: rgba(197, 168, 128, 0.22);
+    /* Ultra Thin Gold Borders */
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--main-bg);
+    color: var(--text-dark);
+    font-family: 'Poppins', Arial, sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* --------upper bar(nav bar se upar wala part) styles star----------- */
+.top-bar {
+    background: linear-gradient(135deg, #111214 0%, #1a1b21 100%);
+    padding: 10px 0;
+    width: 100%;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.open-time p {
+    margin: 0;
+    font-size: 14px;
+    color: rgba(245, 245, 247, 0.9);
+}
+
+.contact-info ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+    list-style: none;
+    gap: 20px;
+}
+
+.contact-info ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-info ul li i {
+    font-size: 16px;
+    color: var(--accent-gold);
+}
+
+.contact-info ul li a {
+    color: rgba(245, 245, 247, 0.9);
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+.contact-info ul li a:hover {
+    color: var(--accent-gold);
+}
+
+/* --------upper bar styles end----------- */
+/* -----------nav bar start-------------- */
+/* ===== LOGO ===== */
+.site-header {
+    background-color: rgba(17, 18, 20, 0.97);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(8px);
+}
+
+.main-navbar {
+    background-color: var(--nav-bg) !important;
+    padding: 0;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-nav);
+}
+
+/* Logo */
+.header-logo img {
+    height: 90px;
+    width: auto;
+    margin-top: 5px;
+    object-fit: contain;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.header-logo img:hover {
+    transform: scale(1.05);
+}
+
+/* Navigation Links */
+.main-navbar .navbar-nav .nav-item {
+    position: relative;
+}
+
+.main-navbar .navbar-nav .nav-link {
+    color: var(--nav-text-light) !important;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    padding: 28px 18px !important;
+    /* Centers within navigation bar */
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.main-navbar .navbar-nav .nav-link:hover,
+.main-navbar .navbar-nav .nav-link.active {
+    color: var(--accent-gold-bright) !important;
+}
+
+.nav-arrow {
+    font-size: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* Mega/Standard Dropdown */
+.dropdown-holder:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-holder:hover .nav-arrow {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #1a1b1e;
+    min-width: 210px;
+    list-style: none;
+    padding: 12px 0;
+    margin: 0;
+    border-radius: 0 0 6px 6px;
+    border-top: 3px solid var(--accent-gold-bright);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 99;
+}
+
+.nav-dropdown li a {
+    display: block;
+    padding: 10px 24px;
+    color: #D1D5DB;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav-dropdown li a:hover {
+    color: var(--accent-gold-bright);
+    padding-left: 28px;
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Call details & Action btn */
+.navbar-actions {
+    gap: 25px;
+}
+
+.header-call {
+    gap: 12px;
+}
+
+.call-icon {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border-nav);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-gold-bright);
+    font-size: 16px;
+}
+
+.call-info span {
+    display: block;
+    font-size: 11px;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.call-info a {
+    color: var(--nav-text-light);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.call-info a:hover {
+    color: var(--accent-gold-bright);
+}
+
+.nav-btn {
+    background-color: var(--accent-gold-bright);
+    color: var(--text-light);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 10px 0px 10px 0px;
+    border: 1px solid var(--accent-gold);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    display: inline-block;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.18);
+}
+
+/* btn styling  */
+.nav-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--nav-text-light);
+    z-index: -1;
+    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nav-btn:hover {
+    color: var(--accent-gold) !important;
+    border-color: var(--nav-text-light);
+}
+
+.nav-btn:hover::before {
+    width: 100%;
+}
+/* btn styling end */
+
+
+/* -------------navbar end------------ */
