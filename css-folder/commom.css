@@ -299,3 +299,139 @@ body {
 
 
 /* -------------navbar end------------ */
+
+
+
+/* -------- footer section ---------- */
+.footer {
+  background: linear-gradient(135deg, #121315 0%, #1a1b21 100%);
+  color: #F5F5F7;
+  padding: 70px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.12), transparent 30%);
+  pointer-events: none;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-decoration: none;
+  margin-bottom: 6px;
+}
+
+.logo-accent {
+  color: var(--accent-gold-bright);
+}
+
+.footer-col p,
+.footer-col a {
+  color: rgba(245, 245, 247, 0.78);
+  text-decoration: none;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.footer-col a:hover {
+  color: var(--accent-gold-bright);
+}
+
+.footer-col h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--accent-gold-bright);
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.newsletter-form input {
+  flex: 1;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 10px 14px;
+  color: #FFFFFF;
+}
+
+.newsletter-form input::placeholder {
+  color: rgba(245, 245, 247, 0.6);
+}
+
+.newsletter-form button {
+  border: 0;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  background: var(--accent-gold-bright);
+  color: #111;
+  font-weight: 700;
+}
+
+.newsletter-confirm {
+  min-height: 1.3rem;
+  color: var(--accent-gold-bright);
+  font-size: 0.95rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 40px;
+  padding: 20px 0 24px;
+}
+
+.footer-bottom-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: rgba(245, 245, 247, 0.7);
+  font-size: 0.9rem;
+}
+/* ---------footer section end------------- */
