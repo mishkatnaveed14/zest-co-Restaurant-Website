@@ -29,6 +29,7 @@
     height: 175px;
   }
 }
+
 @media (max-width: 991.98px) {
 
   /* ---------- TOP BAR ---------- */
@@ -222,6 +223,7 @@
     height: 65px;
   }
 }
+
 @media (max-width: 767.98px) {
 
   .top-bar .col-12 {
@@ -407,6 +409,7 @@
     height: 52px;
   }
 }
+
 @media (max-width: 400px) {
 
   .contact-info ul li i {
@@ -449,5 +452,145 @@
   .swiper-slide-thumb {
     width: 46px;
     height: 46px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .popular .carousel {
+    gap: 12px;
+  }
+
+  .popular .carousel-track {
+    gap: 16px;
+  }
+
+  .popular .dish-card {
+    flex-basis: 240px;
+  }
+
+  .spotlight-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .popular {
+    padding: 70px 0 60px;
+  }
+
+  .section-head h2 {
+    font-size: 1.9rem;
+  }
+
+  .popular .carousel {
+    flex-direction: column;
+  }
+
+  .popular .car-arrow {
+    width: 42px;
+    height: 42px;
+  }
+
+  .popular .dish-card {
+    flex-basis: 220px;
+  }
+
+  .spotlight {
+    padding: 70px 0;
+  }
+
+  .spotlight-info {
+    padding: 20px;
+  }
+
+  .thumb {
+    padding: 10px;
+  }
+
+  .thumb img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .carousel {
+    gap: 12px;
+  }
+
+  .carousel-track {
+    gap: 16px;
+  }
+
+  .dish-card {
+    flex-basis: 240px;
+  }
+
+  .spotlight-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .popular {
+    padding: 70px 0 60px;
+  }
+
+  .section-head h2 {
+    font-size: 1.9rem;
+  }
+
+  .carousel {
+    flex-direction: column;
+  }
+
+  .car-arrow {
+    width: 42px;
+    height: 42px;
+  }
+
+  .dish-card {
+    flex-basis: 220px;
+  }
+
+  .spotlight {
+    padding: 70px 0;
+  }
+
+  .spotlight-info {
+    padding: 20px;
+  }
+
+  .thumb {
+    padding: 10px;
+  }
+
+  .thumb img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
   }
 }
