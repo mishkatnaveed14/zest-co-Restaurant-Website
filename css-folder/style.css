@@ -875,7 +875,7 @@
 /* ------------new item section end----------- */
 /* new section  */
 
-/* Container spacing setup */
+/* Container Spacing */
 .quick-action-section {
   width: 100%;
   padding: 50px 20px;
@@ -890,90 +890,80 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  /* Extra gap for clean horizontal layout on hover */
-  gap: 60px; 
-  max-width: 1200px;
+  gap: 40px;
+  max-width: 1100px;
   width: 100%;
 }
 
-/* 3D Book Container */
-.book {
+/* Base Card Styling */
+.quick-card {
   position: relative;
-  border-radius: 14px;
-  width: 240px;
-  height: 290px;
+  width: 250px;
+  height: 280px;
   background-color: var(--card-light-bg);
+  border-radius: 12px;
   border: 1px solid var(--border-card);
   box-shadow: var(--card-shadow);
-  transform-style: preserve-3d;
-  perspective: 1200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+  perspective: 1200px; /* Enhanced Depth */
+  /* Slow luxury hover lift */
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease; 
 }
 
-/* Subtle card tilt on hover */
-.book:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(197, 168, 128, 0.25);
+.quick-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(197, 168, 128, 0.2);
 }
 
-/* Base Content Layer (Center mein fully readable rehne ke liye) */
-.base-content {
+/* Base Content (Underneath the cover) */
+.card-content {
   width: 100%;
   height: 100%;
-  padding: 25px 18px;
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  z-index: 1;
+  border-radius: 12px;
+  background-color: var(--gold-soft-bg);
 }
 
 .card-tag {
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.5px;
   color: var(--accent-gold);
   font-weight: 700;
   margin-bottom: 6px;
 }
 
-.base-content h3 {
+.card-content h3 {
   font-size: 17px;
   color: var(--text-dark);
-  margin-bottom: 15px;
+  margin-bottom: 16px;
   font-weight: 600;
 }
 
-/* Common Styles for Cover and Inner Flaps */
-.cover,
-.inner {
+/* Single Front Cover Flap */
+.card-cover {
+  position: absolute;
   top: 0;
   left: 0;
-  position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 14px;
-  cursor: pointer;
-  backface-visibility: hidden;
-  transition: transform 0.7s cubic-bezier(0.34, 1.2, 0.64, 1), box-shadow 0.6s ease;
+  background: linear-gradient(145deg, #ffffff, var(--gold-soft-tint));
+  border-radius: 12px;
+  border: 1px solid var(--border-card);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  box-sizing: border-box;
-  border: 1px solid var(--border-card);
-}
-
-/* Front Cover Styling */
-.cover {
-  background: linear-gradient(145deg, #ffffff, var(--gold-soft-tint));
-  transform-origin: left center;
-  z-index: 3;
+  transform-origin: left center; /* Spines out like a clean door */
+  /* Slow, elegant 0.8s door open animation */
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.8s ease; 
+  z-index: 2;
+  backface-visibility: hidden;
 }
 
 .icon-wrap {
@@ -989,7 +979,7 @@
   border: 1px solid var(--border-card);
 }
 
-.cover h4 {
+.card-cover h4 {
   font-size: 16px;
   color: var(--text-dark);
   margin: 0;
@@ -1001,33 +991,17 @@
   color: var(--accent-gold);
   margin-top: 15px;
   font-weight: 600;
-  letter-spacing: 0.5px;
 }
 
-/* Controlled Open Flap Effect (Kholne par clean perspective) */
-.book:hover .cover {
-  /* Cover opens smoothly to the left */
-  transform: rotateY(-110deg);
-  box-shadow: -8px 12px 20px rgba(197, 168, 128, 0.15);
+/* Smooth Controlled Opening (Sirf ek door khulega) */
+.quick-card:hover .card-cover {
+  transform: rotateY(-105deg);
+  box-shadow: -12px 10px 25px rgba(197, 168, 128, 0.18);
 }
 
-/* Inner Flap (Secondary details panel) */
-.inner {
-  background-color: var(--gold-soft-bg);
-  transform-origin: right center;
-  z-index: 2;
-}
-
-.book:hover .inner {
-  /* Inner flap moves back & right cleanly without obscuring center content */
-  transform: rotateY(100deg);
-  box-shadow: 8px 12px 20px rgba(197, 168, 128, 0.15);
-}
-
-/* Interactive Elements Styling Inside Base Content */
+/* Form Controls Inside Content */
 .option-buttons,
-.location-form,
-.contact-actions {
+.location-form {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -1037,13 +1011,13 @@
 .type-btn {
   background: var(--card-light-bg);
   border: 1px solid var(--border-card);
-  padding: 9px;
-  border-radius: 8px;
+  padding: 8px;
+  border-radius: 6px;
   color: var(--text-dark);
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .type-btn.active, 
@@ -1055,10 +1029,10 @@
 
 .location-form input {
   width: 100%;
-  padding: 9px 12px;
+  padding: 8px 10px;
   font-size: 12px;
   border: 1px solid var(--border-card);
-  border-radius: 8px;
+  border-radius: 6px;
   outline: none;
   background-color: #ffffff;
 }
@@ -1071,8 +1045,8 @@
   background-color: var(--text-dark);
   color: var(--nav-text-light);
   border: none;
-  padding: 9px;
-  border-radius: 8px;
+  padding: 8px;
+  border-radius: 6px;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
@@ -1086,24 +1060,25 @@
 .timing {
   font-size: 12px;
   color: var(--text-muted);
-  margin-bottom: 6px;
+  margin-bottom: 12px;
   font-weight: 500;
 }
 
 .action-btns {
   display: flex;
   gap: 8px;
-  justify-content: center;
+  width: 100%;
 }
 
 .action-icon {
   flex: 1;
   padding: 8px 0;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 11px;
   text-decoration: none;
   font-weight: 600;
   text-align: center;
+  transition: opacity 0.3s ease;
 }
 
 .action-icon.wa {
@@ -1116,23 +1091,18 @@
   color: white;
 }
 
-/* Mobile Responsiveness */
+.action-icon:hover {
+  opacity: 0.88;
+}
+
+/* Responsive adjustments */
 @media (max-width: 820px) {
   .quick-action-container {
     flex-direction: column;
-    gap: 40px;
+    gap: 30px;
   }
-  
-  .book {
-    width: 280px;
-  }
-  
-  /* Mobile screens par book open rotation reduce kar di hai taake cut-off na ho */
-  .book:hover .cover {
-    transform: rotateY(-95deg);
-  }
-  
-  .book:hover .inner {
-    transform: rotateY(85deg);
+
+  .quick-card {
+    width: 270px;
   }
 }
