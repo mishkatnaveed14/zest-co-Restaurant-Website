@@ -893,7 +893,7 @@
     font-weight: 700;
     color: var(--text-light);
     text-align: center;
-    
+    letter-spacing: 5px;
   }
   .line {
   width: 100px;
