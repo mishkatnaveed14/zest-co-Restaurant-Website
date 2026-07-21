@@ -875,87 +875,245 @@
 /* ------------new item section end----------- */
 /* new section  */
 
-/* From Uiverse.io by javierBarroso */ 
+/* Container & Layout */
+.quick-action-section {
+  width: 100%;
+  padding: 40px 20px;
+  background-color: var(--section-light-bg);
+  display: flex;
+  justify-content: center;
+}
+
+.quick-action-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  max-width: 1100px;
+  width: 100%;
+}
+
+/* 3D Book Base Card */
 .book {
   position: relative;
-  border-radius: 10px;
-  width: 180px;
-  height: 250px;
-  background-color: whitesmoke;
-  -webkit-box-shadow: 1px 1px 12px #000;
-  box-shadow: 1px 1px 12px #000;
-  -webkit-transform: preserve-3d;
-  -ms-transform: preserve-3d;
-  transform: preserve-3d;
-  -webkit-perspective: 2000px;
-  perspective: 600px;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  border-radius: 14px;
+  width: 220px;
+  height: 280px;
+  background-color: var(--card-light-bg);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--card-shadow);
+  transform-style: preserve-3d;
+  perspective: 1000px;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  color: #000;
-  transition-duration: 0.5s;
-}
-
-.cover,
-.inner {
-  top: 0;
-  position: absolute;
-  background-color: lightgray;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  cursor: pointer;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-  -webkit-transform-origin: 0;
-  -ms-transform-origin: 0;
-  transform-origin: 0;
-  -webkit-box-shadow: 1px 1px 12px #000;
-  box-shadow: 1px 1px 12px #000;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.book:hover .cover {
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-  -webkit-transform: rotatey(70deg);
-  -ms-transform: rotatey(70deg);
-  transform: rotatey(-70deg);
-}
-
-.inner {
-  transform-origin: 100%;
-}
-.book:hover .inner {
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-  -webkit-transform: rotateZ(25deg) rotateX(-30deg) rotateY(-10deg)
-    translateX(140px);
-  -ms-transform: rotateZ(25deg) rotateX(-30deg) rotateY(-10deg)
-    translateX(140px);
-  transform: rotateZ(25deg) rotateX(-30deg) rotateY(-10deg) translateX(140px);
-  -webkit-box-shadow: 1px 1px 20px #000a;
-  box-shadow: 1px 1px 20px #000a;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 .book:hover {
-  transform: rotateZ(-10deg);
+  transform: rotateZ(-4deg);
+  box-shadow: 0 25px 50px rgba(197, 168, 128, 0.2);
 }
-.text {
-  font-size: 20px;
-  font-weight: 100;
+
+/* Base Content (Middle Layer) */
+.base-content {
+  text-align: center;
+  padding: 15px;
+}
+
+.card-tag {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+.base-content h3 {
+  font-size: 18px;
+  color: var(--text-dark);
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+/* Cover & Inner Flaps */
+.cover,
+.inner {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid var(--border-card);
+}
+
+/* Front Cover Styling */
+.cover {
+  background-color: var(--card-light-bg);
+  background: linear-gradient(145deg, #ffffff, var(--gold-soft-tint));
+  transform-origin: 0%;
+  z-index: 3;
+}
+
+.icon-wrap {
+  width: 50px;
+  height: 50px;
+  background-color: var(--gold-soft-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-gold-bright);
+  margin-bottom: 12px;
+  border: 1px solid var(--border-card);
+}
+
+.cover h4 {
+  font-size: 16px;
+  color: var(--text-dark);
+  margin: 0;
+  font-weight: 600;
+}
+
+.hover-hint {
+  font-size: 11px;
+  color: var(--accent-gold);
+  margin-top: 15px;
+  font-weight: 500;
+}
+
+/* Hover Animation for Cover */
+.book:hover .cover {
+  transform: rotateY(-80deg);
+  box-shadow: -10px 10px 20px rgba(197, 168, 128, 0.15);
+}
+
+/* Inner Revealed Flap Styling */
+.inner {
+  background-color: var(--gold-soft-bg);
+  transform-origin: 100%;
+  z-index: 2;
+}
+
+.book:hover .inner {
+  transform: rotateZ(12deg) rotateX(-20deg) rotateY(-10deg) translateX(150px);
+  box-shadow: 0 15px 30px rgba(197, 168, 128, 0.25);
+}
+
+/* Custom Interactive UI inside Cards */
+/* Option Buttons (Card 1) */
+.option-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.type-btn {
+  background: var(--card-light-bg);
+  border: 1px solid var(--border-card);
+  padding: 8px;
+  border-radius: 6px;
+  color: var(--text-dark);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.type-btn.active, .type-btn:hover {
+  background: var(--accent-gold-bright);
+  color: #fff;
+  border-color: var(--accent-gold-bright);
+}
+
+/* Location Check Form (Card 2) */
+.location-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.location-form input {
+  width: 100%;
+  padding: 8px;
+  font-size: 11px;
+  border: 1px solid var(--border-card);
+  border-radius: 6px;
+  outline: none;
+}
+
+.check-btn {
+  background-color: var(--text-dark);
+  color: var(--nav-text-light);
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* Contact Info (Card 3) */
+.contact-actions {
+  text-align: center;
+}
+
+.timing {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.action-btns {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.action-icon {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.action-icon.wa {
+  background-color: #25D366;
+  color: white;
+}
+
+.action-icon.call {
+  background-color: var(--accent-gold-bright);
+  color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .quick-action-container {
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .book {
+    width: 260px;
+    height: 240px;
+  }
+  
+  /* On mobile, slide smaller to prevent clipping */
+  .book:hover .inner {
+    transform: rotateZ(5deg) translateX(100px);
+  }
 }
