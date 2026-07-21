@@ -1207,16 +1207,65 @@ body {
   color: #fff
 }
 /* end */
-/* menu highlight section */
+/* ==========================================
+   MENU HIGHLIGHTS SECTION (COMPLETE CSS)
+   ========================================== */
+
+/* Section Container with Layered Background Glow */
 .menu-highlights-section {
-  padding: 60px 20px;
-  max-width: 1200px;
+  position: relative;
+  padding: 80px 20px;
+  max-width: 1300px;
   margin: 0 auto;
+  border-radius: 28px;
+  overflow: hidden;
+
+  /* Layered Luxury Gradient */
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(197, 168, 128, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 45%),
+    linear-gradient(180deg, #FCFAF6 0%, #F5EFE6 50%, #FCFAF6 100%);
+  
+  /* Subtle Outer Border & Soft Shadow */
+  border: 1px solid var(--border-card);
+  box-shadow: 0 15px 35px rgba(18, 19, 21, 0.03);
 }
 
+/* Background Ambient Glow Orbs */
+.menu-highlights-section::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: -5%;
+  width: 250px;
+  height: 250px;
+  background: var(--accent-gold);
+  opacity: 0.12;
+  filter: blur(90px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.menu-highlights-section::after {
+  content: '';
+  position: absolute;
+  bottom: 5%;
+  right: -5%;
+  width: 300px;
+  height: 300px;
+  background: var(--accent-gold-bright);
+  opacity: 0.1;
+  filter: blur(100px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Section Header */
 .section-header {
+  position: relative;
+  z-index: 2;
   text-align: center;
-  margin-bottom: 35px;
+  margin-bottom: 40px;
 }
 
 .section-subtitle {
@@ -1235,8 +1284,10 @@ body {
   margin-top: 5px;
 }
 
-/* Tabs */
+/* Dynamic Category Filter Tabs */
 .category-tabs {
+  position: relative;
+  z-index: 2;
   display: flex;
   justify-content: center;
   gap: 12px;
@@ -1264,15 +1315,17 @@ body {
   box-shadow: 0 4px 15px rgba(18, 19, 21, 0.15);
 }
 
-/* Cards Grid */
+/* Cards Grid Layout */
 .menu-grid {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
   justify-items: center;
 }
 
-/* Uiverse Custom Card Animation */
+/* Uiverse Custom Card Base */
 .food-card {
   display: flex;
   flex-direction: column;
@@ -1289,7 +1342,7 @@ body {
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-/* Expanding Dark Circle Background */
+/* Expanding Dark Circle Animation Effect */
 .food-card:before {
   content: '';
   position: absolute;
@@ -1314,7 +1367,7 @@ body {
   transform: scale(32);
 }
 
-/* Badge */
+/* Badge Corner Overlay */
 .badge-corner {
   position: absolute;
   top: 15px;
@@ -1330,7 +1383,7 @@ body {
   border: 1px solid var(--border-nav);
 }
 
-/* Image */
+/* Image Handling */
 .card-img-wrapper {
   width: 100%;
   height: 170px;
@@ -1350,7 +1403,7 @@ body {
   transform: scale(1.06);
 }
 
-/* Details */
+/* Food Title & Details */
 .card-title-row {
   display: flex;
   justify-content: space-between;
@@ -1381,7 +1434,7 @@ body {
   transition: color 0.4s ease-out;
 }
 
-/* Card Bottom */
+/* Card Bottom Action Area */
 .card-footer {
   display: flex;
   justify-content: space-between;
@@ -1414,7 +1467,7 @@ body {
   box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
-/* Hover Color Transitions */
+/* Text Hover Colors (Transitions into Dark Card Mode) */
 .food-card:hover .card-title {
   color: var(--nav-text-light);
 }
