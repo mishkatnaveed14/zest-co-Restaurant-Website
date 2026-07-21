@@ -568,3 +568,110 @@ document.querySelectorAll('.section-head, .spotlight-feature, .spotlight-thumbs,
 
   if (!prefersReduced) tick();
 })();
+// adding menu highlight section 
+// 1. Array of Food Items (Mock Data or API Response)
+const dishesData = [
+  {
+    id: 1,
+    name: "Zesty Smash Burger",
+    category: "bestsellers",
+    badge: "Halal ☪️",
+    price: "$12.99",
+    rating: "4.9 ★",
+    desc: "Juicy double beef patty layered with melted cheddar and signature house relish.",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80"
+  },
+  {
+    id: 2,
+    name: "Truffle Mushroom Risotto",
+    category: "specials",
+    badge: "Vegan 🌱",
+    price: "$18.50",
+    rating: "4.8 ★",
+    desc: "Creamy arborio rice infused with wild mushrooms and authentic black truffle oil.",
+    image: "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=500&q=80"
+  },
+  {
+    id: 3,
+    name: "Fiery Peri Peri Wings",
+    category: "combos",
+    badge: "Spicy 🌶️",
+    price: "$14.00",
+    rating: "4.7 ★",
+    desc: "Flame-grilled chicken wings tossed in intense African bird's eye chili glaze.",
+    image: "https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500&q=80"
+  },
+  {
+    id: 4,
+    name: "Classic Berry Cheesecake",
+    category: "desserts",
+    badge: "Chef's Pick ⭐",
+    price: "$8.99",
+    rating: "4.9 ★",
+    desc: "Velvety New York style cheesecake topped with fresh wild berry reduction.",
+    image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=500&q=80"
+  }
+];
+
+// DOM Elements
+const menuGrid = document.getElementById('menuGrid');
+const categoryTabs = document.getElementById('categoryTabs');
+
+// 2. Function to Render Cards dynamically
+function renderMenuCards(items) {
+  menuGrid.innerHTML = ''; // Clear previous content
+
+  items.forEach(item => {
+    const cardHTML = `
+      <div class="food-card" data-id="${item.id}">
+        <span class="badge-corner">${item.badge}</span>
+        
+        <div class="card-img-wrapper">
+          <img src="${item.image}" alt="${item.name}" class="card-img" />
+        </div>
+
+        <div class="card-title-row">
+          <h3 class="card-title">${item.name}</h3>
+          <span class="rating">${item.rating}</span>
+        </div>
+
+        <p class="small-desc">${item.desc}</p>
+
+        <div class="card-footer">
+          <span class="price">${item.price}</span>
+          <button class="add-btn" onclick="addToCart(${item.id})">+ Add to Cart</button>
+        </div>
+      </div>
+    `;
+    
+    menuGrid.innerHTML += cardHTML;
+  });
+}
+
+// 3. Category Filter Event Listener
+categoryTabs.addEventListener('click', (e) => {
+  if (e.target.classList.contains('tab-btn')) {
+    // Active class toggle
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    e.target.classList.add('active');
+
+    // Filter Logic
+    const selectedCategory = e.target.getAttribute('data-category');
+    
+    if (selectedCategory === 'all') {
+      renderMenuCards(dishesData);
+    } else {
+      const filteredDishes = dishesData.filter(item => item.category === selectedCategory);
+      renderMenuCards(filteredDishes);
+    }
+  }
+});
+
+// 4. Dummy Add to Cart Handler
+function addToCart(itemId) {
+  const item = dishesData.find(d => d.id === itemId);
+  alert(`${item.name} added to your cart!`);
+}
+
+// Initial Render on Page Load
+renderMenuCards(dishesData);
