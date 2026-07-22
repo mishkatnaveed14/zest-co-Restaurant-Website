@@ -873,3 +873,311 @@
 }
 
 /* ------------new item section end----------- */
+/* ----------------Contact Page Styling------------ */
+  .contact-hero-section{
+    /* background:  linear-gradient(rgb(30, 31, 34), #343a40), ('../assets/images/contact-body-page.png'); */
+    background:  linear-gradient(to bottom, rgba(14, 18, 21,.8)),url('../assets/images/contact-hero-bg.avif');
+    background-size: cover;
+    /* z-index: 1; */
+    width: 100%;
+    height: 100vh;
+    
+  }
+  .contact-hero-icon{
+    width: 60px;
+    object-fit: cover;
+  }
+  .contact-hero-section h1{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-align: center;
+    letter-spacing: 5px;
+  }
+  .line {
+  width: 100px;
+  height: 1px;
+  background-color: white;
+  position: relative;
+  bottom: 8px;
+}
+  .contact-hero-section p{
+    font-size: 1rem;
+    color: var(--text-light);
+    text-align: center;
+  }
+/* ----------------Contact Page End------------ */
+/* ==========================================
+   MENU HIGHLIGHTS SECTION (COMPLETE CSS)
+   ========================================== */
+
+/* Section Container with Layered Background Glow */
+.menu-highlights-section {
+  position: relative;
+  padding: 80px 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+  border-radius: 28px;
+  overflow: hidden;
+
+  /* Layered Luxury Gradient */
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(197, 168, 128, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 45%),
+    linear-gradient(180deg, #FCFAF6 0%, #F5EFE6 50%, #FCFAF6 100%);
+  
+  /* Subtle Outer Border & Soft Shadow */
+  border: 1px solid var(--border-card);
+  box-shadow: 0 15px 35px rgba(18, 19, 21, 0.03);
+}
+
+/* Background Ambient Glow Orbs */
+.menu-highlights-section::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: -5%;
+  width: 250px;
+  height: 250px;
+  background: var(--accent-gold);
+  opacity: 0.12;
+  filter: blur(90px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.menu-highlights-section::after {
+  content: '';
+  position: absolute;
+  bottom: 5%;
+  right: -5%;
+  width: 300px;
+  height: 300px;
+  background: var(--accent-gold-bright);
+  opacity: 0.1;
+  filter: blur(100px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Section Header */
+.section-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-subtitle {
+  color: var(--accent-gold);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: block;
+}
+
+.section-title {
+  color: var(--text-dark);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+/* Dynamic Category Filter Tabs */
+.category-tabs {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.tab-btn {
+  background: var(--card-bg);
+  color: var(--text-dark);
+  border: 1px solid var(--border-card);
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover,
+.tab-btn.active {
+  background: var(--nav-bg);
+  color: var(--accent-gold-bright);
+  border-color: var(--accent-gold-bright);
+  box-shadow: 0 4px 15px rgba(18, 19, 21, 0.15);
+}
+
+/* Cards Grid Layout */
+.menu-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+/* Uiverse Custom Card Base */
+.food-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  padding: 1.2em;
+  z-index: 0;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Expanding Dark Circle Animation Effect */
+.food-card:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: -16px;
+  right: -16px;
+  background: linear-gradient(135deg, var(--nav-bg), #23252b);
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  transform: scale(1);
+  transform-origin: 50% 50%;
+  transition: transform 0.45s ease-out;
+}
+
+.food-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-gold);
+}
+
+.food-card:hover:before {
+  transform: scale(32);
+}
+
+/* Badge Corner Overlay */
+.badge-corner {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 2;
+  background: rgba(18, 19, 21, 0.75);
+  backdrop-filter: blur(4px);
+  color: var(--nav-text-light);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--border-nav);
+}
+
+/* Image Handling */
+.card-img-wrapper {
+  width: 100%;
+  height: 170px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.food-card:hover .card-img {
+  transform: scale(1.06);
+}
+
+/* Food Title & Details */
+.card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4em;
+}
+
+.card-title {
+  color: var(--text-dark);
+  font-size: 1.25em;
+  font-weight: 700;
+  margin: 0;
+  transition: color 0.4s ease-out;
+}
+
+.rating {
+  color: var(--accent-gold-bright);
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.small-desc {
+  font-size: 0.88em;
+  line-height: 1.4em;
+  color: var(--text-muted);
+  margin-bottom: 1.2em;
+  flex-grow: 1;
+  transition: color 0.4s ease-out;
+}
+
+/* Card Bottom Action Area */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  z-index: 2;
+}
+
+.price {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: var(--accent-gold-bright);
+  transition: color 0.4s ease-out;
+}
+
+.add-btn {
+  background-color: var(--accent-gold);
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: var(--accent-gold-bright);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+/* Text Hover Colors (Transitions into Dark Card Mode) */
+.food-card:hover .card-title {
+  color: var(--nav-text-light);
+}
+
+.food-card:hover .small-desc {
+  color: rgba(245, 245, 247, 0.75);
+}
+
+.food-card:hover .add-btn {
+  background-color: var(--accent-gold-bright);
+  color: var(--nav-bg);
+}
