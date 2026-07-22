@@ -874,6 +874,10 @@
 
 /* ------------new item section end----------- */
 /* ----------------Contact Page Styling------------ */
+.contact-body-bg {
+  background: linear-gradient(135deg, #111214 0%, #1a1b21 100%);
+  color: var(--text-light);
+}
   .contact-hero-section{
     /* background:  linear-gradient(rgb(30, 31, 34), #343a40), ('../assets/images/contact-body-page.png'); */
     background:  linear-gradient(to bottom, rgba(14, 18, 21,.8)),url('../assets/images/contact-hero-bg.avif');
@@ -906,6 +910,37 @@
     font-size: 1rem;
     color: var(--text-light);
     text-align: center;
+  }
+  
+  .address-line-horizontal{
+    width: 100%;
+    height: 1px;
+    background-color: var(--accent-gold-bright);
+    margin: 20px 0;
+  }
+  .vertical-line{
+    width: 1px;
+    height: 100vh;
+    background-color: var(--accent-gold-bright);
+    margin: 0 20px;
+  }
+  .contact-title{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-gold-bright);
+    margin-bottom: 10px;
+  }
+  .map-container {
+    width: 100%;
+    min-height: 400px;
+    margin-top: 15px;
+    
+  }
+  .map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 /* ----------------Contact Page End------------ */
 /* ==========================================
