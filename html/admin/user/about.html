@@ -1,139 +1,435 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
-    
-    
-      <!-- google fonts cdn -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-    <!-- boostrap icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
- <!-- bootstrap css -->
-      <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <!-- custom css -->
-      <link rel="stylesheet" href="../../../css/style.css">
-     <link rel="stylesheet" href="../../../css/about.css">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About</title>
+  <!-- AOS cdn -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- google fonts cdn -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <!-- boostrap icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="../../../css-folder/bootstrap.min.css">
+  <!-- custom css -->
+  <link rel="stylesheet" href="../../../css-folder/about.css">
+
 </head>
+
 <body>
-     <!-- upper part start -->
-    <div class="top-bar bg-black">
-        <div class="container-lg container-fluid gy-2">
-            <div class="row align-items-center">
-                <!-- <div class="col-lg-5 col-md-5 d-flex align-items-center justify-content-md-start justify-content-center"> -->
-                <div class="col-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
-                    <div class="open-time">
-                        <p>
-                            <span style="font-weight: 600; color: var(--accent-gold)">Opening Hour:</span>
-                            9.00 am to 10.00 pm
-                        </p>
-                    </div>
-                </div>
-                <div class="col-12 col-md-7 d-flex justify-content-center justify-content-md-end">
-                    <!-- <div class="col-lg-7 col-md-7 d-flex justify-content-end"> -->
-                    <div class="contact-info">
-                        <ul>
-                            <li>
-                                <a href="mailto:zest.co@gmail.com" class="email">
-                                    <i class="bi bi-envelope"></i>
-                                    zest.co@gmail.com
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://maps.google.com/?q=Road-01, Block-B, West Karachi City" target="_blank"
-                                    class="location d-flex align-items-center">
-                                    <i class="bi bi-geo-alt"></i>
-                                    Road-01, Block-B, West Karachi City
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+  <!-- upper part start -->
+  <div class="top-bar bg-black">
+    <div class="container-lg container-fluid gy-2">
+      <div class="row align-items-center">
+        <!-- <div class="col-lg-5 col-md-5 d-flex align-items-center justify-content-md-start justify-content-center"> -->
+        <div class="col-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
+          <div class="open-time">
+            <p>
+              <span style="font-weight: 600; color: var(--accent-gold)">Opening Hour:</span>
+              9.00 am to 10.00 pm
+            </p>
+          </div>
         </div>
-    </div>
-    <!-- upper part end  -->
-    <!-- navbar start  -->
-      <header class="site-header">
-        <nav class="navbar navbar-expand-lg main-navbar">
-            <div class="container-xl">
-                <!-- Logo -->
-                <a class="navbar-brand header-logo" href="#">
-                    <img src="./assets/images/logo.png" alt="Zest & Co. Logo">
+        <div class="col-12 col-md-7 d-flex justify-content-center justify-content-md-end">
+          <!-- <div class="col-lg-7 col-md-7 d-flex justify-content-end"> -->
+          <div class="contact-info">
+            <ul>
+              <li>
+                <a href="mailto:zest.co@gmail.com" class="email">
+                  <i class="bi bi-envelope"></i>
+                  zest.co@gmail.com
                 </a>
+              </li>
+              <li>
+                <a href="https://maps.google.com/?q=Road-01, Block-B, West Karachi City" target="_blank"
+                  class="location d-flex align-items-center">
+                  <i class="bi bi-geo-alt"></i>
+                  Road-01, Block-B, West Karachi City
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- upper part end  -->
+  <!-- navbar start  -->
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg main-navbar">
+      <div class="container-xl">
+        <!-- Logo -->
+        <a class="navbar-brand header-logo" href="#">
+          <img src="../../../assets/images/logo.png" alt="Zest & Co. Logo">
+        </a>
 
-                <!-- Toggler (Mobile View) -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavbar"
-                    aria-controls="primaryNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <!-- Toggler (Mobile View) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavbar"
+          aria-controls="primaryNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-                <div class="collapse navbar-collapse" id="primaryNavbar">
-                    <!-- Nav links -->
-                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">HOME</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">ABOUT</a>
-                        </li>
-                        <li class="nav-item dropdown-holder">
-                            <a class="nav-link" href="#">MENU <i class="bi bi-chevron-down nav-arrow"></i></a>
-                            <ul class="nav-dropdown">
-                                <li><a href="#">Menu List 01</a></li>
-                                <li><a href="#">Menu List 02</a></li>
-                                <li><a href="#">Food Category</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown-holder">
-                            <a class="nav-link" href="#">PAGES <i class="bi bi-chevron-down nav-arrow"></i></a>
-                            <ul class="nav-dropdown">
-                                <li><a href="#">Chef</a></li>
-                                <li><a href="#">Gallery</a></li>
-                                <li><a href="#">FAQ</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown-holder">
-                            <a class="nav-link" href="#">BLOG <i class="bi bi-chevron-down nav-arrow"></i></a>
-                            <ul class="nav-dropdown">
-                                <li><a href="#">Blog Grid</a></li>
-                                <li><a href="#">Blog Standard</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">CONTACT</a>
-                        </li>
-                    </ul>
+        <div class="collapse navbar-collapse" id="primaryNavbar">
+          <!-- Nav links -->
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">ABOUT</a>
+            </li>
+            <li class="nav-item dropdown-holder">
+              <a class="nav-link" href="#">MENU <i class="bi bi-chevron-down nav-arrow"></i></a>
+              <ul class="nav-dropdown">
+                <li><a href="#">Menu List 01</a></li>
+                <li><a href="#">Menu List 02</a></li>
+                <li><a href="#">Food Category</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown-holder">
+              <a class="nav-link" href="#">PAGES <i class="bi bi-chevron-down nav-arrow"></i></a>
+              <ul class="nav-dropdown">
+                <li><a href="#">Chef</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">FAQ</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown-holder">
+              <a class="nav-link" href="#">BLOG <i class="bi bi-chevron-down nav-arrow"></i></a>
+              <ul class="nav-dropdown">
+                <li><a href="#">Blog Grid</a></li>
+                <li><a href="#">Blog Standard</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">CONTACT</a>
+            </li>
+          </ul>
 
-                    <!-- Right Actions -->
-                    <div class="navbar-actions d-flex align-items-center">
-                        <div class="header-call d-none d-xl-flex align-items-center">
-                            <div class="call-icon">
-                                <i class="bi bi-telephone"></i>
-                            </div>
-                            <div class="call-info">
-                                <span>Call Now</span>
-                                <a href="tel:+9988776345">+998-8776345</a>
-                            </div>
-                        </div>
-                        <a href="#" class="nav-btn">
-                            <span>Connect Now</span>
-                        </a>
-                    </div>
-
-                </div>
+          <!-- Right Actions -->
+          <div class="navbar-actions d-flex align-items-center">
+            <div class="header-call d-none d-xl-flex align-items-center">
+              <div class="call-icon">
+                <i class="bi bi-telephone"></i>
+              </div>
+              <div class="call-info">
+                <span>Call Now</span>
+                <a href="tel:+9988776345">+998-8776345</a>
+              </div>
             </div>
-        </nav>
-    </header>
-    <!-- navbar end -->
+            <a href="#" class="nav-btn">
+              <span>Connect Now</span>
+            </a>
+          </div>
 
-     <!-- bootstrap js -->
-      <script src="./js/bootstrap.bundle.min.js"></script>
-       <!-- custom js -->
-     <script src="./js/about.js"></script>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- navbar end -->
+
+
+
+
+
+  <!-- //////////////////////////////////ABOUT US SECTION START////////////////////////////////// -->
+  <section class="about-us py-5 text-white">
+    <div class="container">
+
+      <div class="text-center mb-5">
+        <span class="sub-heading fw-bold d-block mb-2" data-aos="fade-up" data-aos-duration="1000">// ABOUT US //</span>
+        <h1 class="main-heading fw-black text-uppercase" data-aos="fade-up" data-aos-duration="1000">
+          INSPIRED BY FLAVOUR<br>
+          DRIVEN BY EXCELLENCE
+        </h1>
+      </div>
+
+      <div class="row g-3">
+
+        <div class="col-lg-5 col-12">
+          <div class="custom-card p-4 p-md-5 h-100 d-flex flex-column justify-content-center">
+            <h2 class="card-title fw-bold mb-3" data-aos="fade-up" data-aos-duration="1000">OUR HISTORY & GOALS</h2>
+            <p class="card-description mb-0" data-aos="fade-up" data-aos-duration="1000">
+              What started as a simple love for authentic culinary craft has grown into a destination for food lovers.
+              We are dedicated to bringing high-quality, handcrafted dishes to your table. Our mission is to elevate
+              everyday dining with fresh, locally sourced ingredients and unforgettable service.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-7 col-12">
+          <div class="custom-card image-card h-100">
+            <img src="../../../assets/images/about img 1.jpg" alt="Head Chef Preparing Food"
+              class="img-fluid w-100 h-100 object-fit-cover">
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-12">
+          <div class="custom-card image-card fixed-height-sm">
+            <img src="../../../assets/images/about img 2.avif" alt="Sushi Platter"
+              class="img-fluid w-100 h-100 object-fit-cover">
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-12">
+          <div
+            class="custom-card p-4 h-100 d-flex flex-column align-items-center justify-content-center text-center fixed-height-sm">
+            <div class="d-flex mb-2">
+              <img src="../../../assets/images/rating 1.avif" alt="User 1"
+                class="avatar-img rounded-circle border border-2 border-dark">
+              <img src="../../../assets/images/rating 2.avif" alt="User 2"
+                class="avatar-img rounded-circle border border-2 border-dark ms-n2">
+              <img src="../../../assets/images/rating 3.avif" alt="User 3"
+                class="avatar-img rounded-circle border border-2 border-dark ms-n2">
+              <img src="../../../assets/images/rating 4.avif" alt="User 4"
+                class="avatar-img rounded-circle border border-2 border-dark ms-n2">
+            </div>
+            <div class="d-flex align-items-baseline gap-2">
+              <span class="fs-4 fw-bold" data-aos="fade-up" data-aos-duration="1000">4.9/5</span>
+              <span class="text-secondary small" data-aos="fade-up" data-aos-duration="1000">Rating</span>
+            </div>
+            <div class="stars-color mt-1" data-aos="fade-up" data-aos-duration="1000">★★★★★</div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-12">
+          <div class="custom-card image-card fixed-height-sm">
+            <img src="../../../assets/images/about img 3.avif" alt="Steak and Fries"
+              class="img-fluid w-100 h-100 object-fit-cover">
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-12">
+          <div class="custom-card image-card fixed-height-lg">
+            <img src="../../../assets/images/about img 4.jpg" alt="Restaurant Atmosphere"
+              class="img-fluid w-100 h-100 object-fit-cover">
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-12">
+          <div class="custom-card p-4 p-md-5 h-100 d-flex flex-column justify-content-center">
+            <h2 class="card-title fw-bold mb-4" data-aos="fade-up" data-aos-duration="1000">OUR TIMINGS</h2>
+            <ul class="list-unstyled mb-0 w-100">
+              <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-dashed fs-7">
+                <span class="fw-bold" data-aos="fade-up" data-aos-duration="1000">SUNDAY</span>
+                <span class="timing fw-bold" data-aos="fade-up" data-aos-duration="1000">1:00 PM - 11:00 PM</span>
+              </li>
+              <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-dashed fs-7">
+                <span class="fw-bold" data-aos="fade-up" data-aos-duration="1000">MONDAY</span>
+                <span class="timing fw-bold" data-aos="fade-up" data-aos-duration="1000">4:00 PM - 11:00 PM</span>
+              </li>
+              <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-dashed fs-7">
+                <span class="fw-bold" data-aos="fade-up" data-aos-duration="1000">TUESDAY</span>
+                <span class="timing fw-bold" data-aos="fade-up" data-aos-duration="1000">4:00 PM - 11:00 PM</span>
+              </li>
+              <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-dashed fs-7">
+                <span class="fw-bold" data-aos="fade-up" data-aos-duration="1000">WEDNESDAY</span>
+                <span class="timing fw-bold" data-aos="fade-up" data-aos-duration="1000">4:00 PM - 11:00 PM</span>
+              </li>
+              <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-dashed fs-7">
+                <span class="fw-bold" data-aos="fade-up" data-aos-duration="1000">THURSDAY</span>
+                <span class="timing fw-bold" data-aos="fade-up" data-aos-duration="1000">4:00 PM - 11:00 PM</span>
+              </li>
+              <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-dashed fs-7">
+                <span class="fw-bold" data-aos="fade-up" data-aos-duration="1000">FRIDAY</span>
+                <span class="timing fw-bold" data-aos="fade-up" data-aos-duration="1000">4:00 PM - 11:00 PM</span>
+              </li>
+              <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-dashed fs-7">
+                <span class="fw-bold" data-aos="fade-up" data-aos-duration="1000">SATURDAY</span>
+                <span class="timing fw-bold" data-aos="fade-up" data-aos-duration="1000">4:00 PM - 11:00 PM</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ///////////////////////////////////ABOUT US SECTION END//////////////////////////////////// -->
+
+
+
+
+
+  <!-- /////////////////////////////TESTIMONIALS SECTION START///////////////////////////// -->
+  <section class="testimonials-section">
+    <div class="testimonials-header">
+      <span class="subtitle" data-aos="fade-up" data-aos-duration="1000">// OUR TESTIMONIALS //</span>
+      <h2 class="title" data-aos="fade-up" data-aos-duration="1000">DISCOVER THE ART OF TASTE</h2>
+    </div>
+
+    <div class="marquee-wrapper">
+      <div class="marquee-track">
+
+        <div class="testimonial-card">
+          <p class="quote-text">
+            "The food here is on another level! Every dish was fresh, hot, and bursting with flavor. Can’t wait to come
+            back."
+          </p>
+          <div class="stars">★★★★★</div>
+          <div class="profile-container">
+            <img src="../../../assets/images/testimonial img 1.jpg" alt="Kathryn Murphy" class="profile-avatar" />
+            <h3 class="author-name">Marcus Brody</h3>
+          </div>
+        </div>
+
+        <div class="testimonial-card video-card">
+          <div class="media-container">
+            <video src="../../../assets/images/testimonial vid 1.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="stars">★★★★★</div>
+          <h3 class="author-name">Maya Lin</h3>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="quote-text">
+            "Hands down the best dining experience I've had in a long time. Great atmosphere, incredible service, and
+            unforgettable food!"
+          </p>
+          <div class="stars">★★★★★</div>
+          <div class="profile-container">
+            <img src="../../../assets/images/testimonial img 2.jpg" alt="Ralph Edwards" class="profile-avatar" />
+            <h3 class="author-name">Jessica Vance</h3>
+          </div>
+        </div>
+
+        <div class="testimonial-card video-card">
+          <div class="media-container">
+            <video src="../../../assets/images/testimonial vid 2.webm" autoplay loop muted playsinline></video>
+          </div>
+          <div class="stars">★★★★★</div>
+          <h3 class="author-name">Alex Morgan</h3>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="quote-text">
+            "From the appetizers to the dessert, everything was absolute perfection. Highly recommend the chef’s
+            specials!"
+          </p>
+          <div class="stars">★★★★★</div>
+          <div class="profile-container">
+            <img src="../../../assets/images/testimonial img 3.jpg" alt="Marcus Brody" class="profile-avatar" />
+            <h3 class="author-name">Kathryn Murphy</h3>
+          </div>
+        </div>
+
+        <div class="testimonial-card video-card">
+          <div class="media-container">
+            <video src="../../../assets/images/testimonial vid 3.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="stars">★★★★★</div>
+          <h3 class="author-name">Olivia Chang</h3>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="quote-text">
+            "The cozy ambiance combined with top-tier gourmet dishes makes this place a hidden gem. Truly impressed!"
+          </p>
+          <div class="stars">★★★★★</div>
+          <div class="profile-container">
+            <img src="../../../assets/images/testimonial img 4.jpg" alt="Ralph Edwards" class="profile-avatar" />
+            <h3 class="author-name">Elena Rostova</h3>
+          </div>
+        </div>
+
+        <div class="testimonial-card video-card">
+          <div class="media-container">
+            <video src="../../../assets/images/testimonial vid 4.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="stars">★★★★★</div>
+          <h3 class="author-name">Esther Howard</h3>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="quote-text">
+            "Brought my family here for dinner and everyone loved their meal. The presentation was gorgeous and the
+            flavors were spot on."
+          </p>
+          <div class="stars">★★★★★</div>
+          <div class="profile-container">
+            <img src="../../../assets/images/testimonial img 5.jpg" alt="Marcus Brody" class="profile-avatar" />
+            <h3 class="author-name">Jack Brooks</h3>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- //////////////////////////////////////TESTIMONIALS SECTION END/////////////////////////////////// -->
+
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col about-col">
+        <a href="#" class="logo footer-logo">
+          <span class="logo-mark">
+            <svg width="26" height="26" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 3C13 8 10 14 10 20c0 6 4.5 11 10 14 5.5-3 10-8 10-14 0-6-3-12-10-17Z" stroke="#D4AF37"
+                stroke-width="1.6" />
+              <path d="M20 12c-2.5 2.7-4 5.3-4 8s1.8 5 4 6.4c2.2-1.4 4-3.7 4-6.4s-1.5-5.3-4-8Z" fill="#D4AF37" />
+            </svg>
+          </span>
+          Zest &<span class="logo-accent">Co.</span>
+        </a>
+        <p>A fire-grill and noodle house built around three obsessions: char, rice, and broth. Come hungry.</p>
+        <div class="footer-social">
+          <a href="#">IG</a><a href="#">FB</a><a href="#">TT</a><a href="#">YT</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About Us</a>
+        <a href="#chefs">Our Chefs</a>
+        <a href="#reserve">Reservations</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <p>24 Ember Lane, Karachi</p>
+        <p>Tue – Sun · 12:00 – 23:00</p>
+        <p>+92 100 000 00</p>
+        <p>hello@restho.example</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Stay In The Loop</h4>
+        <p>New menus, chef pop-ups, one email a month.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Email address" required>
+          <button type="submit" aria-label="Subscribe">→</button>
+        </form>
+        <p class="newsletter-confirm" id="newsletterConfirm"></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© <span id="year"></span> Zest & Co. All rights reserved.</p>
+        <p>Crafted with fire, rice &amp; a little bit of gold leaf.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- bootstrap js -->
+  <script src="../../../js/bootstrap.bundle.min.js"></script>
+  <!-- custom js -->
+  <script type="modules" src="../../../js/about.js"></script>
+  <!-- AOS cdn -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+
+
 </body>
+
 </html>
