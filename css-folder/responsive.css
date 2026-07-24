@@ -1,4 +1,8 @@
+/* ==========================================================================
+   DESKTOP / LARGE DISPLAY OVERRIDES (< 1200px)
+   ========================================================================== */
 @media (max-width: 1199.98px) {
+  /* --- Hero / Carousel Section --- */
   .hero-carousel-section {
     padding: 30px 15px;
   }
@@ -11,6 +15,7 @@
     height: 420px;
   }
 
+  /* --- Restho New Items --- */
   .restho-new-items {
     padding: 80px 0;
   }
@@ -29,25 +34,44 @@
     height: 175px;
   }
 
-  /* new section */
+  /* --- Quick Action Section --- */
   .quick-action-section {
-    padding: 60px 20px
+    padding: 60px 20px;
   }
 
   .quick-action-container {
-    gap: 28px
+    gap: 28px;
   }
 
   .quick-card {
     width: 230px;
-    height: 280px
+    height: 280px;
   }
-
 }
 
-@media (max-width: 991.98px) {
+/* ==========================================================================
+   TABLET LANDSCAPE (< 1024px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .quick-action-section {
+    padding: 60px 20px;
+  }
 
-  /* ---------- TOP BAR ---------- */
+  .quick-action-container {
+    gap: 28px;
+  }
+
+  .quick-card {
+    width: 230px;
+    height: 280px;
+  }
+}
+
+/* ==========================================================================
+   TABLETS / SMALL LAPTOPS (< 992px)
+   ========================================================================== */
+@media (max-width: 991.98px) {
+  /* --- Top Bar --- */
   .top-bar {
     padding: 12px 0;
   }
@@ -64,7 +88,7 @@
     gap: 12px 20px;
   }
 
-  /* ---------- NAV BAR ---------- */
+  /* --- Navbar --- */
   .main-navbar {
     height: auto;
     padding: 12px 0;
@@ -139,7 +163,7 @@
     margin-top: 0;
   }
 
-  /* ---------- HERO / SLIDER ---------- */
+  /* --- Hero / Slider --- */
   .hero-carousel-section {
     padding: 20px 12px;
   }
@@ -179,7 +203,7 @@
     height: 2.2rem;
   }
 
-  /* ---------- NEW ITEMS SECTION ---------- */
+  /* --- New Items Section --- */
   .restho-new-items {
     padding: 60px 0;
   }
@@ -227,7 +251,7 @@
     font-size: 1.6rem;
   }
 
-  /* ---------- BOTTOM SWIPER ROW ---------- */
+  /* --- Bottom Swiper & Quick Cards --- */
   .nav-btn-custom {
     width: 42px;
     height: 42px;
@@ -238,20 +262,60 @@
     height: 65px;
   }
 
-  /* new section */
-    .quick-action-container {
-    gap: 24px
+  .quick-action-container {
+    gap: 24px;
   }
 
   .quick-card {
     width: calc(50% - 16px);
     max-width: 300px;
-    height: 280px
+    height: 280px;
+  }
+
+  /* --- Popular Section & Footer --- */
+  .popular .carousel,
+  .carousel {
+    gap: 12px;
+  }
+
+  .popular .carousel-track,
+  .carousel-track {
+    gap: 16px;
+  }
+
+  .popular .dish-card,
+  .dish-card {
+    flex-basis: 240px;
+  }
+
+  .spotlight-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 767.98px) {
+/* ==========================================================================
+   MEDIUM TABLETS / SMALL SCREEN LANDSCAPE (< 850px)
+   ========================================================================== */
+@media (max-width: 850px) {
+  .quick-action-container {
+    gap: 24px;
+  }
 
+  .quick-card {
+    width: calc(50% - 16px);
+    max-width: 300px;
+    height: 280px;
+  }
+}
+
+/* ==========================================================================
+   MOBILE PORTRAIT / TABLET PORTRAIT (< 768px)
+   ========================================================================== */
+@media (max-width: 767.98px) {
   .top-bar .col-12 {
     text-align: center !important;
     justify-content: center !important;
@@ -305,9 +369,37 @@
   }
 }
 
-@media (max-width: 575.98px) {
+/* ==========================================================================
+   PHONES PORTRAIT (< 600px)
+   ========================================================================== */
+@media (max-width: 600px) {
+  .quick-action-section {
+    padding: 45px 16px;
+  }
 
-  /* ---------- TOP BAR ---------- */
+  .quick-action-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .quick-card {
+    width: 100%;
+    max-width: 320px;
+    height: 270px;
+  }
+
+  .quick-card:active .card-cover,
+  .quick-card:hover .card-cover {
+    transform: rotateY(-95deg);
+  }
+}
+
+/* ==========================================================================
+   STANDARD MOBILE SCREENS (< 576px)
+   ========================================================================== */
+@media (max-width: 575.98px) {
+  /* --- Top Bar --- */
   .open-time p {
     font-size: 12.5px;
   }
@@ -321,7 +413,7 @@
     font-size: 12.5px;
   }
 
-  /* ---------- NAV BAR ---------- */
+  /* --- Nav Bar --- */
   .header-logo img {
     height: 55px;
   }
@@ -330,7 +422,7 @@
     font-size: 13px;
   }
 
-  /* ---------- HERO / SLIDER ---------- */
+  /* --- Hero / Slider --- */
   .slide-image {
     height: 220px;
     border-radius: 14px;
@@ -367,7 +459,7 @@
     margin: 0 4px;
   }
 
-  /* ---------- NEW ITEMS SECTION ---------- */
+  /* --- New Items Section --- */
   .restho-new-items {
     padding: 40px 0;
   }
@@ -434,31 +526,62 @@
     width: 52px;
     height: 52px;
   }
-  /* new sec */
-    .quick-action-section {
-    padding: 45px 16px
+
+  /* --- Popular Section & Footer --- */
+  .popular {
+    padding: 70px 0 60px;
   }
 
-  .quick-action-container {
+  .section-head h2 {
+    font-size: 1.9rem;
+  }
+
+  .popular .carousel,
+  .carousel {
     flex-direction: column;
-    align-items: center;
-    gap: 24px
   }
 
-  .quick-card {
-    width: 100%;
-    max-width: 320px;
-    height: 270px
+  .popular .car-arrow,
+  .car-arrow {
+    width: 42px;
+    height: 42px;
   }
 
-  .quick-card:active .card-cover,
-  .quick-card:hover .card-cover {
-    transform: rotateY(-95deg)
+  .popular .dish-card,
+  .dish-card {
+    flex-basis: 220px;
+  }
+
+  .spotlight {
+    padding: 70px 0;
+  }
+
+  .spotlight-info {
+    padding: 20px;
+  }
+
+  .thumb {
+    padding: 10px;
+  }
+
+  .thumb img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
   }
 }
 
+/* ==========================================================================
+   EXTRA SMALL PHONES (< 400px)
+   ========================================================================== */
 @media (max-width: 400px) {
-
   .contact-info ul li i {
     font-size: 14px;
   }
@@ -499,145 +622,5 @@
   .swiper-slide-thumb {
     width: 46px;
     height: 46px;
-  }
-}
-
-@media (max-width: 991.98px) {
-  .popular .carousel {
-    gap: 12px;
-  }
-
-  .popular .carousel-track {
-    gap: 16px;
-  }
-
-  .popular .dish-card {
-    flex-basis: 240px;
-  }
-
-  .spotlight-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 575.98px) {
-  .popular {
-    padding: 70px 0 60px;
-  }
-
-  .section-head h2 {
-    font-size: 1.9rem;
-  }
-
-  .popular .carousel {
-    flex-direction: column;
-  }
-
-  .popular .car-arrow {
-    width: 42px;
-    height: 42px;
-  }
-
-  .popular .dish-card {
-    flex-basis: 220px;
-  }
-
-  .spotlight {
-    padding: 70px 0;
-  }
-
-  .spotlight-info {
-    padding: 20px;
-  }
-
-  .thumb {
-    padding: 10px;
-  }
-
-  .thumb img {
-    width: 56px;
-    height: 56px;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-bottom-inner {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 991.98px) {
-  .carousel {
-    gap: 12px;
-  }
-
-  .carousel-track {
-    gap: 16px;
-  }
-
-  .dish-card {
-    flex-basis: 240px;
-  }
-
-  .spotlight-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 575.98px) {
-  .popular {
-    padding: 70px 0 60px;
-  }
-
-  .section-head h2 {
-    font-size: 1.9rem;
-  }
-
-  .carousel {
-    flex-direction: column;
-  }
-
-  .car-arrow {
-    width: 42px;
-    height: 42px;
-  }
-
-  .dish-card {
-    flex-basis: 220px;
-  }
-
-  .spotlight {
-    padding: 70px 0;
-  }
-
-  .spotlight-info {
-    padding: 20px;
-  }
-
-  .thumb {
-    padding: 10px;
-  }
-
-  .thumb img {
-    width: 56px;
-    height: 56px;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-bottom-inner {
-    flex-direction: column;
   }
 }
