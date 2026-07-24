@@ -285,10 +285,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-
-/* ==========================================================================
-   MEDIUM TABLETS / SMALL SCREEN LANDSCAPE (< 850px)
-   ========================================================================== */
 @media (max-width: 850px) {
   .quick-action-container {
     gap: 24px;
