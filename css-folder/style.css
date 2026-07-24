@@ -1187,7 +1187,7 @@
   color: var(--nav-bg);
 }
 
-
+/* hero k bad wala sction utility section */
 .quick-action-section {
   width: 100%;
   padding: 80px 24px;
@@ -1273,9 +1273,6 @@
   font-weight: 600
 }
 
-/* ==========================================================
-   SUPER ATTRACTIVE LUXURY FRONT COVER
-   ========================================================== */
 .card-cover {
   position: absolute;
   top: 0;
