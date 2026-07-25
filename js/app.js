@@ -6,7 +6,7 @@ if (carouselEl) {
     interval: 3500,
     ride: "carousel",
     pause: "hover",
-    wrap: true
+    wrap: true,
   });
 }
 //-------- new item section start-----------
@@ -170,7 +170,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentItemIndex = null;
 
     function updateActiveFood(index) {
-      if (currentItemIndex === index || !activeImg || !activeTitle || !activePrice) return;
+      if (
+        currentItemIndex === index ||
+        !activeImg ||
+        !activeTitle ||
+        !activePrice
+      )
+        return;
       currentItemIndex = index;
       const food = foodItems[index];
       if (!food) return;
@@ -220,9 +226,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 //-------- new item section end------------
 
-
-
-
 /* ================= DATA ================= */
 const DISHES = [
   {
@@ -232,7 +235,7 @@ const DISHES = [
     reviews: 20,
     rating: 4,
     img: "https://images.pexels.com/photos/410648/pexels-photo-410648.jpeg?auto=compress&cs=tinysrgb&w=700",
-    featured: false
+    featured: false,
   },
   {
     name: "Beef Biryani",
@@ -241,7 +244,7 @@ const DISHES = [
     reviews: 37,
     rating: 5,
     img: "https://images.pexels.com/photos/1630495/pexels-photo-1630495.jpeg?auto=compress&cs=tinysrgb&w=700",
-    featured: true
+    featured: true,
   },
   {
     name: "Thai Soup",
@@ -250,7 +253,7 @@ const DISHES = [
     reviews: 54,
     rating: 4,
     img: "https://images.pexels.com/photos/12984982/pexels-photo-12984982.jpeg?auto=compress&cs=tinysrgb&w=700",
-    featured: false
+    featured: false,
   },
   {
     name: "Fired Chicken",
@@ -259,7 +262,7 @@ const DISHES = [
     reviews: 62,
     rating: 5,
     img: "https://images.pexels.com/photos/16892378/pexels-photo-16892378.jpeg?auto=compress&cs=tinysrgb&w=700",
-    featured: false
+    featured: false,
   },
   {
     name: "Ramen Bowl",
@@ -268,8 +271,8 @@ const DISHES = [
     reviews: 45,
     rating: 5,
     img: "https://images.pexels.com/photos/17593641/pexels-photo-17593641.jpeg?auto=compress&cs=tinysrgb&w=700",
-    featured: false
-  }
+    featured: false,
+  },
 ];
 
 const SPOTLIGHT_ITEMS = [
@@ -277,48 +280,48 @@ const SPOTLIGHT_ITEMS = [
     name: "Golden Fried Chicken",
     desc: "Double-brined overnight, dredged twice, fried to a shattering crust and rested on herb salt.",
     price: "$14",
-    img: "https://images.pexels.com/photos/16892378/pexels-photo-16892378.jpeg?auto=compress&cs=tinysrgb&w=900"
+    img: "https://images.pexels.com/photos/16892378/pexels-photo-16892378.jpeg?auto=compress&cs=tinysrgb&w=900",
   },
   {
     name: "Steamed Dumplings",
     desc: "Hand-folded parcels, minced beef and ginger, steamed to order and served with black vinegar.",
     price: "$9",
-    img: "https://images.pexels.com/photos/7172851/pexels-photo-7172851.jpeg?auto=compress&cs=tinysrgb&w=900"
+    img: "https://images.pexels.com/photos/7172851/pexels-photo-7172851.jpeg?auto=compress&cs=tinysrgb&w=900",
   },
   {
     name: "Chef's Fried Rice",
     desc: "Wok-tossed jasmine rice, charred scallion and a soft crown of egg.",
     price: "$12",
-    img: "https://images.pexels.com/photos/1630495/pexels-photo-1630495.jpeg?auto=compress&cs=tinysrgb&w=900"
+    img: "https://images.pexels.com/photos/1630495/pexels-photo-1630495.jpeg?auto=compress&cs=tinysrgb&w=900",
   },
   {
     name: "Ramen Bowl",
     desc: "Hand-pulled noodles in an 18-hour broth, chashu pork and marinated egg.",
     price: "$19",
-    img: "https://images.pexels.com/photos/12984979/pexels-photo-12984979.jpeg?auto=compress&cs=tinysrgb&w=900"
+    img: "https://images.pexels.com/photos/12984979/pexels-photo-12984979.jpeg?auto=compress&cs=tinysrgb&w=900",
   },
   {
     name: "Grilled Wings",
     desc: "Charcoal-kissed wings glazed twice, finished with a squeeze of lime.",
     price: "$11",
-    img: "https://images.pexels.com/photos/10648394/pexels-photo-10648394.jpeg?auto=compress&cs=tinysrgb&w=900"
-  }
+    img: "https://images.pexels.com/photos/10648394/pexels-photo-10648394.jpeg?auto=compress&cs=tinysrgb&w=900",
+  },
 ];
 
 /* ================= BUILD CAROUSEL ================= */
-const track = document.getElementById('carTrack');
-const dotsWrap = document.getElementById('carDots');
+const track = document.getElementById("carTrack");
+const dotsWrap = document.getElementById("carDots");
 
 function starString(n) {
-  return '★'.repeat(n) + '☆'.repeat(5 - n);
+  return "★".repeat(n) + "☆".repeat(5 - n);
 }
 
 DISHES.forEach((d) => {
-  const card = document.createElement('div');
-  card.className = 'dish-card';
+  const card = document.createElement("div");
+  card.className = "dish-card";
   card.innerHTML = `
     <div class="dish-img-wrap">
-      <div class="price-blob ${d.featured ? 'gold' : 'white'}">$${d.price}</div>
+      <div class="price-blob ${d.featured ? "gold" : "white"}">$${d.price}</div>
       <img src="${d.img}" alt="${d.name}" loading="lazy">
     </div>
     <div class="dish-body">
@@ -335,11 +338,11 @@ DISHES.forEach((d) => {
 
 // duplicate a couple of cards at the end for a seamless-ish loop feel on wide screens
 DISHES.slice(0, 2).forEach((d) => {
-  const card = document.createElement('div');
-  card.className = 'dish-card clone';
+  const card = document.createElement("div");
+  card.className = "dish-card clone";
   card.innerHTML = `
     <div class="dish-img-wrap">
-      <div class="price-blob ${d.featured ? 'gold' : 'white'}">$${d.price}</div>
+      <div class="price-blob ${d.featured ? "gold" : "white"}">$${d.price}</div>
       <img src="${d.img}" alt="${d.name}" loading="lazy">
     </div>
     <div class="dish-body">
@@ -356,9 +359,9 @@ DISHES.slice(0, 2).forEach((d) => {
 
 const totalDots = DISHES.length;
 for (let i = 0; i < totalDots; i++) {
-  const dot = document.createElement('span');
-  if (i === 0) dot.classList.add('active');
-  dot.addEventListener('click', () => goToSlide(i));
+  const dot = document.createElement("span");
+  if (i === 0) dot.classList.add("active");
+  dot.addEventListener("click", () => goToSlide(i));
   dotsWrap.appendChild(dot);
 }
 
@@ -367,7 +370,7 @@ let cardWidthWithGap = 0;
 let visibleCount = 3;
 
 function measure() {
-  const cards = track.querySelectorAll('.dish-card');
+  const cards = track.querySelectorAll(".dish-card");
   if (!cards.length) return;
   const style = getComputedStyle(track);
   const gap = parseFloat(style.gap) || 30;
@@ -379,21 +382,21 @@ function measure() {
 
 function goToSlide(i) {
   currentSlide = ((i % totalDots) + totalDots) % totalDots;
-  const dots = dotsWrap.querySelectorAll('span');
-  dots.forEach((d, idx) => d.classList.toggle('active', idx === currentSlide));
+  const dots = dotsWrap.querySelectorAll("span");
+  dots.forEach((d, idx) => d.classList.toggle("active", idx === currentSlide));
   const offset = currentSlide * cardWidthWithGap;
   if (window.gsap) {
-    gsap.to(track, { x: -offset, duration: 0.7, ease: 'power3.out' });
+    gsap.to(track, { x: -offset, duration: 0.7, ease: "power3.out" });
   } else {
     track.style.transform = `translateX(-${offset}px)`;
   }
 }
 
-document.getElementById('carPrev').addEventListener('click', () => {
+document.getElementById("carPrev").addEventListener("click", () => {
   goToSlide(currentSlide - 1);
   restartAutoplay();
 });
-document.getElementById('carNext').addEventListener('click', () => {
+document.getElementById("carNext").addEventListener("click", () => {
   goToSlide(currentSlide + 1);
   restartAutoplay();
 });
@@ -405,9 +408,13 @@ function restartAutoplay() {
 }
 
 // swipe support
-let startX = 0, isDragging = false;
-track.addEventListener('pointerdown', (e) => { isDragging = true; startX = e.clientX; });
-window.addEventListener('pointerup', (e) => {
+let startX = 0,
+  isDragging = false;
+track.addEventListener("pointerdown", (e) => {
+  isDragging = true;
+  startX = e.clientX;
+});
+window.addEventListener("pointerup", (e) => {
   if (!isDragging) return;
   isDragging = false;
   const diff = e.clientX - startX;
@@ -418,38 +425,50 @@ window.addEventListener('pointerup', (e) => {
   }
 });
 
-window.addEventListener('resize', () => { measure(); goToSlide(currentSlide); });
-window.addEventListener('load', () => { measure(); goToSlide(0); restartAutoplay(); });
+window.addEventListener("resize", () => {
+  measure();
+  goToSlide(currentSlide);
+});
+window.addEventListener("load", () => {
+  measure();
+  goToSlide(0);
+  restartAutoplay();
+});
 
 /* ================= SPOTLIGHT GALLERY ================= */
-const thumbsWrap = document.getElementById('spotlightThumbs');
-const spotImg = document.getElementById('spotlightImg');
-const spotName = document.getElementById('spotlightName');
-const spotDesc = document.getElementById('spotlightDesc');
-const spotPrice = document.getElementById('spotlightPrice');
+const thumbsWrap = document.getElementById("spotlightThumbs");
+const spotImg = document.getElementById("spotlightImg");
+const spotName = document.getElementById("spotlightName");
+const spotDesc = document.getElementById("spotlightDesc");
+const spotPrice = document.getElementById("spotlightPrice");
 
 SPOTLIGHT_ITEMS.forEach((item, idx) => {
-  const thumb = document.createElement('div');
-  thumb.className = 'thumb' + (idx === 0 ? ' active' : '');
+  const thumb = document.createElement("div");
+  thumb.className = "thumb" + (idx === 0 ? " active" : "");
   thumb.innerHTML = `<img src="${item.img}" alt="${item.name}"><span class="thumb-label">${item.name}</span>`;
-  thumb.addEventListener('click', () => setSpotlight(idx));
+  thumb.addEventListener("click", () => setSpotlight(idx));
   thumbsWrap.appendChild(thumb);
 });
 
 function setSpotlight(idx) {
   const item = SPOTLIGHT_ITEMS[idx];
-  const thumbs = thumbsWrap.querySelectorAll('.thumb');
-  thumbs.forEach((t, i) => t.classList.toggle('active', i === idx));
+  const thumbs = thumbsWrap.querySelectorAll(".thumb");
+  thumbs.forEach((t, i) => t.classList.toggle("active", i === idx));
 
   if (window.gsap) {
     gsap.to(spotImg, {
-      opacity: 0, duration: 0.22, onComplete: () => {
+      opacity: 0,
+      duration: 0.22,
+      onComplete: () => {
         spotImg.src = item.img;
         gsap.to(spotImg, { opacity: 1, duration: 0.35 });
-      }
+      },
     });
-    gsap.fromTo('#spotlightName, #spotlightDesc, #spotlightPrice',
-      { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, stagger: 0.05 });
+    gsap.fromTo(
+      "#spotlightName, #spotlightDesc, #spotlightPrice",
+      { y: 10, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.4, stagger: 0.05 },
+    );
   } else {
     spotImg.src = item.img;
   }
@@ -459,77 +478,230 @@ function setSpotlight(idx) {
 }
 
 /* ================= NAVBAR / MOBILE MENU ================= */
-const navbar = document.getElementById('navbar');
+const navbar = document.getElementById("navbar");
 if (navbar) {
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 30);
+  window.addEventListener("scroll", () => {
+    navbar.classList.toggle("scrolled", window.scrollY > 30);
   });
 }
 
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-if (hamburger && mobileMenu) {
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
+/* ===== FIXED MOBILE HAMBURGER (LEFT SLIDE) ===== */
+const hamburgerToggle = document.querySelector(".mobile-nav-toggle");
+const mobilePanel = document.getElementById("mobileMenuPanel");
+const mobileOverlay = document.getElementById("mobileMenuOverlay");
+const mobileClose = document.querySelector(".mobile-close");
+
+function openMobileMenu() {
+  if (hamburgerToggle) hamburgerToggle.classList.add("active");
+  if (mobilePanel) mobilePanel.classList.add("open");
+  if (mobileOverlay) mobileOverlay.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeMobileMenu() {
+  if (hamburgerToggle) hamburgerToggle.classList.remove("active");
+  if (mobilePanel) mobilePanel.classList.remove("open");
+  if (mobileOverlay) mobileOverlay.classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+if (hamburgerToggle) {
+  hamburgerToggle.addEventListener("click", openMobileMenu);
+}
+
+if (mobileClose) {
+  mobileClose.addEventListener("click", closeMobileMenu);
+}
+
+if (mobileOverlay) {
+  mobileOverlay.addEventListener("click", closeMobileMenu);
+}
+
+if (mobilePanel) {
+  mobilePanel.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", closeMobileMenu);
   });
-  mobileMenu.querySelectorAll('a').forEach((a) => {
-    a.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      mobileMenu.classList.remove('open');
+}
+
+/* ===== GSAP SCROLL ANIMATIONS ===== */
+if (window.gsap && window.ScrollTrigger) {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Animate sections on scroll
+  function animateOnScroll(selector, fromVars, triggerOpts) {
+    const els = document.querySelectorAll(selector);
+    els.forEach((el) => {
+      gsap.fromTo(
+        el,
+        { y: 50, opacity: 0, ...fromVars },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+            ...triggerOpts,
+          },
+        },
+      );
     });
+  }
+
+  // Animate popular dish cards staggered
+  if (track) {
+    gsap.from(".dish-card", {
+      y: 60,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "#popular",
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+    });
+  }
+
+  // Animate spotlight section
+  animateOnScroll(".spotlight-feature", { x: -40 }, {});
+  animateOnScroll(".spotlight-thumbs .thumb", { x: 40 }, { stagger: 0.08 });
+
+  // Animate new items cards
+  animateOnScroll(".premium-card", { y: 60 }, {});
+
+  // Animate menu highlight cards
+  gsap.from(".food-card", {
+    y: 50,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.08,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".menu-highlights-section",
+      start: "top 80%",
+      toggleActions: "play none none none",
+    },
   });
+
+  // Animate quick action cards
+  gsap.from(".quick-card", {
+    y: 40,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.1,
+    ease: "back.out(1.4)",
+    scrollTrigger: {
+      trigger: ".quick-action-section",
+      start: "top 85%",
+      toggleActions: "play none none none",
+    },
+  });
+
+  // Hero content entrance on load
+  gsap.from(".slide-content", {
+    y: 80,
+    opacity: 0,
+    duration: 1,
+    ease: "power4.out",
+    delay: 0.3,
+  });
+  gsap.from(".slide-image", {
+    x: 100,
+    opacity: 0,
+    duration: 1.2,
+    ease: "power4.out",
+    delay: 0.5,
+  });
+
+  // Footer reveal
+  gsap.from(".footer-grid > div", {
+    y: 40,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".footer",
+      start: "top 85%",
+      toggleActions: "play none none none",
+    },
+  });
+} else {
+  // Fallback: just show everything
+  document
+    .querySelectorAll(
+      ".dish-card, .premium-card, .food-card, .quick-card, .spotlight-feature, .thumb, .footer-grid > div",
+    )
+    .forEach((el) => {
+      el.style.opacity = "1";
+      el.style.transform = "none";
+    });
 }
 
 /* ================= FORMS ================= */
-const reserveForm = document.getElementById('reserveForm');
+const reserveForm = document.getElementById("reserveForm");
 if (reserveForm) {
-  reserveForm.addEventListener('submit', (e) => {
+  reserveForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const msg = document.getElementById('reserveConfirm');
-    if (msg) msg.textContent = "Table request received — we'll confirm by phone shortly.";
+    const msg = document.getElementById("reserveConfirm");
+    if (msg)
+      msg.textContent =
+        "Table request received — we'll confirm by phone shortly.";
     e.target.reset();
   });
 }
 
-const newsletterForm = document.getElementById('newsletterForm');
+const newsletterForm = document.getElementById("newsletterForm");
 if (newsletterForm) {
-  newsletterForm.addEventListener('submit', (e) => {
+  newsletterForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const msg = document.getElementById('newsletterConfirm');
+    const msg = document.getElementById("newsletterConfirm");
     if (msg) msg.textContent = "You're on the list!";
     e.target.reset();
   });
 }
 
-const watchBtn = document.getElementById('watchBtn');
+const watchBtn = document.getElementById("watchBtn");
 if (watchBtn) {
-  watchBtn.addEventListener('click', () => {
-    const popularSection = document.getElementById('popular');
+  watchBtn.addEventListener("click", () => {
+    const popularSection = document.getElementById("popular");
     if (popularSection) {
-      window.scrollTo({ top: popularSection.offsetTop - 60, behavior: 'smooth' });
+      window.scrollTo({
+        top: popularSection.offsetTop - 60,
+        behavior: "smooth",
+      });
     }
   });
 }
 
-const year = document.getElementById('year');
+const year = document.getElementById("year");
 if (year) {
   year.textContent = new Date().getFullYear();
 }
 
 /* ================= SIMPLE REVEALS ================= */
-document.querySelectorAll('.section-head, .spotlight-feature, .spotlight-thumbs, .dish-card, [data-reveal]').forEach((el) => {
-  el.style.opacity = '1';
-  el.style.transform = 'none';
-});
+document
+  .querySelectorAll(
+    ".section-head, .spotlight-feature, .spotlight-thumbs, .dish-card, [data-reveal]",
+  )
+  .forEach((el) => {
+    el.style.opacity = "1";
+    el.style.transform = "none";
+  });
 
 /* ================= EMBER PARTICLES (canvas) ================= */
 (function emberField() {
-  const canvas = document.getElementById('emberCanvas');
+  const canvas = document.getElementById("emberCanvas");
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext("2d");
   let w, h, particles;
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersReduced = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
 
   function resize() {
     w = canvas.width = canvas.offsetWidth;
@@ -544,16 +716,19 @@ document.querySelectorAll('.section-head, .spotlight-feature, .spotlight-thumbs,
       r: Math.random() * 1.8 + 0.6,
       speed: Math.random() * 0.6 + 0.25,
       drift: (Math.random() - 0.5) * 0.4,
-      alpha: Math.random() * 0.5 + 0.25
+      alpha: Math.random() * 0.5 + 0.25,
     }));
   }
 
   function tick() {
     ctx.clearRect(0, 0, w, h);
-    particles.forEach(p => {
+    particles.forEach((p) => {
       p.y -= p.speed;
       p.x += p.drift;
-      if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
+      if (p.y < -10) {
+        p.y = h + 10;
+        p.x = Math.random() * w;
+      }
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(212,175,55,${p.alpha})`;
@@ -564,11 +739,14 @@ document.querySelectorAll('.section-head, .spotlight-feature, .spotlight-thumbs,
 
   resize();
   makeParticles();
-  window.addEventListener('resize', () => { resize(); makeParticles(); });
+  window.addEventListener("resize", () => {
+    resize();
+    makeParticles();
+  });
 
   if (!prefersReduced) tick();
 })();
-// adding menu highlight section 
+// adding menu highlight section
 // 1. Array of Food Items (Mock Data or API Response)
 const dishesData = [
   {
@@ -579,7 +757,8 @@ const dishesData = [
     price: "$12.99",
     rating: "4.9 ★",
     desc: "Juicy double beef patty layered with melted cheddar and signature house relish.",
-    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80"
+    image:
+      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80",
   },
   {
     id: 2,
@@ -589,7 +768,8 @@ const dishesData = [
     price: "$18.50",
     rating: "4.8 ★",
     desc: "Creamy arborio rice infused with wild mushrooms and authentic black truffle oil.",
-    image: "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=500&q=80"
+    image:
+      "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=500&q=80",
   },
   {
     id: 3,
@@ -599,7 +779,8 @@ const dishesData = [
     price: "$14.00",
     rating: "4.7 ★",
     desc: "Flame-grilled chicken wings tossed in intense African bird's eye chili glaze.",
-    image: "https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500&q=80"
+    image:
+      "https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500&q=80",
   },
   {
     id: 4,
@@ -609,19 +790,20 @@ const dishesData = [
     price: "$8.99",
     rating: "4.9 ★",
     desc: "Velvety New York style cheesecake topped with fresh wild berry reduction.",
-    image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=500&q=80"
-  }
+    image:
+      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=500&q=80",
+  },
 ];
 
 // DOM Elements
-const menuGrid = document.getElementById('menuGrid');
-const categoryTabs = document.getElementById('categoryTabs');
+const menuGrid = document.getElementById("menuGrid");
+const categoryTabs = document.getElementById("categoryTabs");
 
 // 2. Function to Render Cards dynamically
 function renderMenuCards(items) {
-  menuGrid.innerHTML = ''; // Clear previous content
+  menuGrid.innerHTML = ""; // Clear previous content
 
-  items.forEach(item => {
+  items.forEach((item) => {
     const cardHTML = `
       <div class="food-card" data-id="${item.id}">
         <span class="badge-corner">${item.badge}</span>
@@ -643,25 +825,29 @@ function renderMenuCards(items) {
         </div>
       </div>
     `;
-    
+
     menuGrid.innerHTML += cardHTML;
   });
 }
 
 // 3. Category Filter Event Listener
-categoryTabs.addEventListener('click', (e) => {
-  if (e.target.classList.contains('tab-btn')) {
+categoryTabs.addEventListener("click", (e) => {
+  if (e.target.classList.contains("tab-btn")) {
     // Active class toggle
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    e.target.classList.add('active');
+    document
+      .querySelectorAll(".tab-btn")
+      .forEach((btn) => btn.classList.remove("active"));
+    e.target.classList.add("active");
 
     // Filter Logic
-    const selectedCategory = e.target.getAttribute('data-category');
-    
-    if (selectedCategory === 'all') {
+    const selectedCategory = e.target.getAttribute("data-category");
+
+    if (selectedCategory === "all") {
       renderMenuCards(dishesData);
     } else {
-      const filteredDishes = dishesData.filter(item => item.category === selectedCategory);
+      const filteredDishes = dishesData.filter(
+        (item) => item.category === selectedCategory,
+      );
       renderMenuCards(filteredDishes);
     }
   }
@@ -669,7 +855,7 @@ categoryTabs.addEventListener('click', (e) => {
 
 // 4. Dummy Add to Cart Handler
 function addToCart(itemId) {
-  const item = dishesData.find(d => d.id === itemId);
+  const item = dishesData.find((d) => d.id === itemId);
   alert(`${item.name} added to your cart!`);
 }
 
