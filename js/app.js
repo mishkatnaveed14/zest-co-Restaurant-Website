@@ -1,134 +1,42 @@
-// script.js 1
-const carouselEl = document.querySelector("#home2Carousel");
+/* ==============================================
+   APP.JS - ZEST & CO. RESTAURANT
+   All Interactions, Animations & Dynamic Content
+   ============================================== */
 
+// ===== BOOTSTRAP CAROUSEL INIT =====
+const carouselEl = document.querySelector("#home2Carousel");
 if (carouselEl) {
-  const carousel = new bootstrap.Carousel(carouselEl, {
-    interval: 3500,
+  new bootstrap.Carousel(carouselEl, {
+    interval: 5000,
     ride: "carousel",
     pause: "hover",
     wrap: true,
   });
 }
-//-------- new item section start-----------
 
+// ===== FOOD ITEMS DATA =====
 const foodItems = [
-  {
-    id: 1,
-    title: "Momo Package",
-    price: "$8.00",
-    image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=500",
-  },
-  {
-    id: 2,
-    title: "Chicken Fried",
-    price: "$12.00",
-    image: "https://images.unsplash.com/photo-1562967914-608f82629710?w=500",
-  },
-  {
-    id: 3,
-    title: "Vegetable Salad",
-    price: "$6.00",
-    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500",
-  },
-  //   { id: 4, title: "Prawn Curry", price: "$18.00", image: "https://images.unsplash.com/photo-1559742811-82410b51c4ca?w=500" },
-  {
-    id: 5,
-    title: "Chicken Kebab",
-    price: "$10.00",
-    image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=500",
-  },
-  {
-    id: 6,
-    title: "Beef Burger",
-    price: "$9.00",
-    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500",
-  },
-  {
-    id: 7,
-    title: "Special Biryani",
-    price: "$11.00",
-    image: "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=500",
-  },
-  {
-    id: 8,
-    title: "Pepperoni Pizza",
-    price: "$14.00",
-    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500",
-  },
-  {
-    id: 9,
-    title: "Ramen Noodles",
-    price: "$13.00",
-    image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500",
-  },
-  //   {
-  //     id: 10,
-  //     title: "Mutton Karahi",
-  //     price: "$19.00",
-  //     image: "https://images.unsplash.com/photo-1601050690597-df056fb4ce78?w=500",
-  //   },
-  {
-    id: 11,
-    title: "Grilled Salmon",
-    price: "$22.00",
-    image: "https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=500",
-  },
-  {
-    id: 12,
-    title: "Crispy Tacos",
-    price: "$7.50",
-    image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=500",
-  },
-  {
-    id: 13,
-    title: "Butter Chicken",
-    price: "$15.00",
-    image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=500",
-  },
-  {
-    id: 14,
-    title: "Fettuccine Alfredo",
-    price: "$14.50",
-    image: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=500",
-  },
-  {
-    id: 15,
-    title: "Club Sandwich",
-    price: "$8.50",
-    image: "https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?w=500",
-  },
-  {
-    id: 16,
-    title: "Chocolate Lava",
-    price: "$6.50",
-    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500",
-  },
-  {
-    id: 17,
-    title: "Strawberry Waffles",
-    price: "$7.00",
-    image: "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=500",
-  },
-  {
-    id: 18,
-    title: "Mint Margarita",
-    price: "$4.00",
-    image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500",
-  },
-  {
-    id: 19,
-    title: "Gulab Jamun Plate",
-    price: "$5.00",
-    image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500",
-  },
-  {
-    id: 20,
-    title: "Premium Cappuccino",
-    price: "$4.50",
-    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500",
-  },
+  { id: 1,  title: "Momo Package",       price: "$8.00",  image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=500" },
+  { id: 2,  title: "Chicken Fried",       price: "$12.00", image: "https://images.unsplash.com/photo-1562967914-608f82629710?w=500" },
+  { id: 3,  title: "Vegetable Salad",     price: "$6.00",  image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500" },
+  { id: 5,  title: "Chicken Kebab",       price: "$10.00", image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=500" },
+  { id: 6,  title: "Beef Burger",         price: "$9.00",  image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500" },
+  { id: 7,  title: "Special Biryani",     price: "$11.00", image: "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=500" },
+  { id: 8,  title: "Pepperoni Pizza",     price: "$14.00", image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500" },
+  { id: 9,  title: "Ramen Noodles",       price: "$13.00", image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500" },
+  { id: 11, title: "Grilled Salmon",      price: "$22.00", image: "https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=500" },
+  { id: 12, title: "Crispy Tacos",        price: "$7.50",  image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=500" },
+  { id: 13, title: "Butter Chicken",      price: "$15.00", image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=500" },
+  { id: 14, title: "Fettuccine Alfredo",  price: "$14.50", image: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=500" },
+  { id: 15, title: "Club Sandwich",       price: "$8.50",  image: "https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?w=500" },
+  { id: 16, title: "Chocolate Lava",      price: "$6.50",  image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500" },
+  { id: 17, title: "Strawberry Waffles",  price: "$7.00",  image: "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=500" },
+  { id: 18, title: "Mint Margarita",      price: "$4.00",  image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500" },
+  { id: 19, title: "Gulab Jamun Plate",   price: "$5.00",  image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500" },
+  { id: 20, title: "Premium Cappuccino",  price: "$4.50",  image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500" },
 ];
 
+// ===== NEW ITEMS SWIPER =====
 document.addEventListener("DOMContentLoaded", () => {
   const swiperWrapper = document.getElementById("swiper-items-wrapper");
   const activeImg = document.getElementById("active-food-img");
@@ -156,13 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
       centeredSlides: true,
       loop: true,
       slideToClickedSlide: true,
-      navigation: {
-        nextEl: ".next-btn",
-        prevEl: ".prev-btn",
-      },
+      navigation: { nextEl: ".next-btn", prevEl: ".prev-btn" },
       breakpoints: {
-        480: { slidesPerView: 4, spaceBetween: 24 },
-        768: { slidesPerView: 5, spaceBetween: 30 },
+        480:  { slidesPerView: 4, spaceBetween: 24 },
+        768:  { slidesPerView: 5, spaceBetween: 30 },
         1024: { slidesPerView: 6, spaceBetween: 35 },
       },
     });
@@ -170,151 +75,80 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentItemIndex = null;
 
     function updateActiveFood(index) {
-      if (
-        currentItemIndex === index ||
-        !activeImg ||
-        !activeTitle ||
-        !activePrice
-      )
-        return;
+      if (currentItemIndex === index || !activeImg || !activeTitle || !activePrice) return;
       currentItemIndex = index;
       const food = foodItems[index];
       if (!food) return;
 
-      activeImg.style.opacity = "0";
-      activeTitle.style.opacity = "0";
-      activePrice.style.opacity = "0";
-
-      setTimeout(() => {
+      if (window.gsap) {
+        gsap.to([activeImg, activeTitle, activePrice], {
+          opacity: 0, y: -10, duration: 0.15, stagger: 0.03,
+          onComplete: () => {
+            activeImg.src = food.image;
+            activeTitle.textContent = food.title;
+            activePrice.textContent = `Price - ${food.price}`;
+            gsap.to([activeImg, activeTitle, activePrice], {
+              opacity: 1, y: 0, duration: 0.4, stagger: 0.06, ease: "power2.out",
+            });
+          },
+        });
+      } else {
         activeImg.src = food.image;
         activeTitle.textContent = food.title;
         activePrice.textContent = `Price - ${food.price}`;
-        activeImg.style.opacity = "1";
-        activeTitle.style.opacity = "1";
-        activePrice.style.opacity = "1";
-      }, 70);
+      }
     }
 
+    // 3D Tilt Effect
     if (dynamicCard && activeImg) {
       dynamicCard.addEventListener("mousemove", (e) => {
-        const cardRect = dynamicCard.getBoundingClientRect();
-        const cardX = e.clientX - cardRect.left;
-        const cardY = e.clientY - cardRect.top;
-        const tiltX = (cardY / cardRect.height - 0.5) * 8;
-        const tiltY = (cardX / cardRect.width - 0.5) * -8;
-
-        dynamicCard.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-        activeImg.style.transform = `translate(${(cardX / cardRect.width - 0.5) * 10}px, ${(cardY / cardRect.height - 0.5) * 10}px)`;
+        const rect = dynamicCard.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        dynamicCard.style.transform = `rotateX(${y * -8}deg) rotateY(${x * 8}deg)`;
+        if (activeImg) {
+          activeImg.style.transform = `translate(${x * 12}px, ${y * 12}px)`;
+        }
       });
-
       dynamicCard.addEventListener("mouseleave", () => {
         dynamicCard.style.transform = "rotateX(0) rotateY(0)";
-        activeImg.style.transform = "translate(0,0)";
+        if (activeImg) activeImg.style.transform = "translate(0,0)";
       });
     }
 
-    swiper.on("slideChange", () => {
-      updateActiveFood(swiper.realIndex);
-    });
-
+    swiper.on("slideChange", () => updateActiveFood(swiper.realIndex));
     updateActiveFood(0);
-  } else if (activeImg && activeTitle && activePrice && foodItems[0]) {
-    activeImg.src = foodItems[0].image;
-    activeTitle.textContent = foodItems[0].title;
-    activePrice.textContent = `Price - ${foodItems[0].price}`;
+  } else {
+    if (activeImg && activeTitle && activePrice && foodItems[0]) {
+      activeImg.src = foodItems[0].image;
+      activeTitle.textContent = foodItems[0].title;
+      activePrice.textContent = `Price - ${foodItems[0].price}`;
+    }
   }
 });
-//-------- new item section end------------
 
-/* ================= DATA ================= */
+
+// ===== POPULAR DISHES CAROUSEL =====
 const DISHES = [
-  {
-    name: "Beef Machal",
-    desc: "Bone-in cutlet finished over open flame, rested with rosemary and cracked pepper.",
-    price: 25,
-    reviews: 20,
-    rating: 4,
-    img: "https://images.pexels.com/photos/410648/pexels-photo-410648.jpeg?auto=compress&cs=tinysrgb&w=700",
-    featured: false,
-  },
-  {
-    name: "Beef Biryani",
-    desc: "48-hour dum-cooked rice, tender beef, whole chillies and a whisper of saffron.",
-    price: 28,
-    reviews: 37,
-    rating: 5,
-    img: "https://images.pexels.com/photos/1630495/pexels-photo-1630495.jpeg?auto=compress&cs=tinysrgb&w=700",
-    featured: true,
-  },
-  {
-    name: "Thai Soup",
-    desc: "Overnight broth, soft egg, scallion and chilli oil, served bubbling hot.",
-    price: 21,
-    reviews: 54,
-    rating: 4,
-    img: "https://images.pexels.com/photos/12984982/pexels-photo-12984982.jpeg?auto=compress&cs=tinysrgb&w=700",
-    featured: false,
-  },
-  {
-    name: "Fired Chicken",
-    desc: "Double-brined, double-fried, resting on herb salt with a citrus dip.",
-    price: 14,
-    reviews: 62,
-    rating: 5,
-    img: "https://images.pexels.com/photos/16892378/pexels-photo-16892378.jpeg?auto=compress&cs=tinysrgb&w=700",
-    featured: false,
-  },
-  {
-    name: "Ramen Bowl",
-    desc: "Hand-pulled noodles, chashu pork, marinated egg, nori and scallion oil.",
-    price: 19,
-    reviews: 45,
-    rating: 5,
-    img: "https://images.pexels.com/photos/17593641/pexels-photo-17593641.jpeg?auto=compress&cs=tinysrgb&w=700",
-    featured: false,
-  },
+  { name: "Beef Machal",     desc: "Bone-in cutlet finished over open flame, rested with rosemary and cracked pepper.", price: 25, reviews: 20, rating: 4, img: "https://images.pexels.com/photos/410648/pexels-photo-410648.jpeg?auto=compress&cs=tinysrgb&w=700", featured: false },
+  { name: "Beef Biryani",    desc: "48-hour dum-cooked rice, tender beef, whole chillies and a whisper of saffron.", price: 28, reviews: 37, rating: 5, img: "https://images.pexels.com/photos/1630495/pexels-photo-1630495.jpeg?auto=compress&cs=tinysrgb&w=700", featured: true },
+  { name: "Thai Soup",       desc: "Overnight broth, soft egg, scallion and chilli oil, served bubbling hot.", price: 21, reviews: 54, rating: 4, img: "https://images.pexels.com/photos/12984982/pexels-photo-12984982.jpeg?auto=compress&cs=tinysrgb&w=700", featured: false },
+  { name: "Fired Chicken",   desc: "Double-brined, double-fried, resting on herb salt with a citrus dip.", price: 14, reviews: 62, rating: 5, img: "https://images.pexels.com/photos/16892378/pexels-photo-16892378.jpeg?auto=compress&cs=tinysrgb&w=700", featured: false },
+  { name: "Ramen Bowl",      desc: "Hand-pulled noodles, chashu pork, marinated egg, nori and scallion oil.", price: 19, reviews: 45, rating: 5, img: "https://images.pexels.com/photos/17593641/pexels-photo-17593641.jpeg?auto=compress&cs=tinysrgb&w=700", featured: false },
 ];
 
 const SPOTLIGHT_ITEMS = [
-  {
-    name: "Golden Fried Chicken",
-    desc: "Double-brined overnight, dredged twice, fried to a shattering crust and rested on herb salt.",
-    price: "$14",
-    img: "https://images.pexels.com/photos/16892378/pexels-photo-16892378.jpeg?auto=compress&cs=tinysrgb&w=900",
-  },
-  {
-    name: "Steamed Dumplings",
-    desc: "Hand-folded parcels, minced beef and ginger, steamed to order and served with black vinegar.",
-    price: "$9",
-    img: "https://images.pexels.com/photos/7172851/pexels-photo-7172851.jpeg?auto=compress&cs=tinysrgb&w=900",
-  },
-  {
-    name: "Chef's Fried Rice",
-    desc: "Wok-tossed jasmine rice, charred scallion and a soft crown of egg.",
-    price: "$12",
-    img: "https://images.pexels.com/photos/1630495/pexels-photo-1630495.jpeg?auto=compress&cs=tinysrgb&w=900",
-  },
-  {
-    name: "Ramen Bowl",
-    desc: "Hand-pulled noodles in an 18-hour broth, chashu pork and marinated egg.",
-    price: "$19",
-    img: "https://images.pexels.com/photos/12984979/pexels-photo-12984979.jpeg?auto=compress&cs=tinysrgb&w=900",
-  },
-  {
-    name: "Grilled Wings",
-    desc: "Charcoal-kissed wings glazed twice, finished with a squeeze of lime.",
-    price: "$11",
-    img: "https://images.pexels.com/photos/10648394/pexels-photo-10648394.jpeg?auto=compress&cs=tinysrgb&w=900",
-  },
+  { name: "Golden Fried Chicken", desc: "Double-brined overnight, dredged twice, fried to a shattering crust and rested on herb salt.", price: "$14", img: "https://images.pexels.com/photos/16892378/pexels-photo-16892378.jpeg?auto=compress&cs=tinysrgb&w=900" },
+  { name: "Steamed Dumplings",    desc: "Hand-folded parcels, minced beef and ginger, steamed to order and served with black vinegar.", price: "$9",  img: "https://images.pexels.com/photos/7172851/pexels-photo-7172851.jpeg?auto=compress&cs=tinysrgb&w=900" },
+  { name: "Chef's Fried Rice",    desc: "Wok-tossed jasmine rice, charred scallion and a soft crown of egg.", price: "$12", img: "https://images.pexels.com/photos/1630495/pexels-photo-1630495.jpeg?auto=compress&cs=tinysrgb&w=900" },
+  { name: "Ramen Bowl",           desc: "Hand-pulled noodles in an 18-hour broth, chashu pork and marinated egg.", price: "$19", img: "https://images.pexels.com/photos/12984979/pexels-photo-12984979.jpeg?auto=compress&cs=tinysrgb&w=900" },
+  { name: "Grilled Wings",        desc: "Charcoal-kissed wings glazed twice, finished with a squeeze of lime.", price: "$11", img: "https://images.pexels.com/photos/10648394/pexels-photo-10648394.jpeg?auto=compress&cs=tinysrgb&w=900" },
 ];
 
-/* ================= BUILD CAROUSEL ================= */
 const track = document.getElementById("carTrack");
 const dotsWrap = document.getElementById("carDots");
 
-function starString(n) {
-  return "★".repeat(n) + "☆".repeat(5 - n);
-}
+function starString(n) { return "★".repeat(n) + "☆".repeat(5 - n); }
 
 DISHES.forEach((d) => {
   const card = document.createElement("div");
@@ -336,7 +170,7 @@ DISHES.forEach((d) => {
   track.appendChild(card);
 });
 
-// duplicate a couple of cards at the end for a seamless-ish loop feel on wide screens
+// Clone for seamless loop
 DISHES.slice(0, 2).forEach((d) => {
   const card = document.createElement("div");
   card.className = "dish-card clone";
@@ -392,14 +226,8 @@ function goToSlide(i) {
   }
 }
 
-document.getElementById("carPrev").addEventListener("click", () => {
-  goToSlide(currentSlide - 1);
-  restartAutoplay();
-});
-document.getElementById("carNext").addEventListener("click", () => {
-  goToSlide(currentSlide + 1);
-  restartAutoplay();
-});
+document.getElementById("carPrev")?.addEventListener("click", () => { goToSlide(currentSlide - 1); restartAutoplay(); });
+document.getElementById("carNext")?.addEventListener("click", () => { goToSlide(currentSlide + 1); restartAutoplay(); });
 
 let autoplayTimer;
 function restartAutoplay() {
@@ -407,13 +235,9 @@ function restartAutoplay() {
   autoplayTimer = setInterval(() => goToSlide(currentSlide + 1), 4200);
 }
 
-// swipe support
-let startX = 0,
-  isDragging = false;
-track.addEventListener("pointerdown", (e) => {
-  isDragging = true;
-  startX = e.clientX;
-});
+// Swipe support
+let startX = 0, isDragging = false;
+track?.addEventListener("pointerdown", (e) => { isDragging = true; startX = e.clientX; });
 window.addEventListener("pointerup", (e) => {
   if (!isDragging) return;
   isDragging = false;
@@ -425,17 +249,11 @@ window.addEventListener("pointerup", (e) => {
   }
 });
 
-window.addEventListener("resize", () => {
-  measure();
-  goToSlide(currentSlide);
-});
-window.addEventListener("load", () => {
-  measure();
-  goToSlide(0);
-  restartAutoplay();
-});
+window.addEventListener("resize", () => { measure(); goToSlide(currentSlide); });
+window.addEventListener("load", () => { measure(); goToSlide(0); restartAutoplay(); });
 
-/* ================= SPOTLIGHT GALLERY ================= */
+
+// ===== SPOTLIGHT GALLERY =====
 const thumbsWrap = document.getElementById("spotlightThumbs");
 const spotImg = document.getElementById("spotlightImg");
 const spotName = document.getElementById("spotlightName");
@@ -447,417 +265,318 @@ SPOTLIGHT_ITEMS.forEach((item, idx) => {
   thumb.className = "thumb" + (idx === 0 ? " active" : "");
   thumb.innerHTML = `<img src="${item.img}" alt="${item.name}"><span class="thumb-label">${item.name}</span>`;
   thumb.addEventListener("click", () => setSpotlight(idx));
-  thumbsWrap.appendChild(thumb);
+  thumbsWrap?.appendChild(thumb);
 });
 
 function setSpotlight(idx) {
   const item = SPOTLIGHT_ITEMS[idx];
-  const thumbs = thumbsWrap.querySelectorAll(".thumb");
-  thumbs.forEach((t, i) => t.classList.toggle("active", i === idx));
+  const thumbs = thumbsWrap?.querySelectorAll(".thumb");
+  thumbs?.forEach((t, i) => t.classList.toggle("active", i === idx));
 
-  if (window.gsap) {
+  if (window.gsap && spotImg) {
     gsap.to(spotImg, {
-      opacity: 0,
-      duration: 0.22,
+      opacity: 0, duration: 0.22,
       onComplete: () => {
         spotImg.src = item.img;
         gsap.to(spotImg, { opacity: 1, duration: 0.35 });
       },
     });
-    gsap.fromTo(
-      "#spotlightName, #spotlightDesc, #spotlightPrice",
+    gsap.fromTo("#spotlightName, #spotlightDesc, #spotlightPrice",
       { y: 10, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.4, stagger: 0.05 },
+      { y: 0, opacity: 1, duration: 0.4, stagger: 0.05, ease: "power2.out" }
     );
-  } else {
+  } else if (spotImg) {
     spotImg.src = item.img;
   }
-  spotName.textContent = item.name;
-  spotDesc.textContent = item.desc;
-  spotPrice.textContent = item.price;
+  if (spotName) spotName.textContent = item.name;
+  if (spotDesc) spotDesc.textContent = item.desc;
+  if (spotPrice) spotPrice.textContent = item.price;
 }
 
-/* ================= NAVBAR / MOBILE MENU ================= */
-const navbar = document.getElementById("navbar");
-if (navbar) {
-  window.addEventListener("scroll", () => {
-    navbar.classList.toggle("scrolled", window.scrollY > 30);
-  });
-}
 
-/* ===== FIXED MOBILE HAMBURGER (LEFT SLIDE) ===== */
-const hamburgerToggle = document.querySelector(".mobile-nav-toggle");
-const mobilePanel = document.getElementById("mobileMenuPanel");
-const mobileOverlay = document.getElementById("mobileMenuOverlay");
-const mobileClose = document.querySelector(".mobile-close");
-
+// ===== MOBILE MENU =====
 function openMobileMenu() {
-  if (hamburgerToggle) hamburgerToggle.classList.add("active");
-  if (mobilePanel) mobilePanel.classList.add("open");
-  if (mobileOverlay) mobileOverlay.classList.add("show");
+  document.querySelector(".mobile-nav-toggle")?.classList.add("active");
+  document.getElementById("mobileMenuPanel")?.classList.add("open");
+  document.getElementById("mobileMenuOverlay")?.classList.add("show");
   document.body.style.overflow = "hidden";
 }
 
 function closeMobileMenu() {
-  if (hamburgerToggle) hamburgerToggle.classList.remove("active");
-  if (mobilePanel) mobilePanel.classList.remove("open");
-  if (mobileOverlay) mobileOverlay.classList.remove("show");
+  document.querySelector(".mobile-nav-toggle")?.classList.remove("active");
+  document.getElementById("mobileMenuPanel")?.classList.remove("open");
+  document.getElementById("mobileMenuOverlay")?.classList.remove("show");
   document.body.style.overflow = "";
 }
 
-if (hamburgerToggle) {
-  hamburgerToggle.addEventListener("click", openMobileMenu);
-}
+document.querySelector(".mobile-nav-toggle")?.addEventListener("click", openMobileMenu);
+document.querySelector(".mobile-close")?.addEventListener("click", closeMobileMenu);
+document.getElementById("mobileMenuOverlay")?.addEventListener("click", closeMobileMenu);
+document.querySelectorAll(".mobile-nav-links a").forEach((a) => a.addEventListener("click", closeMobileMenu));
 
-if (mobileClose) {
-  mobileClose.addEventListener("click", closeMobileMenu);
-}
 
-if (mobileOverlay) {
-  mobileOverlay.addEventListener("click", closeMobileMenu);
-}
-
-if (mobilePanel) {
-  mobilePanel.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", closeMobileMenu);
-  });
-}
-
-/* ===== GSAP SCROLL ANIMATIONS ===== */
+// ===== GSAP / SCROLL ANIMATIONS =====
 if (window.gsap && window.ScrollTrigger) {
   gsap.registerPlugin(ScrollTrigger);
 
-  // Animate sections on scroll
-  function animateOnScroll(selector, fromVars, triggerOpts) {
-    const els = document.querySelectorAll(selector);
-    els.forEach((el) => {
-      gsap.fromTo(
-        el,
-        { y: 50, opacity: 0, ...fromVars },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-            ...triggerOpts,
-          },
-        },
-      );
+  // Entrance animations
+  gsap.from(".top-bar", { y: -30, opacity: 0, duration: 0.5, ease: "power2.out" });
+  gsap.from(".header-logo", { x: -30, opacity: 0, duration: 0.6, ease: "power2.out", delay: 0.1 });
+  gsap.from(".nav-link", { y: -20, opacity: 0, duration: 0.6, stagger: 0.08, ease: "power2.out", delay: 0.2 });
+  gsap.from(".navbar-actions", { x: 30, opacity: 0, duration: 0.6, ease: "power2.out", delay: 0.4 });
+
+  // Hero entrance
+  gsap.from(".slide-content", { y: 80, opacity: 0, duration: 1, ease: "power4.out", delay: 0.3 });
+  gsap.from(".slide-image", { x: 100, opacity: 0, duration: 1.2, ease: "power4.out", delay: 0.5 });
+  gsap.from(".highlight-pill", { y: 30, opacity: 0, duration: 0.5, stagger: 0.15, ease: "back.out(1.4)", delay: 0.8 });
+
+  // Scroll-triggered animations
+  function animateFrom(selector, vars, trigger) {
+    gsap.from(selector, {
+      y: 50, opacity: 0, duration: 0.7, ease: "power3.out",
+      scrollTrigger: { trigger: trigger || selector, start: "top 85%", toggleActions: "play none none none" },
+      ...vars,
     });
   }
 
-  // Animate popular dish cards staggered
-  if (track) {
-    gsap.from(".dish-card", {
-      y: 60,
-      opacity: 0,
-      duration: 0.7,
-      stagger: 0.1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: "#popular",
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-    });
-  }
+  animateFrom(".dish-card", { y: 60, stagger: 0.1 }, "#popular");
+  animateFrom(".spotlight-feature", { x: -40 });
+  animateFrom(".spotlight-thumbs .thumb", { x: 40, stagger: 0.08 });
+  animateFrom(".premium-card", { y: 60 });
+  animateFrom(".food-card", { y: 50, stagger: 0.08 }, ".menu-highlights-section");
+  animateFrom(".quick-card", { y: 40, stagger: 0.1, ease: "back.out(1.4)" }, ".quick-action-section");
+  animateFrom(".stat-item", { y: 40, stagger: 0.1 }, ".stats-counter-section");
+  animateFrom(".testimonial-card", { y: 50 }, ".testimonials-section");
+  animateFrom(".footer-grid > div", { y: 40, stagger: 0.1 }, ".footer");
 
-  // Animate spotlight section
-  animateOnScroll(".spotlight-feature", { x: -40 }, {});
-  animateOnScroll(".spotlight-thumbs .thumb", { x: 40 }, { stagger: 0.08 });
-
-  // Animate new items cards
-  animateOnScroll(".premium-card", { y: 60 }, {});
-
-  // Animate menu highlight cards
-  gsap.from(".food-card", {
-    y: 50,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.08,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: ".menu-highlights-section",
-      start: "top 80%",
-      toggleActions: "play none none none",
-    },
+  // Section headings
+  gsap.utils.toArray(".section-head, .section-header").forEach((h) => {
+    animateFrom(h, {});
   });
 
-  // Animate quick action cards
-  gsap.from(".quick-card", {
-    y: 40,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.1,
-    ease: "back.out(1.4)",
-    scrollTrigger: {
-      trigger: ".quick-action-section",
-      start: "top 85%",
-      toggleActions: "play none none none",
-    },
-  });
-
-  // Hero content entrance on load
-  gsap.from(".slide-content", {
-    y: 80,
-    opacity: 0,
-    duration: 1,
-    ease: "power4.out",
-    delay: 0.3,
-  });
-  gsap.from(".slide-image", {
-    x: 100,
-    opacity: 0,
-    duration: 1.2,
-    ease: "power4.out",
-    delay: 0.5,
-  });
-
-  // Footer reveal
-  gsap.from(".footer-grid > div", {
-    y: 40,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.1,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: ".footer",
-      start: "top 85%",
-      toggleActions: "play none none none",
-    },
-  });
 } else {
-  // Fallback: just show everything
-  document
-    .querySelectorAll(
-      ".dish-card, .premium-card, .food-card, .quick-card, .spotlight-feature, .thumb, .footer-grid > div",
-    )
-    .forEach((el) => {
-      el.style.opacity = "1";
-      el.style.transform = "none";
-    });
+  // Fallback
+  document.querySelectorAll(".dish-card, .premium-card, .food-card, .quick-card, .stat-item, .footer-grid > div")
+    .forEach((el) => { el.style.opacity = "1"; el.style.transform = "none"; });
 }
 
-/* ================= FORMS ================= */
-const reserveForm = document.getElementById("reserveForm");
-if (reserveForm) {
-  reserveForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const msg = document.getElementById("reserveConfirm");
-    if (msg)
-      msg.textContent =
-        "Table request received — we'll confirm by phone shortly.";
-    e.target.reset();
-  });
-}
 
-const newsletterForm = document.getElementById("newsletterForm");
-if (newsletterForm) {
-  newsletterForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const msg = document.getElementById("newsletterConfirm");
-    if (msg) msg.textContent = "You're on the list!";
-    e.target.reset();
-  });
-}
-
-const watchBtn = document.getElementById("watchBtn");
-if (watchBtn) {
-  watchBtn.addEventListener("click", () => {
-    const popularSection = document.getElementById("popular");
-    if (popularSection) {
-      window.scrollTo({
-        top: popularSection.offsetTop - 60,
-        behavior: "smooth",
-      });
-    }
-  });
-}
-
-const year = document.getElementById("year");
-if (year) {
-  year.textContent = new Date().getFullYear();
-}
-
-/* ================= SIMPLE REVEALS ================= */
-document
-  .querySelectorAll(
-    ".section-head, .spotlight-feature, .spotlight-thumbs, .dish-card, [data-reveal]",
-  )
-  .forEach((el) => {
-    el.style.opacity = "1";
-    el.style.transform = "none";
-  });
-
-/* ================= EMBER PARTICLES (canvas) ================= */
-(function emberField() {
-  const canvas = document.getElementById("emberCanvas");
-  if (!canvas) return;
-  const ctx = canvas.getContext("2d");
-  let w, h, particles;
-  const prefersReduced = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
-
-  function resize() {
-    w = canvas.width = canvas.offsetWidth;
-    h = canvas.height = canvas.offsetHeight;
-  }
-
-  function makeParticles() {
-    const count = Math.min(46, Math.floor(w / 30));
-    particles = Array.from({ length: count }, () => ({
-      x: Math.random() * w,
-      y: h + Math.random() * h,
-      r: Math.random() * 1.8 + 0.6,
-      speed: Math.random() * 0.6 + 0.25,
-      drift: (Math.random() - 0.5) * 0.4,
-      alpha: Math.random() * 0.5 + 0.25,
-    }));
-  }
-
-  function tick() {
-    ctx.clearRect(0, 0, w, h);
-    particles.forEach((p) => {
-      p.y -= p.speed;
-      p.x += p.drift;
-      if (p.y < -10) {
-        p.y = h + 10;
-        p.x = Math.random() * w;
-      }
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(212,175,55,${p.alpha})`;
-      ctx.fill();
-    });
-    requestAnimationFrame(tick);
-  }
-
-  resize();
-  makeParticles();
-  window.addEventListener("resize", () => {
-    resize();
-    makeParticles();
-  });
-
-  if (!prefersReduced) tick();
-})();
-// adding menu highlight section
-// 1. Array of Food Items (Mock Data or API Response)
+// ===== MENU HIGHLIGHTS - SMOOTH TAB TRANSITIONS =====
 const dishesData = [
-  {
-    id: 1,
-    name: "Zesty Smash Burger",
-    category: "bestsellers",
-    badge: "Halal ☪️",
-    price: "$12.99",
-    rating: "4.9 ★",
-    desc: "Juicy double beef patty layered with melted cheddar and signature house relish.",
-    image:
-      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80",
-  },
-  {
-    id: 2,
-    name: "Truffle Mushroom Risotto",
-    category: "specials",
-    badge: "Vegan 🌱",
-    price: "$18.50",
-    rating: "4.8 ★",
-    desc: "Creamy arborio rice infused with wild mushrooms and authentic black truffle oil.",
-    image:
-      "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=500&q=80",
-  },
-  {
-    id: 3,
-    name: "Fiery Peri Peri Wings",
-    category: "combos",
-    badge: "Spicy 🌶️",
-    price: "$14.00",
-    rating: "4.7 ★",
-    desc: "Flame-grilled chicken wings tossed in intense African bird's eye chili glaze.",
-    image:
-      "https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500&q=80",
-  },
-  {
-    id: 4,
-    name: "Classic Berry Cheesecake",
-    category: "desserts",
-    badge: "Chef's Pick ⭐",
-    price: "$8.99",
-    rating: "4.9 ★",
-    desc: "Velvety New York style cheesecake topped with fresh wild berry reduction.",
-    image:
-      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=500&q=80",
-  },
+  { id: 1,  name: "Zesty Smash Burger",    category: "bestsellers", badge: "Halal ☪️",  price: "$12.99", rating: "4.9 ★", desc: "Juicy double beef patty layered with melted cheddar and signature house relish.", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80" },
+  { id: 2,  name: "Truffle Mushroom Risotto", category: "specials", badge: "Vegan 🌱",  price: "$18.50", rating: "4.8 ★", desc: "Creamy arborio rice infused with wild mushrooms and authentic black truffle oil.", image: "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=500&q=80" },
+  { id: 3,  name: "Fiery Peri Peri Wings",    category: "combos",   badge: "Spicy 🌶️", price: "$14.00", rating: "4.7 ★", desc: "Flame-grilled chicken wings tossed in intense African bird's eye chili glaze.", image: "https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500&q=80" },
+  { id: 4,  name: "Classic Berry Cheesecake", category: "desserts", badge: "Chef's Pick ⭐", price: "$8.99",  rating: "4.9 ★", desc: "Velvety New York style cheesecake topped with fresh wild berry reduction.", image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=500&q=80" },
+  { id: 5,  name: "Smoked Salmon Benedict",   category: "specials", badge: "Fresh 🐟",  price: "$16.00", rating: "4.8 ★", desc: "Poached eggs on toasted brioche with house-smoked salmon and hollandaise.", image: "https://images.unsplash.com/photo-1608039829572-e2e6c44a32a4?w=500&q=80" },
+  { id: 6,  name: "Double Chocolate Mousse",  category: "desserts", badge: "NEW 🔥",    price: "$9.50",  rating: "4.9 ★", desc: "Rich dark chocolate mousse with a silky caramel core and gold leaf finish.", image: "https://images.unsplash.com/photo-1541783245831-57d6fb0926d3?w=500&q=80" },
+  { id: 7,  name: "Lamb Kofta Kebab",        category: "bestsellers", badge: "Halal ☪️", price: "$15.00", rating: "4.7 ★", desc: "Spiced minced lamb skewers, chargrilled and served with garlic yogurt dip.", image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=500&q=80" },
+  { id: 8,  name: "Mango & Passionfruit Tart", category: "desserts", badge: "Seasonal 🥭", price: "$7.50", rating: "4.6 ★", desc: "Buttery pastry shell filled with tropical fruit curd and toasted meringue.", image: "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=500&q=80" },
 ];
 
-// DOM Elements
 const menuGrid = document.getElementById("menuGrid");
 const categoryTabs = document.getElementById("categoryTabs");
 
-// 2. Function to Render Cards dynamically
 function renderMenuCards(items) {
-  menuGrid.innerHTML = ""; // Clear previous content
+  menuGrid.innerHTML = "";
+  const fragment = document.createDocumentFragment();
 
-  items.forEach((item) => {
-    const cardHTML = `
-      <div class="food-card" data-id="${item.id}">
-        <span class="badge-corner">${item.badge}</span>
-        
-        <div class="card-img-wrapper">
-          <img src="${item.image}" alt="${item.name}" class="card-img" />
-        </div>
-
-        <div class="card-title-row">
-          <h3 class="card-title">${item.name}</h3>
-          <span class="rating">${item.rating}</span>
-        </div>
-
-        <p class="small-desc">${item.desc}</p>
-
-        <div class="card-footer">
-          <span class="price">${item.price}</span>
-          <button class="add-btn" onclick="addToCart(${item.id})">+ Add to Cart</button>
-        </div>
+  items.forEach((item, index) => {
+    const card = document.createElement("div");
+    card.className = "food-card";
+    card.style.opacity = "0";
+    card.style.transform = "translateY(20px) scale(0.95)";
+    card.innerHTML = `
+      <span class="badge-corner">${item.badge}</span>
+      <div class="card-img-wrapper">
+        <img src="${item.image}" alt="${item.name}" class="card-img" />
+      </div>
+      <div class="card-title-row">
+        <h3 class="card-title">${item.name}</h3>
+        <span class="rating">${item.rating}</span>
+      </div>
+      <p class="small-desc">${item.desc}</p>
+      <div class="card-footer">
+        <span class="price">${item.price}</span>
+        <button class="add-btn" onclick="addToCart(${item.id})">+ Add to Cart</button>
       </div>
     `;
+    fragment.appendChild(card);
+  });
 
-    menuGrid.innerHTML += cardHTML;
+  menuGrid.appendChild(fragment);
+
+  // Stagger entrance animation
+  const cards = menuGrid.querySelectorAll(".food-card");
+  if (window.gsap) {
+    gsap.to(cards, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.5,
+      stagger: 0.06,
+      ease: "power3.out",
+    });
+  } else {
+    cards.forEach((c) => { c.style.opacity = "1"; c.style.transform = "none"; });
+  }
+}
+
+// Tab switching with smooth animation
+categoryTabs?.addEventListener("click", (e) => {
+  if (!e.target.classList.contains("tab-btn")) return;
+
+  // Update active tab
+  document.querySelectorAll(".tab-btn").forEach((btn) => btn.classList.remove("active"));
+  e.target.classList.add("active");
+
+  // Animate active tab
+  if (window.gsap) {
+    gsap.fromTo(e.target, { scale: 0.9 }, { scale: 1, duration: 0.3, ease: "back.out(2)" });
+  }
+
+  const selectedCategory = e.target.getAttribute("data-category");
+  const filtered = selectedCategory === "all" ? dishesData : dishesData.filter((item) => item.category === selectedCategory);
+  renderMenuCards(filtered);
+});
+
+function addToCart(itemId) {
+  const item = dishesData.find((d) => d.id === itemId);
+  if (item) alert(`${item.name} added to your cart!`);
+}
+
+renderMenuCards(dishesData);
+
+
+// ===== CURSOR GLOW =====
+const cursorGlow = document.getElementById("cursorGlow");
+if (cursorGlow) {
+  document.addEventListener("mousemove", (e) => {
+    cursorGlow.style.left = e.clientX + "px";
+    cursorGlow.style.top = e.clientY + "px";
+    cursorGlow.classList.add("visible");
+  });
+  document.addEventListener("mouseleave", () => cursorGlow.classList.remove("visible"));
+}
+
+
+// ===== STATS COUNTER =====
+function animateCounters() {
+  const counters = document.querySelectorAll(".stat-count");
+  if (!counters.length) return;
+  counters.forEach((counter) => {
+    const target = parseInt(counter.getAttribute("data-target"));
+    const duration = 2500;
+    const step = Math.ceil(target / (duration / 16));
+    let current = 0;
+    const update = () => {
+      current += step;
+      if (current >= target) { counter.textContent = target; return; }
+      counter.textContent = current;
+      requestAnimationFrame(update);
+    };
+    update();
   });
 }
 
-// 3. Category Filter Event Listener
-categoryTabs.addEventListener("click", (e) => {
-  if (e.target.classList.contains("tab-btn")) {
-    // Active class toggle
-    document
-      .querySelectorAll(".tab-btn")
-      .forEach((btn) => btn.classList.remove("active"));
-    e.target.classList.add("active");
+const statsSection = document.querySelector(".stats-counter-section");
+if (statsSection && window.gsap && window.ScrollTrigger) {
+  ScrollTrigger.create({ trigger: statsSection, start: "top 85%", onEnter: () => animateCounters(), once: true });
+}
 
-    // Filter Logic
-    const selectedCategory = e.target.getAttribute("data-category");
 
-    if (selectedCategory === "all") {
-      renderMenuCards(dishesData);
-    } else {
-      const filteredDishes = dishesData.filter(
-        (item) => item.category === selectedCategory,
-      );
-      renderMenuCards(filteredDishes);
-    }
+// ===== TESTIMONIALS =====
+const testimonials = [
+  { avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&q=80",  name: "Sarah Ahmed",      role: "Regular Guest",    quote: '"Absolutely exceptional dining experience! The flavors were incredible and the ambiance was perfect for our anniversary dinner."',     stars: "★★★★★" },
+  { avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80",  name: "James Rodriguez",   role: "Food Critic",      quote: '"The attention to detail in every dish is remarkable. Zest & Co. has redefined what fine dining means in this city."',                  stars: "★★★★★" },
+  { avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80",  name: "Ayesha Khan",       role: "Loyal Customer",   quote: '"From the warm welcome to the last bite of dessert, everything was perfection. The grilled salmon is a must-try!"',                      stars: "★★★★★" },
+];
+
+let currentTestimonial = 0;
+
+function showTestimonial(index) {
+  const t = testimonials[index];
+  const card = document.getElementById("testimonialCard");
+  const avatar = document.getElementById("testimonialAvatar");
+  const stars = document.getElementById("testimonialStars");
+  const quote = document.getElementById("testimonialQuote");
+  const name = document.getElementById("testimonialName");
+  const role = document.getElementById("testimonialRole");
+  const dots = document.querySelectorAll(".testimonial-dot");
+
+  if (!card) return;
+
+  if (window.gsap) {
+    gsap.to(card, {
+      opacity: 0, y: -20, duration: 0.3,
+      onComplete: () => {
+        if (avatar) avatar.src = t.avatar;
+        if (stars) stars.textContent = t.stars;
+        if (quote) quote.textContent = t.quote;
+        if (name) name.textContent = t.name;
+        if (role) role.textContent = t.role;
+        dots.forEach((d, i) => d.classList.toggle("active", i === index));
+        gsap.to(card, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" });
+      },
+    });
+  } else {
+    if (avatar) avatar.src = t.avatar;
+    if (stars) stars.textContent = t.stars;
+    if (quote) quote.textContent = t.quote;
+    if (name) name.textContent = t.name;
+    if (role) role.textContent = t.role;
+    dots.forEach((d, i) => d.classList.toggle("active", i === index));
+  }
+}
+
+document.getElementById("testimonialNav")?.addEventListener("click", (e) => {
+  if (e.target.classList.contains("testimonial-dot")) {
+    const idx = parseInt(e.target.getAttribute("data-index"));
+    showTestimonial(idx);
+    currentTestimonial = idx;
   }
 });
 
-// 4. Dummy Add to Cart Handler
-function addToCart(itemId) {
-  const item = dishesData.find((d) => d.id === itemId);
-  alert(`${item.name} added to your cart!`);
+setInterval(() => {
+  currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+  showTestimonial(currentTestimonial);
+}, 5000);
+
+
+// ===== FORMS & UTILITIES =====
+document.getElementById("newsletterForm")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const msg = document.getElementById("newsletterConfirm");
+  if (msg) msg.textContent = "You're on the list!";
+  e.target.reset();
+});
+
+document.getElementById("reserveForm")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const msg = document.getElementById("reserveConfirm");
+  if (msg) msg.textContent = "Table request received — we'll confirm by phone shortly.";
+  e.target.reset();
+});
+
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+
+// ===== HERO PARALLAX =====
+const heroSection = document.querySelector(".hero-carousel-section");
+if (heroSection) {
+  heroSection.addEventListener("mousemove", (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 10;
+    const y = (e.clientY / window.innerHeight - 0.5) * 10;
+    const carousel = heroSection.querySelector(".home2-carousel");
+    const slideImage = heroSection.querySelector(".slide-image");
+    if (carousel) carousel.style.transform = `perspective(1000px) rotateX(${-y * 0.3}deg) rotateY(${x * 0.3}deg)`;
+    if (slideImage) slideImage.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
+  });
+  heroSection.addEventListener("mouseleave", () => {
+    const carousel = heroSection.querySelector(".home2-carousel");
+    const slideImage = heroSection.querySelector(".slide-image");
+    if (carousel) carousel.style.transform = "";
+    if (slideImage) slideImage.style.transform = "";
+  });
 }
 
-// Initial Render on Page Load
-renderMenuCards(dishesData);
