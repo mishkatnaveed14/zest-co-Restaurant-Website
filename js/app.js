@@ -964,3 +964,215 @@ if (heroSection) {
     if (slideImage) slideImage.style.transform = "";
   });
 }
+
+// ===== POPULAR DISHES CAROUSEL =====
+const DISHES = [
+  { name: "Beef Machal", desc: "Bone-in cutlet finished over open flame, rested with rosemary and cracked pepper.", price: 25, reviews: 20, rating: 4, img: "https://images.pexels.com/photos/410648/pexels-photo-410648.jpeg?auto=compress&cs=tinysrgb&w=700", featured: false },
+  { name: "Beef Biryani", desc: "48-hour dum-cooked rice, tender beef, whole chillies and a whisper of saffron.", price: 28, reviews: 37, rating: 5, img: "https://images.pexels.com/photos/1630495/pexels-photo-1630495.jpeg?auto=compress&cs=tinysrgb&w=700", featured: true },
+  { name: "Thai Soup", desc: "Overnight broth, soft egg, scallion and chilli oil, served bubbling hot.", price: 21, reviews: 54, rating: 4, img: "https://images.pexels.com/photos/12984982/pexels-photo-12984982.jpeg?auto=compress&cs=tinysrgb&w=700", featured: false },
+  { name: "Fried Chicken", desc: "Double-brined, double-fried, resting on herb salt with a citrus dip.", price: 14, reviews: 62, rating: 5, img: "https://images.pexels.com/photos/16892378/pexels-photo-16892378.jpeg?auto=compress&cs=tinysrgb&w=700", featured: false },
+  { name: "Ramen Bowl", desc: "Hand-pulled noodles, chashu pork, marinated egg, nori and scallion oil.", price: 19, reviews: 45, rating: 5, img: "https://images.pexels.com/photos/17593641/pexels-photo-17593641.jpeg?auto=compress&cs=tinysrgb&w=700", featured: false },
+  { name: "Grilled Salmon", desc: "Pan-seared Atlantic salmon, dill butter glaze, roasted asparagus and mash.", price: 24, reviews: 31, rating: 4, img: "https://images.pexels.com/photos/3763847/pexels-photo-3763847.jpeg?auto=compress&cs=tinysrgb&w=700", featured: false },
+];
+
+const track = document.getElementById("carTrack");
+const dotsWrap = document.getElementById("carDots");
+const nextRing = document.querySelector(".car-arrow.next .ring circle");
+
+function starString(n) { return "★".repeat(n) + "☆".repeat(5 - n); }
+
+const plusIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>`;
+const checkIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>`;
+
+function buildDishCardHTML(d, idx) {
+  return `
+    <div class="dish-img-wrap">
+      <div class="price-blob ${d.featured ? "gold" : "white"}">$${d.price}</div>
+      ${d.featured ? '<span class="dish-ribbon">Chef\'s Pick</span>' : ""}
+      <img src="${d.img}" alt="${d.name}" loading="lazy">
+      <button type="button" class="quick-order-btn" data-add="${idx}">${plusIcon} Quick Add</button>
+    </div>
+    <div class="dish-body">
+      <div class="dish-rating">
+        <span class="stars" aria-label="${d.rating} out of 5 stars">${starString(d.rating)}</span>
+        <span class="reviews">${d.reviews} reviews</span>
+      </div>
+      <h3>${d.name}</h3>
+      <p>${d.desc}</p>
+      <div class="dish-footer">
+        <span class="price-tag">$${d.price.toFixed(2)}</span>
+        <div class="stepper" data-stepper="${idx}">
+          <button type="button" data-dec="${idx}" aria-label="Decrease quantity">−</button>
+          <span data-qty="${idx}">1</span>
+          <button type="button" data-inc="${idx}" aria-label="Increase quantity">+</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function makeDishCard(d, isClone, idx) {
+  const card = document.createElement("div");
+  card.className = "dish-card" + (d.featured ? " featured" : "") + (isClone ? " clone" : "");
+  card.setAttribute("role", "listitem");
+  card.setAttribute("tabindex", "0");
+  card.setAttribute("aria-label", `${d.name}, $${d.price}`);
+  card.innerHTML = buildDishCardHTML(d, idx);
+  return card;
+}
+
+const CLONE_COUNT = Math.min(2, DISHES.length - 1);
+const totalDots = DISHES.length;
+
+DISHES.slice(-CLONE_COUNT).forEach((d, i) => track.appendChild(makeDishCard(d, true, DISHES.length - CLONE_COUNT + i)));
+DISHES.forEach((d, i) => track.appendChild(makeDishCard(d, false, i)));
+DISHES.slice(0, CLONE_COUNT).forEach((d, i) => track.appendChild(makeDishCard(d, true, i)));
+
+for (let i = 0; i < totalDots; i++) {
+  const dot = document.createElement("button");
+  dot.type = "button";
+  dot.setAttribute("aria-label", "Go to " + DISHES[i].name);
+  if (i === 0) dot.classList.add("active");
+  dot.addEventListener("click", () => { goToDot(i); restartAutoplay(); });
+  dotsWrap.appendChild(dot);
+}
+
+let position = CLONE_COUNT;
+let cardWidthWithGap = 0;
+
+function measure() {
+  const cards = track.querySelectorAll(".dish-card");
+  if (!cards.length) return;
+  const style = getComputedStyle(track);
+  const gap = parseFloat(style.gap) || 26;
+  cardWidthWithGap = cards[0].getBoundingClientRect().width + gap;
+}
+
+function updateDots(realIndex) {
+  dotsWrap.querySelectorAll("button").forEach((d, idx) => d.classList.toggle("active", idx === realIndex));
+}
+
+function checkLoopBounds() {
+  if (position >= CLONE_COUNT + totalDots) {
+    position -= totalDots;
+    setTrackPosition(position, false);
+  } else if (position < CLONE_COUNT) {
+    position += totalDots;
+    setTrackPosition(position, false);
+  }
+}
+
+function setTrackPosition(pos, animate) {
+  const offset = pos * cardWidthWithGap;
+  track.style.transition = animate ? "transform .7s cubic-bezier(.22,1,.36,1)" : "none";
+  track.style.transform = `translateX(-${offset}px)`;
+  if (animate) {
+    track.addEventListener("transitionend", checkLoopBounds, { once: true });
+  } else {
+    checkLoopBounds();
+  }
+}
+
+function goToRelative(step) {
+  position += step;
+  const realIndex = ((position - CLONE_COUNT) % totalDots + totalDots) % totalDots;
+  updateDots(realIndex);
+  setTrackPosition(position, true);
+}
+
+function goToDot(i) {
+  position = CLONE_COUNT + i;
+  updateDots(i);
+  setTrackPosition(position, true);
+}
+
+document.getElementById("carPrev")?.addEventListener("click", () => { goToRelative(-1); restartAutoplay(); });
+document.getElementById("carNext")?.addEventListener("click", () => { goToRelative(1); restartAutoplay(); });
+
+let autoplayTimer;
+const AUTOPLAY_MS = 4200;
+
+function runDial() {
+  if (!nextRing) return;
+  nextRing.classList.remove("run");
+  void nextRing.offsetWidth;
+  nextRing.style.animationDuration = AUTOPLAY_MS + "ms";
+  nextRing.classList.add("run");
+}
+function pauseDial() { nextRing?.classList.add("paused"); }
+function resumeDial() { nextRing?.classList.remove("paused"); }
+
+function restartAutoplay() {
+  clearInterval(autoplayTimer);
+  autoplayTimer = setInterval(() => goToRelative(1), AUTOPLAY_MS);
+  runDial();
+}
+
+// Swipe / drag support
+let startX = 0, isDragging = false;
+track?.addEventListener("pointerdown", (e) => { isDragging = true; startX = e.clientX; track.setPointerCapture(e.pointerId); });
+track?.addEventListener("pointerup", (e) => {
+  if (!isDragging) return;
+  isDragging = false;
+  const diff = e.clientX - startX;
+  if (Math.abs(diff) > 40) {
+    goToRelative(diff < 0 ? 1 : -1);
+    restartAutoplay();
+  }
+});
+
+// Keyboard navigation
+document.getElementById("carousel")?.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") { goToRelative(-1); restartAutoplay(); }
+  if (e.key === "ArrowRight") { goToRelative(1); restartAutoplay(); }
+});
+
+// Quantity steppers + Quick Add (toast instead of alert)
+track?.addEventListener("click", (e) => {
+  const inc = e.target.closest("[data-inc]");
+  const dec = e.target.closest("[data-dec]");
+  const add = e.target.closest("[data-add]");
+  if (inc || dec) {
+    const idx = (inc || dec).dataset.inc ?? (inc || dec).dataset.dec;
+    track.querySelectorAll(`[data-qty="${idx}"]`).forEach((el) => {
+      let val = parseInt(el.textContent, 10) || 1;
+      val = inc ? Math.min(9, val + 1) : Math.max(1, val - 1);
+      el.textContent = val;
+    });
+  }
+  if (add) {
+    const idx = add.dataset.add;
+    const dish = DISHES[idx];
+    const qty = track.querySelector(`[data-qty="${idx}"]`)?.textContent || 1;
+    showToast(`${dish.name} × ${qty} added to your order`);
+    add.innerHTML = checkIcon + " Added";
+    setTimeout(() => { add.innerHTML = plusIcon + " Quick Add"; }, 1400);
+  }
+});
+
+function showToast(msg) {
+  let wrap = document.getElementById("toastWrap");
+  if (!wrap) {
+    wrap = document.createElement("div");
+    wrap.id = "toastWrap";
+    document.body.appendChild(wrap);
+  }
+  const el = document.createElement("div");
+  el.className = "toast";
+  el.innerHTML = `${checkIcon}<span>${msg}</span>`;
+  wrap.appendChild(el);
+  setTimeout(() => {
+    el.classList.add("out");
+    setTimeout(() => el.remove(), 350);
+  }, 2600);
+}
+
+// Pause on hover / focus
+const popularCarouselEl = document.getElementById("carousel");
+popularCarouselEl?.addEventListener("mouseenter", () => { clearInterval(autoplayTimer); pauseDial(); });
+popularCarouselEl?.addEventListener("mouseleave", () => { resumeDial(); restartAutoplay(); });
+popularCarouselEl?.addEventListener("focusin", () => { clearInterval(autoplayTimer); pauseDial(); });
+popularCarouselEl?.addEventListener("focusout", () => { resumeDial(); restartAutoplay(); });
+
+window.addEventListener("resize", () => { measure(); setTrackPosition(position, false); });
+window.addEventListener("load", () => { measure(); setTrackPosition(position, false); restartAutoplay(); });
