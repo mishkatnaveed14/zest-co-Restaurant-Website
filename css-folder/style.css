@@ -726,9 +726,11 @@
 
 
 /* ===== SPOTLIGHT SECTION ===== */
+
+/* ===== SPOTLIGHT SECTION ===== */
 .spotlight {
-  padding: var(--section-padding-lg);
-  background: var(--main-bg);
+  padding: var(--section-padding-lg, 80px 0);
+  background: var(--main-bg, #111111);
 }
 
 .spotlight-grid {
@@ -736,20 +738,22 @@
   gap: 24px;
   grid-template-columns: 1.2fr 0.8fr;
   align-items: start;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .spotlight-feature {
-  background: var(--card-bg);
-  border: 1px solid var(--border-card);
+  background: var(--card-bg, #1a1a1a);
+  border: 1px solid var(--border-card, rgba(255, 255, 255, 0.08));
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: var(--neu-shadow-soft);
+  box-shadow: var(--neu-shadow-soft, 0 10px 30px rgba(0, 0, 0, 0.3));
   position: relative;
-  transition: all 0.4s var(--transition-smooth);
+  transition: all 0.4s var(--transition-smooth, ease);
 }
 
 .spotlight-feature:hover {
-  box-shadow: var(--neu-shadow-elevated);
+  box-shadow: var(--neu-shadow-elevated, 0 15px 40px rgba(0, 0, 0, 0.5));
   transform: translateY(-4px);
 }
 
@@ -759,16 +763,16 @@
   right: 16px;
   padding: 10px 14px;
   border-radius: 999px;
-  background: var(--accent-gold-bright);
+  background: var(--accent-gold-bright, #d4af37);
   color: #111;
   font-weight: 700;
   z-index: 2;
-  box-shadow: var(--neu-shadow-small);
+  box-shadow: var(--neu-shadow-small, 0 4px 10px rgba(0, 0, 0, 0.2));
 }
 
 .spotlight-feature img {
   width: 100%;
-  height: 320px;
+  height: 340px;
   object-fit: cover;
   display: block;
 }
@@ -781,54 +785,125 @@
   font-size: 1.35rem;
   font-weight: 700;
   margin-bottom: 10px;
-  color: var(--text-dark);
+  color: var(--text-dark, #ffffff);
   font-family: 'Playfair Display', serif;
 }
 
 .spotlight-info p {
   font-size: 0.95rem;
   line-height: 1.75;
-  color: var(--text-muted);
+  color: var(--text-muted, rgba(255, 255, 255, 0.7));
   margin: 0;
 }
 
+/* Right Side Thumbnails Box */
 .spotlight-thumbs {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
+  
+  /* Left card ke barabar height taakay layout bilkul balanced lage */
+  max-height: 480px; 
+  
+  /* Vertical Scroll enable kiya hai taakay saare items visible rahain */
+  overflow-y: auto;
+  overflow-x: hidden; /* No horizontal scrollbar */
+  
+  padding-right: 6px; /* Scrollbar space */
+  box-sizing: border-box;
 }
 
+/* Custom Stylish Scrollbar */
+.spotlight-thumbs::-webkit-scrollbar {
+  width: 5px;
+}
+.spotlight-thumbs::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+}
+.spotlight-thumbs::-webkit-scrollbar-thumb {
+  background: var(--accent-gold-bright, #d4af37);
+  border-radius: 10px;
+}
+
+/* Individual Thumbnail Card */
+.spotlight-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  
+  /* Fixed height jo featured image ke barabar set rahegi */
+  height: 480px; 
+  
+  /* Vertical Scroll Clean & Smooth */
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth; /* Smooth scroll support */
+  
+  padding-right: 6px;
+  box-sizing: border-box;
+}
+
+/* Custom Smooth Scrollbar */
+.spotlight-thumbs::-webkit-scrollbar {
+  width: 6px;
+}
+.spotlight-thumbs::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+.spotlight-thumbs::-webkit-scrollbar-thumb {
+  background: var(--accent-gold-bright, #d4af37);
+  border-radius: 10px;
+}
+
+/* Individual Thumb Styling */
 .thumb {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 12px;
-  background: var(--card-bg);
-  border: 1px solid var(--border-card);
+  background: #ffffff; /* Ya aapka --card-bg variable */
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 16px;
-  box-shadow: var(--neu-shadow-small);
   cursor: pointer;
-  transition: all 0.4s var(--transition-bounce);
+  transition: all 0.3s ease;
+  flex-shrink: 0; /* Items chota ya hide nahi honge */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .thumb:hover,
 .thumb.active {
-  border-color: var(--accent-gold-bright);
-  transform: translateX(6px);
-  box-shadow: var(--neu-shadow-hover);
+  border-color: var(--accent-gold-bright, #d4af37);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  background: #fdfbf7;
 }
 
 .thumb img {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-radius: 12px;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .thumb-label {
-  color: var(--text-dark);
+  color: #111111;
   font-weight: 600;
+  font-size: 0.95rem;
 }
 
+.thumb.active .thumb-label {
+  color: var(--accent-gold-bright, #d4af37);
+}
+
+/* Mobile Fix */
+@media (max-width: 991px) {
+  .spotlight-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* ===== NEW ITEMS SECTION (SPECIAL OFFERS) ===== */
 .restho-new-items {
