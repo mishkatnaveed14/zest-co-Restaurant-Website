@@ -1361,7 +1361,358 @@
 }
 
 
+/* ===== POPULAR ITEMS SECTION ===== */
+.popular {
+  position: relative;
+  overflow: hidden;
+  padding: var(--section-padding-lg);
+  background: var(--main-bg);
+}
 
+.section-head.light h2 {
+  color: var(--text-dark) !important;
+}
+
+.section-head.light .eyebrow {
+  color: var(--accent-gold-bright) !important;
+}
+
+.popular .carousel {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+.popular .carousel-track {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+  overflow: hidden;
+  padding: 10px 4px 18px;
+  cursor: grab;
+  /* soft fade at both edges so cards feel like they glide in/out */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 44px, #000 calc(100% - 44px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 44px, #000 calc(100% - 44px), transparent 100%);
+}
+
+.popular .carousel-track:active {
+  cursor: grabbing;
+}
+
+/* ---- Dish Card ---- */
+.popular .dish-card {
+  flex: 0 0 280px;
+  background: var(--card-bg);
+  color: var(--text-dark);
+  border: 1px solid var(--border-card);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: var(--neu-shadow-soft);
+  transition: transform 0.45s var(--transition-bounce), box-shadow 0.45s ease, border-color 0.45s ease;
+  position: relative;
+}
+
+.popular .dish-card:hover {
+  transform: translateY(-10px) scale(1.015);
+  border-color: var(--accent-gold-bright);
+  box-shadow: var(--neu-shadow-elevated), 0 18px 34px rgba(197, 168, 128, 0.22);
+}
+
+.popular .dish-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(197, 168, 128, 0.08), transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.popular .dish-card:hover::before {
+  left: 100%;
+}
+
+.popular .dish-card.featured {
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+/* ---- Image + overlay ---- */
+.dish-img-wrap {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.dish-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 10, 12, 0.6) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.dish-card:hover .dish-img-wrap::after {
+  opacity: 1;
+}
+
+.dish-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.dish-card:hover .dish-img-wrap img {
+  transform: scale(1.08);
+}
+
+.price-blob {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  z-index: 2;
+  backdrop-filter: blur(6px);
+  transition: all 0.4s var(--transition-bounce);
+}
+
+.price-blob.gold {
+  background: linear-gradient(135deg, var(--accent-gold-bright), #c5a028);
+  color: #111;
+}
+
+.price-blob.white {
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--text-dark);
+  box-shadow: var(--neu-shadow-small);
+}
+
+.dish-card:hover .price-blob {
+  transform: scale(1.12);
+}
+
+/* diagonal "Chef's Pick" ribbon for featured dish */
+.dish-ribbon {
+  position: absolute;
+  top: 16px;
+  right: -36px;
+  z-index: 2;
+  background: linear-gradient(135deg, var(--accent-gold-bright), #c5a028);
+  color: #111;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 6px 42px;
+  transform: rotate(35deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Quick order CTA revealed on hover */
+.quick-order-btn {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translate(-50%, 14px);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent-gold-bright);
+  color: #111;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.35s var(--transition-bounce);
+}
+
+.dish-card:hover .quick-order-btn {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.quick-order-btn:hover {
+  background: #fff;
+  transform: translate(-50%, -3px) scale(1.04);
+}
+
+/* ---- Body ---- */
+.dish-body {
+  padding: 20px 20px 24px;
+}
+
+.dish-rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.stars {
+  color: var(--accent-gold-bright);
+  letter-spacing: 0.08em;
+}
+
+.dish-body h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.dish-card:hover .dish-body h3 {
+  color: var(--accent-gold-bright);
+}
+
+.dish-body p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ---- Arrow buttons ---- */
+.popular .car-arrow {
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--border-card);
+  border-radius: 50%;
+  background: var(--card-bg);
+  color: var(--text-dark);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--neu-shadow-soft);
+  transition: all 0.35s var(--transition-bounce);
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 4;
+}
+
+.popular .car-arrow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-bright));
+  transform: scale(0);
+  border-radius: 50%;
+  transition: transform 0.4s var(--transition-bounce);
+  z-index: -1;
+}
+
+.popular .car-arrow:hover {
+  color: #fff;
+  border-color: var(--accent-gold-bright);
+  transform: translateY(-3px);
+  box-shadow: var(--neu-shadow-elevated);
+}
+
+.popular .car-arrow:hover::before {
+  transform: scale(1);
+}
+
+.popular .car-arrow:active {
+  transform: scale(0.92);
+}
+
+/* ---- Dots as an animated progress indicator ---- */
+.popular .carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 26px;
+}
+
+.popular .carousel-dots span {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--border-card);
+  cursor: pointer;
+  overflow: hidden;
+  transition: width 0.4s var(--transition-bounce), background 0.3s ease;
+}
+
+.popular .carousel-dots span:hover {
+  background: rgba(197, 168, 128, 0.4);
+}
+
+.popular .carousel-dots span.active {
+  width: 38px;
+  background: rgba(197, 168, 128, 0.22);
+  cursor: default;
+}
+
+.popular .carousel-dots span.active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent-gold-bright);
+  border-radius: inherit;
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: dotFill 4.2s linear forwards;
+}
+
+.popular .carousel-dots.paused span.active::after {
+  animation-play-state: paused;
+}
+
+@keyframes dotFill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.order-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+.dish-card:hover .order-badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 575.98px) {
+  .popular .carousel-track {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+  }
+}
 
 
 /* ===== STATS COUNTER SECTION ===== */
