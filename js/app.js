@@ -489,24 +489,24 @@ if (thumbsWrap) {
 function setSpotlight(idx) {
   const item = SPOTLIGHT_ITEMS[idx];
   const thumbs = thumbsWrap?.querySelectorAll(".thumb");
-  
+
   thumbs?.forEach((t, i) => {
     const isActive = i === idx;
     t.classList.toggle("active", isActive);
-    
+
     // Auto-scroll fix: Selected thumb ko softly scroll container me middle me rakhein
     if (isActive) {
       t.scrollIntoView({
         behavior: "smooth",
-        block: "nearest", /* Is se poori screen/list jump nahi karegi */
-        inline: "nearest"
+        block: "nearest" /* Is se poori screen/list jump nahi karegi */,
+        inline: "nearest",
       });
     }
   });
 
   if (window.gsap && spotImg) {
     gsap.to(spotImg, {
-      opacity: 2,
+      opacity: 0,
       duration: 0.15,
       onComplete: () => {
         spotImg.src = item.img;
@@ -516,8 +516,8 @@ function setSpotlight(idx) {
 
     gsap.fromTo(
       "#spotlightName, #spotlightDesc, #spotlightPrice",
-      { y: 8, opacity: 1 },
-      { y: 0, opacity: 1, duration: 0.35, stagger: 0.04, ease: "power2.out" }
+      { y: 12, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.4, stagger: 0.06, ease: "power2.out" },
     );
   } else if (spotImg) {
     spotImg.src = item.img;
