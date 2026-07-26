@@ -349,10 +349,8 @@ function starString(n) {
   return "★".repeat(n) + "☆".repeat(5 - n);
 }
 
-DISHES.forEach((d) => {
-  const card = document.createElement("div");
-  card.className = "dish-card";
-  card.innerHTML = `
+function buildDishCardHTML(d) {
+  return `
     <div class="dish-img-wrap">
       <div class="price-blob ${d.featured ? "gold" : "white"}">$${d.price}</div>
       <img src="${d.img}" alt="${d.name}" loading="lazy">
@@ -366,39 +364,40 @@ DISHES.forEach((d) => {
       <p>${d.desc}</p>
     </div>
   `;
-  track.appendChild(card);
-});
+}
 
-// Clone for seamless loop
-DISHES.slice(0, 2).forEach((d) => {
+function makeDishCard(d, isClone) {
   const card = document.createElement("div");
-  card.className = "dish-card clone";
-  card.innerHTML = `
-    <div class="dish-img-wrap">
-      <div class="price-blob ${d.featured ? "gold" : "white"}">$${d.price}</div>
-      <img src="${d.img}" alt="${d.name}" loading="lazy">
-    </div>
-    <div class="dish-body">
-      <div class="dish-rating">
-        <span class="stars">${starString(d.rating)}</span>
-        <span class="reviews">Review(${d.reviews})</span>
-      </div>
-      <h3>${d.name}</h3>
-      <p>${d.desc}</p>
-    </div>
-  `;
-  track.appendChild(card);
-});
+  card.className = "dish-card" + (isClone ? " clone" : "");
+  card.innerHTML = buildDishCardHTML(d);
+  return card;
+}
 
+// Seamless infinite loop: clone a few cards on BOTH ends of the real set,
+// so going past the first/last real card slides smoothly into a clone,
+// then we silently snap back to the matching real position (no jump).
+const CLONE_COUNT = Math.min(2, DISHES.length - 1);
 const totalDots = DISHES.length;
+
+DISHES.slice(-CLONE_COUNT).forEach((d) =>
+  track.appendChild(makeDishCard(d, true)),
+); // leading clones
+DISHES.forEach((d) => track.appendChild(makeDishCard(d, false))); // real cards
+DISHES.slice(0, CLONE_COUNT).forEach((d) =>
+  track.appendChild(makeDishCard(d, true)),
+); // trailing clones
+
 for (let i = 0; i < totalDots; i++) {
   const dot = document.createElement("span");
   if (i === 0) dot.classList.add("active");
-  dot.addEventListener("click", () => goToSlide(i));
+  dot.addEventListener("click", () => {
+    goToDot(i);
+    restartAutoplay();
+  });
   dotsWrap.appendChild(dot);
 }
 
-let currentSlide = 0;
+let position = CLONE_COUNT; // index into the extended (clone + real + clone) track
 let cardWidthWithGap = 0;
 let visibleCount = 3;
 
@@ -413,31 +412,66 @@ function measure() {
   else visibleCount = 3;
 }
 
-function goToSlide(i) {
-  currentSlide = ((i % totalDots) + totalDots) % totalDots;
+function updateDots(realIndex) {
   const dots = dotsWrap.querySelectorAll("span");
-  dots.forEach((d, idx) => d.classList.toggle("active", idx === currentSlide));
-  const offset = currentSlide * cardWidthWithGap;
-  if (window.gsap) {
-    gsap.to(track, { x: -offset, duration: 0.7, ease: "power3.out" });
-  } else {
-    track.style.transform = `translateX(-${offset}px)`;
+  dots.forEach((d, idx) => d.classList.toggle("active", idx === realIndex));
+}
+
+// After the slide animation finishes, if we've drifted into the cloned
+// zone, silently snap back to the equivalent real position (no animation),
+// so the loop feels endless in both directions.
+function checkLoopBounds() {
+  if (position >= CLONE_COUNT + totalDots) {
+    position -= totalDots;
+    setTrackPosition(position, false);
+  } else if (position < CLONE_COUNT) {
+    position += totalDots;
+    setTrackPosition(position, false);
   }
 }
 
+function setTrackPosition(pos, animate) {
+  const offset = pos * cardWidthWithGap;
+  if (window.gsap) {
+    gsap.to(track, {
+      x: -offset,
+      duration: animate ? 0.7 : 0,
+      ease: "power3.out",
+      onComplete: checkLoopBounds,
+    });
+  } else {
+    track.style.transform = `translateX(-${offset}px)`;
+    checkLoopBounds();
+  }
+}
+
+function goToRelative(step) {
+  position += step;
+  const realIndex =
+    (((position - CLONE_COUNT) % totalDots) + totalDots) % totalDots;
+  updateDots(realIndex);
+  setTrackPosition(position, true);
+}
+
+function goToDot(i) {
+  position = CLONE_COUNT + i;
+  updateDots(i);
+  setTrackPosition(position, true);
+}
+
 document.getElementById("carPrev")?.addEventListener("click", () => {
-  goToSlide(currentSlide - 1);
+  goToRelative(-1);
   restartAutoplay();
 });
 document.getElementById("carNext")?.addEventListener("click", () => {
-  goToSlide(currentSlide + 1);
+  goToRelative(1);
   restartAutoplay();
 });
 
 let autoplayTimer;
 function restartAutoplay() {
   clearInterval(autoplayTimer);
-  autoplayTimer = setInterval(() => goToSlide(currentSlide + 1), 4200);
+  autoplayTimer = setInterval(() => goToRelative(1), 4200);
 }
 
 // Swipe support
@@ -452,19 +486,19 @@ window.addEventListener("pointerup", (e) => {
   isDragging = false;
   const diff = e.clientX - startX;
   if (Math.abs(diff) > 40) {
-    if (diff < 0) goToSlide(currentSlide + 1);
-    else goToSlide(currentSlide - 1);
+    if (diff < 0) goToRelative(1);
+    else goToRelative(-1);
     restartAutoplay();
   }
 });
 
 window.addEventListener("resize", () => {
   measure();
-  goToSlide(currentSlide);
+  setTrackPosition(position, false);
 });
 window.addEventListener("load", () => {
   measure();
-  goToSlide(0);
+  setTrackPosition(position, false);
   restartAutoplay();
 });
 
@@ -630,8 +664,6 @@ if (window.gsap && window.ScrollTrigger) {
   }
 
   animateFrom(".dish-card", { y: 60, stagger: 0.1 }, "#popular");
-  animateFrom(".spotlight-feature", { x: -40 });
-  animateFrom(".spotlight-thumbs .thumb", { x: 40, stagger: 0.08 });
   animateFrom(".premium-card", { y: 60 });
   animateFrom(
     ".food-card",
@@ -651,11 +683,22 @@ if (window.gsap && window.ScrollTrigger) {
   gsap.utils.toArray(".section-head, .section-header").forEach((h) => {
     animateFrom(h, {});
   });
+
+  // Spotlight ka feature image aur thumbnails turant nazar aane chahiye,
+  // koi fade/scroll-animation nahi (in par gsap.from() istemal nahi hoga)
+
+  // Images asynchronously load hoti hain jis se page ki height/layout
+  // baad me shift hoti hai — is se ScrollTrigger ki pehle se calculate ki
+  // hui trigger positions "stale" ho jati hain aur .stat-item / .dish-card
+  // jaise elements opacity:0 par atke reh jate hain. Isliye images load
+  // hone ke baad aur thodi der baad ScrollTrigger ko refresh karwao.
+  window.addEventListener("load", () => ScrollTrigger.refresh());
+  setTimeout(() => ScrollTrigger.refresh(), 1000);
 } else {
   // Fallback
   document
     .querySelectorAll(
-      ".dish-card, .premium-card, .food-card, .quick-card, .stat-item, .footer-grid > div",
+      ".dish-card, .premium-card, .food-card, .quick-card, .stat-item, .footer-grid > div, .spotlight-feature, .spotlight-thumbs .thumb",
     )
     .forEach((el) => {
       el.style.opacity = "1";
@@ -883,10 +926,12 @@ if (statsSection && window.gsap && window.ScrollTrigger) {
     onEnter: () => animateCounters(),
     once: true,
   });
+} else if (statsSection) {
+  // GSAP/ScrollTrigger available nahi hai to counters seedha chala do
+  animateCounters();
 }
 
 // ===== TESTIMONIALS =====
-
 
 // ===== FORMS & UTILITIES =====
 document.getElementById("newsletterForm")?.addEventListener("submit", (e) => {
