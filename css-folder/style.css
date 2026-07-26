@@ -1294,6 +1294,16 @@
   background: var(--main-bg);
 }
 
+/* Ensure heading text is dark & visible on cream */
+.section-head.light h2 {
+  color: var(--text-dark) !important;
+}
+
+/* Popular section eyebrow needs visibility too */
+.section-head.light .eyebrow {
+  color: var(--accent-gold-bright) !important;
+}
+
 .popular .carousel {
   display: flex;
   align-items: center;
