@@ -697,15 +697,220 @@
   color: var(--accent-gold-bright);
 }
 
-
+.add-btn {
+  background: var(--accent-gold);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
   transition: all 0.3s var(--transition-bounce);
   box-shadow: var(--neu-shadow-small);
 }
 
+.add-btn:hover {
+  background: var(--accent-gold-bright);
+  box-shadow: var(--neu-shadow-elevated);
+  transform: translateY(-2px);
+}
+
+.food-card:hover .card-title {
+  color: var(--nav-text-light);
+}
+
+.food-card:hover .small-desc {
+  color: rgba(245, 245, 247, 0.75);
+}
 
 
+/* ===== SPOTLIGHT SECTION ===== */
+.spotlight {
+  padding: var(--section-padding-lg);
+  background: var(--main-bg);
+}
 
-overflow: hidden;
+.spotlight-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Left side Main Card - will stretch to match thumbs height via min-height */
+.spotlight-feature {
+  background: var(--card-bg);
+  border: 1px solid var(--border-card);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--neu-shadow-soft);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+}
+
+.spotlight-feature:hover {
+  box-shadow: var(--neu-shadow-elevated);
+  transform: translateY(-4px);
+}
+
+.spotlight-price {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--accent-gold-bright);
+  color: #111;
+  font-weight: 700;
+  z-index: 2;
+  box-shadow: var(--neu-shadow-small);
+}
+
+.spotlight-feature img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.spotlight-feature:hover img {
+  transform: scale(1.04);
+}
+
+.spotlight-info {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.spotlight-info h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text-dark);
+  font-family: 'Playfair Display', serif;
+}
+
+.spotlight-info p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Right Thumbs Column - height matches feature card */
+.spotlight-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;
+  box-sizing: border-box;
+  min-height: 520px;
+  max-height: 520px;
+}
+
+/* Custom Scrollbar for thumbs */
+.spotlight-thumbs::-webkit-scrollbar {
+  width: 5px;
+}
+
+.spotlight-thumbs::-webkit-scrollbar-track {
+  background: rgba(197, 168, 128, 0.08);
+  border-radius: 10px;
+}
+
+.spotlight-thumbs::-webkit-scrollbar-thumb {
+  background: var(--accent-gold-bright);
+  border-radius: 10px;
+}
+
+.spotlight-thumbs::-webkit-scrollbar-thumb:hover {
+  background: #c5a028;
+}
+
+.thumb {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.35s ease;
+}
+
+.thumb:hover {
+  border-color: var(--accent-gold-bright);
+  box-shadow: var(--neu-shadow-hover);
+  transform: translateX(4px);
+}
+
+.thumb.active {
+  border-color: var(--accent-gold-bright);
+  box-shadow: var(--neu-shadow-hover);
+  background: linear-gradient(135deg, var(--gold-soft-tint), var(--card-bg));
+}
+
+.thumb img {
+  width: 65px;
+  height: 65px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.thumb:hover img {
+  transform: scale(1.08);
+}
+
+.thumb-label {
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.thumb.active .thumb-label {
+  color: var(--accent-gold-bright);
+}
+
+/* Tablet Fix */
+@media (max-width: 991px) {
+  .spotlight-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spotlight-feature {
+    min-height: auto;
+  }
+
+  .spotlight-thumbs {
+    min-height: auto;
+    max-height: 400px;
+  }
+}
+
+
+/* ===== RESTHO NEW ITEMS SECTION ===== */
+.restho-new-items {
+  background: var(--main-bg);
+  padding: var(--section-padding-lg);
+  position: relative;
+  overflow: hidden;
 }
 
 .restho-new-items::before {
@@ -1156,7 +1361,7 @@ overflow: hidden;
 }
 
 
-/* ===== POPULAR ITEMS SECTION (WARM CREAM) ===== */
+/* ===== POPULAR ITEMS SECTION ===== */
 .popular {
   position: relative;
   overflow: hidden;
@@ -1164,12 +1369,10 @@ overflow: hidden;
   background: var(--main-bg);
 }
 
-/* Ensure heading text is dark & visible on cream */
 .section-head.light h2 {
   color: var(--text-dark) !important;
 }
 
-/* Popular section eyebrow needs visibility too */
 .section-head.light .eyebrow {
   color: var(--accent-gold-bright) !important;
 }
