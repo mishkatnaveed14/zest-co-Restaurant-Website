@@ -683,15 +683,6 @@ if (window.gsap && window.ScrollTrigger) {
   gsap.utils.toArray(".section-head, .section-header").forEach((h) => {
     animateFrom(h, {});
   });
-
-  // Spotlight ka feature image aur thumbnails turant nazar aane chahiye,
-  // koi fade/scroll-animation nahi (in par gsap.from() istemal nahi hoga)
-
-  // Images asynchronously load hoti hain jis se page ki height/layout
-  // baad me shift hoti hai — is se ScrollTrigger ki pehle se calculate ki
-  // hui trigger positions "stale" ho jati hain aur .stat-item / .dish-card
-  // jaise elements opacity:0 par atke reh jate hain. Isliye images load
-  // hone ke baad aur thodi der baad ScrollTrigger ko refresh karwao.
   window.addEventListener("load", () => ScrollTrigger.refresh());
   setTimeout(() => ScrollTrigger.refresh(), 1000);
 } else {
