@@ -899,7 +899,6 @@ if (cursorGlow) {
 }
 
 // ===== STATS COUNTER =====
-// ===== STATS COUNTER =====
 document.addEventListener("DOMContentLoaded", () => {
   function animateCounters() {
     const counters = document.querySelectorAll(".stat-count");
@@ -986,5 +985,19 @@ if (heroSection) {
     const slideImage = heroSection.querySelector(".slide-image");
     if (carousel) carousel.style.transform = "";
     if (slideImage) slideImage.style.transform = "";
+  });
+}
+if (window.gsap) {
+  gsap.from(".highlight-pill", {
+    y: 30,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.15,
+    ease: "back.out(1.4)",
+    delay: 0.8,
+  });
+} else {
+  document.querySelectorAll(".highlight-pill").forEach(el => {
+    el.style.opacity = "1";
   });
 }
