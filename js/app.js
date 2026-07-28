@@ -899,39 +899,51 @@ if (cursorGlow) {
 }
 
 // ===== STATS COUNTER =====
-function animateCounters() {
-  const counters = document.querySelectorAll(".stat-count");
-  if (!counters.length) return;
-  counters.forEach((counter) => {
-    const target = parseInt(counter.getAttribute("data-target"));
-    const duration = 2500;
-    const step = Math.ceil(target / (duration / 16));
-    let current = 0;
-    const update = () => {
-      current += step;
-      if (current >= target) {
-        counter.textContent = target;
-        return;
-      }
-      counter.textContent = current;
-      requestAnimationFrame(update);
-    };
-    update();
-  });
-}
+// ===== STATS COUNTER =====
+document.addEventListener("DOMContentLoaded", () => {
+  function animateCounters() {
+    const counters = document.querySelectorAll(".stat-count");
+    if (!counters.length) return;
 
-const statsSection = document.querySelector(".stats-counter-section");
-if (statsSection && window.gsap && window.ScrollTrigger) {
-  ScrollTrigger.create({
-    trigger: statsSection,
-    start: "top 85%",
-    onEnter: () => animateCounters(),
-    once: true,
-  });
-} else if (statsSection) {
-  // GSAP/ScrollTrigger available nahi hai to counters seedha chala do
-  animateCounters();
-}
+    counters.forEach((counter) => {
+      const target = parseInt(counter.getAttribute("data-target"), 10);
+
+      // Agar data-target missing ya invalid ho to skip kardo (NaN se bacho)
+      if (isNaN(target)) return;
+
+      const duration = 2500;
+      const step = Math.ceil(target / (duration / 16));
+      let current = 0;
+
+      const update = () => {
+        current += step;
+        if (current >= target) {
+          counter.textContent = target;
+          return;
+        }
+        counter.textContent = current;
+        requestAnimationFrame(update);
+      };
+      update();
+    });
+  }
+
+  const statsSection = document.querySelector(".stats-counter-section");
+
+  if (statsSection) {
+    if (window.gsap && window.ScrollTrigger) {
+      ScrollTrigger.create({
+        trigger: statsSection,
+        start: "top 85%",
+        onEnter: () => animateCounters(),
+        once: true,
+      });
+    } else {
+      // GSAP/ScrollTrigger available nahi hai to counters seedha chala do
+      animateCounters();
+    }
+  }
+});
 
 // ===== TESTIMONIALS =====
 
