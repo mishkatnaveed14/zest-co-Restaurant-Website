@@ -376,10 +376,6 @@ function makeDishCard(d, isClone) {
   card.innerHTML = buildDishCardHTML(d);
   return card;
 }
-
-// Seamless infinite loop: clone a few cards on BOTH ends of the real set,
-// so going past the first/last real card slides smoothly into a clone,
-// then we silently snap back to the matching real position (no jump).
 const CLONE_COUNT = Math.min(2, DISHES.length - 1);
 const totalDots = DISHES.length;
 
@@ -416,10 +412,6 @@ function updateDots(realIndex) {
   const dots = dotsWrap.querySelectorAll("span");
   dots.forEach((d, idx) => d.classList.toggle("active", idx === realIndex));
 }
-
-// After the slide animation finishes, if we've drifted into the cloned
-// zone, silently snap back to the equivalent real position (no animation),
-// so the loop feels endless in both directions.
 function checkLoopBounds() {
   if (position >= CLONE_COUNT + totalDots) {
     position -= totalDots;
@@ -501,8 +493,6 @@ window.addEventListener("load", () => {
   restartAutoplay();
 });
 
-// Pause autoplay (and the dot progress animation) while the user is
-// hovering/interacting with the carousel, resume once they leave
 const popularCarouselEl = document.getElementById("carousel");
 popularCarouselEl?.addEventListener("mouseenter", () => {
   clearInterval(autoplayTimer);
@@ -649,7 +639,7 @@ if (window.gsap && window.ScrollTrigger) {
     ease: "power4.out",
     delay: 0.5,
   });
-  gsap.from(".highlight-pill", {
+ gsap.from(".highlight-pill", {
     y: 30,
     opacity: 0,
     duration: 0.5,
@@ -697,10 +687,10 @@ if (window.gsap && window.ScrollTrigger) {
   window.addEventListener("load", () => ScrollTrigger.refresh());
   setTimeout(() => ScrollTrigger.refresh(), 1000);
 } else {
-  // Fallback
+
   document
     .querySelectorAll(
-      ".dish-card, .premium-card, .food-card, .quick-card, .stat-item, .footer-grid > div, .spotlight-feature, .spotlight-thumbs .thumb",
+      ".dish-card, .premium-card, .food-card, .quick-card, .stat-item, .footer-grid > div, .spotlight-feature, .spotlight-thumbs .thumb, .highlight-pill"
     )
     .forEach((el) => {
       el.style.opacity = "1";
@@ -985,19 +975,5 @@ if (heroSection) {
     const slideImage = heroSection.querySelector(".slide-image");
     if (carousel) carousel.style.transform = "";
     if (slideImage) slideImage.style.transform = "";
-  });
-}
-if (window.gsap) {
-  gsap.from(".highlight-pill", {
-    y: 30,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.15,
-    ease: "back.out(1.4)",
-    delay: 0.8,
-  });
-} else {
-  document.querySelectorAll(".highlight-pill").forEach(el => {
-    el.style.opacity = "1";
   });
 }
