@@ -224,3 +224,323 @@ body {
 }
 
 /* ---------------------------TEXT ANIMATION END-------------------------- */
+
+
+
+
+
+/* ---------------------------STORY SECTION START-------------------------- */
+.about-section {
+  background-color: var(--section-light-bg);
+  color: var(--text-dark);
+}
+
+.stat-number {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: var(--accent-gold);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.img-wrapper {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--gold-soft-tint);
+  position: relative;
+  border: 1px solid var(--border-card);
+}
+
+.img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.img-tall {
+  border-radius: 0px 45px 0px 0px;
+  aspect-ratio: 3 / 4.5;
+}
+
+.img-top-right {
+  border-radius: 45px 0px 0px 0px;
+  aspect-ratio: 4 / 3.2;
+}
+
+.img-bottom-right {
+  border-radius: 0px 0px 45px 0px;
+  aspect-ratio: 4 / 3.2;
+}
+
+.story-title {
+  font-size: 3.25rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.story-text {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* btn styling  */
+.contact-btn {
+  background-color: var(--accent-gold-bright);
+  color: var(--text-light);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 10px 0px 10px 0px;
+  border: 1px solid var(--accent-gold);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  display: inline-block;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.18);
+}
+
+.contact-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--nav-text-light);
+  z-index: -1;
+  transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.contact-btn:hover {
+  color: var(--accent-gold) !important;
+  border-color: var(--nav-text-light);
+}
+
+.contact-btn:hover::before {
+  width: 100%;
+}
+
+/* btn styling end */
+/* -------------------------------------STORY SECTION END------------------------------ */
+
+
+
+
+
+/* -------------------------------------FEATURES SECTION START----------------------------- */
+.feature-sections {
+  background-color: var(--section-light-bg);
+}
+
+
+.section-title {
+  color: var(--text-dark);
+  font-size: 2.5rem;
+  letter-spacing: -0.02em;
+}
+
+.section-text {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+
+/* image hover styling start */
+.hvr-outline-in {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+}
+
+.hvr-outline-in:before {
+  content: '';
+  position: absolute;
+  border: #2323252e solid 4px;
+  border-radius: 30px;
+  padding-top: 20px;
+  top: -16px;
+  right: -16px;
+  bottom: -16px;
+  left: -16px;
+  opacity: 0;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: top, right, bottom, left, opacity;
+  transition-property: top, right, bottom, left, opacity;
+}
+
+.hvr-outline-in:hover:before,
+.hvr-outline-in:focus:before,
+.hvr-outline-in:active:before {
+  top: -4px;
+  right: -4px;
+  bottom: -4px;
+  left: -4px;
+  opacity: 1;
+}
+
+/* image hover styling end */
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .floating-badge-overlay {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin: 20px auto 0;
+    width: 180px;
+  }
+}
+
+/* ------------------------------------FEATURES SECTION END----------------------------- */
+
+
+
+
+
+/* -------------------------------------TEAM SECTION START------------------------------------ */
+.team-section {
+  background-color: var(--section-light-bg);
+  padding: 80px 20px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text-dark);
+}
+
+.team-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 50px;
+}
+
+.team-title-group {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+}
+
+.section-number {
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--accent-gold);
+}
+
+.section-title {
+  font-size: 3em;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-dark);
+  letter-spacing: -0.5px;
+}
+
+.section-description {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 520px;
+}
+
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.image-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background-color: #514f4b;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border: 1px dashed var(--border-card);
+  transition: background-color 0.2s ease;
+}
+
+.team-card:hover .image-placeholder {
+  background-color: var(--gold-soft-tint);
+}
+
+.team-card img {
+  padding: 10px 5px;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.member-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-dark);
+}
+
+.member-title {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+  font-family: monospace, monospace;
+}
+
+@media (max-width: 1024px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----------------------------------------TEAM SECTION END------------------------------------- */
