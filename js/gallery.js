@@ -74,3 +74,66 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === lightbox) lightbox.classList.remove("active");
   });
 });
+
+
+// ==========================================================================
+// 4. DYNAMIC 3D BACKGROUND PARTICLES SYSTEM
+// ==========================================================================
+const initParticles = () => {
+  const canvas = document.getElementById("particleCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+
+  let width = (canvas.width = window.innerWidth);
+  let height = (canvas.height = window.innerHeight);
+
+  window.addEventListener("resize", () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  // Particle Properties
+  const particleCount = 80;
+  const particles = [];
+
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      z: Math.random() * 1000, // Z-Depth
+      size: Math.random() * 2 + 0.5,
+      color: Math.random() > 0.4 ? "rgba(212, 175, 55, " : "rgba(255, 255, 255, ",
+      alpha: Math.random() * 0.6 + 0.2,
+      speedZ: Math.random() * 0.8 + 0.2
+    });
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, width, height);
+
+    particles.forEach((p) => {
+      // Move particle in Z-depth continuously
+      p.z -= p.speedZ;
+      if (p.z <= 0) p.z = 1000;
+
+      // Perspective projection mapping
+      const perspective = 600;
+      const k = perspective / (perspective + p.z);
+      const px = (p.x - width / 2) * k + width / 2;
+      const py = (p.y - height / 2) * k + height / 2;
+      const size = p.size * k * 2;
+
+      ctx.beginPath();
+      ctx.arc(px, py, Math.max(0, size), 0, Math.PI * 2);
+      ctx.fillStyle = p.color + p.alpha * k + ")";
+      ctx.fill();
+    });
+
+    requestAnimationFrame(render);
+  }
+
+  render();
+};
+
+// Start particles after page loads
+document.addEventListener("DOMContentLoaded", initParticles);

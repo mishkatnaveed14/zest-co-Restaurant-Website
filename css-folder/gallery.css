@@ -1,248 +1,368 @@
 @import url("../css-folder/common.css");
 
+/* ==========================================================================
+   GLOBAL RESET & BASE STYLES (Aapke pass pehle se mojood hain)
+   * { ... }
+   :root { ... }
+   body { ... }
+   ========================================================================== */
+
+/* NOTE: Agar aapke body tag mein overflow aur perspective define nahi hai, 
+   to niche di gayi body rule ensure karein: */
 body {
-  background-color: var(--bg-color);
-  color: var(--text-light);
-  font-family: var(--font-sans);
+  background-color: var(--main-bg, #070709);
+  color: var(--text-light, #f5f5f7);
   overflow-x: hidden;
-  height: 350vh; /* Scroll length for 3D GSAP Timeline */
-}
-/* Floating Navigation Header */
-.gallery-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 25px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
-    pointer-events: none;
-    background: linear-gradient(180deg, rgba(7, 7, 9, 0.9) 0%, transparent 100%);
+  height: 350vh; /* GSAP 3D Tunnel Timeline Scroll Height */
 }
 
-.gallery-nav * {
-    pointer-events: auto;
+/* ==========================================================================
+   1. FLOATING MINIMALIST HEADER (No Traditional Nav)
+   ========================================================================== */
+.gallery-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 25px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(7, 7, 9, 0.95) 0%, rgba(7, 7, 9, 0) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.gallery-nav * { 
+  pointer-events: auto; 
 }
 
 .back-link {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--text-light);
-    text-decoration: none;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-light, #f5f5f7);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .back-link svg {
-    width: 18px;
-    height: 18px;
-    stroke: var(--accent-gold);
+  width: 18px;
+  height: 18px;
+  stroke: var(--accent-gold-bright, #d4af37);
+  transition: transform 0.3s ease;
 }
 
 .back-link:hover {
-    color: var(--accent-gold);
+  color: var(--accent-gold-bright, #d4af37);
+}
+
+.back-link:hover svg {
+  transform: translateX(-4px);
 }
 
 .brand-title {
-    font-family: var(--font-serif);
-    font-size: 1.2rem;
-    letter-spacing: 4px;
-    color: var(--accent-gold);
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.25rem;
+  letter-spacing: 4px;
+  color: var(--accent-gold-bright, #d4af37);
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
 }
 
 .scroll-hint {
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: 0.5;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.6;
+  color: var(--text-light, #f5f5f7);
 }
 
-/* 3D Viewport & Scene Perspective */
+/* ==========================================================================
+   2. GSAP 3D PERSPECTIVE SCENE & VIEWPORT
+   ========================================================================== */
 .gallery-viewport {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    perspective: 1200px;
-    overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  perspective: 1200px; /* 3D Depth perception */
+  overflow: hidden;
 }
 
 .gallery-container-3d {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    will-change: transform;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d; /* Allows cards to float in 3D Z-Space */
+  will-change: transform;
 }
 
-/* Center Hero Typography */
+/* Hero Center Text Canvas */
 .gallery-intro-text {
-    position: absolute;
-    top: 35vh;
-    left: 50%;
-    transform: translate(-50%, -50%) translateZ(0px);
-    text-align: center;
-    width: 90%;
-    pointer-events: none;
+  position: absolute;
+  top: 38vh;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(0px);
+  text-align: center;
+  width: 90%;
+  pointer-events: none;
 }
 
 .gallery-intro-text .eyebrow {
-    color: var(--accent-gold);
-    font-size: 0.85rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 10px;
+  color: var(--accent-gold-bright, #d4af37);
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
 }
 
 .gallery-intro-text h1 {
-    font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 6vw, 5.5rem);
-    line-height: 1.1;
-    font-weight: 400;
-    letter-spacing: 2px;
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: var(--text-light, #fff);
 }
 
 .gallery-intro-text h1 em {
-    font-style: italic;
-    color: var(--accent-gold);
+  font-style: italic;
+  color: var(--accent-gold-bright, #d4af37);
 }
 
 .gallery-intro-text p {
-    margin-top: 15px;
-    font-size: 0.95rem;
-    opacity: 0.6;
+  margin-top: 18px;
+  font-size: 0.95rem;
+  opacity: 0.65;
+  letter-spacing: 1px;
 }
 
-/* 3D Floating Cards */
+/* ==========================================================================
+   3. 3D FLOATING IMAGE CARDS
+   ========================================================================== */
 .card-3d {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: clamp(260px, 22vw, 360px);
-    height: clamp(340px, 30vw, 460px);
-    transform: translate(-50%, 0) translate3d(var(--x), var(--y), var(--z));
-    transform-style: preserve-3d;
-    cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: clamp(260px, 22vw, 360px);
+  height: clamp(340px, 30vw, 460px);
+  transform: translate(-50%, 0) translate3d(var(--x), var(--y), var(--z));
+  transform-style: preserve-3d;
+  cursor: pointer;
 }
 
 .card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 16px;
-    overflow: hidden;
-    background: #121216;
-    border: 1px solid rgba(212, 175, 55, 0.25);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.5s ease;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--card-bg, #121216);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.85);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+              border-color 0.5s ease, 
+              box-shadow 0.5s ease;
 }
 
 .card-inner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .card-info {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(0deg, rgba(7, 7, 9, 0.9) 0%, transparent 60%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 25px;
-    opacity: 0.85;
-    transition: opacity 0.3s ease;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(7, 7, 9, 0.95) 0%, rgba(7, 7, 9, 0) 65%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 25px;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
 }
 
 .card-info .cat {
-    color: var(--accent-gold);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+  color: var(--accent-gold-bright, #d4af37);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
 }
 
 .card-info h3 {
-    font-family: var(--font-serif);
-    font-size: 1.4rem;
-    font-weight: 400;
-    margin-top: 4px;
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.45rem;
+  font-weight: 400;
+  margin-top: 4px;
+  color: var(--text-light, #fff);
 }
 
 /* Hover Interactive Tilt Effects */
 .card-3d:hover .card-inner {
-    transform: scale(1.05) translateZ(40px);
-    border-color: var(--accent-gold);
+  transform: scale(1.05) translateZ(40px);
+  border-color: var(--accent-gold-bright, #d4af37);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9), 0 0 25px rgba(212, 175, 55, 0.3);
 }
 
 .card-3d:hover img {
-    transform: scale(1.1);
+  transform: scale(1.12);
 }
 
-/* Fullscreen Lightbox */
+.card-3d:hover .card-info {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   4. FULLSCREEN LIGHTBOX / POPUP MODAL
+   ========================================================================== */
 .lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(7, 7, 9, 0.95);
-    backdrop-filter: blur(15px);
-    z-index: 200;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 7, 9, 0.95);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 
 .lightbox.active {
-    opacity: 1;
-    pointer-events: auto;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .lightbox img {
-    max-width: 85vw;
-    max-height: 75vh;
-    border-radius: 12px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
-    border: 1px solid rgba(212, 175, 55, 0.3);
+  max-width: 85vw;
+  max-height: 75vh;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  transform: scale(0.95);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.lightbox.active img {
+  transform: scale(1);
 }
 
 .lightbox-caption {
-    margin-top: 20px;
-    font-family: var(--font-serif);
-    font-size: 1.6rem;
-    color: var(--accent-gold);
+  margin-top: 20px;
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.6rem;
+  color: var(--accent-gold-bright, #d4af37);
+  letter-spacing: 1px;
 }
 
 .lightbox-close {
-    position: absolute;
-    top: 30px;
-    right: 40px;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 3rem;
-    cursor: pointer;
-    line-height: 1;
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 3rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* Responsive Scaling */
-@media (max-width: 768px) {
-    .gallery-nav {
-        padding: 15px 20px;
-    }
+.lightbox-close:hover {
+  color: var(--accent-gold-bright, #d4af37);
+  transform: scale(1.1);
+}
 
-    .card-3d {
-        width: 240px;
-        height: 320px;
-    }
+/* ==========================================================================
+   5. RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 768px) {
+  .gallery-nav {
+    padding: 15px 20px;
+  }
+  
+  .brand-title {
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+
+  .scroll-hint {
+    display: none; /* Hide clutter on mobile screens */
+  }
+
+  .card-3d {
+    width: 230px;
+    height: 310px;
+  }
+
+  .lightbox img {
+    max-width: 92vw;
+  }
+}
+/* ==========================================================================
+   6. DYNAMIC 3D BACKGROUND (Glowing Orbs + Canvas)
+   ========================================================================== */
+
+/* Background Ambient Orbs */
+.bg-glow-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  animation: floatOrb 12s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, rgba(0,0,0,0) 70%);
+  top: -10%;
+  left: -10%;
+}
+
+.orb-2 {
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(160, 100, 30, 0.3) 0%, rgba(0,0,0,0) 70%);
+  bottom: -20%;
+  right: -10%;
+  animation-delay: -6s;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(80px, 50px) scale(1.15); }
+}
+
+/* Background Canvas Particles */
+#particleCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1; /* Floating Cards & Text k piche rahega */
+  pointer-events: none;
+}
+
+/* Gallery Viewport Index adjustment */
+.gallery-viewport {
+  z-index: 2;
 }
