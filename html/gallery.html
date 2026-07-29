@@ -24,6 +24,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- boostrap icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 </head>
 
@@ -92,7 +94,8 @@
                             <a class="nav-link" href="./html/admin/user/about.html">ABOUT</a>
                         </li>
                         <li class="nav-item dropdown-holder">
-                            <a class="nav-link" href="../html/menu.html">MENU <i class="bi bi-chevron-down nav-arrow"></i></a>
+                            <a class="nav-link" href="../html/menu.html">MENU <i
+                                    class="bi bi-chevron-down nav-arrow"></i></a>
                             <ul class="nav-dropdown">
                                 <li><a href="#">Menu List 01</a></li>
                                 <li><a href="#">Menu List 02</a></li>
@@ -108,7 +111,8 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown-holder">
-                            <a class="nav-link" href="../html/blog.html">BLOG <i class="bi bi-chevron-down nav-arrow"></i></a>
+                            <a class="nav-link" href="../html/blog.html">BLOG <i
+                                    class="bi bi-chevron-down nav-arrow"></i></a>
                             <ul class="nav-dropdown">
                                 <li><a href="#">Blog Grid</a></li>
                                 <li><a href="#">Blog Standard</a></li>
@@ -140,5 +144,121 @@
         </nav>
     </header>
     <!-- navbar end -->
+
+    <!-- Floating Minimal Header / Back Navigation -->
+    <header class="gallery-nav">
+        <a href="index.html" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+            <span>Return to Home</span>
+        </a>
+        <div class="brand-title">❖ RESTHO GALLERY ❖</div>
+        <div class="scroll-hint">Scroll down for 3D View</div>
+    </header>
+
+    <!-- GSAP 3D Scroll Perspective Viewport -->
+    <div class="gallery-viewport">
+        <div class="gallery-container-3d" id="galleryContainer">
+
+            <!-- Hero Statement Section inside 3D canvas -->
+            <div class="gallery-intro-text">
+                <span class="eyebrow">The Culinary Canvas</span>
+                <h1>IMMERSIVE<br><em>ELEGANCE</em></h1>
+                <p>A visual voyage through fire, spice, and artisanal gastronomy.</p>
+            </div>
+
+            <!-- 3D Floating Image Cards Grid (Unsplash High-Res Links) -->
+            <div class="card-3d depth-1" style="--x: -28vw; --y: 20vh; --z: 100px;">
+                <div class="card-inner">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
+                        alt="Tomahawk Steak">
+                    <div class="card-info">
+                        <span class="cat">Flame Grilled</span>
+                        <h3>Dry-Aged Tomahawk</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-3d depth-2" style="--x: 25vw; --y: 35vh; --z: -200px;">
+                <div class="card-inner">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80"
+                        alt="Restaurant Ambience">
+                    <div class="card-info">
+                        <span class="cat">Ambience</span>
+                        <h3>The Golden Lounge</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-3d depth-3" style="--x: -22vw; --y: 90vh; --z: 300px;">
+                <div class="card-inner">
+                    <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80"
+                        alt="Craft Cocktail">
+                    <div class="card-info">
+                        <span class="cat">Mixology</span>
+                        <h3>Smoked Bourbon Infusion</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-3d depth-1" style="--x: 20vw; --y: 110vh; --z: -50px;">
+                <div class="card-inner">
+                    <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80"
+                        alt="Dim Sum & Seafood">
+                    <div class="card-info">
+                        <span class="cat">Artisanal</span>
+                        <h3>Seafood Dumpling Platter</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-3d depth-2" style="--x: -30vw; --y: 160vh; --z: -300px;">
+                <div class="card-inner">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"
+                        alt="Woodfired Pizza">
+                    <div class="card-info">
+                        <span class="cat">Oven Baked</span>
+                        <h3>Truffle & Cheese Dough</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-3d depth-3" style="--x: 26vw; --y: 180vh; --z: 200px;">
+                <div class="card-inner">
+                    <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80"
+                        alt="Gourmet Dessert">
+                    <div class="card-info">
+                        <span class="cat">Patisserie</span>
+                        <h3>Gold Leaf Chocolate Sphere</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-3d depth-1" style="--x: 0vw; --y: 230vh; --z: 400px;">
+                <div class="card-inner">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1000&q=80"
+                        alt="Chef Special Plating">
+                    <div class="card-info">
+                        <span class="cat">Masterpiece</span>
+                        <h3>Chef's Tasting Menu</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Fullscreen Modal / Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <img id="lightboxImg" src="" alt="Zoomed View">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+
+
+    <script src="../js/gallery.js"></script>
 </body>
+
 </html>
