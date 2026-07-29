@@ -376,10 +376,6 @@ function makeDishCard(d, isClone) {
   card.innerHTML = buildDishCardHTML(d);
   return card;
 }
-
-// Seamless infinite loop: clone a few cards on BOTH ends of the real set,
-// so going past the first/last real card slides smoothly into a clone,
-// then we silently snap back to the matching real position (no jump).
 const CLONE_COUNT = Math.min(2, DISHES.length - 1);
 const totalDots = DISHES.length;
 
@@ -416,10 +412,6 @@ function updateDots(realIndex) {
   const dots = dotsWrap.querySelectorAll("span");
   dots.forEach((d, idx) => d.classList.toggle("active", idx === realIndex));
 }
-
-// After the slide animation finishes, if we've drifted into the cloned
-// zone, silently snap back to the equivalent real position (no animation),
-// so the loop feels endless in both directions.
 function checkLoopBounds() {
   if (position >= CLONE_COUNT + totalDots) {
     position -= totalDots;
@@ -501,8 +493,6 @@ window.addEventListener("load", () => {
   restartAutoplay();
 });
 
-// Pause autoplay (and the dot progress animation) while the user is
-// hovering/interacting with the carousel, resume once they leave
 const popularCarouselEl = document.getElementById("carousel");
 popularCarouselEl?.addEventListener("mouseenter", () => {
   clearInterval(autoplayTimer);
@@ -649,7 +639,7 @@ if (window.gsap && window.ScrollTrigger) {
     ease: "power4.out",
     delay: 0.5,
   });
-  gsap.from(".highlight-pill", {
+ gsap.from(".highlight-pill", {
     y: 30,
     opacity: 0,
     duration: 0.5,
@@ -694,22 +684,13 @@ if (window.gsap && window.ScrollTrigger) {
   gsap.utils.toArray(".section-head, .section-header").forEach((h) => {
     animateFrom(h, {});
   });
-
-  // Spotlight ka feature image aur thumbnails turant nazar aane chahiye,
-  // koi fade/scroll-animation nahi (in par gsap.from() istemal nahi hoga)
-
-  // Images asynchronously load hoti hain jis se page ki height/layout
-  // baad me shift hoti hai — is se ScrollTrigger ki pehle se calculate ki
-  // hui trigger positions "stale" ho jati hain aur .stat-item / .dish-card
-  // jaise elements opacity:0 par atke reh jate hain. Isliye images load
-  // hone ke baad aur thodi der baad ScrollTrigger ko refresh karwao.
   window.addEventListener("load", () => ScrollTrigger.refresh());
   setTimeout(() => ScrollTrigger.refresh(), 1000);
 } else {
-  // Fallback
+
   document
     .querySelectorAll(
-      ".dish-card, .premium-card, .food-card, .quick-card, .stat-item, .footer-grid > div, .spotlight-feature, .spotlight-thumbs .thumb",
+      ".dish-card, .premium-card, .food-card, .quick-card, .stat-item, .footer-grid > div, .spotlight-feature, .spotlight-thumbs .thumb, .highlight-pill"
     )
     .forEach((el) => {
       el.style.opacity = "1";
@@ -908,39 +889,50 @@ if (cursorGlow) {
 }
 
 // ===== STATS COUNTER =====
-function animateCounters() {
-  const counters = document.querySelectorAll(".stat-count");
-  if (!counters.length) return;
-  counters.forEach((counter) => {
-    const target = parseInt(counter.getAttribute("data-target"));
-    const duration = 2500;
-    const step = Math.ceil(target / (duration / 16));
-    let current = 0;
-    const update = () => {
-      current += step;
-      if (current >= target) {
-        counter.textContent = target;
-        return;
-      }
-      counter.textContent = current;
-      requestAnimationFrame(update);
-    };
-    update();
-  });
-}
+document.addEventListener("DOMContentLoaded", () => {
+  function animateCounters() {
+    const counters = document.querySelectorAll(".stat-count");
+    if (!counters.length) return;
 
-const statsSection = document.querySelector(".stats-counter-section");
-if (statsSection && window.gsap && window.ScrollTrigger) {
-  ScrollTrigger.create({
-    trigger: statsSection,
-    start: "top 85%",
-    onEnter: () => animateCounters(),
-    once: true,
-  });
-} else if (statsSection) {
-  // GSAP/ScrollTrigger available nahi hai to counters seedha chala do
-  animateCounters();
-}
+    counters.forEach((counter) => {
+      const target = parseInt(counter.getAttribute("data-target"), 10);
+
+      // Agar data-target missing ya invalid ho to skip kardo (NaN se bacho)
+      if (isNaN(target)) return;
+
+      const duration = 2500;
+      const step = Math.ceil(target / (duration / 16));
+      let current = 0;
+
+      const update = () => {
+        current += step;
+        if (current >= target) {
+          counter.textContent = target;
+          return;
+        }
+        counter.textContent = current;
+        requestAnimationFrame(update);
+      };
+      update();
+    });
+  }
+
+  const statsSection = document.querySelector(".stats-counter-section");
+
+  if (statsSection) {
+    if (window.gsap && window.ScrollTrigger) {
+      ScrollTrigger.create({
+        trigger: statsSection,
+        start: "top 85%",
+        onEnter: () => animateCounters(),
+        once: true,
+      });
+    } else {
+      // GSAP/ScrollTrigger available nahi hai to counters seedha chala do
+      animateCounters();
+    }
+  }
+});
 
 // ===== TESTIMONIALS =====
 
