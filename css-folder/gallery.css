@@ -1,27 +1,12 @@
-@import url("./common.css");
-:root {
-    --bg-color: #070709;
-    --accent-gold: #d4af37;
-    --text-light: #f5f5f7;
-    --font-serif: 'Cormorant Garamond', serif;
-    --font-sans: 'Plus Jakarta Sans', sans-serif;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url("../css-folder/common.css");
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-light);
-    font-family: var(--font-sans);
-    overflow-x: hidden;
-    height: 350vh;
-    /* Scroll length for 3D GSAP Timeline */
+  background-color: var(--bg-color);
+  color: var(--text-light);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  height: 350vh; /* Scroll length for 3D GSAP Timeline */
 }
-
 /* Floating Navigation Header */
 .gallery-nav {
     position: fixed;
