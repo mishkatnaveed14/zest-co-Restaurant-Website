@@ -1,1 +1,263 @@
-@import url("./common.css")
+@import url("./common.css");
+:root {
+    --bg-color: #070709;
+    --accent-gold: #d4af37;
+    --text-light: #f5f5f7;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    height: 350vh;
+    /* Scroll length for 3D GSAP Timeline */
+}
+
+/* Floating Navigation Header */
+.gallery-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(7, 7, 9, 0.9) 0%, transparent 100%);
+}
+
+.gallery-nav * {
+    pointer-events: auto;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.back-link svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--accent-gold);
+}
+
+.back-link:hover {
+    color: var(--accent-gold);
+}
+
+.brand-title {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    color: var(--accent-gold);
+}
+
+.scroll-hint {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.5;
+}
+
+/* 3D Viewport & Scene Perspective */
+.gallery-viewport {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    perspective: 1200px;
+    overflow: hidden;
+}
+
+.gallery-container-3d {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+/* Center Hero Typography */
+.gallery-intro-text {
+    position: absolute;
+    top: 35vh;
+    left: 50%;
+    transform: translate(-50%, -50%) translateZ(0px);
+    text-align: center;
+    width: 90%;
+    pointer-events: none;
+}
+
+.gallery-intro-text .eyebrow {
+    color: var(--accent-gold);
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.gallery-intro-text h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    line-height: 1.1;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.gallery-intro-text h1 em {
+    font-style: italic;
+    color: var(--accent-gold);
+}
+
+.gallery-intro-text p {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    opacity: 0.6;
+}
+
+/* 3D Floating Cards */
+.card-3d {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: clamp(260px, 22vw, 360px);
+    height: clamp(340px, 30vw, 460px);
+    transform: translate(-50%, 0) translate3d(var(--x), var(--y), var(--z));
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #121216;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.5s ease;
+}
+
+.card-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card-info {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(7, 7, 9, 0.9) 0%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 25px;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+
+.card-info .cat {
+    color: var(--accent-gold);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.card-info h3 {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-top: 4px;
+}
+
+/* Hover Interactive Tilt Effects */
+.card-3d:hover .card-inner {
+    transform: scale(1.05) translateZ(40px);
+    border-color: var(--accent-gold);
+}
+
+.card-3d:hover img {
+    transform: scale(1.1);
+}
+
+/* Fullscreen Lightbox */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 7, 9, 0.95);
+    backdrop-filter: blur(15px);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox img {
+    max-width: 85vw;
+    max-height: 75vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.lightbox-caption {
+    margin-top: 20px;
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    color: var(--accent-gold);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 3rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Responsive Scaling */
+@media (max-width: 768px) {
+    .gallery-nav {
+        padding: 15px 20px;
+    }
+
+    .card-3d {
+        width: 240px;
+        height: 320px;
+    }
+}
