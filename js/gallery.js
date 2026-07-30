@@ -1,139 +1,245 @@
-// Register GSAP ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
+/* ==========================================================================
+   ZEST & CO. GALLERY PAGE — INTERACTIVE JS ENGINE (2026)
+   ========================================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("galleryContainer");
-  const cards = document.querySelectorAll(".card-3d");
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightboxImg");
-  const lightboxCaption = document.getElementById("lightboxCaption");
-  const lightboxClose = document.getElementById("lightboxClose");
+document.addEventListener('DOMContentLoaded', () => {
+  
+  // Register GSAP Plugins
+  gsap.registerPlugin(ScrollTrigger);
 
-  // 1. GSAP ScrollTrigger Timeline for 3D Camera Fly-Through
-  let tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: "body",
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 1.2, // Smooth interpolation lag
-    }
+  /* ------------------------------------------------------------------------
+     1. CUSTOM GLOW CURSOR FOLLOWER
+     ------------------------------------------------------------------------ */
+  const cursorDot = document.getElementById('cursorDot');
+  const cursorFollower = document.getElementById('cursorFollower');
+
+  window.addEventListener('mousemove', (e) => {
+    const { clientX: x, clientY: y } = e;
+
+    gsap.to(cursorDot, {
+      x: x,
+      y: y,
+      duration: 0.1,
+      ease: 'power2.out'
+    });
+
+    gsap.to(cursorFollower, {
+      x: x,
+      y: y,
+      duration: 0.3,
+      ease: 'power2.out'
+    });
   });
 
-  // Move entire container forward through Z-space as user scrolls down
-  tl.to(container, {
-    z: 2200, 
-    y: "-180vh",
-    ease: "none"
+  // Hover state triggers for custom cursor
+  document.querySelectorAll('a, button, .gallery-card, .insta-card, [data-cursor="hover"]').forEach((el) => {
+    el.addEventListener('mouseenter', () => cursorFollower.classList.add('active'));
+    el.addEventListener('mouseleave', () => cursorFollower.classList.remove('active'));
   });
 
-  // Rotate individual cards slightly based on scroll position
-  cards.forEach((card, i) => {
-    gsap.to(card, {
-      rotateY: i % 2 === 0 ? 15 : -15,
-      rotateX: i % 3 === 0 ? -10 : 10,
+
+  /* ------------------------------------------------------------------------
+     2. HERO GSAP REVEAL ANIMATIONS
+     ------------------------------------------------------------------------ */
+  const heroTL = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1 } });
+
+  heroTL
+    .from('.hero-badge-pill', { opacity: 0, y: 30, delay: 0.2 })
+    .from('.hero-title', { opacity: 0, y: 40 }, '-=0.7')
+    .from('.hero-lead', { opacity: 0, y: 30 }, '-=0.7')
+    .from('.hero-cta-group', { opacity: 0, y: 20 }, '-=0.7')
+    .from('.hero-stats-container', { opacity: 0, y: 20 }, '-=0.6')
+    .from('.hero-3d-stage', { opacity: 0, scale: 0.9, duration: 1.2 }, '-=1');
+
+  // Animated Counters
+  const counters = document.querySelectorAll('.counter');
+  counters.forEach((counter) => {
+    const target = parseFloat(counter.getAttribute('data-target'));
+    const isFloat = target % 1 !== 0;
+
+    gsap.to(counter, {
+      innerText: target,
+      duration: 2.5,
+      ease: 'power2.out',
       scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 2
+        trigger: counter,
+        start: 'top 90%'
+      },
+      snap: { innerText: isFloat ? 0.1 : 1 },
+      onUpdate: function () {
+        if (isFloat) {
+          counter.innerText = parseFloat(this.targets()[0].innerText).toFixed(1);
+        }
       }
     });
   });
 
-  // 2. Interactive Mouse Parallax (Tilts 3D scene on cursor movement)
-  window.addEventListener("mousemove", (e) => {
-    const mouseX = (e.clientX / window.innerWidth - 0.5) * 30;
-    const mouseY = (e.clientY / window.innerHeight - 0.5) * 30;
 
-    gsap.to(container, {
-      rotateY: mouseX,
-      rotateX: -mouseY,
-      duration: 1.2,
-      ease: "power2.out"
+  /* ------------------------------------------------------------------------
+     3. TILT & PARALLAX MOUSE INTERACTIONS
+     ------------------------------------------------------------------------ */
+  // Initialize Vanilla Tilt on designated cards
+  if (typeof VanillaTilt !== 'undefined') {
+    VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
+      glare: true,
+      'max-glare': 0.2,
+      scale: 1.02
+    });
+  }
+
+  // Parallax Effect on Hero Stage based on mouse position
+  const stage = document.getElementById('hero3DStage');
+  if (stage) {
+    window.addEventListener('mousemove', (e) => {
+      const { innerWidth, innerHeight } = window;
+      const xOffset = (e.clientX / innerWidth - 0.5) * 30;
+      const yOffset = (e.clientY / innerHeight - 0.5) * 30;
+
+      gsap.to('.main-card', { rotationY: xOffset, rotationX: -yOffset, ease: 'power1.out', duration: 0.5 });
+      gsap.to('.sub-card-1', { x: xOffset * 1.5, y: yOffset * 1.5, ease: 'power1.out', duration: 0.5 });
+      gsap.to('.sub-card-2', { x: -xOffset * 1.5, y: -yOffset * 1.5, ease: 'power1.out', duration: 0.5 });
+      gsap.to('.glass-float-badge', { x: xOffset * 0.8, y: yOffset * 0.8, ease: 'power1.out', duration: 0.5 });
+    });
+  }
+
+
+  /* ------------------------------------------------------------------------
+     4. CATEGORY FILTERING SYSTEM
+     ------------------------------------------------------------------------ */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      // Remove active class from all
+      filterBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filterValue = btn.getAttribute('data-filter');
+
+      galleryItems.forEach((item) => {
+        const itemCat = item.getAttribute('data-category');
+
+        if (filterValue === 'all' || itemCat === filterValue) {
+          item.classList.remove('hide-item');
+          gsap.to(item, { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out' });
+        } else {
+          item.classList.add('hide-item');
+          gsap.to(item, { opacity: 0, scale: 0.8, duration: 0.4, ease: 'power2.out' });
+        }
+      });
     });
   });
 
-  // 3. Click-to-Zoom Lightbox Handler
-  cards.forEach(card => {
-    card.addEventListener("click", () => {
-      const img = card.querySelector("img");
-      const title = card.querySelector("h3").textContent;
-      const cat = card.querySelector(".cat").textContent;
 
-      lightboxImg.src = img.src;
-      lightboxCaption.innerHTML = `${title} &mdash; <em>${cat}</em>`;
-      lightbox.classList.add("active");
+  /* ------------------------------------------------------------------------
+     5. SHOWCASE PARALLAX SCROLLTRIGGER
+     ------------------------------------------------------------------------ */
+  gsap.to('#showcaseParallax', {
+    yPercent: 20,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.featured-showcase-section',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true
+    }
+  });
+
+
+  /* ------------------------------------------------------------------------
+     6. CUSTOMER MOMENTS SWIPER SLIDER
+     ------------------------------------------------------------------------ */
+  if (typeof Swiper !== 'undefined') {
+    new Swiper('.customerMomentsSwiper', {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      loop: true,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false
+      },
+      navigation: {
+        nextEl: '.swiper-next-btn',
+        prevEl: '.swiper-prev-btn'
+      },
+      breakpoints: {
+        640: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }
+    });
+  }
+
+
+  /* ------------------------------------------------------------------------
+     7. FULLSCREEN LIGHTBOX MODAL
+     ------------------------------------------------------------------------ */
+  const lightbox = document.getElementById('customLightbox');
+  const lightboxImg = document.getElementById('lightboxImage');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxDesc = document.getElementById('lightboxDesc');
+  const closeBtn = document.getElementById('lightboxCloseBtn');
+  const prevBtn = document.getElementById('lightboxPrevBtn');
+  const nextBtn = document.getElementById('lightboxNextBtn');
+
+  let currentGalleryIndex = 0;
+  const triggers = Array.from(document.querySelectorAll('.btn-lightbox-trigger'));
+
+  const updateLightboxContent = (index) => {
+    const trigger = triggers[index];
+    if (!trigger) return;
+
+    const imgSrc = trigger.getAttribute('data-img-src');
+    const title = trigger.getAttribute('data-title');
+    const desc = trigger.getAttribute('data-desc');
+
+    gsap.to(lightboxImg, {
+      opacity: 0,
+      scale: 0.95,
+      duration: 0.2,
+      onComplete: () => {
+        lightboxImg.src = imgSrc;
+        lightboxTitle.innerText = title;
+        lightboxDesc.innerText = desc;
+
+        gsap.to(lightboxImg, { opacity: 1, scale: 1, duration: 0.3 });
+      }
+    });
+  };
+
+  triggers.forEach((trigger, idx) => {
+    trigger.addEventListener('click', () => {
+      currentGalleryIndex = idx;
+      updateLightboxContent(currentGalleryIndex);
+      lightbox.classList.add('active');
     });
   });
 
-  lightboxClose?.addEventListener("click", () => {
-    lightbox.classList.remove("active");
+  const closeLightbox = () => lightbox.classList.remove('active');
+
+  closeBtn.addEventListener('click', closeLightbox);
+
+  prevBtn.addEventListener('click', () => {
+    currentGalleryIndex = (currentGalleryIndex - 1 + triggers.length) % triggers.length;
+    updateLightboxContent(currentGalleryIndex);
   });
 
-  lightbox?.addEventListener("click", (e) => {
-    if (e.target === lightbox) lightbox.classList.remove("active");
+  nextBtn.addEventListener('click', () => {
+    currentGalleryIndex = (currentGalleryIndex + 1) % triggers.length;
+    updateLightboxContent(currentGalleryIndex);
   });
+
+  // Close lightbox on backdrop click
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // Keyboard Navigation
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') prevBtn.click();
+    if (e.key === 'ArrowRight') nextBtn.click();
+  });
+
 });
-
-
-// ==========================================================================
-// 4. DYNAMIC 3D BACKGROUND PARTICLES SYSTEM
-// ==========================================================================
-const initParticles = () => {
-  const canvas = document.getElementById("particleCanvas");
-  if (!canvas) return;
-  const ctx = canvas.getContext("2d");
-
-  let width = (canvas.width = window.innerWidth);
-  let height = (canvas.height = window.innerHeight);
-
-  window.addEventListener("resize", () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
-
-  // Particle Properties
-  const particleCount = 80;
-  const particles = [];
-
-  for (let i = 0; i < particleCount; i++) {
-    particles.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      z: Math.random() * 1000, // Z-Depth
-      size: Math.random() * 2 + 0.5,
-      color: Math.random() > 0.4 ? "rgba(212, 175, 55, " : "rgba(255, 255, 255, ",
-      alpha: Math.random() * 0.6 + 0.2,
-      speedZ: Math.random() * 0.8 + 0.2
-    });
-  }
-
-  function render() {
-    ctx.clearRect(0, 0, width, height);
-
-    particles.forEach((p) => {
-      // Move particle in Z-depth continuously
-      p.z -= p.speedZ;
-      if (p.z <= 0) p.z = 1000;
-
-      // Perspective projection mapping
-      const perspective = 600;
-      const k = perspective / (perspective + p.z);
-      const px = (p.x - width / 2) * k + width / 2;
-      const py = (p.y - height / 2) * k + height / 2;
-      const size = p.size * k * 2;
-
-      ctx.beginPath();
-      ctx.arc(px, py, Math.max(0, size), 0, Math.PI * 2);
-      ctx.fillStyle = p.color + p.alpha * k + ")";
-      ctx.fill();
-    });
-
-    requestAnimationFrame(render);
-  }
-
-  render();
-};
-
-// Start particles after page loads
-document.addEventListener("DOMContentLoaded", initParticles);
