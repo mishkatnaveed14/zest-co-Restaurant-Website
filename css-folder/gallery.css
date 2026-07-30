@@ -1,12 +1,4 @@
 @import url("../css-folder/common.css");
-
-/* ==========================================================================
-   ZEST & CO. GALLERY PAGE — ULTRA PREMIUM 2026 STYLES
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   1. VARIABLES & SYSTEM DEFAULTS
-   -------------------------------------------------------------------------- */
 :root {
   --bg-dark: #090a0c;
   --bg-dark-card: #121418;
@@ -21,13 +13,20 @@
   --font-sans: 'Plus Jakarta Sans', sans-serif;
   --transition-smooth: cubic-bezier(0.25, 1, 0.5, 1);
 }
-
-body.zest-gallery-body {
-  background-color: var(--bg-dark);
-  color: var(--text-main);
-  font-family: var(--font-sans);
-  overflow-x: hidden;
-  position: relative;
+body.zest-gallery-body,
+.gallery-hero-section,
+.gallery-main-section,
+.featured-showcase-section,
+.customer-moments-section,
+.insta-section {
+  background-color: #0c0d10 !important;
+  background-image: 
+    linear-gradient(180deg, rgba(12, 13, 16, 0.88) 0%, rgba(12, 13, 16, 0.94) 100%),
+    url("https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=1920&auto=format&fit=crop") !important;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  color: #f1f3f5;
 }
 
 /* Typography Classes */
@@ -41,7 +40,7 @@ body.zest-gallery-body {
   font-weight: 400;
 }
 
-.gold-text {
+/* .gold-text {
   color: var(--gold-primary) !important;
 }
 
@@ -49,9 +48,9 @@ body.zest-gallery-body {
   background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
+} */
 
-.x-small {
+/* .x-small {
   font-size: 0.75rem;
 }
 
@@ -61,7 +60,7 @@ body.zest-gallery-body {
 
 .tracking-widest {
   letter-spacing: 0.25em;
-}
+} */
 
 /* --------------------------------------------------------------------------
    2. AMBIENT GLOW & CURSOR
@@ -198,9 +197,7 @@ body.zest-gallery-body {
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
 }
-/* ==========================================================================
-   EDITORIAL LUXURY HERO (WARM IVORY & CHARCOAL - NO NEON)
-   ========================================================================== */
+
 .gallery-hero-section {
   min-height: 100vh;
   padding-top: 90px;
