@@ -202,121 +202,83 @@ body.zest-gallery-body {
 /* --------------------------------------------------------------------------
    4. HERO SECTION STYLES
    -------------------------------------------------------------------------- */
+
 .gallery-hero-section {
   min-height: 100vh;
-  /* padding-top: 100px; */
-  background: radial-gradient(circle at 70% 30%, rgba(25, 28, 35, 0.8) 0%, var(--bg-dark) 70%);
+  padding-top: 80px;
+  background: #08090b; /* Solid Deep Obsidian Dark */
+  position: relative;
 }
 
-/* 3D Visual Stage */
-.hero-3d-stage {
-  width: 100%;
-  min-height: 520px;
-}
-
-.hero-card {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transform-style: preserve-3d;
-  transition: transform 0.2s ease-out;
-}
-
-.main-card {
-  width: 82%;
-  height: 420px;
-  margin: 0 auto;
-}
-
-.card-glass-overlay {
+.hero-vignette {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(9, 10, 12, 0.95) 0%, rgba(9, 10, 12, 0.2) 60%, transparent 100%);
+  background: radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+              radial-gradient(circle at 20% 80%, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+  pointer-events: none;
 }
 
-.sub-card-1 {
-  width: 170px;
-  height: 210px;
-  top: -20px;
-  left: 0;
-  z-index: 3;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+.hero-badge-pill {
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  backdrop-filter: blur(10px);
 }
 
-.sub-card-1 .sub-card-tag {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: rgba(18, 20, 24, 0.85);
-  backdrop-filter: blur(8px);
+.hero-lead {
+  color: #c2c7d0 !important;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  font-weight: 400;
+  max-width: 540px;
 }
 
-.sub-card-2 {
-  width: 160px;
-  height: 160px;
-  bottom: -30px;
-  right: 10px;
-  z-index: 3;
-  border: 2px solid var(--gold-primary);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+/* Minimal Stat Dividers */
+.stat-divider {
+  width: 1px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.15);
 }
 
-/* Floating Glass Badges */
-.glass-float-badge {
-  background: rgba(18, 20, 24, 0.7);
+/* Clean 3D Single Frame Showcase */
+.hero-frame-container {
+  perspective: 1200px;
+  padding: 10px;
+}
+
+.luxury-image-frame {
+  height: 540px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(212, 175, 55, 0.1);
+  transition: border-color 0.4s ease;
+}
+
+.luxury-image-frame:hover {
+  border-color: rgba(212, 175, 55, 0.6);
+}
+
+.main-hero-img {
+  filter: brightness(0.9) contrast(1.05);
+  transition: transform 1s var(--transition-smooth);
+}
+
+.luxury-image-frame:hover .main-hero-img {
+  transform: scale(1.04);
+}
+
+.hero-frame-glass-badge {
+  background: rgba(12, 14, 18, 0.82);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-  z-index: 4;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  max-width: 340px;
 }
 
-.badge-1 {
-  bottom: 30px;
-  left: -20px;
-}
-
-.badge-2 {
-  top: 40px;
-  right: -10px;
-}
-
-/* Mouse Scroll Indicator */
-.scroll-indicator-link {
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
-}
-
-.scroll-indicator-link:hover {
-  opacity: 1;
-}
-
-.scroll-mouse-icon {
-  width: 24px;
-  height: 40px;
-  border: 2px solid rgba(212, 175, 55, 0.6);
-  border-radius: 20px;
-  margin: 0 auto;
-}
-
-.scroll-wheel {
-  width: 4px;
-  height: 8px;
-  background: var(--gold-primary);
-  border-radius: 2px;
-  animation: scrollWheel 1.8s infinite ease-in-out;
-}
-
-@keyframes scrollWheel {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(14px);
-    opacity: 0;
+/* Responsiveness Fix */
+@media (max-width: 991px) {
+  .luxury-image-frame {
+    height: 400px;
   }
 }
-
 /* --------------------------------------------------------------------------
    5. GALLERY MASONRY & FILTERING
    -------------------------------------------------------------------------- */
