@@ -1,7 +1,3 @@
-/* ==========================================================================
-   ZEST & CO. GALLERY PAGE — INTERACTIVE JS ENGINE (2026)
-   ========================================================================== */
-
 document.addEventListener('DOMContentLoaded', () => {
   
   // Register GSAP Plugins
@@ -73,11 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-
-
-  /* ------------------------------------------------------------------------
-     3. TILT & PARALLAX MOUSE INTERACTIONS
-     ------------------------------------------------------------------------ */
   // Initialize Vanilla Tilt on designated cards
   if (typeof VanillaTilt !== 'undefined') {
     VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
@@ -234,7 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === lightbox) closeLightbox();
   });
 
-  // Keyboard Navigation
   document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('active')) return;
     if (e.key === 'Escape') closeLightbox();
