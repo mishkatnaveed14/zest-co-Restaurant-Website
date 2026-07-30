@@ -1,8 +1,3 @@
-/* ==============================================
-   APP.JS - ZEST & CO. RESTAURANT
-   All Interactions, Animations & Dynamic Content
-   ============================================== */
-
 // ===== BOOTSTRAP CAROUSEL INIT =====
 const carouselEl = document.querySelector("#home2Carousel");
 if (carouselEl) {
@@ -16,114 +11,24 @@ if (carouselEl) {
 
 // ===== FOOD ITEMS DATA =====
 const foodItems = [
-  {
-    id: 1,
-    title: "Momo Package",
-    price: "$8.00",
-    image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=500",
-  },
-  {
-    id: 2,
-    title: "Chicken Fried",
-    price: "$12.00",
-    image: "https://images.unsplash.com/photo-1562967914-608f82629710?w=500",
-  },
-  {
-    id: 3,
-    title: "Vegetable Salad",
-    price: "$6.00",
-    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500",
-  },
-  {
-    id: 5,
-    title: "Chicken Kebab",
-    price: "$10.00",
-    image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=500",
-  },
-  {
-    id: 6,
-    title: "Beef Burger",
-    price: "$9.00",
-    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500",
-  },
-  {
-    id: 7,
-    title: "Special Biryani",
-    price: "$11.00",
-    image: "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=500",
-  },
-  {
-    id: 8,
-    title: "Pepperoni Pizza",
-    price: "$14.00",
-    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500",
-  },
-  {
-    id: 9,
-    title: "Ramen Noodles",
-    price: "$13.00",
-    image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500",
-  },
-  {
-    id: 11,
-    title: "Grilled Salmon",
-    price: "$22.00",
-    image: "https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=500",
-  },
-  {
-    id: 12,
-    title: "Crispy Tacos",
-    price: "$7.50",
-    image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=500",
-  },
-  {
-    id: 13,
-    title: "Butter Chicken",
-    price: "$15.00",
-    image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=500",
-  },
-  {
-    id: 14,
-    title: "Fettuccine Alfredo",
-    price: "$14.50",
-    image: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=500",
-  },
-  {
-    id: 15,
-    title: "Club Sandwich",
-    price: "$8.50",
-    image: "https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?w=500",
-  },
-  {
-    id: 16,
-    title: "Chocolate Lava",
-    price: "$6.50",
-    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500",
-  },
-  {
-    id: 17,
-    title: "Strawberry Waffles",
-    price: "$7.00",
-    image: "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=500",
-  },
-  {
-    id: 18,
-    title: "Mint Margarita",
-    price: "$4.00",
-    image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500",
-  },
-  {
-    id: 19,
-    title: "Gulab Jamun Plate",
-    price: "$5.00",
-    image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500",
-  },
-  {
-    id: 20,
-    title: "Premium Cappuccino",
-    price: "$4.50",
-    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500",
-  },
+  { id: 1, title: "Momo Package", price: "$8.00", image: "./assets/images/food/momo-package.jpg" },
+  { id: 2, title: "Chicken Fried", price: "$12.00", image: "./assets/images/food/chicken-fried.jpg" },
+  { id: 3, title: "Vegetable Salad", price: "$6.00", image: "./assets/images/food/vegetable-salad.jpg" },
+  { id: 5, title: "Chicken Kebab", price: "$10.00", image: "./assets/images/food/chicken-kebab.jpg" },
+  { id: 6, title: "Beef Burger", price: "$9.00", image: "./assets/images/food/beef-burger.jpg" },
+  { id: 7, title: "Special Biryani", price: "$11.00", image: "./assets/images/food/special-biryani.jpg" },
+  { id: 8, title: "Pepperoni Pizza", price: "$14.00", image: "./assets/images/food/pepperoni-pizza.jpg" },
+  { id: 9, title: "Ramen Noodles", price: "$13.00", image: "./assets/images/food/ramen-noodles.jpg" },
+  { id: 11, title: "Grilled Salmon", price: "$22.00", image: "./assets/images/food/grilled-salmon.jpg" },
+  { id: 12, title: "Crispy Tacos", price: "$7.50", image: "./assets/images/food/crispy-tacos.jpg" },
+  { id: 13, title: "Butter Chicken", price: "$15.00", image: "./assets/images/food/butter-chicken.jpg" },
+  { id: 14, title: "Fettuccine Alfredo", price: "$14.50", image: "./assets/images/food/fettuccine-alfredo.jpg" },
+  { id: 15, title: "Club Sandwich", price: "$8.50", image: "./assets/images/food/club-sandwich.jpg" },
+  { id: 16, title: "Chocolate Lava", price: "$6.50", image: "./assets/images/food/chocolate-lava.jpg" },
+  { id: 17, title: "Strawberry Waffles", price: "$7.00", image: "./assets/images/food/strawberry-waffles.jpg" },
+  { id: 18, title: "Mint Margarita", price: "$4.00", image: "./assets/images/food/mint-margarita.jpg" },
+  { id: 19, title: "Gulab Jamun Plate", price: "$5.00", image: "./assets/images/food/gulab-jamun-plate.jpg" },
+  { id: 20, title: "Premium Cappuccino", price: "$4.50", image: "./assets/images/food/premium-cappuccino.jpg" },
 ];
 
 // ===== NEW ITEMS SWIPER =====
@@ -165,13 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentItemIndex = null;
 
     function updateActiveFood(index) {
-      if (
-        currentItemIndex === index ||
-        !activeImg ||
-        !activeTitle ||
-        !activePrice
-      )
-        return;
+      if (currentItemIndex === index || !activeImg || !activeTitle || !activePrice) return;
       currentItemIndex = index;
       const food = foodItems[index];
       if (!food) return;
@@ -209,9 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
         dynamicCard.style.transform = `rotateX(${y * -8}deg) rotateY(${x * 8}deg)`;
-        if (activeImg) {
-          activeImg.style.transform = `translate(${x * 12}px, ${y * 12}px)`;
-        }
+        if (activeImg) activeImg.style.transform = `translate(${x * 12}px, ${y * 12}px)`;
       });
       dynamicCard.addEventListener("mouseleave", () => {
         dynamicCard.style.transform = "rotateX(0) rotateY(0)";
@@ -230,120 +127,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ===== POPULAR DISHES CAROUSEL =====
-const DISHES = [
-  {
-    name: "Beef Machal",
-    desc: "Bone-in cutlet finished over open flame, rested with rosemary and cracked pepper.",
-    price: 25,
-    reviews: 20,
-    rating: 4,
-    img: "https://images.pexels.com/photos/410648/pexels-photo-410648.jpeg?auto=compress&cs=tinysrgb&w=700",
-    featured: false,
-  },
-  {
-    name: "Beef Biryani",
-    desc: "48-hour dum-cooked rice, tender beef, whole chillies and a whisper of saffron.",
-    price: 28,
-    reviews: 37,
-    rating: 5,
-    img: "https://images.pexels.com/photos/1630495/pexels-photo-1630495.jpeg?auto=compress&cs=tinysrgb&w=700",
-    featured: true,
-  },
-  {
-    name: "Thai Soup",
-    desc: "Overnight broth, soft egg, scallion and chilli oil, served bubbling hot.",
-    price: 21,
-    reviews: 54,
-    rating: 4,
-    img: "https://images.pexels.com/photos/12984982/pexels-photo-12984982.jpeg?auto=compress&cs=tinysrgb&w=700",
-    featured: false,
-  },
-  {
-    name: "Fired Chicken",
-    desc: "Double-brined, double-fried, resting on herb salt with a citrus dip.",
-    price: 14,
-    reviews: 62,
-    rating: 5,
-    img: "https://images.pexels.com/photos/16892378/pexels-photo-16892378.jpeg?auto=compress&cs=tinysrgb&w=700",
-    featured: false,
-  },
-  {
-    name: "Ramen Bowl",
-    desc: "Hand-pulled noodles, chashu pork, marinated egg, nori and scallion oil.",
-    price: 19,
-    reviews: 45,
-    rating: 5,
-    img: "https://images.pexels.com/photos/17593641/pexels-photo-17593641.jpeg?auto=compress&cs=tinysrgb&w=700",
-    featured: false,
-  },
+// ===== SPOTLIGHT ITEMS DATA =====
+const SPOTLIGHT_ITEMS = [
+  { name: "Golden Fried Chicken", desc: "Double-brined overnight, dredged twice, fried to a shattering crust and rested on herb salt.", price: "$14", img: "./assets/images/spotlight/golden-fried-chicken.jpg" },
+  { name: "Steamed Dumplings", desc: "Hand-folded parcels, minced beef and ginger, steamed to order and served with black vinegar.", price: "$9", img: "./assets/images/spotlight/steamed-dumplings.jpg" },
+  { name: "Chef's Fried Rice", desc: "Wok-tossed jasmine rice, charred scallion, fresh prawns, and a soft crown of egg.", price: "$12", img: "./assets/images/spotlight/chefs-fried-rice.jpg" },
+  { name: "Ramen Bowl", desc: "Hand-pulled noodles in an 18-hour broth, chashu pork, bamboo shoots, and marinated egg.", price: "$19", img: "./assets/images/spotlight/ramen-bowl.jpg" },
+  { name: "Grilled Wings", desc: "Charcoal-kissed wings glazed twice in honey-garlic glaze, finished with a squeeze of fresh lime.", price: "$11", img: "./assets/images/spotlight/grilled-wings.jpg" },
+  { name: "Smoky BBQ Ribs", desc: "Slow-cooked pork ribs smothered in house smoky barbecue glaze, fall-off-the-bone tender.", price: "$22", img: "./assets/images/spotlight/smoky-bbq-ribs.jpg" },
+  { name: "Artisan Pepperoni Pizza", desc: "Wood-fired crust topped with San Marzano tomato sauce, fresh mozzarella, and spicy pepperoni.", price: "$16", img: "./assets/images/spotlight/artisan-pepperoni-pizza.jpg" },
+  { name: "Crispy Beef Tacos", desc: "Trio of crunchy corn tortillas stuffed with seasoned shredded beef, guacamole, and lime crema.", price: "$13", img: "./assets/images/spotlight/crispy-beef-tacos.jpg" },
+  { name: "Truffle Mushroom Pasta", desc: "Al dente fettuccine coated in creamy black truffle sauce with sautéed wild mushrooms and parmesan.", price: "$18", img: "./assets/images/spotlight/truffle-mushroom-pasta.jpg" },
+  { name: "Grilled Salmon Steak", desc: "Pan-seared Atlantic salmon with dill butter glaze, roasted asparagus, and mashed potatoes.", price: "$24", img: "./assets/images/spotlight/grilled-salmon-steak.jpg" },
 ];
 
-const SPOTLIGHT_ITEMS = [
-  {
-    name: "Golden Fried Chicken",
-    desc: "Double-brined overnight, dredged twice, fried to a shattering crust and rested on herb salt.",
-    price: "$14",
-    img: "https://images.pexels.com/photos/16892378/pexels-photo-16892378.jpeg?auto=compress&cs=tinysrgb&w=900",
-  },
-  {
-    name: "Steamed Dumplings",
-    desc: "Hand-folded parcels, minced beef and ginger, steamed to order and served with black vinegar.",
-    price: "$9",
-    img: "https://images.pexels.com/photos/7172851/pexels-photo-7172851.jpeg?auto=compress&cs=tinysrgb&w=900",
-  },
-  {
-    name: "Chef's Fried Rice",
-    desc: "Wok-tossed jasmine rice, charred scallion, fresh prawns, and a soft crown of egg.",
-    price: "$12",
-    img: "https://images.pexels.com/photos/1630495/pexels-photo-1630495.jpeg?auto=compress&cs=tinysrgb&w=900",
-  },
-  {
-    name: "Ramen Bowl",
-    desc: "Hand-pulled noodles in an 18-hour broth, chashu pork, bamboo shoots, and marinated egg.",
-    price: "$19",
-    img: "https://images.pexels.com/photos/12984979/pexels-photo-12984979.jpeg?auto=compress&cs=tinysrgb&w=900",
-  },
-  {
-    name: "Grilled Wings",
-    desc: "Charcoal-kissed wings glazed twice in honey-garlic glaze, finished with a squeeze of fresh lime.",
-    price: "$11",
-    img: "https://images.pexels.com/photos/10648394/pexels-photo-10648394.jpeg?auto=compress&cs=tinysrgb&w=900",
-  },
-  // Naye Unique Items Below ⬇️
-  {
-    name: "Smoky BBQ Ribs",
-    desc: "Slow-cooked pork ribs smothered in house smoky barbecue glaze, fall-off-the-bone tender.",
-    price: "$22",
-    img: "https://images.pexels.com/photos/410648/pexels-photo-410648.jpeg?auto=compress&cs=tinysrgb&w=900",
-  },
-  {
-    name: "Artisan Pepperoni Pizza",
-    desc: "Wood-fired crust topped with San Marzano tomato sauce, fresh mozzarella, and spicy pepperoni.",
-    price: "$16",
-    img: "https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=900",
-  },
-  {
-    name: "Crispy Beef Tacos",
-    desc: "Trio of crunchy corn tortillas stuffed with seasoned shredded beef, guacamole, and lime crema.",
-    price: "$13",
-    img: "https://images.pexels.com/photos/2087748/pexels-photo-2087748.jpeg?auto=compress&cs=tinysrgb&w=900",
-  },
-  {
-    name: "Truffle Mushroom Pasta",
-    desc: "Al dente fettuccine coated in creamy black truffle sauce with sautéed wild mushrooms and parmesan.",
-    price: "$18",
-    img: "https://images.pexels.com/photos/1437267/pexels-photo-1437267.jpeg?auto=compress&cs=tinysrgb&w=900",
-  },
-  {
-    name: "Grilled Salmon Steak",
-    desc: "Pan-seared Atlantic salmon with dill butter glaze, roasted asparagus, and mashed potatoes.",
-    price: "$24",
-    img: "https://images.pexels.com/photos/3763847/pexels-photo-3763847.jpeg?auto=compress&cs=tinysrgb&w=900",
-  },
+const DISHES = [
+  { name: "Beef Machal", desc: "Bone-in cutlet finished over open flame, rested with rosemary and cracked pepper.", price: 25, reviews: 20, rating: 4, img: "./assets/images/dishes/beef-machal.jpg", featured: false },
+  { name: "Beef Biryani", desc: "48-hour dum-cooked rice, tender beef, whole chillies and a whisper of saffron.", price: 28, reviews: 37, rating: 5, img: "./assets/images/dishes/beef-biryani.jpg", featured: true },
+  { name: "Thai Soup", desc: "Overnight broth, soft egg, scallion and chilli oil, served bubbling hot.", price: 21, reviews: 54, rating: 4, img: "./assets/images/dishes/thai-soup.jpg", featured: false },
+  { name: "Fired Chicken", desc: "Double-brined, double-fried, resting on herb salt with a citrus dip.", price: 14, reviews: 62, rating: 5, img: "./assets/images/dishes/fried-chicken.jpg", featured: false },
+  { name: "Ramen Bowl", desc: "Hand-pulled noodles, chashu pork, marinated egg, nori and scallion oil.", price: 19, reviews: 45, rating: 5, img: "./assets/images/dishes/ramen-bowl.jpg", featured: false },
 ];
+
 const track = document.getElementById("carTrack");
 const dotsWrap = document.getElementById("carDots");
+const popularCarouselEl = document.getElementById("carousel");
+const carNextBtn = document.getElementById("carNext");
+const carPrevBtn = document.getElementById("carPrev");
+const dialRing = carNextBtn ? carNextBtn.querySelector(".ring circle") : null;
 
 function starString(n) {
   return "★".repeat(n) + "☆".repeat(5 - n);
@@ -376,42 +187,47 @@ function makeDishCard(d, isClone) {
   card.innerHTML = buildDishCardHTML(d);
   return card;
 }
-const CLONE_COUNT = Math.min(2, DISHES.length - 1);
+
+const CLONE_COUNT = track ? Math.min(2, DISHES.length - 1) : 0;
 const totalDots = DISHES.length;
 
-DISHES.slice(-CLONE_COUNT).forEach((d) => track.appendChild(makeDishCard(d, true))); // leading clones
-DISHES.forEach((d) => track.appendChild(makeDishCard(d, false))); // real cards
-DISHES.slice(0, CLONE_COUNT).forEach((d) => track.appendChild(makeDishCard(d, true))); // trailing clones
+if (track) {
+  DISHES.slice(-CLONE_COUNT).forEach((d) => track.appendChild(makeDishCard(d, true))); // leading clones
+  DISHES.forEach((d) => track.appendChild(makeDishCard(d, false))); // real cards
+  DISHES.slice(0, CLONE_COUNT).forEach((d) => track.appendChild(makeDishCard(d, true))); // trailing clones
+}
 
-for (let i = 0; i < totalDots; i++) {
-  const dot = document.createElement("span");
-  if (i === 0) dot.classList.add("active");
-  dot.addEventListener("click", () => {
-    goToDot(i);
-    restartAutoplay();
-  });
-  dotsWrap.appendChild(dot);
+if (dotsWrap) {
+  for (let i = 0; i < totalDots; i++) {
+    const dot = document.createElement("span");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => {
+      goToDot(i);
+      restartAutoplay();
+    });
+    dotsWrap.appendChild(dot);
+  }
 }
 
 let position = CLONE_COUNT; // index into the extended (clone + real + clone) track
 let cardWidthWithGap = 0;
-let visibleCount = 3;
+let autoplayTimer = null;
 
 function measure() {
+  if (!track) return;
   const cards = track.querySelectorAll(".dish-card");
   if (!cards.length) return;
   const style = getComputedStyle(track);
-  const gap = parseFloat(style.gap) || 30;
+  const gap = parseFloat(style.gap) || 26;
   cardWidthWithGap = cards[0].getBoundingClientRect().width + gap;
-  if (window.innerWidth <= 640) visibleCount = 1;
-  else if (window.innerWidth <= 1080) visibleCount = 2;
-  else visibleCount = 3;
 }
 
 function updateDots(realIndex) {
+  if (!dotsWrap) return;
   const dots = dotsWrap.querySelectorAll("span");
   dots.forEach((d, idx) => d.classList.toggle("active", idx === realIndex));
 }
+
 function checkLoopBounds() {
   if (position >= CLONE_COUNT + totalDots) {
     position -= totalDots;
@@ -423,6 +239,8 @@ function checkLoopBounds() {
 }
 
 function setTrackPosition(pos, animate) {
+  if (!track) return;
+  measure();
   const offset = pos * cardWidthWithGap;
   if (window.gsap) {
     gsap.to(track, {
@@ -432,6 +250,7 @@ function setTrackPosition(pos, animate) {
       onComplete: checkLoopBounds,
     });
   } else {
+    track.style.transition = animate ? "transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)" : "none";
     track.style.transform = `translateX(-${offset}px)`;
     checkLoopBounds();
   }
@@ -450,24 +269,54 @@ function goToDot(i) {
   setTrackPosition(position, true);
 }
 
-document.getElementById("carPrev")?.addEventListener("click", () => {
+carPrevBtn?.addEventListener("click", () => {
   goToRelative(-1);
   restartAutoplay();
 });
-document.getElementById("carNext")?.addEventListener("click", () => {
+carNextBtn?.addEventListener("click", () => {
   goToRelative(1);
   restartAutoplay();
 });
 
-let autoplayTimer;
-function restartAutoplay() {
-  clearInterval(autoplayTimer);
-  autoplayTimer = setInterval(() => goToRelative(1), 4200);
+// ----- Autoplay + dial-ring countdown -----
+function resetDialAnimation() {
+  if (!dialRing) return;
+  dialRing.classList.remove("run");
+  void dialRing.getBoundingClientRect(); // force reflow so the animation restarts cleanly
+  dialRing.classList.add("run");
 }
 
-// Swipe support
-let startX = 0,
-  isDragging = false;
+function startAutoplay() {
+  if (!track) return;
+  stopAutoplay();
+  resetDialAnimation();
+  autoplayTimer = setInterval(() => {
+    goToRelative(1);
+    resetDialAnimation();
+  }, 4200);
+}
+
+function stopAutoplay() {
+  if (autoplayTimer) clearInterval(autoplayTimer);
+  if (dialRing) dialRing.classList.remove("run");
+}
+
+function restartAutoplay() {
+  startAutoplay();
+}
+
+// Pause on hover, resume on mouse leave
+popularCarouselEl?.addEventListener("mouseenter", () => {
+  if (dialRing) dialRing.classList.add("paused");
+  if (autoplayTimer) clearInterval(autoplayTimer);
+});
+popularCarouselEl?.addEventListener("mouseleave", () => {
+  if (dialRing) dialRing.classList.remove("paused");
+  startAutoplay();
+});
+
+// Swipe / drag support
+let startX = 0, isDragging = false;
 track?.addEventListener("pointerdown", (e) => {
   isDragging = true;
   startX = e.clientX;
@@ -487,20 +336,14 @@ window.addEventListener("resize", () => {
   measure();
   setTrackPosition(position, false);
 });
+
+// THE FIX: actually initialize the carousel on load — set the correct
+// starting position AND start autoplay. Previously this never ran, so
+// the carousel sat misaligned and never auto-scrolled.
 window.addEventListener("load", () => {
   measure();
   setTrackPosition(position, false);
-  restartAutoplay();
-});
-
-const popularCarouselEl = document.getElementById("carousel");
-popularCarouselEl?.addEventListener("mouseenter", () => {
-  clearInterval(autoplayTimer);
-  dotsWrap.classList.add("paused");
-});
-popularCarouselEl?.addEventListener("mouseleave", () => {
-  dotsWrap.classList.remove("paused");
-  restartAutoplay();
+  startAutoplay();
 });
 
 // ===== SPOTLIGHT GALLERY =====
@@ -528,14 +371,8 @@ function setSpotlight(idx) {
   thumbs?.forEach((t, i) => {
     const isActive = i === idx;
     t.classList.toggle("active", isActive);
-
-    // Auto-scroll fix: Selected thumb ko softly scroll container me middle me rakhein
     if (isActive) {
-      t.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest" /* Is se poori screen/list jump nahi karegi */,
-        inline: "nearest",
-      });
+      t.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
     }
   });
 
@@ -562,6 +399,7 @@ function setSpotlight(idx) {
   if (spotDesc) spotDesc.textContent = item.desc;
   if (spotPrice) spotPrice.textContent = item.price;
 }
+
 // ===== MOBILE MENU =====
 function openMobileMenu() {
   document.querySelector(".mobile-nav-toggle")?.classList.add("active");
@@ -577,76 +415,27 @@ function closeMobileMenu() {
   document.body.style.overflow = "";
 }
 
-document
-  .querySelector(".mobile-nav-toggle")
-  ?.addEventListener("click", openMobileMenu);
-document
-  .querySelector(".mobile-close")
-  ?.addEventListener("click", closeMobileMenu);
-document
-  .getElementById("mobileMenuOverlay")
-  ?.addEventListener("click", closeMobileMenu);
-document
-  .querySelectorAll(".mobile-nav-links a")
-  .forEach((a) => a.addEventListener("click", closeMobileMenu));
+document.querySelector(".mobile-nav-toggle")?.addEventListener("click", openMobileMenu);
+document.querySelector(".mobile-close")?.addEventListener("click", closeMobileMenu);
+document.getElementById("mobileMenuOverlay")?.addEventListener("click", closeMobileMenu);
+document.querySelectorAll(".mobile-nav-links a").forEach((a) => a.addEventListener("click", closeMobileMenu));
 
 // ===== GSAP / SCROLL ANIMATIONS =====
 if (window.gsap && window.ScrollTrigger) {
   gsap.registerPlugin(ScrollTrigger);
 
   // Entrance animations
-  gsap.from(".top-bar", {
-    y: -30,
-    opacity: 0,
-    duration: 0.5,
-    ease: "power2.out",
-  });
-  gsap.from(".header-logo", {
-    x: -30,
-    opacity: 0,
-    duration: 0.6,
-    ease: "power2.out",
-    delay: 0.1,
-  });
-  gsap.from(".nav-link", {
-    y: -20,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.08,
-    ease: "power2.out",
-    delay: 0.2,
-  });
-  gsap.from(".navbar-actions", {
-    x: 30,
-    opacity: 0,
-    duration: 0.6,
-    ease: "power2.out",
-    delay: 0.4,
-  });
+  gsap.from(".top-bar", { y: -30, opacity: 0, duration: 0.5, ease: "power2.out" });
+  gsap.from(".header-logo", { x: -30, opacity: 0, duration: 0.6, ease: "power2.out", delay: 0.1 });
+  gsap.from(".nav-link", { y: -20, opacity: 0, duration: 0.6, stagger: 0.08, ease: "power2.out", delay: 0.2 });
+  gsap.from(".navbar-actions", { x: 30, opacity: 0, duration: 0.6, ease: "power2.out", delay: 0.4 });
 
   // Hero entrance
-  gsap.from(".slide-content", {
-    y: 80,
-    opacity: 0,
-    duration: 1,
-    ease: "power4.out",
-    delay: 0.3,
-  });
-  gsap.from(".slide-image", {
-    x: 100,
-    opacity: 0,
-    duration: 1.2,
-    ease: "power4.out",
-    delay: 0.5,
-  });
- gsap.from(".highlight-pill", {
-    y: 30,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.15,
-    ease: "back.out(1.4)",
-    delay: 0.8,
-  });
+  gsap.from(".slide-content", { y: 80, opacity: 0, duration: 1, ease: "power4.out", delay: 0.3 });
+  gsap.from(".slide-image", { x: 100, opacity: 0, duration: 1.2, ease: "power4.out", delay: 0.5 });
+
+  // Highlight pills entrance (single source of truth — do not duplicate elsewhere)
+  gsap.from(".highlight-pill", { y: 30, opacity: 0, duration: 0.5, stagger: 0.15, ease: "back.out(1.4)", delay: 0.8 });
 
   // Scroll-triggered animations
   function animateFrom(selector, vars, trigger) {
@@ -666,31 +455,37 @@ if (window.gsap && window.ScrollTrigger) {
 
   animateFrom(".dish-card", { y: 60, stagger: 0.1 }, "#popular");
   animateFrom(".premium-card", { y: 60 });
-  animateFrom(
-    ".food-card",
-    { y: 50, stagger: 0.08 },
-    ".menu-highlights-section",
-  );
-  animateFrom(
-    ".quick-card",
-    { y: 40, stagger: 0.1, ease: "back.out(1.4)" },
-    ".quick-action-section",
-  );
+  animateFrom(".food-card", { y: 50, stagger: 0.08 }, ".menu-highlights-section");
+  animateFrom(".quick-card", { y: 40, stagger: 0.1, ease: "back.out(1.4)" }, ".quick-action-section");
   animateFrom(".stat-item", { y: 40, stagger: 0.1 }, ".stats-counter-section");
   animateFrom(".testimonial-card", { y: 50 }, ".testimonials-section");
   animateFrom(".footer-grid > div", { y: 40, stagger: 0.1 }, ".footer");
 
   // Section headings
-  gsap.utils.toArray(".section-head, .section-header").forEach((h) => {
-    animateFrom(h, {});
-  });
-  window.addEventListener("load", () => ScrollTrigger.refresh());
-  setTimeout(() => ScrollTrigger.refresh(), 1000);
-} else {
+  gsap.utils.toArray(".section-head, .section-header").forEach((h) => animateFrom(h, {}));
 
+  window.addEventListener("load", () => {
+    ScrollTrigger.refresh();
+
+    const allImages = document.querySelectorAll("img");
+    const imagePromises = Array.from(allImages).map((img) => {
+      if (img.complete) return Promise.resolve();
+      return new Promise((resolve) => {
+        img.addEventListener("load", resolve, { once: true });
+        img.addEventListener("error", resolve, { once: true });
+      });
+    });
+
+    Promise.all(imagePromises).then(() => ScrollTrigger.refresh());
+  });
+
+  // Extra safety net refresh in case fonts/late layout shifts happen
+  setTimeout(() => ScrollTrigger.refresh(), 2000);
+} else {
+  // Fallback — GSAP/ScrollTrigger not available, just show everything instantly
   document
     .querySelectorAll(
-      ".dish-card, .premium-card, .food-card, .quick-card, .stat-item, .footer-grid > div, .spotlight-feature, .spotlight-thumbs .thumb, .highlight-pill"
+      ".dish-card, .premium-card, .food-card, .quick-card, .stat-item, .footer-grid > div, .spotlight-feature, .spotlight-thumbs .thumb, .highlight-pill",
     )
     .forEach((el) => {
       el.style.opacity = "1";
@@ -700,104 +495,25 @@ if (window.gsap && window.ScrollTrigger) {
 
 // ===== MENU HIGHLIGHTS - SMOOTH TAB TRANSITIONS =====
 const dishesData = [
-  {
-    id: 1,
-    name: "Zesty Smash Burger",
-    category: "bestsellers",
-    badge: "Halal ☪️",
-    price: "$12.99",
-    rating: "4.9 ★",
-    desc: "Juicy double beef patty layered with melted cheddar and signature house relish.",
-    image:
-      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80",
-  },
-  {
-    id: 2,
-    name: "Truffle Mushroom Risotto",
-    category: "specials",
-    badge: "Vegan 🌱",
-    price: "$18.50",
-    rating: "4.8 ★",
-    desc: "Creamy arborio rice infused with wild mushrooms and authentic black truffle oil.",
-    image:
-      "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=500&q=80",
-  },
-  {
-    id: 3,
-    name: "Fiery Peri Peri Wings",
-    category: "combos",
-    badge: "Spicy 🌶️",
-    price: "$14.00",
-    rating: "4.7 ★",
-    desc: "Flame-grilled chicken wings tossed in intense African bird's eye chili glaze.",
-    image:
-      "https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500&q=80",
-  },
-  {
-    id: 4,
-    name: "Classic Berry Cheesecake",
-    category: "desserts",
-    badge: "Chef's Pick ⭐",
-    price: "$8.99",
-    rating: "4.9 ★",
-    desc: "Velvety New York style cheesecake topped with fresh wild berry reduction.",
-    image:
-      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=500&q=80",
-  },
-  {
-    id: 5,
-    name: "Smoked Salmon Benedict",
-    category: "specials",
-    badge: "Fresh 🐟",
-    price: "$16.00",
-    rating: "4.8 ★",
-    desc: "Poached eggs on toasted brioche with house-smoked salmon and hollandaise.",
-    image:
-      "https://images.unsplash.com/photo-1608039829572-e2e6c44a32a4?w=500&q=80",
-  },
-  {
-    id: 6,
-    name: "Double Chocolate Mousse",
-    category: "desserts",
-    badge: "NEW 🔥",
-    price: "$9.50",
-    rating: "4.9 ★",
-    desc: "Rich dark chocolate mousse with a silky caramel core and gold leaf finish.",
-    image:
-      "https://images.unsplash.com/photo-1541783245831-57d6fb0926d3?w=500&q=80",
-  },
-  {
-    id: 7,
-    name: "Lamb Kofta Kebab",
-    category: "bestsellers",
-    badge: "Halal ☪️",
-    price: "$15.00",
-    rating: "4.7 ★",
-    desc: "Spiced minced lamb skewers, chargrilled and served with garlic yogurt dip.",
-    image:
-      "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=500&q=80",
-  },
-  {
-    id: 8,
-    name: "Mango & Passionfruit Tart",
-    category: "desserts",
-    badge: "Seasonal 🥭",
-    price: "$7.50",
-    rating: "4.6 ★",
-    desc: "Buttery pastry shell filled with tropical fruit curd and toasted meringue.",
-    image:
-      "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=500&q=80",
-  },
+  { id: 1, name: "Zesty Smash Burger", category: "bestsellers", badge: "Halal ☪️", price: "$12.99", rating: "4.9 ★", desc: "Juicy double beef patty layered with melted cheddar and signature house relish.", image: "./assets/images/menu/zesty-smash-burger.jpg" },
+  { id: 2, name: "Truffle Mushroom Risotto", category: "specials", badge: "Vegan 🌱", price: "$18.50", rating: "4.8 ★", desc: "Creamy arborio rice infused with wild mushrooms and authentic black truffle oil.", image: "./assets/images/menu/truffle-mushroom-risotto.jpg" },
+  { id: 3, name: "Fiery Peri Peri Wings", category: "combos", badge: "Spicy 🌶️", price: "$14.00", rating: "4.7 ★", desc: "Flame-grilled chicken wings tossed in intense African bird's eye chili glaze.", image: "./assets/images/menu/fiery-peri-peri-wings.jpg" },
+  { id: 4, name: "Classic Berry Cheesecake", category: "desserts", badge: "Chef's Pick ⭐", price: "$8.99", rating: "4.9 ★", desc: "Velvety New York style cheesecake topped with fresh wild berry reduction.", image: "./assets/images/menu/classic-berry-cheesecake.jpg" },
+  { id: 5, name: "Smoked Salmon Benedict", category: "specials", badge: "Fresh 🐟", price: "$16.00", rating: "4.8 ★", desc: "Poached eggs on toasted brioche with house-smoked salmon and hollandaise.", image: "./assets/images/menu/smoked-salmon-benedict.jpg" },
+  { id: 6, name: "Double Chocolate Mousse", category: "desserts", badge: "NEW 🔥", price: "$9.50", rating: "4.9 ★", desc: "Rich dark chocolate mousse with a silky caramel core and gold leaf finish.", image: "./assets/images/menu/double-chocolate-mousse.jpg" },
+  { id: 7, name: "Lamb Kofta Kebab", category: "bestsellers", badge: "Halal ☪️", price: "$15.00", rating: "4.7 ★", desc: "Spiced minced lamb skewers, chargrilled and served with garlic yogurt dip.", image: "./assets/images/menu/lamb-kofta-kebab.jpg" },
+  { id: 8, name: "Mango & Passionfruit Tart", category: "desserts", badge: "Seasonal 🥭", price: "$7.50", rating: "4.6 ★", desc: "Buttery pastry shell filled with tropical fruit curd and toasted meringue.", image: "./assets/images/menu/mango-passionfruit-tart.jpg" },
 ];
 
 const menuGrid = document.getElementById("menuGrid");
 const categoryTabs = document.getElementById("categoryTabs");
 
 function renderMenuCards(items) {
+  if (!menuGrid) return;
   menuGrid.innerHTML = "";
   const fragment = document.createDocumentFragment();
 
-  items.forEach((item, index) => {
+  items.forEach((item) => {
     const card = document.createElement("div");
     card.className = "food-card";
     card.style.opacity = "0";
@@ -822,17 +538,9 @@ function renderMenuCards(items) {
 
   menuGrid.appendChild(fragment);
 
-  // Stagger entrance animation
   const cards = menuGrid.querySelectorAll(".food-card");
   if (window.gsap) {
-    gsap.to(cards, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.5,
-      stagger: 0.06,
-      ease: "power3.out",
-    });
+    gsap.to(cards, { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.06, ease: "power3.out" });
   } else {
     cards.forEach((c) => {
       c.style.opacity = "1";
@@ -841,30 +549,18 @@ function renderMenuCards(items) {
   }
 }
 
-// Tab switching with smooth animation
 categoryTabs?.addEventListener("click", (e) => {
   if (!e.target.classList.contains("tab-btn")) return;
 
-  // Update active tab
-  document
-    .querySelectorAll(".tab-btn")
-    .forEach((btn) => btn.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach((btn) => btn.classList.remove("active"));
   e.target.classList.add("active");
 
-  // Animate active tab
   if (window.gsap) {
-    gsap.fromTo(
-      e.target,
-      { scale: 0.9 },
-      { scale: 1, duration: 0.3, ease: "back.out(2)" },
-    );
+    gsap.fromTo(e.target, { scale: 0.9 }, { scale: 1, duration: 0.3, ease: "back.out(2)" });
   }
 
   const selectedCategory = e.target.getAttribute("data-category");
-  const filtered =
-    selectedCategory === "all"
-      ? dishesData
-      : dishesData.filter((item) => item.category === selectedCategory);
+  const filtered = selectedCategory === "all" ? dishesData : dishesData.filter((item) => item.category === selectedCategory);
   renderMenuCards(filtered);
 });
 
@@ -883,9 +579,7 @@ if (cursorGlow) {
     cursorGlow.style.top = e.clientY + "px";
     cursorGlow.classList.add("visible");
   });
-  document.addEventListener("mouseleave", () =>
-    cursorGlow.classList.remove("visible"),
-  );
+  document.addEventListener("mouseleave", () => cursorGlow.classList.remove("visible"));
 }
 
 // ===== STATS COUNTER =====
@@ -896,8 +590,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     counters.forEach((counter) => {
       const target = parseInt(counter.getAttribute("data-target"), 10);
-
-      // Agar data-target missing ya invalid ho to skip kardo (NaN se bacho)
       if (isNaN(target)) return;
 
       const duration = 2500;
@@ -928,14 +620,10 @@ document.addEventListener("DOMContentLoaded", () => {
         once: true,
       });
     } else {
-      // GSAP/ScrollTrigger available nahi hai to counters seedha chala do
       animateCounters();
     }
   }
 });
-
-// ===== TESTIMONIALS =====
-
 
 // ===== FORMS & UTILITIES =====
 document.getElementById("newsletterForm")?.addEventListener("submit", (e) => {
@@ -948,9 +636,7 @@ document.getElementById("newsletterForm")?.addEventListener("submit", (e) => {
 document.getElementById("reserveForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
   const msg = document.getElementById("reserveConfirm");
-  if (msg)
-    msg.textContent =
-      "Table request received — we'll confirm by phone shortly.";
+  if (msg) msg.textContent = "Table request received — we'll confirm by phone shortly.";
   e.target.reset();
 });
 
@@ -965,10 +651,8 @@ if (heroSection) {
     const y = (e.clientY / window.innerHeight - 0.5) * 10;
     const carousel = heroSection.querySelector(".home2-carousel");
     const slideImage = heroSection.querySelector(".slide-image");
-    if (carousel)
-      carousel.style.transform = `perspective(1000px) rotateX(${-y * 0.3}deg) rotateY(${x * 0.3}deg)`;
-    if (slideImage)
-      slideImage.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
+    if (carousel) carousel.style.transform = `perspective(1000px) rotateX(${-y * 0.3}deg) rotateY(${x * 0.3}deg)`;
+    if (slideImage) slideImage.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
   });
   heroSection.addEventListener("mouseleave", () => {
     const carousel = heroSection.querySelector(".home2-carousel");
