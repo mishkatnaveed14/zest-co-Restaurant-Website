@@ -198,87 +198,161 @@ body.zest-gallery-body {
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
 }
-
-/* --------------------------------------------------------------------------
-   4. HERO SECTION STYLES
-   -------------------------------------------------------------------------- */
-
+/* ==========================================================================
+   EDITORIAL LUXURY HERO (WARM IVORY & CHARCOAL - NO NEON)
+   ========================================================================== */
 .gallery-hero-section {
   min-height: 100vh;
-  padding-top: 80px;
-  background: #08090b; /* Solid Deep Obsidian Dark */
+  padding-top: 90px;
+  background-color: #f7f5f0; /* Crisp Warm Linen White */
   position: relative;
 }
 
-.hero-vignette {
+.hero-subtle-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
-              radial-gradient(circle at 20% 80%, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+  background: radial-gradient(circle at 75% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
   pointer-events: none;
 }
 
-.hero-badge-pill {
-  background: rgba(212, 175, 55, 0.08);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  backdrop-filter: blur(10px);
+.text-dark-editorial {
+  color: #1a1c20 !important;
+  letter-spacing: -0.01em;
 }
 
-.hero-lead {
-  color: #c2c7d0 !important;
+.gold-accent-text {
+  color: #b8860b;
+}
+
+.gold-title {
+  color: #a37c0c !important;
+}
+
+.text-muted-dark {
+  color: #6c727f !important;
+}
+
+/* Editorial Badge */
+.hero-badge-editorial {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.badge-dot {
+  width: 4px;
+  height: 4px;
+  background: #a37c0c;
+  border-radius: 50%;
+}
+
+.hero-lead-editorial {
+  color: #4a4e57 !important;
   font-size: 1.1rem;
-  line-height: 1.8;
-  font-weight: 400;
-  max-width: 540px;
+  line-height: 1.85;
+  max-width: 480px;
 }
 
-/* Minimal Stat Dividers */
-.stat-divider {
+/* Editorial Buttons */
+.btn-editorial-dark {
+  background: #1a1c20;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 4px;
+  border: 1px solid #1a1c20;
+  transition: all 0.3s ease;
+}
+
+.btn-editorial-dark:hover {
+  background: #b8860b;
+  border-color: #b8860b;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(184, 134, 11, 0.2);
+}
+
+.btn-editorial-outline {
+  background: transparent;
+  color: #1a1c20 !important;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 4px;
+  border: 1px solid rgba(26, 28, 32, 0.25);
+  transition: all 0.3s ease;
+}
+
+.btn-editorial-outline:hover {
+  border-color: #1a1c20;
+  background: rgba(26, 28, 32, 0.04);
+}
+
+/* Stats Lines */
+.stat-line {
   width: 1px;
-  height: 35px;
-  background: rgba(255, 255, 255, 0.15);
+  height: 28px;
+  background: rgba(0, 0, 0, 0.12);
 }
 
-/* Clean 3D Single Frame Showcase */
-.hero-frame-container {
-  perspective: 1200px;
-  padding: 10px;
+/* Dual Frame Layout (High-End Magazine Look) */
+.hero-editorial-composition {
+  padding: 20px 0;
 }
 
-.luxury-image-frame {
-  height: 540px;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(212, 175, 55, 0.1);
-  transition: border-color 0.4s ease;
+.main-frame {
+  width: 82%;
+  height: 480px;
+  border: 12px solid #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
 }
 
-.luxury-image-frame:hover {
-  border-color: rgba(212, 175, 55, 0.6);
+.main-frame img {
+  border-radius: 2px;
 }
 
-.main-hero-img {
-  filter: brightness(0.9) contrast(1.05);
-  transition: transform 1s var(--transition-smooth);
+.frame-tag {
+  border-radius: 4px;
+  backdrop-filter: blur(8px);
 }
 
-.luxury-image-frame:hover .main-hero-img {
-  transform: scale(1.04);
+.sub-frame {
+  width: 220px;
+  height: 280px;
+  bottom: -20px;
+  right: 10px;
+  border: 8px solid #ffffff;
+  border-radius: 8px;
+  z-index: 3;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
 }
 
-.hero-frame-glass-badge {
-  background: rgba(12, 14, 18, 0.82);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  max-width: 340px;
+.sub-frame-label {
+  position: absolute;
+  bottom: 0;
+  inset-x: 0;
+  padding: 12px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  text-align: center;
 }
 
-/* Responsiveness Fix */
+/* Scroll Mouse Icon */
+.scroll-mouse-icon-editorial {
+  width: 22px;
+  height: 38px;
+  border: 2px solid rgba(26, 28, 32, 0.3);
+  border-radius: 20px;
+  margin: 0 auto;
+}
+
+/* Responsive */
 @media (max-width: 991px) {
-  .luxury-image-frame {
-    height: 400px;
+  .main-frame {
+    width: 100%;
+    height: 380px;
   }
 }
+/* hero end */
 /* --------------------------------------------------------------------------
    5. GALLERY MASONRY & FILTERING
    -------------------------------------------------------------------------- */
@@ -710,4 +784,106 @@ body.zest-gallery-body {
 .lightbox-caption p,
 .item-desc {
   color: #e2e8f0 !important;
+}
+
+/* ==========================================================================
+   ULTRA-LUXURY OBSIDIAN & WHITE 3D EXTENSION (RICH & VISUALLY ATTRACTIVE)
+   ========================================================================== */
+
+/* 1. Deep Obsidian Textured Canvas */
+body.zest-gallery-body,
+.gallery-hero-section,
+.gallery-main-section,
+.featured-showcase-section,
+.customer-moments-section,
+.insta-section {
+  background-color: #0d0f12 !important;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.07) 0%, transparent 60%),
+    radial-gradient(circle at 80% 50%, rgba(30, 34, 42, 0.5) 0%, transparent 70%) !important;
+  color: #f8f9fa;
+}
+
+/* Subtitles High Contrast Fix */
+.section-header p,
+.hero-lead-editorial,
+.text-muted,
+.text-muted-dark {
+  color: #d1d5db !important;
+  opacity: 0.95;
+}
+
+/* Headings Crisp Contrast */
+.text-dark-editorial,
+.gallery-main-section h2,
+.customer-moments-section h2,
+.insta-section h2 {
+  color: #ffffff !important;
+}
+
+/* 2. Glass Filter Bar on Dark Background */
+.gallery-filter-wrapper {
+  background: rgba(22, 25, 31, 0.85) !important;
+  border: 1px solid rgba(212, 175, 55, 0.25) !important;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5) !important;
+}
+
+.gallery-filter-pills .filter-btn {
+  color: #a0a5b1;
+}
+
+.gallery-filter-pills .filter-btn.active {
+  background: linear-gradient(135deg, #d4af37, #aa820a) !important;
+  color: #000000 !important;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3) !important;
+}
+
+/* 3. Pure White 3D Elevated Cards Pop Against Dark Backdrop */
+.gallery-card {
+  background: #ffffff !important;
+  border: 8px solid #ffffff !important;
+  border-radius: 16px !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.08) !important;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease !important;
+}
+
+.gallery-card:hover {
+  transform: translateY(-10px) scale(1.02) !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 10px 30px rgba(212, 175, 55, 0.2) !important;
+}
+
+/* 4. White 3D Main Hero Frame */
+.main-frame {
+  background: #ffffff;
+  border: 12px solid #ffffff !important;
+  border-radius: 16px !important;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 55, 0.15) !important;
+}
+
+.sub-frame {
+  border: 8px solid #ffffff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* 5. Glass Showcase & Customer Moment Slider Cards */
+.glass-showcase-card {
+  background: rgba(22, 25, 31, 0.8) !important;
+  border: 1px solid rgba(212, 175, 55, 0.3) !important;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6) !important;
+}
+
+.glass-showcase-card h2 {
+  color: #ffffff !important;
+}
+
+.moment-card,
+.insta-card {
+  background: #ffffff !important;
+  border: 6px solid #ffffff !important;
+  border-radius: 14px !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
 }
