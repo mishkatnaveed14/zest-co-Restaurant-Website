@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E4C97A"/>
+      <stop offset="45%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#A8842A"/>
+    </linearGradient>
+    <linearGradient id="goldBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a2b31"/>
+      <stop offset="100%" stop-color="#141519"/>
+    </linearGradient>
+    <radialGradient id="ringGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(212,175,55,0.28)"/>
+      <stop offset="100%" stop-color="rgba(212,175,55,0)"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Outer glow ring -->
+  <circle cx="110" cy="110" r="103" fill="url(#ringGlow)"/>
+
+  <!-- Outer ring -->
+  <circle cx="110" cy="110" r="96" fill="none" stroke="url(#gold)" stroke-width="3.5"/>
+
+  <!-- Inner subtle ring -->
+  <circle cx="110" cy="110" r="86" fill="none" stroke="rgba(212,175,55,0.35)" stroke-width="1"/>
+
+  <!-- Dark emblem disc -->
+  <circle cx="110" cy="110" r="82" fill="url(#goldBg)" stroke="rgba(212,175,55,0.5)" stroke-width="2"/>
+
+  <!-- Decorative dotted ring -->
+  <circle cx="110" cy="110" r="70" fill="none" stroke="rgba(212,175,55,0.4)" stroke-width="1" stroke-dasharray="2 6"/>
+
+  <!-- Flame / leaf motif -->
+  <g fill="url(#gold)">
+    <!-- Central flame -->
+    <path d="M110 60c-6 14-18 24-18 38a18 18 0 0 0 36 0c0-14-12-24-18-38z"/>
+    <path d="M110 74c-3 7-9 12-9 20a9 9 0 0 0 18 0c0-8-6-13-9-20z" fill="#F5E7BE"/>
+    <!-- Side leaf flames -->
+    <path d="M88 74c-4 8-12 14-12 24a12 12 0 0 0 24 0c0-10-8-16-12-24z" opacity="0.85"/>
+    <path d="M132 74c4 8 12 14 12 24a12 12 0 0 1-24 0c0-10 8-16 12-24z" opacity="0.85"/>
+  </g>
+
+  <!-- Steam / zest sparkles -->
+  <g fill="url(#gold)" opacity="0.9">
+    <circle cx="92" cy="56" r="2.5"/>
+    <circle cx="128" cy="56" r="2.5"/>
+    <circle cx="110" cy="48" r="1.8"/>
+  </g>
+
+  <!-- Base arc -->
+  <path d="M80 134c10 8 20 12 30 12s20-4 30-12" fill="none" stroke="url(#gold)" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Wordmark -->
+  <text x="110" y="156" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="700" fill="url(#gold)" letter-spacing="1">ZEST</text>
+<text x="110" y="178" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="15" fill="rgba(245,245,247,0.75)" letter-spacing="4">&amp; CO.</text>
+</svg>
