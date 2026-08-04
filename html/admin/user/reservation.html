@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservation</title>
+  <!-- AOS cdn -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- font awesome cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+    integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- google fonts cdn -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <!-- boostrap icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="../../../css-folder/bootstrap.min.css">
+  <!-- custom css -->
+  <link rel="stylesheet" href="../../../css-folder/reservation.css">
+</head>
+
+<body>
+  <!-- upper part start -->
+  <div class="top-bar bg-black">
+    <div class="container-lg container-fluid gy-2">
+      <div class="row align-items-center">
+        <!-- <div class="col-lg-5 col-md-5 d-flex align-items-center justify-content-md-start justify-content-center"> -->
+        <div class="col-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
+          <div class="open-time">
+            <p>
+              <span style="font-weight: 600; color: var(--accent-gold)">Opening Hour:</span>
+              9.00 am to 10.00 pm
+            </p>
+          </div>
+        </div>
+        <div class="col-12 col-md-7 d-flex justify-content-center justify-content-md-end">
+          <!-- <div class="col-lg-7 col-md-7 d-flex justify-content-end"> -->
+          <div class="contact-info">
+            <ul>
+              <li>
+                <a href="mailto:zest.co@gmail.com" class="email">
+                  <i class="bi bi-envelope"></i>
+                  zest.co@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="https://maps.google.com/?q=Road-01, Block-B, West Karachi City" target="_blank"
+                  class="location d-flex align-items-center">
+                  <i class="bi bi-geo-alt"></i>
+                  Road-01, Block-B, West Karachi City
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- upper part end  -->
+  <!-- navbar start  -->
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg main-navbar">
+      <div class="container-xl">
+        <!-- Logo -->
+        <a class="navbar-brand header-logo" href="#">
+          <img src="../../../assets/images/logo.png" alt="Zest & Co. Logo">
+        </a>
+
+        <!-- Toggler (Mobile View) -->
+        <button class="navbar-toggler mobile-nav-toggle" type="button" aria-controls="mobileMenuPanel"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="primaryNavbar">
+          <!-- Nav links -->
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="../../../index.html">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./about.html">ABOUT</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./html/menu.html">MENU</a>
+            </li>
+            <li class="nav-item dropdown-holder">
+              <a class="nav-link" href="./html/pages.html">PAGES <i class="bi bi-chevron-down nav-arrow"></i></a>
+              <ul class="nav-dropdown">
+                <li><a class="nav-link active" href="./reservation.html">Reservation</a></li>
+                <li><a href="./html/gallery.html">Gallery</a></li>
+                <li><a href="./html/faq.html">FAQ</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./html/blog.html">BLOG </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../contact.html">CONTACT</a>
+            </li>
+          </ul>
+
+          <!-- Right Actions -->
+          <div class="navbar-actions d-flex align-items-center">
+            <div class="header-call d-none d-xl-flex align-items-center">
+              <div class="call-icon">
+                <i class="bi bi-telephone"></i>
+              </div>
+              <div class="call-info">
+                <span>Call Now</span>
+                <a href="tel:+9988776345">+998-8776345</a>
+              </div>
+            </div>
+            <a href="#" class="nav-btn">
+              <span>Login</span>
+            </a>
+            <a href="#" class="nav-btn">
+              <span>Signup</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- navbar end -->
+
+
+
+
+
+
+  <!-- ///////////////////////////////////HERO SECTION START//////////////////////////////// -->
+  <section class="hero-section">
+    <div>
+      <h1 class="hero-title" data-aos="fade-up" data-aos-duration="1000">Reservation</h1>
+      <div class="hero-breadcrumb" data-aos="fade-up" data-aos-duration="1000">
+        <a href="#">Home</a> &nbsp;/&nbsp; Reservation
+      </div>
+    </div>
+  </section>
+  <!-- ///////////////////////////////////HERO SECTION END//////////////////////////////////// -->
+
+
+
+
+
+  <!-- /////////////////////////////////////RESERVATION FORM START///////////////////////////////////////////// -->
+  <div class="container text-center pt-5 pb-2">
+    <h1 style="font-family: serif; font-size: 4em; color: var(--text-dark); font-weight: 500;" data-aos="fade-up"
+      data-aos-duration="1000">
+      Reserve Your Table for an Unforgettable<br>Dining Experience at TNC Restaurant
+    </h1>
+  </div>
+
+  <section class="reservation-section" data-aos="zoom-in-up">
+    <div class="container">
+
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="reservation-card">
+            <div class="section-header">
+              <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Reservation System</h2>
+              <p class="section-subtitle" data-aos="fade-up" data-aos-duration="1000">
+                Our commitment to excellence extends beyond the plate, creating an atmosphere that lingers in the
+                memory,
+                making your visit truly exceptional.
+              </p>
+            </div>
+            <form action="#" method="POST">
+
+              <div class="row g-4 mb-4">
+
+                <div class="col-md-4">
+                  <input type="text" class="form-control" placeholder="Full Name *" required>
+                </div>
+
+                <div class="col-md-4">
+                  <input type="email" class="form-control" placeholder="Email Address *" required>
+                </div>
+
+                <div class="col-md-4">
+                  <input type="tel" class="form-control" placeholder="Contact No *" required>
+                </div>
+
+              </div>
+
+              <div class="row g-4 mb-5">
+
+                <div class="col-md-4">
+                  <select class="form-select" required>
+                    <option selected>2 People</option>
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="3">3 People</option>
+                    <option value="4">4 People</option>
+                    <option value="5">5+ People</option>
+                  </select>
+                </div>
+
+                <div class="col-md-4">
+                  <select class="form-select" id="reservation-date" required>
+                  </select>
+                </div>
+
+                <div class="col-md-4">
+                  <select class="form-select" required>
+                    <option selected>10:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                  </select>
+                </div>
+
+              </div>
+
+              <a href="#" class="custom-btn">
+                <span class="btn-text">Book a table <span>&rarr;</span></span>
+              </a>
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- ////////////////////////////////////RESERVATION FORM END////////////////////////////////////// -->
+
+
+
+
+
+  <!-- ///////////////////////////////////////WHY CHOOSE US SECTION START/////////////////////////////// -->
+  <section class="why-choose-section">
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Why Choose TNC<br>Restaurant?</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-duration="1000">
+          We bring together exceptional flavors, locally sourced ingredients, and a warm, elegant atmosphere. Whether
+          you are celebrating a special occasion or enjoying a casual night out, our team is dedicated to providing an
+          unforgettable dining experience every time you visit.
+        </p>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-4">
+          <div class="feature-card" data-aos="zoom-in-up">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-utensils"></i>
+            </div>
+            <h3 class="feature-title" data-aos="fade-up" data-aos-duration="1000">Culinary Excellence</h3>
+            <p class="feature-desc" data-aos="fade-up" data-aos-duration="1000">
+              Every dish is crafted with precision, using the finest locally sourced ingredients to deliver rich,
+              unforgettable flavors in every single bite.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="feature-card" data-aos="zoom-in-up">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-book-open"></i>
+            </div>
+            <h3 class="feature-title" data-aos="fade-up" data-aos-duration="1000">Diverse and Innovative Menu</h3>
+            <p class="feature-desc" data-aos="fade-up" data-aos-duration="1000">
+              From classic traditional favorites to contemporary culinary creations, our menu is thoughtfully curated to
+              satisfy every palate.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="feature-card" data-aos="zoom-in-up">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-cloud-sun"></i>
+            </div>
+            <h3 class="feature-title" data-aos="fade-up" data-aos-duration="1000">Warm and Inviting Atmosphere</h3>
+            <p class="feature-desc" data-aos="fade-up" data-aos-duration="1000">
+              Experience exceptional hospitality in an intimate, beautifully designed setting made for quiet dinners,
+              family gatherings, and special celebrations.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature-card" data-aos="zoom-in-up">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-leaf"></i>
+            </div>
+            <h3 class="feature-title" data-aos="fade-up" data-aos-duration="1000">Commitment to Sustainability</h3>
+            <p class="feature-desc" data-aos="fade-up" data-aos-duration="1000">
+              We prioritize eco-conscious practices by partnering with local farms, minimizing waste, and choosing
+              organic ingredients whenever possible.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="feature-card" data-aos="zoom-in-up">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-concierge-bell"></i>
+            </div>
+            <h3 class="feature-title" data-aos="fade-up" data-aos-duration="1000">Seamless Reservations and Services
+            </h3>
+            <p class="feature-desc" data-aos="fade-up" data-aos-duration="1000">
+              From instant online table bookings to attentive table service, we ensure every moment of your dining
+              experience is completely effortless.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="feature-card" data-aos="zoom-in-up">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-utensils"></i>
+            </div>
+            <h3 class="feature-title" data-aos="fade-up" data-aos-duration="1000">Crafted Beverage Pairing</h3>
+            <p class="feature-desc" data-aos="fade-up" data-aos-duration="1000">
+              Complement your meal with our selection of artisanal cocktails and curated fine wines handpicked by our
+              expert team.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- //////////////////////////////////////WHY CHOOSE US SECTION END/////////////////////////////////// -->
+
+
+
+
+
+  <!-- /////////////////////////////TESTIMONIALS SECTION START///////////////////////////// -->
+  <section class="testimonials-section">
+    <div class="testimonials-header">
+      <span class="subtitle" data-aos="fade-up" data-aos-duration="1000">// OUR TESTIMONIALS //</span>
+      <h2 class="title" data-aos="fade-up" data-aos-duration="1000">DISCOVER THE ART OF TASTE</h2>
+    </div>
+
+    <div class="marquee-wrapper">
+      <div class="marquee-track">
+
+        <div class="testimonial-card">
+          <p class="quote-text">
+            "The food here is on another level! Every dish was fresh, hot, and bursting with flavor. Can’t wait to come
+            back."
+          </p>
+          <div class="stars">★★★★★</div>
+          <div class="profile-container">
+            <img src="../../../assets/images/testimonial img 1.jpg" alt="Kathryn Murphy" class="profile-avatar" />
+            <h3 class="author-name">Marcus Brody</h3>
+          </div>
+        </div>
+
+        <div class="testimonial-card video-card">
+          <div class="media-container">
+            <video src="../../../assets/images/testimonial vid 1.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="stars">★★★★★</div>
+          <h3 class="author-name">Maya Lin</h3>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="quote-text">
+            "Hands down the best dining experience I've had in a long time. Great atmosphere, incredible service, and
+            unforgettable food!"
+          </p>
+          <div class="stars">★★★★★</div>
+          <div class="profile-container">
+            <img src="../../../assets/images/testimonial img 2.jpg" alt="Ralph Edwards" class="profile-avatar" />
+            <h3 class="author-name">Jessica Vance</h3>
+          </div>
+        </div>
+
+        <div class="testimonial-card video-card">
+          <div class="media-container">
+            <video src="../../../assets/images/testimonial vid 2.webm" autoplay loop muted playsinline></video>
+          </div>
+          <div class="stars">★★★★★</div>
+          <h3 class="author-name">Alex Morgan</h3>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="quote-text">
+            "From the appetizers to the dessert, everything was absolute perfection. Highly recommend the chef’s
+            specials!"
+          </p>
+          <div class="stars">★★★★★</div>
+          <div class="profile-container">
+            <img src="../../../assets/images/testimonial img 3.jpg" alt="Marcus Brody" class="profile-avatar" />
+            <h3 class="author-name">Kathryn Murphy</h3>
+          </div>
+        </div>
+
+        <div class="testimonial-card video-card">
+          <div class="media-container">
+            <video src="../../../assets/images/testimonial vid 3.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="stars">★★★★★</div>
+          <h3 class="author-name">Olivia Chang</h3>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="quote-text">
+            "The cozy ambiance combined with top-tier gourmet dishes makes this place a hidden gem. Truly impressed!"
+          </p>
+          <div class="stars">★★★★★</div>
+          <div class="profile-container">
+            <img src="../../../assets/images/testimonial img 4.jpg" alt="Ralph Edwards" class="profile-avatar" />
+            <h3 class="author-name">Elena Rostova</h3>
+          </div>
+        </div>
+
+        <div class="testimonial-card video-card">
+          <div class="media-container">
+            <video src="../../../assets/images/testimonial vid 4.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="stars">★★★★★</div>
+          <h3 class="author-name">Esther Howard</h3>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="quote-text">
+            "Brought my family here for dinner and everyone loved their meal. The presentation was gorgeous and the
+            flavors were spot on."
+          </p>
+          <div class="stars">★★★★★</div>
+          <div class="profile-container">
+            <img src="../../../assets/images/testimonial img 5.jpg" alt="Marcus Brody" class="profile-avatar" />
+            <h3 class="author-name">Jack Brooks</h3>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- //////////////////////////////////////TESTIMONIALS SECTION END/////////////////////////////////// -->
+
+
+
+
+  <a href="gallery.html" class="insta-gallery-wrapper" aria-label="Go to Gallery Page">
+    <section class="insta-gallery-section">
+      <div class="insta-overlay-badge">
+        <div class="insta-icon-box">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </div>
+        <h2 class="insta-title">Instagram Gallery</h2>
+      </div>
+
+      <div class="insta-grid">
+        <div class="insta-grid-item">
+          <img src="../../../assets/images/page end gallery 1.webp" alt="Gallery preview image 1" />
+        </div>
+
+        <div class="insta-grid-item">
+          <img src="../../../assets/images/page end gallery 2.webp" alt="Gallery preview image 2" />
+        </div>
+
+        <div class="insta-grid-item">
+          <img src="../../../assets/images/page end gallery 3.webp" alt="Gallery preview image 3" />
+        </div>
+
+        <div class="insta-grid-item">
+          <img src="../../../assets/images/page end gallery 4.webp" alt="Gallery preview image 4" />
+        </div>
+
+        <div class="insta-grid-item">
+          <img src="../../../assets/images/page end gallery 5.webp" alt="Gallery preview image 5" />
+        </div>
+      </div>
+    </section>
+  </a>
+
+
+
+
+
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col about-col">
+        <a href="#" class="logo footer-logo">
+          <span class="logo-mark">
+            <svg width="26" height="26" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 3C13 8 10 14 10 20c0 6 4.5 11 10 14 5.5-3 10-8 10-14 0-6-3-12-10-17Z" stroke="#D4AF37"
+                stroke-width="1.6" />
+              <path d="M20 12c-2.5 2.7-4 5.3-4 8s1.8 5 4 6.4c2.2-1.4 4-3.7 4-6.4s-1.5-5.3-4-8Z" fill="#D4AF37" />
+            </svg>
+          </span>
+          Zest &<span class="logo-accent">Co.</span>
+        </a>
+        <p>A fire-grill and noodle house built around three obsessions: char, rice, and broth. Come hungry.</p>
+        <div class="footer-social">
+          <a href="#">IG</a><a href="#">FB</a><a href="#">TT</a><a href="#">YT</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About Us</a>
+        <a href="#chefs">Our Chefs</a>
+        <a href="#reserve">Reservations</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <p>24 Ember Lane, Karachi</p>
+        <p>Tue – Sun · 12:00 – 23:00</p>
+        <p>+92 100 000 00</p>
+        <p>hello@restho.example</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Stay In The Loop</h4>
+        <p>New menus, chef pop-ups, one email a month.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Email address" required>
+          <button type="submit" aria-label="Subscribe">→</button>
+        </form>
+        <p class="newsletter-confirm" id="newsletterConfirm"></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© <span id="year"></span> Zest & Co. All rights reserved.</p>
+        <p>Crafted with fire, rice &amp; a little bit of gold leaf.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- AOS cdn -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <!-- bootstrap js -->
+  <script src="../../../js/bootstrap.bundle.min.js"></script>
+  <!-- custom js -->
+  <script src="../../../js/reservation.js"></script>
+</body>
+
+</html>
