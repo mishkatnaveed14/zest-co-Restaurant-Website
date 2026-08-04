@@ -1,56 +1,56 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
   <defs>
     <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E4C97A"/>
-      <stop offset="45%" stop-color="#D4AF37"/>
-      <stop offset="100%" stop-color="#A8842A"/>
+      <stop offset="0%" stop-color="#E8D9A8"/>
+      <stop offset="45%" stop-color="#C9A227"/>
+      <stop offset="100%" stop-color="#8C6D1F"/>
     </linearGradient>
-    <linearGradient id="goldBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2a2b31"/>
-      <stop offset="100%" stop-color="#141519"/>
+    <linearGradient id="emblem" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1F2126"/>
+      <stop offset="100%" stop-color="#0C0D10"/>
     </linearGradient>
-    <radialGradient id="ringGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="rgba(212,175,55,0.28)"/>
-      <stop offset="100%" stop-color="rgba(212,175,55,0)"/>
+    <radialGradient id="glow" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="rgba(201,162,39,0.22)"/>
+      <stop offset="100%" stop-color="rgba(201,162,39,0)"/>
     </radialGradient>
   </defs>
 
-  <!-- Outer glow ring -->
-  <circle cx="110" cy="110" r="103" fill="url(#ringGlow)"/>
+  <!-- Subtle glow -->
+  <circle cx="110" cy="110" r="104" fill="url(#glow)"/>
 
   <!-- Outer ring -->
-  <circle cx="110" cy="110" r="96" fill="none" stroke="url(#gold)" stroke-width="3.5"/>
+  <circle cx="110" cy="110" r="96" fill="none" stroke="url(#gold)" stroke-width="2.5" opacity="0.9"/>
 
-  <!-- Inner subtle ring -->
-  <circle cx="110" cy="110" r="86" fill="none" stroke="rgba(212,175,55,0.35)" stroke-width="1"/>
+  <!-- Emblem disc -->
+  <circle cx="110" cy="110" r="84" fill="url(#emblem)"/>
 
-  <!-- Dark emblem disc -->
-  <circle cx="110" cy="110" r="82" fill="url(#goldBg)" stroke="rgba(212,175,55,0.5)" stroke-width="2"/>
+  <!-- Fine inner ring -->
+  <circle cx="110" cy="110" r="78" fill="none" stroke="rgba(201,162,39,0.35)" stroke-width="1"/>
 
-  <!-- Decorative dotted ring -->
-  <circle cx="110" cy="110" r="70" fill="none" stroke="rgba(212,175,55,0.4)" stroke-width="1" stroke-dasharray="2 6"/>
-
-  <!-- Flame / leaf motif -->
-  <g fill="url(#gold)">
-    <!-- Central flame -->
-    <path d="M110 60c-6 14-18 24-18 38a18 18 0 0 0 36 0c0-14-12-24-18-38z"/>
-    <path d="M110 74c-3 7-9 12-9 20a9 9 0 0 0 18 0c0-8-6-13-9-20z" fill="#F5E7BE"/>
-    <!-- Side leaf flames -->
-    <path d="M88 74c-4 8-12 14-12 24a12 12 0 0 0 24 0c0-10-8-16-12-24z" opacity="0.85"/>
-    <path d="M132 74c4 8 12 14 12 24a12 12 0 0 1-24 0c0-10 8-16 12-24z" opacity="0.85"/>
+  <!-- Stylized Flame / Zest mark -->
+  <g transform="translate(110 96)">
+    <!-- Outer flame silhouette -->
+    <path d="M0 -38 C-6 -22 -20 -12 -20 4 C-20 18 -8 28 0 28 C8 28 20 18 20 4 C20 -12 6 -22 0 -38 Z"
+          fill="url(#gold)"/>
+    <!-- Inner flame -->
+    <path d="M0 -20 C-3 -10 -12 -4 -12 4 C-12 12 -6 18 0 18 C6 18 12 12 12 4 C12 -4 3 -10 0 -20 Z"
+          fill="#0C0D10" opacity="0.85"/>
+    <path d="M0 -14 C-2 -7 -8 -2 -8 3 C-8 8 -4 12 0 12 C4 12 8 8 8 3 C8 -2 2 -7 0 -14 Z"
+          fill="url(#gold)"/>
   </g>
 
-  <!-- Steam / zest sparkles -->
-  <g fill="url(#gold)" opacity="0.9">
-    <circle cx="92" cy="56" r="2.5"/>
-    <circle cx="128" cy="56" r="2.5"/>
-    <circle cx="110" cy="48" r="1.8"/>
+  <!-- Rising steam / spark lines -->
+  <g stroke="url(#gold)" stroke-width="2" stroke-linecap="round" opacity="0.8">
+    <path d="M74 98 C70 90 70 82 74 74"/>
+    <path d="M146 98 C150 90 150 82 146 74"/>
   </g>
 
-  <!-- Base arc -->
-  <path d="M80 134c10 8 20 12 30 12s20-4 30-12" fill="none" stroke="url(#gold)" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Base platter arc -->
+  <path d="M82 128 C96 138 124 138 138 128" fill="none" stroke="url(#gold)" stroke-width="2.5" stroke-linecap="round"/>
 
-  <!-- Wordmark -->
-  <text x="110" y="156" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="700" fill="url(#gold)" letter-spacing="1">ZEST</text>
-<text x="110" y="178" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="15" fill="rgba(245,245,247,0.75)" letter-spacing="4">&amp; CO.</text>
+  <!-- Wordmark: ZEST -->
+  <text x="110" y="158" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="32" font-weight="700" fill="url(#gold)" letter-spacing="2">ZEST</text>
+
+  <!-- Wordmark: & CO -->
+  <text x="110" y="180" text-anchor="middle" font-family="'Jost', Arial, sans-serif" font-size="14" fill="rgba(245,245,247,0.7)" letter-spacing="5">&amp; CO.</text>
 </svg>
