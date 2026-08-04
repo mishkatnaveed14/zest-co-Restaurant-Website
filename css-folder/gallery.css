@@ -51,6 +51,7 @@ body.zest-gallery-body,
 
 .gold-gradient-text {
   background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa820a 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -445,7 +446,7 @@ body.zest-gallery-body,
   opacity: 0;
   padding: 24px;
   display: flex;
-  flex-column: column;
+  flex-direction: column;
   justify-content: flex-end;
   transition: opacity 0.4s ease;
 }
