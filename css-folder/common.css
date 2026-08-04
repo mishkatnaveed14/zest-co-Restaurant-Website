@@ -346,11 +346,22 @@ body {
     max-height: calc(100vh - 48px);
     overflow: hidden;
     background: linear-gradient(145deg, #17181c, #1e2026);
-    border: 1px solid rgba(197, 168, 128, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(212, 175, 55, 0.08), 0 0 60px rgba(212, 175, 55, 0.06);
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.03);
     transform: translateY(24px) scale(0.97);
     transition: transform 0.45s var(--transition-bounce), opacity 0.4s ease;
+}
+
+.auth-modal-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+    z-index: 2;
 }
 
 .auth-modal.open .auth-modal-box {
@@ -391,9 +402,8 @@ body {
 /* ---- Left: Brand Panel ---- */
 .auth-brand-panel {
     background:
-        radial-gradient(ellipse at 20% 20%, rgba(212, 175, 55, 0.18), transparent 55%),
-        radial-gradient(ellipse at 85% 85%, rgba(212, 175, 55, 0.12), transparent 50%),
-        linear-gradient(160deg, #141519, #0d0e12);
+        radial-gradient(ellipse at 22% 20%, rgba(212, 175, 55, 0.1), transparent 55%),
+        linear-gradient(160deg, #16171b, #0d0e12);
     padding: 44px 36px;
     display: flex;
     align-items: center;
@@ -406,7 +416,7 @@ body {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
     background-size: 22px 22px;
     pointer-events: none;
 }
@@ -424,9 +434,9 @@ body {
     width: 62px;
     height: 62px;
     border-radius: 16px;
-    background: rgba(212, 175, 55, 0.1);
-    border: 1px solid rgba(212, 175, 55, 0.35);
-    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     margin-bottom: 18px;
 }
 
@@ -451,8 +461,8 @@ body {
 }
 
 .auth-brand-quote {
-    background: rgba(212, 175, 55, 0.08);
-    border-left: 3px solid var(--accent-gold-bright);
+    background: rgba(255, 255, 255, 0.04);
+    border-left: 3px solid rgba(212, 175, 55, 0.6);
     padding: 14px 16px;
     border-radius: 0 12px 12px 0;
     color: rgba(245, 245, 247, 0.85);
@@ -513,7 +523,7 @@ body {
     display: flex;
     gap: 6px;
     background: rgba(10, 11, 13, 0.7);
-    border: 1px solid rgba(197, 168, 128, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 999px;
     padding: 4px;
     margin-bottom: 20px;
@@ -535,9 +545,9 @@ body {
 }
 
 .auth-tab.active {
-    background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-bright));
+    background: #fff;
     color: #111;
-    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
 .auth-form {
@@ -597,15 +607,20 @@ body {
 .auth-input-wrap>i {
     position: absolute;
     left: 14px;
-    color: rgba(212, 175, 55, 0.7);
+    color: rgba(245, 245, 247, 0.4);
     font-size: 15px;
     pointer-events: none;
+    transition: color 0.3s ease;
+}
+
+.auth-input-wrap input:focus~i {
+    color: var(--accent-gold-bright);
 }
 
 .auth-input-wrap input {
     width: 100%;
     background: rgba(10, 11, 13, 0.65);
-    border: 1px solid rgba(197, 168, 128, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 13px 42px;
     color: #fff;
@@ -619,8 +634,8 @@ body {
 }
 
 .auth-input-wrap input:focus {
-    border-color: var(--accent-gold-bright);
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.08);
     background: rgba(12, 13, 15, 0.85);
 }
 
