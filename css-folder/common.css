@@ -343,8 +343,9 @@ body {
     position: relative;
     width: 100%;
     max-width: 920px;
-    max-height: calc(100vh - 48px);
+    max-height: calc(100vh - 32px);
     overflow: hidden;
+    overflow-y: auto;
     background: linear-gradient(145deg, #17181c, #1e2026);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
