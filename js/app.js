@@ -681,14 +681,19 @@ if (window.gsap && window.ScrollTrigger) {
   });
 
   // Highlight pills entrance (single source of truth — do not duplicate elsewhere)
-  gsap.from(".highlight-pill", {
-    y: 30,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.15,
-    ease: "back.out(1.4)",
-    delay: 0.8,
-  });
+  gsap.fromTo(
+    ".highlight-pill",
+    { y: 30, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.5,
+      stagger: 0.15,
+      ease: "back.out(1.4)",
+      delay: 0.8,
+      clearProps: "opacity,transform",
+    },
+  );
 
   // Scroll-triggered animations
   function animateFrom(selector, vars, trigger) {
@@ -718,7 +723,8 @@ if (window.gsap && window.ScrollTrigger) {
     { y: 40, stagger: 0.1, ease: "back.out(1.4)" },
     ".quick-action-section",
   );
-  animateFrom(".stat-item", { y: 40, stagger: 0.1 }, ".stats-counter-section");
+  // NOTE: .stat-item is animated separately via IntersectionObserver in the
+  // "STATS COUNTER" block below (more reliable). Do not animate it here.
   animateFrom(".testimonial-card", { y: 50 }, ".testimonials-section");
   animateFrom(".footer-grid > div", { y: 40, stagger: 0.1 }, ".footer");
 
@@ -838,6 +844,86 @@ const dishesData = [
     desc: "Buttery pastry shell filled with tropical fruit curd and toasted meringue.",
     image: "./assets/images/menu/mango-passionfruit-tart.jpg",
   },
+  {
+    id: 9,
+    name: "Grilled Salmon Steak",
+    category: "bestsellers",
+    badge: "Chef's Pick ⭐",
+    price: "$21.00",
+    rating: "4.9 ★",
+    desc: "Pan-seared Atlantic salmon with a golden butter glaze and charred lemon.",
+    image: "./assets/images/spotlight/grilled-salmon-steak.jpg",
+  },
+  {
+    id: 10,
+    name: "Golden Fried Chicken",
+    category: "bestsellers",
+    badge: "Crispy 🍗",
+    price: "$13.00",
+    rating: "4.8 ★",
+    desc: "Double-dredged, crackling-crisp fried chicken rested on a bed of herb salt.",
+    image: "./assets/images/spotlight/golden-fried-chicken.jpg",
+  },
+  {
+    id: 11,
+    name: "Artisan Pepperoni Pizza",
+    category: "combos",
+    badge: "Wood-Fired 🔥",
+    price: "$16.00",
+    rating: "4.8 ★",
+    desc: "Wood-fired crust, San Marzano tomato, fresh mozzarella and spicy pepperoni.",
+    image: "./assets/images/spotlight/artisan-pepperoni-pizza.jpg",
+  },
+  {
+    id: 12,
+    name: "Smoky BBQ Ribs",
+    category: "combos",
+    badge: "Family Combo 🍖",
+    price: "$22.00",
+    rating: "4.9 ★",
+    desc: "Slow-cooked pork ribs smothered in house smoky barbecue glaze.",
+    image: "./assets/images/spotlight/smoky-bbq-ribs.jpg",
+  },
+  {
+    id: 13,
+    name: "Chef's Fried Rice",
+    category: "specials",
+    badge: "Wok-Tossed 🍳",
+    price: "$12.00",
+    rating: "4.7 ★",
+    desc: "Jasmine rice tossed in a hot wok with prawns, charred scallion and egg.",
+    image: "./assets/images/spotlight/chefs-fried-rice.jpg",
+  },
+  {
+    id: 14,
+    name: "Ramen Bowl",
+    category: "specials",
+    badge: "Signature 🍜",
+    price: "$19.00",
+    rating: "4.9 ★",
+    desc: "Hand-pulled noodles in an 18-hour broth with chashu pork and marinated egg.",
+    image: "./assets/images/spotlight/ramen-bowl.jpg",
+  },
+  {
+    id: 15,
+    name: "Strawberry Waffles",
+    category: "desserts",
+    badge: "Sweet Treat 🍓",
+    price: "$7.00",
+    rating: "4.7 ★",
+    desc: "Golden waffles crowned with fresh strawberries, cream and warm syrup.",
+    image: "./assets/images/food/strawberry-waffles.jpg",
+  },
+  {
+    id: 16,
+    name: "Chocolate Lava Cake",
+    category: "desserts",
+    badge: "Molten 🍫",
+    price: "$6.50",
+    rating: "4.8 ★",
+    desc: "Warm chocolate cake with a gooey molten centre and a scoop of vanilla.",
+    image: "./assets/images/food/chocolate-lava.jpg",
+  },
 ];
 
 const menuGrid = document.getElementById("menuGrid");
@@ -848,7 +934,7 @@ function renderMenuCards(items) {
   menuGrid.innerHTML = "";
   const fragment = document.createDocumentFragment();
 
-  items.forEach((item) => {
+  items.forEach((item, i) => {
     const card = document.createElement("div");
     card.className = "food-card";
     card.style.opacity = "0";
@@ -857,15 +943,23 @@ function renderMenuCards(items) {
       <span class="badge-corner">${item.badge}</span>
       <div class="card-img-wrapper">
         <img src="${item.image}" alt="${item.name}" class="card-img" />
+        <div class="card-img-overlay">
+          <span class="quick-view" onclick="addToCart(${item.id})"><i class="bi bi-bag-plus"></i> Quick Add</span>
+        </div>
       </div>
-      <div class="card-title-row">
-        <h3 class="card-title">${item.name}</h3>
-        <span class="rating">${item.rating}</span>
-      </div>
-      <p class="small-desc">${item.desc}</p>
-      <div class="card-footer">
-        <span class="price">${item.price}</span>
-        <button class="add-btn" onclick="addToCart(${item.id})">+ Add to Cart</button>
+      <div class="card-body-content">
+        <div class="card-title-row">
+          <h3 class="card-title">${item.name}</h3>
+          <span class="rating">${item.rating}</span>
+        </div>
+        <p class="small-desc">${item.desc}</p>
+        <div class="card-divider"></div>
+        <div class="card-footer">
+          <span class="price">${item.price}</span>
+          <button class="add-btn" onclick="addToCart(${item.id})">
+            <i class="bi bi-plus-lg"></i> Add to Cart
+          </button>
+        </div>
       </div>
     `;
     fragment.appendChild(card);
@@ -936,46 +1030,72 @@ if (cursorGlow) {
 }
 
 // ===== STATS COUNTER =====
+// Uses the native IntersectionObserver (highly reliable) instead of
+// ScrollTrigger so the counters + entrance animations always trigger as
+// the section scrolls into view.
 document.addEventListener("DOMContentLoaded", () => {
+  const statsSection = document.querySelector(".stats-counter-section");
+  if (!statsSection) return;
+
   function animateCounters() {
     const counters = document.querySelectorAll(".stat-count");
-    if (!counters.length) return;
-
     counters.forEach((counter) => {
+      if (counter.dataset.animated === "true") return;
+      counter.dataset.animated = "true";
+
       const target = parseInt(counter.getAttribute("data-target"), 10);
       if (isNaN(target)) return;
 
-      const duration = 2500;
-      const step = Math.ceil(target / (duration / 16));
-      let current = 0;
+      const duration = 2200;
+      const start = performance.now();
 
-      const update = () => {
-        current += step;
-        if (current >= target) {
-          counter.textContent = target;
-          return;
-        }
-        counter.textContent = current;
-        requestAnimationFrame(update);
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        // easeOutExpo for a satisfying, snappy count-up
+        const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        counter.textContent = Math.round(target * eased);
+        if (progress < 1) requestAnimationFrame(tick);
       };
-      update();
+      requestAnimationFrame(tick);
     });
   }
 
-  const statsSection = document.querySelector(".stats-counter-section");
-
-  if (statsSection) {
-    if (window.gsap && window.ScrollTrigger) {
-      ScrollTrigger.create({
-        trigger: statsSection,
-        start: "top 85%",
-        onEnter: () => animateCounters(),
-        once: true,
-      });
-    } else {
-      animateCounters();
-    }
+  // Attractive staggered entrance for each stat item
+  const statItems = Array.from(statsSection.querySelectorAll(".stat-item"));
+  if (statItems.length) {
+    // Set the initial hidden state (only if GSAP is available we let GSAP
+    // animate; otherwise use CSS transitions via inline styles).
+    statItems.forEach((item) => {
+      item.style.opacity = "0";
+      item.style.transform = "translateY(50px) scale(0.9) rotateX(12deg)";
+      item.style.transition =
+        "opacity 0.7s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)";
+    });
   }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Count up the numbers
+          animateCounters();
+
+          // Reveal each stat item with a staggered flip-up animation
+          statItems.forEach((item, i) => {
+            setTimeout(() => {
+              item.style.opacity = "1";
+              item.style.transform = "translateY(0) scale(1) rotateX(0)";
+            }, i * 140);
+          });
+
+          obs.disconnect();
+        }
+      });
+    },
+    { threshold: 0.25, rootMargin: "0px 0px -10% 0px" },
+  );
+
+  observer.observe(statsSection);
 });
 
 // ===== FORMS & UTILITIES =====
