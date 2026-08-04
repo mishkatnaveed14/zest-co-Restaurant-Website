@@ -681,14 +681,19 @@ if (window.gsap && window.ScrollTrigger) {
   });
 
   // Highlight pills entrance (single source of truth — do not duplicate elsewhere)
-  gsap.from(".highlight-pill", {
-    y: 30,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.15,
-    ease: "back.out(1.4)",
-    delay: 0.8,
-  });
+  gsap.fromTo(
+    ".highlight-pill",
+    { y: 30, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.5,
+      stagger: 0.15,
+      ease: "back.out(1.4)",
+      delay: 0.8,
+      clearProps: "opacity,transform",
+    },
+  );
 
   // Scroll-triggered animations
   function animateFrom(selector, vars, trigger) {
@@ -718,7 +723,8 @@ if (window.gsap && window.ScrollTrigger) {
     { y: 40, stagger: 0.1, ease: "back.out(1.4)" },
     ".quick-action-section",
   );
-  animateFrom(".stat-item", { y: 40, stagger: 0.1 }, ".stats-counter-section");
+  // NOTE: .stat-item is animated separately via IntersectionObserver in the
+  // "STATS COUNTER" block below (more reliable). Do not animate it here.
   animateFrom(".testimonial-card", { y: 50 }, ".testimonials-section");
   animateFrom(".footer-grid > div", { y: 40, stagger: 0.1 }, ".footer");
 
@@ -936,46 +942,72 @@ if (cursorGlow) {
 }
 
 // ===== STATS COUNTER =====
+// Uses the native IntersectionObserver (highly reliable) instead of
+// ScrollTrigger so the counters + entrance animations always trigger as
+// the section scrolls into view.
 document.addEventListener("DOMContentLoaded", () => {
+  const statsSection = document.querySelector(".stats-counter-section");
+  if (!statsSection) return;
+
   function animateCounters() {
     const counters = document.querySelectorAll(".stat-count");
-    if (!counters.length) return;
-
     counters.forEach((counter) => {
+      if (counter.dataset.animated === "true") return;
+      counter.dataset.animated = "true";
+
       const target = parseInt(counter.getAttribute("data-target"), 10);
       if (isNaN(target)) return;
 
-      const duration = 2500;
-      const step = Math.ceil(target / (duration / 16));
-      let current = 0;
+      const duration = 2200;
+      const start = performance.now();
 
-      const update = () => {
-        current += step;
-        if (current >= target) {
-          counter.textContent = target;
-          return;
-        }
-        counter.textContent = current;
-        requestAnimationFrame(update);
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        // easeOutExpo for a satisfying, snappy count-up
+        const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        counter.textContent = Math.round(target * eased);
+        if (progress < 1) requestAnimationFrame(tick);
       };
-      update();
+      requestAnimationFrame(tick);
     });
   }
 
-  const statsSection = document.querySelector(".stats-counter-section");
-
-  if (statsSection) {
-    if (window.gsap && window.ScrollTrigger) {
-      ScrollTrigger.create({
-        trigger: statsSection,
-        start: "top 85%",
-        onEnter: () => animateCounters(),
-        once: true,
-      });
-    } else {
-      animateCounters();
-    }
+  // Attractive staggered entrance for each stat item
+  const statItems = Array.from(statsSection.querySelectorAll(".stat-item"));
+  if (statItems.length) {
+    // Set the initial hidden state (only if GSAP is available we let GSAP
+    // animate; otherwise use CSS transitions via inline styles).
+    statItems.forEach((item) => {
+      item.style.opacity = "0";
+      item.style.transform = "translateY(50px) scale(0.9) rotateX(12deg)";
+      item.style.transition =
+        "opacity 0.7s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)";
+    });
   }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Count up the numbers
+          animateCounters();
+
+          // Reveal each stat item with a staggered flip-up animation
+          statItems.forEach((item, i) => {
+            setTimeout(() => {
+              item.style.opacity = "1";
+              item.style.transform = "translateY(0) scale(1) rotateX(0)";
+            }, i * 140);
+          });
+
+          obs.disconnect();
+        }
+      });
+    },
+    { threshold: 0.25, rootMargin: "0px 0px -10% 0px" },
+  );
+
+  observer.observe(statsSection);
 });
 
 // ===== FORMS & UTILITIES =====
