@@ -176,6 +176,15 @@
   position: static;
 }
 
+/* Force mobile nav links visible — overrides the GSAP `.nav-link` opacity
+   entrance animation that runs on page load while the menu is hidden. */
+.mobile-nav-links .nav-link,
+.mobile-nav-links .dropdown-toggle,
+.mobile-nav-links .dropdown-item {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 .mobile-nav-links .dropdown-toggle {
   display: flex !important;
   align-items: center;
