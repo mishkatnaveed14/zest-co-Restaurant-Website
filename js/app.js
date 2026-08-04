@@ -11,24 +11,114 @@ if (carouselEl) {
 
 // ===== FOOD ITEMS DATA =====
 const foodItems = [
-  { id: 1, title: "Momo Package", price: "$8.00", image: "./assets/images/food/momo-package.jpg" },
-  { id: 2, title: "Chicken Fried", price: "$12.00", image: "./assets/images/food/chicken-fried.jpg" },
-  { id: 3, title: "Vegetable Salad", price: "$6.00", image: "./assets/images/food/vegetable-salad.jpg" },
-  { id: 5, title: "Chicken Kebab", price: "$10.00", image: "./assets/images/food/chicken-kebab.jpg" },
-  { id: 6, title: "Beef Burger", price: "$9.00", image: "./assets/images/food/beef-burger.jpg" },
-  { id: 7, title: "Special Biryani", price: "$11.00", image: "./assets/images/food/special-biryani.jpg" },
-  { id: 8, title: "Pepperoni Pizza", price: "$14.00", image: "./assets/images/food/pepperoni-pizza.jpg" },
-  { id: 9, title: "Ramen Noodles", price: "$13.00", image: "./assets/images/food/ramen-noodles.jpg" },
-  { id: 11, title: "Grilled Salmon", price: "$22.00", image: "./assets/images/food/grilled-salmon.jpg" },
-  { id: 12, title: "Crispy Tacos", price: "$7.50", image: "./assets/images/food/crispy-tacos.jpg" },
-  { id: 13, title: "Butter Chicken", price: "$15.00", image: "./assets/images/food/butter-chicken.jpg" },
-  { id: 14, title: "Fettuccine Alfredo", price: "$14.50", image: "./assets/images/food/fettuccine-alfredo.jpg" },
-  { id: 15, title: "Club Sandwich", price: "$8.50", image: "./assets/images/food/club-sandwich.jpg" },
-  { id: 16, title: "Chocolate Lava", price: "$6.50", image: "./assets/images/food/chocolate-lava.jpg" },
-  { id: 17, title: "Strawberry Waffles", price: "$7.00", image: "./assets/images/food/strawberry-waffles.jpg" },
-  { id: 18, title: "Mint Margarita", price: "$4.00", image: "./assets/images/food/mint-margarita.jpg" },
-  { id: 19, title: "Gulab Jamun Plate", price: "$5.00", image: "./assets/images/food/gulab-jamun-plate.jpg" },
-  { id: 20, title: "Premium Cappuccino", price: "$4.50", image: "./assets/images/food/premium-cappuccino.jpg" },
+  {
+    id: 1,
+    title: "Momo Package",
+    price: "$8.00",
+    image: "./assets/images/food/momo-package.jpg",
+  },
+  {
+    id: 2,
+    title: "Chicken Fried",
+    price: "$12.00",
+    image: "./assets/images/food/chicken-fried.jpg",
+  },
+  {
+    id: 3,
+    title: "Vegetable Salad",
+    price: "$6.00",
+    image: "./assets/images/food/vegetable-salad.jpg",
+  },
+  {
+    id: 5,
+    title: "Chicken Kebab",
+    price: "$10.00",
+    image: "./assets/images/food/chicken-kebab.jpg",
+  },
+  {
+    id: 6,
+    title: "Beef Burger",
+    price: "$9.00",
+    image: "./assets/images/food/beef-burger.jpg",
+  },
+  {
+    id: 7,
+    title: "Special Biryani",
+    price: "$11.00",
+    image: "./assets/images/food/special-biryani.jpg",
+  },
+  {
+    id: 8,
+    title: "Pepperoni Pizza",
+    price: "$14.00",
+    image: "./assets/images/food/pepperoni-pizza.jpg",
+  },
+  {
+    id: 9,
+    title: "Ramen Noodles",
+    price: "$13.00",
+    image: "./assets/images/food/ramen-noodles.jpg",
+  },
+  {
+    id: 11,
+    title: "Grilled Salmon",
+    price: "$22.00",
+    image: "./assets/images/food/grilled-salmon.jpg",
+  },
+  {
+    id: 12,
+    title: "Crispy Tacos",
+    price: "$7.50",
+    image: "./assets/images/food/crispy-tacos.jpg",
+  },
+  {
+    id: 13,
+    title: "Butter Chicken",
+    price: "$15.00",
+    image: "./assets/images/food/butter-chicken.jpg",
+  },
+  {
+    id: 14,
+    title: "Fettuccine Alfredo",
+    price: "$14.50",
+    image: "./assets/images/food/fettuccine-alfredo.jpg",
+  },
+  {
+    id: 15,
+    title: "Club Sandwich",
+    price: "$8.50",
+    image: "./assets/images/food/club-sandwich.jpg",
+  },
+  {
+    id: 16,
+    title: "Chocolate Lava",
+    price: "$6.50",
+    image: "./assets/images/food/chocolate-lava.jpg",
+  },
+  {
+    id: 17,
+    title: "Strawberry Waffles",
+    price: "$7.00",
+    image: "./assets/images/food/strawberry-waffles.jpg",
+  },
+  {
+    id: 18,
+    title: "Mint Margarita",
+    price: "$4.00",
+    image: "./assets/images/food/mint-margarita.jpg",
+  },
+  {
+    id: 19,
+    title: "Gulab Jamun Plate",
+    price: "$5.00",
+    image: "./assets/images/food/gulab-jamun-plate.jpg",
+  },
+  {
+    id: 20,
+    title: "Premium Cappuccino",
+    price: "$4.50",
+    image: "./assets/images/food/premium-cappuccino.jpg",
+  },
 ];
 
 // ===== NEW ITEMS SWIPER =====
@@ -70,7 +160,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentItemIndex = null;
 
     function updateActiveFood(index) {
-      if (currentItemIndex === index || !activeImg || !activeTitle || !activePrice) return;
+      if (
+        currentItemIndex === index ||
+        !activeImg ||
+        !activeTitle ||
+        !activePrice
+      )
+        return;
       currentItemIndex = index;
       const food = foodItems[index];
       if (!food) return;
@@ -108,7 +204,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
         dynamicCard.style.transform = `rotateX(${y * -8}deg) rotateY(${x * 8}deg)`;
-        if (activeImg) activeImg.style.transform = `translate(${x * 12}px, ${y * 12}px)`;
+        if (activeImg)
+          activeImg.style.transform = `translate(${x * 12}px, ${y * 12}px)`;
       });
       dynamicCard.addEventListener("mouseleave", () => {
         dynamicCard.style.transform = "rotateX(0) rotateY(0)";
@@ -129,24 +226,114 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ===== SPOTLIGHT ITEMS DATA =====
 const SPOTLIGHT_ITEMS = [
-  { name: "Golden Fried Chicken", desc: "Double-brined overnight, dredged twice, fried to a shattering crust and rested on herb salt.", price: "$14", img: "./assets/images/spotlight/golden-fried-chicken.jpg" },
-  { name: "Steamed Dumplings", desc: "Hand-folded parcels, minced beef and ginger, steamed to order and served with black vinegar.", price: "$9", img: "./assets/images/spotlight/steamed-dumplings.jpg" },
-  { name: "Chef's Fried Rice", desc: "Wok-tossed jasmine rice, charred scallion, fresh prawns, and a soft crown of egg.", price: "$12", img: "./assets/images/spotlight/chefs-fried-rice.jpg" },
-  { name: "Ramen Bowl", desc: "Hand-pulled noodles in an 18-hour broth, chashu pork, bamboo shoots, and marinated egg.", price: "$19", img: "./assets/images/spotlight/ramen-bowl.jpg" },
-  { name: "Grilled Wings", desc: "Charcoal-kissed wings glazed twice in honey-garlic glaze, finished with a squeeze of fresh lime.", price: "$11", img: "./assets/images/spotlight/grilled-wings.jpg" },
-  { name: "Smoky BBQ Ribs", desc: "Slow-cooked pork ribs smothered in house smoky barbecue glaze, fall-off-the-bone tender.", price: "$22", img: "./assets/images/spotlight/smoky-bbq-ribs.jpg" },
-  { name: "Artisan Pepperoni Pizza", desc: "Wood-fired crust topped with San Marzano tomato sauce, fresh mozzarella, and spicy pepperoni.", price: "$16", img: "./assets/images/spotlight/artisan-pepperoni-pizza.jpg" },
-  { name: "Crispy Beef Tacos", desc: "Trio of crunchy corn tortillas stuffed with seasoned shredded beef, guacamole, and lime crema.", price: "$13", img: "./assets/images/spotlight/crispy-beef-tacos.jpg" },
-  { name: "Truffle Mushroom Pasta", desc: "Al dente fettuccine coated in creamy black truffle sauce with sautéed wild mushrooms and parmesan.", price: "$18", img: "./assets/images/spotlight/truffle-mushroom-pasta.jpg" },
-  { name: "Grilled Salmon Steak", desc: "Pan-seared Atlantic salmon with dill butter glaze, roasted asparagus, and mashed potatoes.", price: "$24", img: "./assets/images/spotlight/grilled-salmon-steak.jpg" },
+  {
+    name: "Golden Fried Chicken",
+    desc: "Double-brined overnight, dredged twice, fried to a shattering crust and rested on herb salt.",
+    price: "$14",
+    img: "./assets/images/spotlight/golden-fried-chicken.jpg",
+  },
+  {
+    name: "Steamed Dumplings",
+    desc: "Hand-folded parcels, minced beef and ginger, steamed to order and served with black vinegar.",
+    price: "$9",
+    img: "./assets/images/spotlight/steamed-dumplings.jpg",
+  },
+  {
+    name: "Chef's Fried Rice",
+    desc: "Wok-tossed jasmine rice, charred scallion, fresh prawns, and a soft crown of egg.",
+    price: "$12",
+    img: "./assets/images/spotlight/chefs-fried-rice.jpg",
+  },
+  {
+    name: "Ramen Bowl",
+    desc: "Hand-pulled noodles in an 18-hour broth, chashu pork, bamboo shoots, and marinated egg.",
+    price: "$19",
+    img: "./assets/images/spotlight/ramen-bowl.jpg",
+  },
+  {
+    name: "Grilled Wings",
+    desc: "Charcoal-kissed wings glazed twice in honey-garlic glaze, finished with a squeeze of fresh lime.",
+    price: "$11",
+    img: "./assets/images/spotlight/grilled-wings.jpg",
+  },
+  {
+    name: "Smoky BBQ Ribs",
+    desc: "Slow-cooked pork ribs smothered in house smoky barbecue glaze, fall-off-the-bone tender.",
+    price: "$22",
+    img: "./assets/images/spotlight/smoky-bbq-ribs.jpg",
+  },
+  {
+    name: "Artisan Pepperoni Pizza",
+    desc: "Wood-fired crust topped with San Marzano tomato sauce, fresh mozzarella, and spicy pepperoni.",
+    price: "$16",
+    img: "./assets/images/spotlight/artisan-pepperoni-pizza.jpg",
+  },
+  {
+    name: "Crispy Beef Tacos",
+    desc: "Trio of crunchy corn tortillas stuffed with seasoned shredded beef, guacamole, and lime crema.",
+    price: "$13",
+    img: "./assets/images/spotlight/crispy-beef-tacos.jpg",
+  },
+  {
+    name: "Truffle Mushroom Pasta",
+    desc: "Al dente fettuccine coated in creamy black truffle sauce with sautéed wild mushrooms and parmesan.",
+    price: "$18",
+    img: "./assets/images/spotlight/truffle-mushroom-pasta.jpg",
+  },
+  {
+    name: "Grilled Salmon Steak",
+    desc: "Pan-seared Atlantic salmon with dill butter glaze, roasted asparagus, and mashed potatoes.",
+    price: "$24",
+    img: "./assets/images/spotlight/grilled-salmon-steak.jpg",
+  },
 ];
 
 const DISHES = [
-  { name: "Beef Machal", desc: "Bone-in cutlet finished over open flame, rested with rosemary and cracked pepper.", price: 25, reviews: 20, rating: 4, img: "./assets/images/dishes/beef-machal.jpg", featured: false },
-  { name: "Beef Biryani", desc: "48-hour dum-cooked rice, tender beef, whole chillies and a whisper of saffron.", price: 28, reviews: 37, rating: 5, img: "./assets/images/dishes/beef-biryani.jpg", featured: true },
-  { name: "Thai Soup", desc: "Overnight broth, soft egg, scallion and chilli oil, served bubbling hot.", price: 21, reviews: 54, rating: 4, img: "./assets/images/dishes/thai-soup.jpg", featured: false },
-  { name: "Fired Chicken", desc: "Double-brined, double-fried, resting on herb salt with a citrus dip.", price: 14, reviews: 62, rating: 5, img: "./assets/images/dishes/fried-chicken.jpg", featured: false },
-  { name: "Ramen Bowl", desc: "Hand-pulled noodles, chashu pork, marinated egg, nori and scallion oil.", price: 19, reviews: 45, rating: 5, img: "./assets/images/dishes/ramen-bowl.jpg", featured: false },
+  {
+    name: "Beef Machal",
+    desc: "Bone-in cutlet finished over open flame, rested with rosemary and cracked pepper.",
+    price: 25,
+    reviews: 20,
+    rating: 4,
+    img: "./assets/images/dishes/beef-machal.jpg",
+    featured: false,
+  },
+  {
+    name: "Beef Biryani",
+    desc: "48-hour dum-cooked rice, tender beef, whole chillies and a whisper of saffron.",
+    price: 28,
+    reviews: 37,
+    rating: 5,
+    img: "./assets/images/dishes/beef-biryani.jpg",
+    featured: true,
+  },
+  {
+    name: "Thai Soup",
+    desc: "Overnight broth, soft egg, scallion and chilli oil, served bubbling hot.",
+    price: 21,
+    reviews: 54,
+    rating: 4,
+    img: "./assets/images/dishes/thai-soup.jpg",
+    featured: false,
+  },
+  {
+    name: "Fired Chicken",
+    desc: "Double-brined, double-fried, resting on herb salt with a citrus dip.",
+    price: 14,
+    reviews: 62,
+    rating: 5,
+    img: "./assets/images/dishes/fried-chicken.jpg",
+    featured: false,
+  },
+  {
+    name: "Ramen Bowl",
+    desc: "Hand-pulled noodles, chashu pork, marinated egg, nori and scallion oil.",
+    price: 19,
+    reviews: 45,
+    rating: 5,
+    img: "./assets/images/dishes/ramen-bowl.jpg",
+    featured: false,
+  },
 ];
 
 const track = document.getElementById("carTrack");
@@ -183,7 +370,8 @@ function buildDishCardHTML(d) {
 
 function makeDishCard(d, isClone) {
   const card = document.createElement("div");
-  card.className = "dish-card" + (d.featured ? " featured" : "") + (isClone ? " clone" : "");
+  card.className =
+    "dish-card" + (d.featured ? " featured" : "") + (isClone ? " clone" : "");
   card.innerHTML = buildDishCardHTML(d);
   return card;
 }
@@ -192,9 +380,13 @@ const CLONE_COUNT = track ? Math.min(2, DISHES.length - 1) : 0;
 const totalDots = DISHES.length;
 
 if (track) {
-  DISHES.slice(-CLONE_COUNT).forEach((d) => track.appendChild(makeDishCard(d, true))); // leading clones
+  DISHES.slice(-CLONE_COUNT).forEach((d) =>
+    track.appendChild(makeDishCard(d, true)),
+  ); // leading clones
   DISHES.forEach((d) => track.appendChild(makeDishCard(d, false))); // real cards
-  DISHES.slice(0, CLONE_COUNT).forEach((d) => track.appendChild(makeDishCard(d, true))); // trailing clones
+  DISHES.slice(0, CLONE_COUNT).forEach((d) =>
+    track.appendChild(makeDishCard(d, true)),
+  ); // trailing clones
 }
 
 if (dotsWrap) {
@@ -250,7 +442,9 @@ function setTrackPosition(pos, animate) {
       onComplete: checkLoopBounds,
     });
   } else {
-    track.style.transition = animate ? "transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)" : "none";
+    track.style.transition = animate
+      ? "transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)"
+      : "none";
     track.style.transform = `translateX(-${offset}px)`;
     checkLoopBounds();
   }
@@ -258,7 +452,8 @@ function setTrackPosition(pos, animate) {
 
 function goToRelative(step) {
   position += step;
-  const realIndex = ((position - CLONE_COUNT) % totalDots + totalDots) % totalDots;
+  const realIndex =
+    (((position - CLONE_COUNT) % totalDots) + totalDots) % totalDots;
   updateDots(realIndex);
   setTrackPosition(position, true);
 }
@@ -316,7 +511,8 @@ popularCarouselEl?.addEventListener("mouseleave", () => {
 });
 
 // Swipe / drag support
-let startX = 0, isDragging = false;
+let startX = 0,
+  isDragging = false;
 track?.addEventListener("pointerdown", (e) => {
   isDragging = true;
   startX = e.clientX;
@@ -372,7 +568,11 @@ function setSpotlight(idx) {
     const isActive = i === idx;
     t.classList.toggle("active", isActive);
     if (isActive) {
-      t.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+      t.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest",
+      });
     }
   });
 
@@ -415,27 +615,80 @@ function closeMobileMenu() {
   document.body.style.overflow = "";
 }
 
-document.querySelector(".mobile-nav-toggle")?.addEventListener("click", openMobileMenu);
-document.querySelector(".mobile-close")?.addEventListener("click", closeMobileMenu);
-document.getElementById("mobileMenuOverlay")?.addEventListener("click", closeMobileMenu);
-document.querySelectorAll(".mobile-nav-links a").forEach((a) => a.addEventListener("click", closeMobileMenu));
+document
+  .querySelector(".mobile-nav-toggle")
+  ?.addEventListener("click", openMobileMenu);
+document
+  .querySelector(".mobile-close")
+  ?.addEventListener("click", closeMobileMenu);
+document
+  .getElementById("mobileMenuOverlay")
+  ?.addEventListener("click", closeMobileMenu);
+// Close the mobile menu when clicking a real navigation link,
+// but NOT the dropdown toggle (so the PAGES submenu can open).
+document
+  .querySelectorAll(".mobile-nav-links a:not(.dropdown-toggle)")
+  .forEach((a) => a.addEventListener("click", closeMobileMenu));
 
 // ===== GSAP / SCROLL ANIMATIONS =====
 if (window.gsap && window.ScrollTrigger) {
   gsap.registerPlugin(ScrollTrigger);
 
   // Entrance animations
-  gsap.from(".top-bar", { y: -30, opacity: 0, duration: 0.5, ease: "power2.out" });
-  gsap.from(".header-logo", { x: -30, opacity: 0, duration: 0.6, ease: "power2.out", delay: 0.1 });
-  gsap.from(".nav-link", { y: -20, opacity: 0, duration: 0.6, stagger: 0.08, ease: "power2.out", delay: 0.2 });
-  gsap.from(".navbar-actions", { x: 30, opacity: 0, duration: 0.6, ease: "power2.out", delay: 0.4 });
+  gsap.from(".top-bar", {
+    y: -30,
+    opacity: 0,
+    duration: 0.5,
+    ease: "power2.out",
+  });
+  gsap.from(".header-logo", {
+    x: -30,
+    opacity: 0,
+    duration: 0.6,
+    ease: "power2.out",
+    delay: 0.1,
+  });
+  gsap.from(".nav-link", {
+    y: -20,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.08,
+    ease: "power2.out",
+    delay: 0.2,
+  });
+  gsap.from(".navbar-actions", {
+    x: 30,
+    opacity: 0,
+    duration: 0.6,
+    ease: "power2.out",
+    delay: 0.4,
+  });
 
   // Hero entrance
-  gsap.from(".slide-content", { y: 80, opacity: 0, duration: 1, ease: "power4.out", delay: 0.3 });
-  gsap.from(".slide-image", { x: 100, opacity: 0, duration: 1.2, ease: "power4.out", delay: 0.5 });
+  gsap.from(".slide-content", {
+    y: 80,
+    opacity: 0,
+    duration: 1,
+    ease: "power4.out",
+    delay: 0.3,
+  });
+  gsap.from(".slide-image", {
+    x: 100,
+    opacity: 0,
+    duration: 1.2,
+    ease: "power4.out",
+    delay: 0.5,
+  });
 
   // Highlight pills entrance (single source of truth — do not duplicate elsewhere)
-  gsap.from(".highlight-pill", { y: 30, opacity: 0, duration: 0.5, stagger: 0.15, ease: "back.out(1.4)", delay: 0.8 });
+  gsap.from(".highlight-pill", {
+    y: 30,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.15,
+    ease: "back.out(1.4)",
+    delay: 0.8,
+  });
 
   // Scroll-triggered animations
   function animateFrom(selector, vars, trigger) {
@@ -455,14 +708,24 @@ if (window.gsap && window.ScrollTrigger) {
 
   animateFrom(".dish-card", { y: 60, stagger: 0.1 }, "#popular");
   animateFrom(".premium-card", { y: 60 });
-  animateFrom(".food-card", { y: 50, stagger: 0.08 }, ".menu-highlights-section");
-  animateFrom(".quick-card", { y: 40, stagger: 0.1, ease: "back.out(1.4)" }, ".quick-action-section");
+  animateFrom(
+    ".food-card",
+    { y: 50, stagger: 0.08 },
+    ".menu-highlights-section",
+  );
+  animateFrom(
+    ".quick-card",
+    { y: 40, stagger: 0.1, ease: "back.out(1.4)" },
+    ".quick-action-section",
+  );
   animateFrom(".stat-item", { y: 40, stagger: 0.1 }, ".stats-counter-section");
   animateFrom(".testimonial-card", { y: 50 }, ".testimonials-section");
   animateFrom(".footer-grid > div", { y: 40, stagger: 0.1 }, ".footer");
 
   // Section headings
-  gsap.utils.toArray(".section-head, .section-header").forEach((h) => animateFrom(h, {}));
+  gsap.utils
+    .toArray(".section-head, .section-header")
+    .forEach((h) => animateFrom(h, {}));
 
   window.addEventListener("load", () => {
     ScrollTrigger.refresh();
@@ -495,14 +758,86 @@ if (window.gsap && window.ScrollTrigger) {
 
 // ===== MENU HIGHLIGHTS - SMOOTH TAB TRANSITIONS =====
 const dishesData = [
-  { id: 1, name: "Zesty Smash Burger", category: "bestsellers", badge: "Halal ☪️", price: "$12.99", rating: "4.9 ★", desc: "Juicy double beef patty layered with melted cheddar and signature house relish.", image: "./assets/images/menu/zesty-smash-burger.jpg" },
-  { id: 2, name: "Truffle Mushroom Risotto", category: "specials", badge: "Vegan 🌱", price: "$18.50", rating: "4.8 ★", desc: "Creamy arborio rice infused with wild mushrooms and authentic black truffle oil.", image: "./assets/images/menu/truffle-mushroom-risotto.jpg" },
-  { id: 3, name: "Fiery Peri Peri Wings", category: "combos", badge: "Spicy 🌶️", price: "$14.00", rating: "4.7 ★", desc: "Flame-grilled chicken wings tossed in intense African bird's eye chili glaze.", image: "./assets/images/menu/fiery-peri-peri-wings.jpg" },
-  { id: 4, name: "Classic Berry Cheesecake", category: "desserts", badge: "Chef's Pick ⭐", price: "$8.99", rating: "4.9 ★", desc: "Velvety New York style cheesecake topped with fresh wild berry reduction.", image: "./assets/images/menu/classic-berry-cheesecake.jpg" },
-  { id: 5, name: "Smoked Salmon Benedict", category: "specials", badge: "Fresh 🐟", price: "$16.00", rating: "4.8 ★", desc: "Poached eggs on toasted brioche with house-smoked salmon and hollandaise.", image: "./assets/images/menu/smoked-salmon-benedict.jpg" },
-  { id: 6, name: "Double Chocolate Mousse", category: "desserts", badge: "NEW 🔥", price: "$9.50", rating: "4.9 ★", desc: "Rich dark chocolate mousse with a silky caramel core and gold leaf finish.", image: "./assets/images/menu/double-chocolate-mousse.jpg" },
-  { id: 7, name: "Lamb Kofta Kebab", category: "bestsellers", badge: "Halal ☪️", price: "$15.00", rating: "4.7 ★", desc: "Spiced minced lamb skewers, chargrilled and served with garlic yogurt dip.", image: "./assets/images/menu/lamb-kofta-kebab.jpg" },
-  { id: 8, name: "Mango & Passionfruit Tart", category: "desserts", badge: "Seasonal 🥭", price: "$7.50", rating: "4.6 ★", desc: "Buttery pastry shell filled with tropical fruit curd and toasted meringue.", image: "./assets/images/menu/mango-passionfruit-tart.jpg" },
+  {
+    id: 1,
+    name: "Zesty Smash Burger",
+    category: "bestsellers",
+    badge: "Halal ☪️",
+    price: "$12.99",
+    rating: "4.9 ★",
+    desc: "Juicy double beef patty layered with melted cheddar and signature house relish.",
+    image: "./assets/images/menu/zesty-smash-burger.jpg",
+  },
+  {
+    id: 2,
+    name: "Truffle Mushroom Risotto",
+    category: "specials",
+    badge: "Vegan 🌱",
+    price: "$18.50",
+    rating: "4.8 ★",
+    desc: "Creamy arborio rice infused with wild mushrooms and authentic black truffle oil.",
+    image: "./assets/images/menu/truffle-mushroom-risotto.jpg",
+  },
+  {
+    id: 3,
+    name: "Fiery Peri Peri Wings",
+    category: "combos",
+    badge: "Spicy 🌶️",
+    price: "$14.00",
+    rating: "4.7 ★",
+    desc: "Flame-grilled chicken wings tossed in intense African bird's eye chili glaze.",
+    image: "./assets/images/menu/fiery-peri-peri-wings.jpg",
+  },
+  {
+    id: 4,
+    name: "Classic Berry Cheesecake",
+    category: "desserts",
+    badge: "Chef's Pick ⭐",
+    price: "$8.99",
+    rating: "4.9 ★",
+    desc: "Velvety New York style cheesecake topped with fresh wild berry reduction.",
+    image: "./assets/images/menu/classic-berry-cheesecake.jpg",
+  },
+  {
+    id: 5,
+    name: "Smoked Salmon Benedict",
+    category: "specials",
+    badge: "Fresh 🐟",
+    price: "$16.00",
+    rating: "4.8 ★",
+    desc: "Poached eggs on toasted brioche with house-smoked salmon and hollandaise.",
+    image: "./assets/images/menu/smoked-salmon-benedict.jpg",
+  },
+  {
+    id: 6,
+    name: "Double Chocolate Mousse",
+    category: "desserts",
+    badge: "NEW 🔥",
+    price: "$9.50",
+    rating: "4.9 ★",
+    desc: "Rich dark chocolate mousse with a silky caramel core and gold leaf finish.",
+    image: "./assets/images/menu/double-chocolate-mousse.jpg",
+  },
+  {
+    id: 7,
+    name: "Lamb Kofta Kebab",
+    category: "bestsellers",
+    badge: "Halal ☪️",
+    price: "$15.00",
+    rating: "4.7 ★",
+    desc: "Spiced minced lamb skewers, chargrilled and served with garlic yogurt dip.",
+    image: "./assets/images/menu/lamb-kofta-kebab.jpg",
+  },
+  {
+    id: 8,
+    name: "Mango & Passionfruit Tart",
+    category: "desserts",
+    badge: "Seasonal 🥭",
+    price: "$7.50",
+    rating: "4.6 ★",
+    desc: "Buttery pastry shell filled with tropical fruit curd and toasted meringue.",
+    image: "./assets/images/menu/mango-passionfruit-tart.jpg",
+  },
 ];
 
 const menuGrid = document.getElementById("menuGrid");
@@ -540,7 +875,14 @@ function renderMenuCards(items) {
 
   const cards = menuGrid.querySelectorAll(".food-card");
   if (window.gsap) {
-    gsap.to(cards, { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.06, ease: "power3.out" });
+    gsap.to(cards, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.5,
+      stagger: 0.06,
+      ease: "power3.out",
+    });
   } else {
     cards.forEach((c) => {
       c.style.opacity = "1";
@@ -552,15 +894,24 @@ function renderMenuCards(items) {
 categoryTabs?.addEventListener("click", (e) => {
   if (!e.target.classList.contains("tab-btn")) return;
 
-  document.querySelectorAll(".tab-btn").forEach((btn) => btn.classList.remove("active"));
+  document
+    .querySelectorAll(".tab-btn")
+    .forEach((btn) => btn.classList.remove("active"));
   e.target.classList.add("active");
 
   if (window.gsap) {
-    gsap.fromTo(e.target, { scale: 0.9 }, { scale: 1, duration: 0.3, ease: "back.out(2)" });
+    gsap.fromTo(
+      e.target,
+      { scale: 0.9 },
+      { scale: 1, duration: 0.3, ease: "back.out(2)" },
+    );
   }
 
   const selectedCategory = e.target.getAttribute("data-category");
-  const filtered = selectedCategory === "all" ? dishesData : dishesData.filter((item) => item.category === selectedCategory);
+  const filtered =
+    selectedCategory === "all"
+      ? dishesData
+      : dishesData.filter((item) => item.category === selectedCategory);
   renderMenuCards(filtered);
 });
 
@@ -579,7 +930,9 @@ if (cursorGlow) {
     cursorGlow.style.top = e.clientY + "px";
     cursorGlow.classList.add("visible");
   });
-  document.addEventListener("mouseleave", () => cursorGlow.classList.remove("visible"));
+  document.addEventListener("mouseleave", () =>
+    cursorGlow.classList.remove("visible"),
+  );
 }
 
 // ===== STATS COUNTER =====
@@ -636,7 +989,9 @@ document.getElementById("newsletterForm")?.addEventListener("submit", (e) => {
 document.getElementById("reserveForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
   const msg = document.getElementById("reserveConfirm");
-  if (msg) msg.textContent = "Table request received — we'll confirm by phone shortly.";
+  if (msg)
+    msg.textContent =
+      "Table request received — we'll confirm by phone shortly.";
   e.target.reset();
 });
 
@@ -651,8 +1006,10 @@ if (heroSection) {
     const y = (e.clientY / window.innerHeight - 0.5) * 10;
     const carousel = heroSection.querySelector(".home2-carousel");
     const slideImage = heroSection.querySelector(".slide-image");
-    if (carousel) carousel.style.transform = `perspective(1000px) rotateX(${-y * 0.3}deg) rotateY(${x * 0.3}deg)`;
-    if (slideImage) slideImage.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
+    if (carousel)
+      carousel.style.transform = `perspective(1000px) rotateX(${-y * 0.3}deg) rotateY(${x * 0.3}deg)`;
+    if (slideImage)
+      slideImage.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
   });
   heroSection.addEventListener("mouseleave", () => {
     const carousel = heroSection.querySelector(".home2-carousel");

@@ -91,31 +91,20 @@
                         <li class="nav-item">
                             <a class="nav-link" href="./html/admin/user/about.html">ABOUT</a>
                         </li>
-                        <li class="nav-item dropdown-holder">
-                            <a class="nav-link" href="./html/menu.html">MENU <i
-                                    class="bi bi-chevron-down nav-arrow"></i></a>
-                            <ul class="nav-dropdown">
-                                <li><a href="#">Menu List 01</a></li>
-                                <li><a href="#">Menu List 02</a></li>
-                                <li><a href="#">Food Category</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./html/menu.html">MENU</a>
                         </li>
                         <li class="nav-item dropdown-holder">
                             <a class="nav-link" href="./html/pages.html">PAGES <i
                                     class="bi bi-chevron-down nav-arrow"></i></a>
                             <ul class="nav-dropdown">
-                                <li><a href="./html/chef.html">Chef</a></li>
+                                <li><a href="./html/chef.html">Reservation</a></li>
                                 <li><a href="./html/gallery.html">Gallery</a></li>
-                                <li><a href="#">FAQ</a></li>
+                                <li><a href="./html/faq.html">FAQ</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown-holder">
-                            <a class="nav-link" href="./html/blog.html">BLOG <i
-                                    class="bi bi-chevron-down nav-arrow"></i></a>
-                            <ul class="nav-dropdown">
-                                <li><a href="#">Blog Grid</a></li>
-                                <li><a href="#">Blog Standard</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./html/blog.html">BLOG </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./html/contact.html">CONTACT</a>
@@ -788,11 +777,20 @@
             </button>
         </div>
         <nav class="mobile-nav-links">
-            <a href="index.html">Home</a>
-            <a href="./admin/user/about.html">About</a>
-            <a href="menu.html">Menu</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="contact.html">Contact</a>
+            <a href="./index.html">Home</a>
+            <a href="html\admin\user\about.html">About</a>
+            <a href="./menu.html">Menu</a>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" aria-haspopup="true" aria-expanded="false">
+                    PAGES <i class="bi bi-chevron-down nav-arrow"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="./html/reservation.html">Reservation</a></li>
+                    <li><a class="dropdown-item" href="./html/gallery.html">Gallery</a></li>
+                    <li><a class="dropdown-item" href="./html/faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <a href="html\contact.html">Contact</a>
         </nav>
         <div class="mobile-menu-footer">
             <a href="tel:+9988776345" class="nav-btn">Call Now</a>
