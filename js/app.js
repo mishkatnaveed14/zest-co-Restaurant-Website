@@ -947,6 +947,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!counters.length) return;
 
     counters.forEach((counter) => {
+      if (counter.dataset.animated === "true") return;
+      counter.dataset.animated = "true";
+
       const target = parseInt(counter.getAttribute("data-target"), 10);
       if (isNaN(target)) return;
 
@@ -971,13 +974,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (statsSection) {
     if (window.gsap && window.ScrollTrigger) {
+      // Scroll-triggered counter
       ScrollTrigger.create({
         trigger: statsSection,
         start: "top 85%",
         onEnter: () => animateCounters(),
         once: true,
       });
+
+      // Also fire immediately if the section is already in view on load
+      // (handles the case where the user loads the page already scrolled, or
+      //  the ScrollTrigger start position is miscalculated).
+      const runIfVisible = () => {
+        const rect = statsSection.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85) {
+          animateCounters();
+        }
+      };
+      window.addEventListener("load", runIfVisible);
+      setTimeout(runIfVisible, 500);
     } else {
+      // No GSAP/ScrollTrigger — just run the counters right away.
       animateCounters();
     }
   }
