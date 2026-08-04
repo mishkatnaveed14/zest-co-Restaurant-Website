@@ -681,14 +681,19 @@ if (window.gsap && window.ScrollTrigger) {
   });
 
   // Highlight pills entrance (single source of truth — do not duplicate elsewhere)
-  gsap.from(".highlight-pill", {
-    y: 30,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.15,
-    ease: "back.out(1.4)",
-    delay: 0.8,
-  });
+  gsap.fromTo(
+    ".highlight-pill",
+    { y: 30, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.5,
+      stagger: 0.15,
+      ease: "back.out(1.4)",
+      delay: 0.8,
+      clearProps: "opacity,transform",
+    },
+  );
 
   // Scroll-triggered animations
   function animateFrom(selector, vars, trigger) {
