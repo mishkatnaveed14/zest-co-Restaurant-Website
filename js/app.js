@@ -844,6 +844,86 @@ const dishesData = [
     desc: "Buttery pastry shell filled with tropical fruit curd and toasted meringue.",
     image: "./assets/images/menu/mango-passionfruit-tart.jpg",
   },
+  {
+    id: 9,
+    name: "Grilled Salmon Steak",
+    category: "bestsellers",
+    badge: "Chef's Pick ⭐",
+    price: "$21.00",
+    rating: "4.9 ★",
+    desc: "Pan-seared Atlantic salmon with a golden butter glaze and charred lemon.",
+    image: "./assets/images/spotlight/grilled-salmon-steak.jpg",
+  },
+  {
+    id: 10,
+    name: "Golden Fried Chicken",
+    category: "bestsellers",
+    badge: "Crispy 🍗",
+    price: "$13.00",
+    rating: "4.8 ★",
+    desc: "Double-dredged, crackling-crisp fried chicken rested on a bed of herb salt.",
+    image: "./assets/images/spotlight/golden-fried-chicken.jpg",
+  },
+  {
+    id: 11,
+    name: "Artisan Pepperoni Pizza",
+    category: "combos",
+    badge: "Wood-Fired 🔥",
+    price: "$16.00",
+    rating: "4.8 ★",
+    desc: "Wood-fired crust, San Marzano tomato, fresh mozzarella and spicy pepperoni.",
+    image: "./assets/images/spotlight/artisan-pepperoni-pizza.jpg",
+  },
+  {
+    id: 12,
+    name: "Smoky BBQ Ribs",
+    category: "combos",
+    badge: "Family Combo 🍖",
+    price: "$22.00",
+    rating: "4.9 ★",
+    desc: "Slow-cooked pork ribs smothered in house smoky barbecue glaze.",
+    image: "./assets/images/spotlight/smoky-bbq-ribs.jpg",
+  },
+  {
+    id: 13,
+    name: "Chef's Fried Rice",
+    category: "specials",
+    badge: "Wok-Tossed 🍳",
+    price: "$12.00",
+    rating: "4.7 ★",
+    desc: "Jasmine rice tossed in a hot wok with prawns, charred scallion and egg.",
+    image: "./assets/images/spotlight/chefs-fried-rice.jpg",
+  },
+  {
+    id: 14,
+    name: "Ramen Bowl",
+    category: "specials",
+    badge: "Signature 🍜",
+    price: "$19.00",
+    rating: "4.9 ★",
+    desc: "Hand-pulled noodles in an 18-hour broth with chashu pork and marinated egg.",
+    image: "./assets/images/spotlight/ramen-bowl.jpg",
+  },
+  {
+    id: 15,
+    name: "Strawberry Waffles",
+    category: "desserts",
+    badge: "Sweet Treat 🍓",
+    price: "$7.00",
+    rating: "4.7 ★",
+    desc: "Golden waffles crowned with fresh strawberries, cream and warm syrup.",
+    image: "./assets/images/food/strawberry-waffles.jpg",
+  },
+  {
+    id: 16,
+    name: "Chocolate Lava Cake",
+    category: "desserts",
+    badge: "Molten 🍫",
+    price: "$6.50",
+    rating: "4.8 ★",
+    desc: "Warm chocolate cake with a gooey molten centre and a scoop of vanilla.",
+    image: "./assets/images/food/chocolate-lava.jpg",
+  },
 ];
 
 const menuGrid = document.getElementById("menuGrid");
@@ -854,7 +934,7 @@ function renderMenuCards(items) {
   menuGrid.innerHTML = "";
   const fragment = document.createDocumentFragment();
 
-  items.forEach((item) => {
+  items.forEach((item, i) => {
     const card = document.createElement("div");
     card.className = "food-card";
     card.style.opacity = "0";
@@ -863,15 +943,23 @@ function renderMenuCards(items) {
       <span class="badge-corner">${item.badge}</span>
       <div class="card-img-wrapper">
         <img src="${item.image}" alt="${item.name}" class="card-img" />
+        <div class="card-img-overlay">
+          <span class="quick-view" onclick="addToCart(${item.id})"><i class="bi bi-bag-plus"></i> Quick Add</span>
+        </div>
       </div>
-      <div class="card-title-row">
-        <h3 class="card-title">${item.name}</h3>
-        <span class="rating">${item.rating}</span>
-      </div>
-      <p class="small-desc">${item.desc}</p>
-      <div class="card-footer">
-        <span class="price">${item.price}</span>
-        <button class="add-btn" onclick="addToCart(${item.id})">+ Add to Cart</button>
+      <div class="card-body-content">
+        <div class="card-title-row">
+          <h3 class="card-title">${item.name}</h3>
+          <span class="rating">${item.rating}</span>
+        </div>
+        <p class="small-desc">${item.desc}</p>
+        <div class="card-divider"></div>
+        <div class="card-footer">
+          <span class="price">${item.price}</span>
+          <button class="add-btn" onclick="addToCart(${item.id})">
+            <i class="bi bi-plus-lg"></i> Add to Cart
+          </button>
+        </div>
       </div>
     `;
     fragment.appendChild(card);
