@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> gallery-Zest & Co. — The Gallery Experience</title>
+  <title> FAQ | Zest & Co. — Frequently Asked Questions</title>
   <meta name="description"
-    content="Immerse yourself in a visual journey of award-winning culinary mastery, ambient dining spaces, and artisanal creations at Zest & Co." />
+    content="Find answers to the most common questions about Zest & Co. — reservations, our wood-fired menu, delivery, private dining and more." />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,8 +31,9 @@
   <link rel="stylesheet" href="../css-folder/faq.css" />
   <link rel="stylesheet" href="../css-folder/responsive.css">
 </head>
+
 <body>
-    <!-- upper part start -->
+  <!-- upper part start -->
   <div class="top-bar bg-black">
     <div class="container-lg container-fluid gy-2">
       <div class="row align-items-center">
@@ -145,9 +146,490 @@
   </header>
   <!-- navbar end -->
 
+  <!-- Custom Glow Cursor Follower -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+  <!-- Background Ambient Glow Blobs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
 
+  <main id="main-content" class="faq-body">
 
-  
+    <!-- ============ FAQ HERO ============ -->
+    <section class="faq-hero-section position-relative overflow-hidden d-flex align-items-center">
+      <div class="hero-ambient-overlay"></div>
+      <div class="container position-relative z-2 py-5">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-9">
+            <div class="hero-badge-gold mb-3 d-inline-flex align-items-center gap-2 px-3 py-2">
+              <i class="bi bi-patch-question-fill"></i>
+              <span class="x-small text-uppercase tracking-widest gold-text fw-bold">FAQ • Zest &amp; Co.</span>
+            </div>
+            <h1 class="display-3 luxury-heading fw-bold text-white mb-3 hero-title">
+              Answers, Served <br />
+              <span class="gold-gradient-text italic-accent">Fresh &amp; Golden</span>
+            </h1>
+            <p class="lead hero-lead-gold mb-4 mx-auto">
+              Everything you need to know about reservations, our wood-fired menu, private dining and
+              more — all gathered in one elegant place.
+            </p>
+
+            <!-- Search Box -->
+            <div class="faq-search-wrap mx-auto">
+              <i class="bi bi-search"></i>
+              <input type="text" id="faqSearchInput" class="faq-search-input"
+                placeholder="Search our FAQ… e.g. reservations, vegan, delivery" autocomplete="off" />
+              <button class="faq-search-clear" id="faqSearchClear" type="button" aria-label="Clear search">
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#faq-section"
+        class="scroll-indicator-link position-absolute bottom-0 start-50 translate-middle-x mb-3 text-decoration-none">
+        <div class="scroll-mouse-icon-gold d-flex justify-content-center pt-2">
+          <div class="scroll-wheel-gold"></div>
+        </div>
+      </a>
+    </section>
+
+    <!-- ============ QUICK STAT STRIP ============ -->
+    <section class="faq-stat-strip py-4 position-relative">
+      <div class="container">
+        <div class="row g-3 row-cols-2 row-cols-md-4 justify-content-center text-center">
+          <div class="col">
+            <div class="faq-stat-chip">
+              <i class="bi bi-clock-history"></i>
+              <div><span class="stat-num">24</span>/7</div>
+              <p>Online Booking</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="faq-stat-chip">
+              <i class="bi bi-journal-check"></i>
+              <div><span class="stat-num" data-count="1250">0</span>+</div>
+              <p>Answered Queries</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="faq-stat-chip">
+              <i class="bi bi-lightning-charge"></i>
+              <div><span class="stat-num" data-count="45">0</span>min</div>
+              <p>Avg. Response Time</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="faq-stat-chip">
+              <i class="bi bi-star"></i>
+              <div><span class="stat-num" data-count="4.9" data-decimal="1">0</span>★</div>
+              <p>Guest Satisfaction</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ SECTION ============ -->
+    <section id="faq-section" class="faq-main-section py-5 position-relative">
+      <div class="container py-lg-4">
+
+        <!-- Section Header -->
+        <div class="row justify-content-center text-center mb-4 section-header">
+          <div class="col-lg-8">
+            <span class="gold-text text-uppercase tracking-widest fw-semibold small mb-2 d-block">Knowledge Base</span>
+            <h2 class="display-5 luxury-heading text-white fw-bold mb-3">Frequently Asked Questions</h2>
+            <div class="luxury-divider mx-auto mb-4"></div>
+            <p class="text-muted">Browse by category or use the search above to find what you need.</p>
+          </div>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="row justify-content-center mb-5">
+          <div class="col-12 d-flex justify-content-center flex-wrap gap-2 faq-filter-pills" id="faqFilterPills">
+            <button class="faq-filter-btn active" data-filter="all" type="button">All Questions</button>
+            <button class="faq-filter-btn" data-filter="reservations" type="button">Reservations</button>
+            <button class="faq-filter-btn" data-filter="menu" type="button">Menu &amp; Dishes</button>
+            <button class="faq-filter-btn" data-filter="delivery" type="button">Delivery &amp; Takeout</button>
+            <button class="faq-filter-btn" data-filter="events" type="button">Private Dining</button>
+            <button class="faq-filter-btn" data-filter="general" type="button">General</button>
+          </div>
+        </div>
+
+        <!-- FAQ Accordion Groups -->
+        <div class="row justify-content-center">
+          <div class="col-12">
+
+            <!-- RESERVATIONS GROUP -->
+            <div class="faq-group" data-group="reservations">
+              <div class="faq-group-head">
+                <span class="faq-group-icon"><i class="bi bi-calendar2-heart"></i></span>
+                <h3>Reservations &amp; Seating</h3>
+                <span class="faq-group-count">4</span>
+              </div>
+              <div class="faq-group-body">
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-house-heart"></i></span>
+                    <span class="faq-q-text">How do I make a reservation at Zest &amp; Co.?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>Reservations can be made online through our <a
+                          href="../html/admin/user/reservation.html">Reservation page</a>,
+                        by phone at <a href="tel:+9988776345">+998-8776345</a>, or by emailing
+                        <a href="mailto:zest.co@gmail.com">zest.co@gmail.com</a>. We recommend booking at least 48 hours
+                        in advance for weekend and holiday dining to guarantee your preferred table.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-people"></i></span>
+                    <span class="faq-q-text">What is your party size limit for a standard table?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>Our main dining hall comfortably seats parties from 2 to 12 guests. For larger groups of 13 or
+                        more, please contact our events team directly so we can arrange the perfect private or
+                        semi-private
+                        space for your celebration.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-clock"></i></span>
+                    <span class="faq-q-text">Do you hold tables for late arrivals?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>We hold reservations for up to 15 minutes past the booked time. If you are running late, please
+                        call ahead and we will do our best to accommodate. For no-shows on special-occasion bookings, a
+                        courtesy rebooking is required.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-bag-check"></i></span>
+                    <span class="faq-q-text">Is a deposit required for booking?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>No deposit is required for standard tables. However, for the Chef's Private Tasting Counter,
+                        the
+                        outdoor terrace, and all private dining experiences, a per-guest deposit is applied and credited
+                        toward your final bill.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- MENU & DISHES GROUP -->
+            <div class="faq-group" data-group="menu">
+              <div class="faq-group-head">
+                <span class="faq-group-icon"><i class="bi bi-egg-fried"></i></span>
+                <h3>Menu &amp; Dishes</h3>
+                <span class="faq-group-count">5</span>
+              </div>
+              <div class="faq-group-body">
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-leaf"></i></span>
+                    <span class="faq-q-text">Do you offer vegetarian, vegan or gluten-free options?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>Absolutely. Our menu features a dedicated seasonal plant-based selection and clearly labelled
+                        gluten-free dishes — including our Truffle Mushroom Risotto and Vegetable Salad. Please advise
+                        your server of any allergies and our kitchen will adapt most dishes to suit your needs.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-fire"></i></span>
+                    <span class="faq-q-text">What are your signature dishes?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>Guests rave about our Smoked Wagyu Tomahawk, the 18-hour Ramen Bowl, Chef's Fried Rice, and the
+                        Velvet Chocolate Sphere dessert. For the full experience, ask about our Chef's Private Tasting
+                        Counter — a 10-course mystery menu prepared live at your counter.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-moon-stars"></i></span>
+                    <span class="faq-q-text">Do you have special menus for kids?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>Yes! We offer a curated children's menu with lighter, crowd-pleasing portions such as our fried
+                        chicken, mini ramen bowls and strawberry waffles. High chairs and booster seats are also
+                        available on request.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-funnel"></i></span>
+                    <span class="faq-q-text">Is your menu seasonal?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>Yes. Our menu rotates with the seasons to showcase the freshest organic, locally-sourced
+                        produce. Signature staples remain year-round, while chef specials change monthly — follow our
+                        social channels to stay ahead of new arrivals.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-wine"></i></span>
+                    <span class="faq-q-text">Can I request off-menu or custom dishes?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>Our kitchen is happy to accommodate custom requests with 48 hours' notice, including dietary
+                        modifications and bespoke desserts. For private events, we'll design a fully customised menu
+                        around your preferences and budget.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- DELIVERY & TAKEOUT GROUP -->
+            <div class="faq-group" data-group="delivery">
+              <div class="faq-group-head">
+                <span class="faq-group-icon"><i class="bi bi-bicycle"></i></span>
+                <h3>Delivery &amp; Takeout</h3>
+                <span class="faq-group-count">3</span>
+              </div>
+              <div class="faq-group-body">
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-geo-alt"></i></span>
+                    <span class="faq-q-text">Which areas do you deliver to?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>We currently deliver within a 12km radius of our Karachi location. You can also place a takeout
+                        order for pickup at the restaurant — simply choose "Pickup" during checkout and we'll have it
+                        ready when you arrive.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-stopwatch"></i></span>
+                    <span class="faq-q-text">How long does delivery take?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>Most deliveries arrive within 40–50 minutes. During peak hours, this may extend slightly.
+                        You'll
+                        receive live order updates via SMS and email so you always know exactly when your feast lands at
+                        your door.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-credit-card"></i></span>
+                    <span class="faq-q-text">What payment methods do you accept online?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>We accept all major credit and debit cards, mobile wallets, and cash on delivery. In-restaurant
+                        we also support Apple Pay and Google Pay for a seamless experience.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PRIVATE DINING GROUP -->
+            <div class="faq-group" data-group="events">
+              <div class="faq-group-head">
+                <span class="faq-group-icon"><i class="bi bi-stars"></i></span>
+                <h3>Private Dining &amp; Events</h3>
+                <span class="faq-group-count">3</span>
+              </div>
+              <div class="faq-group-body">
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-people-fill"></i></span>
+                    <span class="faq-q-text">Can I host a private event at Zest &amp; Co.?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>Yes — we specialise in intimate celebrations, corporate dinners and milestone events. Our
+                        private
+                        dining room seats up to 40 guests, and the Moonlit Garden Terrace is perfect for al-fresco
+                        gatherings. Reach out to our events team for a tailored proposal.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-cake2"></i></span>
+                    <span class="faq-q-text">Do you offer custom cakes and desserts for events?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>Our pastry team crafts bespoke celebration cakes, dessert towers and chocolate showpieces. With
+                        3–5 days' notice we can design a dessert centrepiece that perfectly matches your theme.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-music-note-beamed"></i></span>
+                    <span class="faq-q-text">Can you accommodate live music or entertainment?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>Absolutely. We can arrange live acoustic performances, DJs, and audio-visual support for
+                        presentations. Let us know your entertainment needs when booking and we'll coordinate the
+                        details.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- GENERAL GROUP -->
+            <div class="faq-group" data-group="general">
+              <div class="faq-group-head">
+                <span class="faq-group-icon"><i class="bi bi-info-circle"></i></span>
+                <h3>General</h3>
+                <span class="faq-group-count">3</span>
+              </div>
+              <div class="faq-group-body">
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-shop"></i></span>
+                    <span class="faq-q-text">What are your opening hours?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>We are open daily from <strong>9:00 AM to 10:00 PM</strong>. The kitchen takes its final orders
+                        at 9:30 PM. The Moonlit Garden Terrace and bar remain open until closing for drinks and
+                        desserts.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-gift"></i></span>
+                    <span class="faq-q-text">Do you sell gift cards?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>Yes! Digital and physical gift cards are available in any denomination and can be redeemed on
+                        dine-in, takeout and delivery. They make the perfect gift for any food lover — visit us
+                        in-store or contact our team to purchase one.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-question" type="button" aria-expanded="false">
+                    <span class="faq-q-icon"><i class="bi bi-phone"></i></span>
+                    <span class="faq-q-text">How do I contact the restaurant for other questions?</span>
+                    <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>Our concierge team is available daily at <a href="tel:+9988776345">+998-8776345</a> or via
+                        <a href="mailto:zest.co@gmail.com">zest.co@gmail.com</a>. For anything not answered here, head
+                        to
+                        our <a href="../html/contact.html">Contact page</a> and we'll reply within 24 hours.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Empty state when search/filter yields nothing -->
+            <div class="faq-empty d-none text-center py-5" id="faqEmpty">
+              <i class="bi bi-emoji-frown display-4 gold-text d-block mb-3"></i>
+              <h4 class="text-white luxury-heading mb-2">No answers found</h4>
+              <p class="text-muted">Try a different keyword, or contact our team directly.</p>
+              <a href="../html/contact.html" class="btn btn-luxury-primary mt-2">Contact Us</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STILL HAVE QUESTIONS CTA ============ -->
+    <section class="faq-cta-section py-5 position-relative overflow-hidden">
+      <div class="showcase-parallax-bg" id="faqCtaParallax"></div>
+      <div class="showcase-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+      <div class="container position-relative z-2 py-4">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 col-xl-8">
+            <div
+              class="glass-showcase-card faq-cta-card p-4 p-md-5 rounded-5 text-center shadow-lg border border-gold-glow">
+              <span class="badge bg-gold-badge px-3 py-2 rounded-pill mb-3 text-uppercase tracking-wider">Still
+                Curious?</span>
+              <h2 class="display-5 luxury-heading text-white fw-bold mb-3">Didn't Find Your Answer?</h2>
+              <p class="lead text-light-subtle mb-4">Our concierge team is always happy to help. Reach out and we'll
+                respond within 24 hours — we promise it'll be worth the wait.</p>
+              <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="../html/contact.html" class="btn btn-luxury-primary magnetic-btn hvr-grow" data-cursor="hover">
+                  <span>Contact Us</span><i class="bi bi-envelope ms-2"></i>
+                </a>
+                <a href="tel:+9988776345" class="btn btn-luxury-outline hvr-grow" data-cursor="hover">
+                  <i class="bi bi-telephone me-2"></i><span>Call Concierge</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
@@ -226,7 +708,7 @@
     </div>
   </div>
 
-   <!-- Bootstrap 5 Bundle JS -->
+  <!-- Bootstrap 5 Bundle JS -->
   <script src="../js/bootstrap.bundle.min.js"></script>
 
   <!-- GSAP & ScrollTrigger -->
@@ -238,8 +720,9 @@
 
   <!-- Swiper.js -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-   <!-- Custom Script -->
+  <!-- Custom Script -->
   <script src="../js/faq.js"></script>
   <script src="../js/common.js"></script>
 </body>
+
 </html>
