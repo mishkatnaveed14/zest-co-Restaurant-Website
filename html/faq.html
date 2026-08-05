@@ -246,7 +246,7 @@
         </div>
 
         <!-- Category Filter Pills -->
-        <div class="row justify-content-center mb-5">
+        <div class="row justify-content-center mb-3">
           <div class="col-12 d-flex justify-content-center flex-wrap gap-2 faq-filter-pills" id="faqFilterPills">
             <button class="faq-filter-btn active" data-filter="all" type="button">All Questions</button>
             <button class="faq-filter-btn" data-filter="reservations" type="button">Reservations</button>
@@ -254,6 +254,26 @@
             <button class="faq-filter-btn" data-filter="delivery" type="button">Delivery &amp; Takeout</button>
             <button class="faq-filter-btn" data-filter="events" type="button">Private Dining</button>
             <button class="faq-filter-btn" data-filter="general" type="button">General</button>
+          </div>
+        </div>
+
+        <!-- Toolbar: results count + expand/collapse all -->
+        <div class="row justify-content-center align-items-center mb-4">
+          <div class="col-auto">
+            <span class="faq-results-count" id="faqResultsCount">
+              <i class="bi bi-search-heart gold-text"></i>
+              Showing <strong id="faqVisibleCount">18</strong> of <span id="faqTotalCount">18</span> answers
+            </span>
+          </div>
+          <div class="col-auto">
+            <div class="d-flex gap-2 flex-wrap">
+              <button class="faq-tool-btn" id="faqExpandAll" type="button">
+                <i class="bi bi-arrows-expand"></i> Expand All
+              </button>
+              <button class="faq-tool-btn" id="faqCollapseAll" type="button">
+                <i class="bi bi-arrows-collapse"></i> Collapse All
+              </button>
+            </div>
           </div>
         </div>
 
@@ -630,6 +650,16 @@
     </section>
 
   </main>
+
+  <!-- Floating back-to-top -->
+  <button class="faq-back-top" id="faqBackTop" type="button" aria-label="Back to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Floating concierge help bubble -->
+  <a href="../html/contact.html" class="faq-help-bubble hvr-buzz-out" data-cursor="hover" aria-label="Get help">
+    <i class="bi bi-chat-hearts"></i>
+  </a>
 
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
