@@ -1,3 +1,28 @@
+// ===== GLOBAL GOLDEN GLOW CURSOR (every page) =====
+(function initGlobalCursorGlow() {
+  // Skip if it already exists (e.g. pages that manually include one)
+  if (document.getElementById("cursorGlow")) return;
+
+  const glow = document.createElement("div");
+  glow.className = "cursor-glow";
+  glow.id = "cursorGlow";
+  document.body.appendChild(glow);
+
+  let visible = false;
+  document.addEventListener("mousemove", (e) => {
+    glow.style.left = e.clientX + "px";
+    glow.style.top = e.clientY + "px";
+    if (!visible) {
+      glow.classList.add("visible");
+      visible = true;
+    }
+  });
+  document.addEventListener("mouseleave", () => {
+    glow.classList.remove("visible");
+    visible = false;
+  });
+})();
+
 // ===== MOBILE MENU =====
 function openMobileMenu() {
   document.querySelector(".mobile-nav-toggle")?.classList.add("active");
