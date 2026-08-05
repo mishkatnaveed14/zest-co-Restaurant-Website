@@ -175,7 +175,6 @@ const resultsCountEl = document.getElementById('faqResultsCount');
     onSearch();
     searchInput.focus();
   });
-
 // Set total count on load
   if (resultsCountEl) resultsCountEl.textContent = items.length;
 
