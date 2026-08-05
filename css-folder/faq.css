@@ -623,6 +623,191 @@ body,
 }
 
 /* ==========================================================================
+   TOOLBAR: RESULTS COUNT + EXPAND/COLLAPSE
+   ========================================================================== */
+.faq-results-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-dark-glass);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--text-subtle);
+  backdrop-filter: blur(10px);
+}
+
+.faq-results-count strong {
+  color: var(--gold-light);
+}
+
+.faq-results-count span {
+  color: var(--text-subtle);
+}
+
+.faq-tool-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-dark-glass);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: var(--text-subtle);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s var(--transition-smooth);
+  backdrop-filter: blur(10px);
+}
+
+.faq-tool-btn:hover {
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--gold-glow);
+}
+
+.faq-tool-btn:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.faq-tool-btn i {
+  color: var(--gold-primary);
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   FAQ ITEM SHIMMER HOVER
+   ========================================================================== */
+.faq-item {
+  position: relative;
+}
+
+.faq-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(212, 175, 55, 0.12), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s var(--transition-smooth);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.faq-item:hover::before {
+  left: 130%;
+}
+
+/* ==========================================================================
+   FLOATING HELP BUBBLE
+   ========================================================================== */
+.faq-help-bubble {
+  position: fixed;
+  right: 26px;
+  bottom: 26px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+  color: #000;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 34px rgba(212, 175, 55, 0.4);
+  z-index: 1200;
+  transition: all 0.3s var(--transition-bounce);
+  text-decoration: none;
+}
+
+.faq-help-bubble:hover {
+  transform: translateY(-4px) scale(1.06);
+  color: #000;
+  box-shadow: 0 16px 40px rgba(212, 175, 55, 0.55);
+}
+
+.faq-help-bubble::after {
+  content: "Concierge";
+  position: absolute;
+  right: 70px;
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
+  background: var(--bg-dark-glass);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--gold-light);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s var(--transition-smooth);
+}
+
+.faq-help-bubble:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ==========================================================================
+   BACK TO TOP BUTTON
+   ========================================================================== */
+.faq-back-top {
+  position: fixed;
+  right: 30px;
+  bottom: 96px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: var(--bg-dark-glass);
+  color: var(--gold-light);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1190;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.35s var(--transition-smooth);
+  backdrop-filter: blur(10px);
+}
+
+.faq-back-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.faq-back-top:hover {
+  background: var(--gold-primary);
+  color: #000;
+  border-color: transparent;
+  box-shadow: 0 10px 26px var(--gold-glow);
+  transform: translateY(-3px);
+}
+
+/* Magnetic CTA card subtle float */
+.faq-cta-card {
+  transition: box-shadow 0.5s var(--transition-smooth);
+}
+
+.faq-cta-card:hover {
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 0 0 40px rgba(212, 175, 55, 0.15);
+}
+
+/* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 991px) {
