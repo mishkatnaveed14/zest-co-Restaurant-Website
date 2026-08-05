@@ -827,6 +827,27 @@ body {
     }
 }
 
+/* =============================================
+   GLOBAL GOLDEN GLOW CURSOR (every page)
+   ============================================= */
+.cursor-glow {
+    position: fixed;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.09) 0%, rgba(212, 175, 55, 0.04) 35%, transparent 70%);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    mix-blend-mode: screen;
+}
+
+.cursor-glow.visible {
+    opacity: 1;
+}
+
 /* -------------navbar end------------ */
 
 
