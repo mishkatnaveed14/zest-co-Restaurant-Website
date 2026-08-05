@@ -257,16 +257,14 @@
           </div>
         </div>
 
-        <!-- Toolbar: results count + expand/collapse all -->
+<!-- Toolbar: results count + expand/collapse all -->
         <div class="row justify-content-center align-items-center mb-4">
-          <div class="col-auto">
-            <span class="faq-results-count" id="faqResultsCount">
-              <i class="bi bi-search-heart gold-text"></i>
-              Showing <strong id="faqVisibleCount">18</strong> of <span id="faqTotalCount">18</span> answers
+          <div class="col-12 d-flex flex-wrap justify-content-center justify-content-md-between align-items-center gap-3">
+            <span class="faq-results-count">
+              <i class="bi bi-check2-circle gold-text"></i>
+              <span id="faqResultsCount">18</span>&nbsp;answers found
             </span>
-          </div>
-          <div class="col-auto">
-            <div class="d-flex gap-2 flex-wrap">
+            <div class="d-flex gap-2">
               <button class="faq-tool-btn" id="faqExpandAll" type="button">
                 <i class="bi bi-arrows-expand"></i> Expand All
               </button>
@@ -280,6 +278,7 @@
         <!-- FAQ Accordion Groups -->
         <div class="row justify-content-center">
           <div class="col-12">
+
 
             <!-- RESERVATIONS GROUP -->
             <div class="faq-group" data-group="reservations">

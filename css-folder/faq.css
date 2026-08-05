@@ -68,7 +68,7 @@ body,
 }
 
 /* ==========================================================================
-   AMBIENT GLOW & CURSOR
+AMBIENT GLOW & CURSOR
    ========================================================================== */
 .ambient-glow {
   position: fixed;
@@ -221,7 +221,6 @@ body,
    ========================================================================== */
 .faq-hero-section {
   min-height: 92vh;
-  /* padding-top: 90px; */
   position: relative;
 }
 
@@ -422,6 +421,41 @@ body,
   box-shadow: 0 6px 18px var(--gold-glow);
 }
 
+/* Toolbar: results count + expand/collapse all */
+.faq-results-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-subtle);
+  font-size: 0.9rem;
+  background: var(--bg-dark-glass);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 8px 18px;
+  border-radius: 999px;
+}
+
+.faq-tool-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--bg-dark-glass);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: var(--text-subtle);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s var(--transition-smooth);
+  backdrop-filter: blur(10px);
+}
+
+.faq-tool-btn:hover {
+  color: var(--gold-light);
+  border-color: var(--gold-primary);
+  background: rgba(212, 175, 55, 0.08);
+}
+
 /* FAQ group */
 .faq-group {
   margin-bottom: 30px;
@@ -483,6 +517,7 @@ body,
 
 /* FAQ item */
 .faq-item {
+  position: relative;
   background: var(--bg-dark-glass);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
@@ -498,6 +533,25 @@ body,
 .faq-item.open {
   border-color: rgba(212, 175, 55, 0.5);
   box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(212, 175, 55, 0.12);
+}
+
+/* FAQ item shimmer hover */
+.faq-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(212, 175, 55, 0.12), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s var(--transition-smooth);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.faq-item:hover::before {
+  left: 130%;
 }
 
 .faq-question {
@@ -595,35 +649,7 @@ body,
 }
 
 /* ==========================================================================
-   CTA SECTION
-   ========================================================================== */
-.faq-cta-section {
-  min-height: 420px;
-}
-
-.showcase-parallax-bg {
-  position: absolute;
-  inset: -10%;
-  background-image: url('../assets/images/gallery/bg-texture.jpg');
-  background-position: center;
-  background-size: cover;
-  filter: brightness(0.4);
-  z-index: 0;
-}
-
-.showcase-overlay {
-  background: radial-gradient(circle, transparent 20%, #090a0c 90%);
-  z-index: 1;
-}
-
-.glass-showcase-card {
-  background: rgba(18, 20, 24, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-
-/* ==========================================================================
-   TOOLBAR: RESULTS COUNT + EXPAND/COLLAPSE
+   RESULTS COUNT + TOOLBAR
    ========================================================================== */
 .faq-results-count {
   display: inline-flex;
@@ -631,76 +657,52 @@ body,
   gap: 8px;
   background: var(--bg-dark-glass);
   border: 1px solid rgba(212, 175, 55, 0.2);
-  padding: 8px 18px;
   border-radius: 999px;
-  font-size: 0.85rem;
+  padding: 10px 20px;
   color: var(--text-subtle);
+  font-size: 0.85rem;
   backdrop-filter: blur(10px);
 }
 
 .faq-results-count strong {
   color: var(--gold-light);
+  font-weight: 700;
 }
 
 .faq-results-count span {
-  color: var(--text-subtle);
+  color: #fff;
+  font-weight: 600;
 }
 
 .faq-tool-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: var(--bg-dark-glass);
   border: 1px solid rgba(212, 175, 55, 0.25);
   color: var(--text-subtle);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  padding: 8px 16px;
+  padding: 10px 18px;
   border-radius: 999px;
   cursor: pointer;
   transition: all 0.3s var(--transition-smooth);
   backdrop-filter: blur(10px);
 }
 
+.faq-tool-btn i {
+  color: var(--gold-primary);
+}
+
 .faq-tool-btn:hover {
-  border-color: var(--gold-primary);
   color: var(--gold-light);
+  border-color: var(--gold-primary);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px var(--gold-glow);
 }
 
 .faq-tool-btn:active {
   transform: translateY(0) scale(0.96);
-}
-
-.faq-tool-btn i {
-  color: var(--gold-primary);
-  font-size: 0.95rem;
-}
-
-/* ==========================================================================
-   FAQ ITEM SHIMMER HOVER
-   ========================================================================== */
-.faq-item {
-  position: relative;
-}
-
-.faq-item::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -80%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(105deg, transparent, rgba(212, 175, 55, 0.12), transparent);
-  transform: skewX(-20deg);
-  transition: left 0.7s var(--transition-smooth);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.faq-item:hover::before {
-  left: 130%;
 }
 
 /* ==========================================================================
@@ -721,7 +723,7 @@ body,
   justify-content: center;
   box-shadow: 0 12px 34px rgba(212, 175, 55, 0.4);
   z-index: 1200;
-  transition: all 0.3s var(--transition-bounce);
+  transition: all 0.3s var(--transition-bounce, cubic-bezier(0.34, 1.56, 0.64, 1));
   text-decoration: none;
 }
 
@@ -798,7 +800,34 @@ body,
   transform: translateY(-3px);
 }
 
-/* Magnetic CTA card subtle float */
+/* ==========================================================================
+   CTA SECTION
+   ========================================================================== */
+.faq-cta-section {
+  min-height: 420px;
+}
+
+.showcase-parallax-bg {
+  position: absolute;
+  inset: -10%;
+  background-image: url('../assets/images/gallery/bg-texture.jpg');
+  background-position: center;
+  background-size: cover;
+  filter: brightness(0.4);
+  z-index: 0;
+}
+
+.showcase-overlay {
+  background: radial-gradient(circle, transparent 20%, #090a0c 90%);
+  z-index: 1;
+}
+
+.glass-showcase-card {
+  background: rgba(18, 20, 24, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
 .faq-cta-card {
   transition: box-shadow 0.5s var(--transition-smooth);
 }
@@ -836,6 +865,10 @@ body,
     font-size: 0.88rem;
   }
 
+  .faq-results-count {
+    margin-bottom: 8px;
+  }
+
   .display-3 {
     font-size: 2.4rem;
   }
@@ -849,4 +882,20 @@ body,
   .faq-q-text {
     padding-left: 4px;
   }
+
+  .faq-back-top {
+    right: 16px;
+    bottom: 88px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .faq-help-bubble {
+    right: 16px;
+    bottom: 18px;
+    width: 52px;
+    height: 52px;
+  }
 }
+
+</content>
