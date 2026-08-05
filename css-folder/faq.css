@@ -221,7 +221,7 @@ body,
    ========================================================================== */
 .faq-hero-section {
   min-height: 92vh;
-  padding-top: 90px;
+  /* padding-top: 90px; */
   position: relative;
 }
 
