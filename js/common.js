@@ -1,3 +1,38 @@
+// ===== STICKY NAVBAR SHRINK ON SCROLL (every page) =====
+(function initStickyNavbar() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+
+  const onScroll = () => {
+    header.classList.toggle("scrolled", window.scrollY > 40);
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+})();
+
+// ===== AUTO BACK-TO-TOP BUTTON (every page) =====
+(function initBackToTop() {
+  if (document.querySelector(".zest-back-top")) return;
+
+  const btn = document.createElement("button");
+  btn.className = "zest-back-top";
+  btn.id = "zestBackTop";
+  btn.type = "button";
+  btn.setAttribute("aria-label", "Back to top");
+  btn.innerHTML = '<i class="bi bi-arrow-up"></i>';
+  document.body.appendChild(btn);
+
+  const onScroll = () => {
+    btn.classList.toggle("show", window.scrollY > 300);
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  btn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+})();
+
 // ===== GLOBAL GOLDEN GLOW CURSOR (every page) =====
 (function initGlobalCursorGlow() {
   // Skip if it already exists (e.g. pages that manually include one)

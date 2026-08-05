@@ -246,7 +246,7 @@
         </div>
 
         <!-- Category Filter Pills -->
-        <div class="row justify-content-center mb-5">
+        <div class="row justify-content-center mb-3">
           <div class="col-12 d-flex justify-content-center flex-wrap gap-2 faq-filter-pills" id="faqFilterPills">
             <button class="faq-filter-btn active" data-filter="all" type="button">All Questions</button>
             <button class="faq-filter-btn" data-filter="reservations" type="button">Reservations</button>
@@ -257,9 +257,29 @@
           </div>
         </div>
 
+        <!-- Toolbar: results count + expand/collapse all -->
+        <div class="row justify-content-center align-items-center mb-4">
+          <div
+            class="col-12 d-flex flex-wrap justify-content-center justify-content-md-between align-items-center gap-3">
+            <span class="faq-results-count">
+              <i class="bi bi-check2-circle gold-text"></i>
+              <span id="faqResultsCount">18</span>&nbsp;answers found
+            </span>
+            <div class="d-flex gap-2">
+              <button class="faq-tool-btn" id="faqExpandAll" type="button">
+                <i class="bi bi-arrows-expand"></i> Expand All
+              </button>
+              <button class="faq-tool-btn" id="faqCollapseAll" type="button">
+                <i class="bi bi-arrows-collapse"></i> Collapse All
+              </button>
+            </div>
+          </div>
+        </div>
+
         <!-- FAQ Accordion Groups -->
         <div class="row justify-content-center">
           <div class="col-12">
+
 
             <!-- RESERVATIONS GROUP -->
             <div class="faq-group" data-group="reservations">
@@ -346,7 +366,7 @@
               <div class="faq-group-body">
                 <div class="faq-item">
                   <button class="faq-question" type="button" aria-expanded="false">
-                    <span class="faq-q-icon"><i class="bi bi-leaf"></i></span>
+                    <span class="faq-q-icon"><i class="bi bi-flower1"></i></span>
                     <span class="faq-q-text">Do you offer vegetarian, vegan or gluten-free options?</span>
                     <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
                   </button>
@@ -406,7 +426,7 @@
 
                 <div class="faq-item">
                   <button class="faq-question" type="button" aria-expanded="false">
-                    <span class="faq-q-icon"><i class="bi bi-wine"></i></span>
+                    <span class="faq-q-icon"><i class="bi bi-cup-straw"></i></span>
                     <span class="faq-q-text">Can I request off-menu or custom dishes?</span>
                     <span class="faq-q-toggle"><i class="bi bi-plus-lg"></i></span>
                   </button>
@@ -631,6 +651,15 @@
 
   </main>
 
+  <!-- Floating back-to-top -->
+  <button class="faq-back-top" id="faqBackTop" type="button" aria-label="Back to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Floating concierge help bubble -->
+  <a href="../html/contact.html" class="faq-help-bubble hvr-buzz-out" data-cursor="hover" aria-label="Get help">
+    <i class="bi bi-chat-heart-fill"></i>
+  </a>
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
     <div class="container footer-grid">
