@@ -2360,7 +2360,7 @@
 
   .map-container {
     width: 100%;
-    min-height: 400px;
+    height: 400px;
     margin-top: 15px;
     --animate-duration: 2s;
 
