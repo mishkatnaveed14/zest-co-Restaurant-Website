@@ -620,7 +620,7 @@ if (window.gsap && window.ScrollTrigger) {
   // Fallback — GSAP/ScrollTrigger not available, just show everything instantly
   document
     .querySelectorAll(
-      ".dish-card, .premium-card, .food-card, .quick-card, .stat-item, .footer-grid > div, .spotlight-feature, .spotlight-thumbs .thumb, .highlight-pill",
+      ".signature-menu, .signature-menu-footer, .premium-card, .food-card, .quick-card, .stat-item, .footer-grid > div, .spotlight-feature, .spotlight-thumbs .thumb, .highlight-pill",
     )
     .forEach((el) => {
       el.style.opacity = "1";
