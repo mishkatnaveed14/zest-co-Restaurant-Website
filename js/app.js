@@ -928,41 +928,60 @@ const dishesData = [
 
 const menuGrid = document.getElementById("menuGrid");
 const categoryTabs = document.getElementById("categoryTabs");
+const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+const CARDS_PER_PAGE = 4;
+
+// Track pagination state per category
+let currentCategory = "all";
+let visibleCount = CARDS_PER_PAGE;
+
+function getFilteredItems() {
+  if (currentCategory === "all") return dishesData;
+  return dishesData.filter((item) => item.category === currentCategory);
+}
+
+function buildFoodCard(item) {
+  const card = document.createElement("div");
+  card.className = "food-card";
+  card.style.opacity = "0";
+  card.style.transform = "translateY(20px) scale(0.95)";
+  card.innerHTML = `
+    <span class="badge-corner">${item.badge}</span>
+    <div class="card-img-wrapper">
+      <img src="${item.image}" alt="${item.name}" class="card-img" />
+      <div class="card-img-overlay">
+        <span class="quick-view" onclick="addToCart(${item.id})"><i class="bi bi-bag-plus"></i> Quick Add</span>
+      </div>
+    </div>
+    <div class="card-body-content">
+      <div class="card-title-row">
+        <h3 class="card-title">${item.name}</h3>
+        <span class="rating">${item.rating}</span>
+      </div>
+      <p class="small-desc">${item.desc}</p>
+      <div class="card-divider"></div>
+      <div class="card-footer">
+        <span class="price">${item.price}</span>
+        <button class="add-btn" onclick="addToCart(${item.id})">
+          <i class="bi bi-plus-lg"></i> Add to Cart
+        </button>
+      </div>
+      <a href="./html/menu.html" class="view-details-link">
+        <i class="bi bi-arrow-right"></i> View Details
+      </a>
+    </div>
+  `;
+  return card;
+}
 
 function renderMenuCards(items) {
   if (!menuGrid) return;
   menuGrid.innerHTML = "";
   const fragment = document.createDocumentFragment();
 
-  items.forEach((item, i) => {
-    const card = document.createElement("div");
-    card.className = "food-card";
-    card.style.opacity = "0";
-    card.style.transform = "translateY(20px) scale(0.95)";
-    card.innerHTML = `
-      <span class="badge-corner">${item.badge}</span>
-      <div class="card-img-wrapper">
-        <img src="${item.image}" alt="${item.name}" class="card-img" />
-        <div class="card-img-overlay">
-          <span class="quick-view" onclick="addToCart(${item.id})"><i class="bi bi-bag-plus"></i> Quick Add</span>
-        </div>
-      </div>
-      <div class="card-body-content">
-        <div class="card-title-row">
-          <h3 class="card-title">${item.name}</h3>
-          <span class="rating">${item.rating}</span>
-        </div>
-        <p class="small-desc">${item.desc}</p>
-        <div class="card-divider"></div>
-        <div class="card-footer">
-          <span class="price">${item.price}</span>
-          <button class="add-btn" onclick="addToCart(${item.id})">
-            <i class="bi bi-plus-lg"></i> Add to Cart
-          </button>
-        </div>
-      </div>
-    `;
-    fragment.appendChild(card);
+  items.forEach((item) => {
+    fragment.appendChild(buildFoodCard(item));
   });
 
   menuGrid.appendChild(fragment);
@@ -985,6 +1004,28 @@ function renderMenuCards(items) {
   }
 }
 
+function updateLoadMoreButton() {
+  if (!loadMoreBtn) return;
+  const total = getFilteredItems().length;
+  if (visibleCount >= total) {
+    loadMoreBtn.classList.add("hide");
+  } else {
+    loadMoreBtn.classList.remove("hide");
+  }
+}
+
+function renderMenuSlice() {
+  if (!menuGrid) return;
+  const items = getFilteredItems().slice(0, visibleCount);
+  renderMenuCards(items);
+  updateLoadMoreButton();
+}
+
+loadMoreBtn?.addEventListener("click", () => {
+  visibleCount += CARDS_PER_PAGE;
+  renderMenuSlice();
+});
+
 categoryTabs?.addEventListener("click", (e) => {
   if (!e.target.classList.contains("tab-btn")) return;
 
@@ -1001,12 +1042,9 @@ categoryTabs?.addEventListener("click", (e) => {
     );
   }
 
-  const selectedCategory = e.target.getAttribute("data-category");
-  const filtered =
-    selectedCategory === "all"
-      ? dishesData
-      : dishesData.filter((item) => item.category === selectedCategory);
-  renderMenuCards(filtered);
+  currentCategory = e.target.getAttribute("data-category");
+  visibleCount = CARDS_PER_PAGE;
+  renderMenuSlice();
 });
 
 function addToCart(itemId) {
@@ -1014,7 +1052,7 @@ function addToCart(itemId) {
   if (item) alert(`${item.name} added to your cart!`);
 }
 
-renderMenuCards(dishesData);
+renderMenuSlice();
 
 // ===== CURSOR GLOW =====
 const cursorGlow = document.getElementById("cursorGlow");
