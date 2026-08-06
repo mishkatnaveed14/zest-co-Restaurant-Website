@@ -724,6 +724,27 @@
   box-shadow: var(--neu-shadow-elevated);
 }
 
+/* Signature expanding gold circle on hover — sits behind the card content
+   (which is raised with z-index) so all text stays readable and clickable. */
+.food-card:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: -18px;
+  right: -18px;
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-bright));
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  transform: scale(1);
+  transform-origin: 50% 50%;
+  transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.food-card:hover:before {
+  transform: scale(42);
+}
+
 .badge-corner {
   position: absolute;
   top: 15px;
@@ -837,9 +858,11 @@
   color: rgba(245, 245, 247, 0.85);
 }
 
+/* On hover the gold circle fills the card, so the rating turns white
+   (no pill) to stay readable on the gold background. */
 .food-card:hover .rating {
   color: var(--nav-text-light);
-  background: rgba(17, 17, 17, 0.25);
+  background: transparent;
 }
 
 .food-card:hover .card-divider {

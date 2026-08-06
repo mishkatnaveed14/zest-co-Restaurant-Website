@@ -342,6 +342,43 @@
   }
 }
 
+/* ===== MENU HIGHLIGHTS RESPONSIVE ===== */
+.menu-highlights-section {
+  padding: 60px 16px;
+}
+
+.menu-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 991.98px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .food-card {
+    max-width: 340px;
+  }
+
+  .menu-highlights-footer {
+    gap: 16px;
+  }
+
+  .load-more-btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 991.98px) {
   .top-bar {
     padding: 12px 0;
