@@ -1590,7 +1590,6 @@
   text-decoration: none;
   display: inline-block;
   transition: all 0.4s var(--transition-bounce);
-  box-shadow: var(--neu-shadow-small);
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
