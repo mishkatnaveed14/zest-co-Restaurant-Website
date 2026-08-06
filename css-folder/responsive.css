@@ -645,6 +645,19 @@
   }
 }
 
+/* ===== MENU HIGHLIGHTS — RESPONSIVE (card footer polish) ===== */
+@media (max-width: 575.98px) {
+  .food-card .card-footer {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .food-card .card-footer .add-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 575.98px) {
   .open-time p {
     font-size: 12.5px;

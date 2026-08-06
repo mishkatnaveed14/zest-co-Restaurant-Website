@@ -837,12 +837,48 @@
   transform: translateY(-2px);
 }
 
+/* Bring card content above the expanding gold circle so it stays clickable
+   and readable when the full-card hover effect activates */
+.food-card .card-body-content,
+.food-card .badge-corner,
+.food-card .card-img-wrapper {
+  position: relative;
+  z-index: 2;
+}
+
 .food-card:hover .card-title {
-  color: var(--accent-gold);
+  color: var(--nav-text-light);
 }
 
 .food-card:hover .small-desc {
-  color: var(--text-muted);
+  color: rgba(245, 245, 247, 0.85);
+}
+
+.food-card:hover .rating {
+  color: var(--nav-text-light);
+  background: rgba(17, 17, 17, 0.25);
+}
+
+.food-card:hover .card-divider {
+  background: linear-gradient(90deg, transparent, rgba(245, 245, 247, 0.5), transparent);
+}
+
+.food-card:hover .price {
+  color: var(--nav-bg);
+  -webkit-text-fill-color: var(--nav-bg);
+  background: none;
+}
+
+.food-card:hover .view-details-link,
+.food-card:hover .view-details-link:hover {
+  color: var(--nav-bg);
+  border-top-color: rgba(17, 17, 17, 0.35);
+}
+
+.food-card:hover .add-btn {
+  background: var(--nav-bg);
+  color: var(--accent-gold-bright);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* ===== MENU HIGHLIGHTS — FOOTER & VIEW DETAILS ===== */
@@ -884,9 +920,14 @@
   color: var(--accent-gold-bright);
 }
 
-.food-card:hover .view-details-link,
-.view-details-link:hover {
-  color: var(--accent-gold-bright);
+/* When the gold circle fills the card, use dark (readable) link text */
+.food-card:hover .view-details-link {
+  color: var(--nav-bg);
+  border-top-color: rgba(17, 17, 17, 0.35);
+}
+
+.food-card:hover .view-details-link:hover {
+  color: #111;
 }
 
 .view-details-link:hover i {
