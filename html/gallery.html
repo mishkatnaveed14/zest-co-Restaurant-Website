@@ -92,33 +92,25 @@
           <!-- Nav links -->
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" href="../index.html">HOME</a>
+              <a class="nav-link" href="../index.html">HOME</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../html/admin/user/about.html">ABOUT</a>
             </li>
-            <li class="nav-item dropdown-holder">
-              <a class="nav-link" href="../html/menu.html">MENU <i class="bi bi-chevron-down nav-arrow"></i></a>
-              <ul class="nav-dropdown">
-                <li><a href="#">Menu List 01</a></li>
-                <li><a href="#">Menu List 02</a></li>
-                <li><a href="#">Food Category</a></li>
-              </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="../html/menu.html">MENU</a>
             </li>
             <li class="nav-item dropdown-holder">
               <a class="nav-link" href="../html/pages.html">PAGES <i class="bi bi-chevron-down nav-arrow"></i></a>
               <ul class="nav-dropdown">
-                <li><a href="../html/chef.html">Chef</a></li>
+                <li><a href="../html/admin/user/reservation.html">Reservation</a></li>
                 <li><a href="../html/gallery.html">Gallery</a></li>
+                <li><a href="../html/service.html">Service</a></li>
                 <li><a href="../html/faq.html">FAQ</a></li>
               </ul>
             </li>
-            <li class="nav-item dropdown-holder">
-              <a class="nav-link" href="../html/blog.html">BLOG <i class="bi bi-chevron-down nav-arrow"></i></a>
-              <ul class="nav-dropdown">
-                <li><a href="#">Blog Grid</a></li>
-                <li><a href="#">Blog Standard</a></li>
-              </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="../html/blog.html">BLOG </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../html/contact.html">CONTACT</a>
@@ -136,8 +128,9 @@
                 <a href="tel:+9988776345">+998-8776345</a>
               </div>
             </div>
-            <a href="#" class="nav-btn">
-              <span>Connect Now</span>
+            <a href="#" class="login-link d-none d-sm-inline-block d-lg-inline-block" data-auth-open="login">Login</a>
+            <a href="#" class="nav-btn" data-auth-open="signup">
+              <span>Signup</span>
             </a>
           </div>
 
@@ -757,15 +750,8 @@
   <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-col about-col">
-        <a href="#" class="logo footer-logo">
-          <span class="logo-mark">
-            <svg width="26" height="26" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 3C13 8 10 14 10 20c0 6 4.5 11 10 14 5.5-3 10-8 10-14 0-6-3-12-10-17Z" stroke="#D4AF37"
-                stroke-width="1.6" />
-              <path d="M20 12c-2.5 2.7-4 5.3-4 8s1.8 5 4 6.4c2.2-1.4 4-3.7 4-6.4s-1.5-5.3-4-8Z" fill="#D4AF37" />
-            </svg>
-          </span>
-          Zest &<span class="logo-accent">Co.</span>
+        <a class="navbar-brand header-logo" href="../index.html">
+          <img src="../assets/images/logo.png" alt="Zest & Co. Logo" style="height: 80px; width: auto; ">
         </a>
         <p>A fire-grill and noodle house built around three obsessions: char, rice, and broth. Come hungry.</p>
         <div class="footer-social">
@@ -812,21 +798,164 @@
   <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
   <div class="mobile-menu-panel" id="mobileMenuPanel">
     <div class="mobile-menu-head">
-      <a href="./index.html" class="mobile-brand">Zest &amp; Co.</a>
+      <a href="../index.html" class="mobile-brand">Zest &amp; Co.</a>
       <button class="mobile-close" type="button" aria-label="Close menu">
         <i class="bi bi-x-lg"></i>
       </button>
     </div>
     <nav class="mobile-nav-links">
-      <a href="index.html">Home</a>
-      <a href="./admin/user/about.html">About</a>
-      <a href="menu.html">Menu</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
+      <a href="../index.html">Home</a>
+      <a href="../html/admin/user/about.html">About</a>
+      <a href="../html/menu.html">Menu</a>
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" aria-haspopup="true" aria-expanded="false">
+          PAGES <i class="bi bi-chevron-down nav-arrow"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="../html/admin/user/reservation.html">Reservation</a></li>
+          <li><a class="dropdown-item" href="../html/gallery.html">Gallery</a></li>
+          <li><a class="dropdown-item" href="../html/faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <a href="../html/contact.html">Contact</a>
     </nav>
     <div class="mobile-menu-footer">
-      <a href="tel:+9988776345" class="nav-btn">Call Now</a>
-      <a href="#" class="nav-btn btn-outline">Reserve</a>
+      <a href="#" data-auth-open="signup" class="nav-btn">Signup</a>
+      <a href="../html/admin/user/reservation.html" class="nav-btn btn-outline">Reserve</a>
+    </div>
+  </div>
+
+  <!-- ================= LOGIN / SIGNUP MODAL ================= -->
+  <div class="auth-modal" id="authModal" aria-hidden="true">
+    <div class="auth-modal-overlay" data-auth-close></div>
+    <div class="auth-modal-box" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+      <button class="auth-modal-close" type="button" data-auth-close aria-label="Close modal">
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      <div class="auth-modal-grid">
+        <!-- Left: Brand / Image Panel -->
+        <div class="auth-brand-panel">
+          <div class="auth-brand-inner">
+            <span class="auth-brand-mark">
+              <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 3C13 8 10 14 10 20c0 6 4.5 11 10 14 5.5-3 10-8 10-14 0-6-3-12-10-17Z" stroke="#D4AF37"
+                  stroke-width="1.6" />
+                <path d="M20 12c-2.5 2.7-4 5.3-4 8s1.8 5 4 6.4c2.2-1.4 4-3.7 4-6.4s-1.5-5.3-4-8Z" fill="#D4AF37" />
+              </svg>
+            </span>
+            <h3 class="auth-brand-name">Zest &amp; <span>Co.</span></h3>
+            <p class="auth-brand-sub">A fire-grill &amp; noodle house built around char, rice &amp; broth.
+            </p>
+            <div class="auth-brand-quote">
+              <span>“</span> Fine dining begins with a warm welcome. <span>”</span>
+            </div>
+            <div class="auth-brand-features">
+              <span><i class="bi bi-patch-check-fill"></i> Members-Only Menus</span>
+              <span><i class="bi bi-patch-check-fill"></i> Priority Table Booking</span>
+              <span><i class="bi bi-patch-check-fill"></i> Exclusive Chef’s Tastings</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form Panel -->
+        <div class="auth-form-panel">
+          <div class="auth-tabs">
+            <button type="button" class="auth-tab active" data-auth-tab="login">Login</button>
+            <button type="button" class="auth-tab" data-auth-tab="signup">Sign Up</button>
+          </div>
+
+          <!-- Login Form -->
+          <form class="auth-form active" id="authLoginForm" data-auth-form="login">
+            <h2 class="auth-title" id="authModalTitle">Welcome Back</h2>
+            <p class="auth-subtitle">Sign in to continue your fine dining experience.</p>
+
+            <div class="auth-field">
+              <label for="loginEmail">Email Address</label>
+              <div class="auth-input-wrap">
+                <i class="bi bi-envelope"></i>
+                <input type="email" id="loginEmail" placeholder="you@example.com" required>
+              </div>
+            </div>
+
+            <div class="auth-field">
+              <label for="loginPassword">Password</label>
+              <div class="auth-input-wrap">
+                <i class="bi bi-lock"></i>
+                <input type="password" id="loginPassword" placeholder="••••••••" required>
+                <button type="button" class="auth-eye" data-auth-eye aria-label="Show password">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="auth-row">
+              <label class="auth-check">
+                <input type="checkbox"> Remember me
+              </label>
+              <a href="#" class="auth-forgot">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="auth-submit">Sign In</button>
+
+            <div class="auth-divider"><span>or continue with</span></div>
+
+            <div class="auth-social">
+              <button type="button" class="auth-social-btn"><i class="bi bi-google"></i> Google</button>
+              <button type="button" class="auth-social-btn"><i class="bi bi-facebook"></i>
+                Facebook</button>
+            </div>
+
+            <p class="auth-switch">New here? <a href="#" data-auth-switch="signup">Create an account</a></p>
+          </form>
+
+          <!-- Signup Form -->
+          <form class="auth-form" id="authSignupForm" data-auth-form="signup">
+            <h2 class="auth-title">Join Zest &amp; Co.</h2>
+            <p class="auth-subtitle">Create your account for exclusive dining privileges.</p>
+
+            <div class="auth-field">
+              <label for="signupName">Full Name</label>
+              <div class="auth-input-wrap">
+                <i class="bi bi-person"></i>
+                <input type="text" id="signupName" placeholder="Your full name" required>
+              </div>
+            </div>
+
+            <div class="auth-field">
+              <label for="signupEmail">Email Address</label>
+              <div class="auth-input-wrap">
+                <i class="bi bi-envelope"></i>
+                <input type="email" id="signupEmail" placeholder="you@example.com" required>
+              </div>
+            </div>
+
+            <div class="auth-field">
+              <label for="signupPassword">Password</label>
+              <div class="auth-input-wrap">
+                <i class="bi bi-lock"></i>
+                <input type="password" id="signupPassword" placeholder="Create a password" required>
+                <button type="button" class="auth-eye" data-auth-eye aria-label="Show password">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" class="auth-submit">Create Account</button>
+
+            <div class="auth-divider"><span>or continue with</span></div>
+
+            <div class="auth-social">
+              <button type="button" class="auth-social-btn"><i class="bi bi-google"></i> Google</button>
+              <button type="button" class="auth-social-btn"><i class="bi bi-facebook"></i>
+                Facebook</button>
+            </div>
+
+            <p class="auth-switch">Already have an account? <a href="#" data-auth-switch="login">Sign in</a>
+            </p>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 
