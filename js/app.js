@@ -1006,11 +1006,22 @@ function renderMenuCards(items) {
 
 function updateLoadMoreButton() {
   if (!loadMoreBtn) return;
+  const label = loadMoreBtn.querySelector(".load-more-label");
+  const icon = loadMoreBtn.querySelector(".load-more-icon");
   const total = getFilteredItems().length;
-  if (visibleCount >= total) {
-    loadMoreBtn.classList.add("hide");
+  const allShown = visibleCount >= total;
+
+  loadMoreBtn.classList.remove("hide");
+
+  if (allShown) {
+    // Toggle to "Show Less" once everything is loaded
+    loadMoreBtn.classList.add("show-less");
+    if (label) label.textContent = "Show Less Dishes";
+    if (icon) icon.innerHTML = '<i class="bi bi-dash-lg"></i>';
   } else {
-    loadMoreBtn.classList.remove("hide");
+    loadMoreBtn.classList.remove("show-less");
+    if (label) label.textContent = "Load More Dishes";
+    if (icon) icon.innerHTML = '<i class="bi bi-plus-lg"></i>';
   }
 }
 
@@ -1022,7 +1033,13 @@ function renderMenuSlice() {
 }
 
 loadMoreBtn?.addEventListener("click", () => {
-  visibleCount += CARDS_PER_PAGE;
+  const total = getFilteredItems().length;
+  if (visibleCount >= total) {
+    // Already showing everything → collapse back to the first batch
+    visibleCount = CARDS_PER_PAGE;
+  } else {
+    visibleCount += CARDS_PER_PAGE;
+  }
   renderMenuSlice();
 });
 

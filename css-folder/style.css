@@ -1002,6 +1002,33 @@
   display: none;
 }
 
+/* "Show Less" state — swaps to a calmer, outlined style so users know
+   clicking again will collapse the list back to the first batch. */
+.load-more-btn.show-less {
+  background: var(--card-bg);
+  color: var(--text-dark);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--neu-shadow-soft);
+}
+
+.load-more-btn.show-less::before {
+  background: var(--gold-soft-tint);
+}
+
+.load-more-btn.show-less:hover {
+  border-color: var(--accent-gold);
+  box-shadow: var(--neu-shadow-elevated);
+}
+
+.load-more-btn.show-less .load-more-icon {
+  background: rgba(197, 168, 128, 0.15);
+  color: var(--accent-gold);
+}
+
+.load-more-btn.show-less:hover .load-more-icon {
+  transform: rotate(180deg);
+}
+
 /* View Full Menu Link */
 .view-menu-link {
   display: inline-flex;
