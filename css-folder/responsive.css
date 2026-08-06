@@ -633,11 +633,11 @@
 
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
+    gap: 14px;
   }
 
   .stat-item {
-    padding: 35px 20px;
+    padding: 32px 18px;
   }
 
   .stat-number {
