@@ -281,29 +281,34 @@
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu-panel" id="mobileMenuPanel">
         <div class="mobile-menu-head">
-            <a href="./index.html" class="mobile-brand">Zest &amp; Co.</a>
+            <a href="../index.html" class="mobile-brand">Zest &amp; Co.</a>
             <button class="mobile-close" type="button" aria-label="Close menu">
                 <i class="bi bi-x-lg"></i>
             </button>
         </div>
         <nav class="mobile-nav-links">
-            <a href="index.html">Home</a>
-            <a href="./admin/user/about.html">About</a>
-            <a href="menu.html">Menu</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="contact.html">Contact</a>
+            <a href="../index.html">Home</a>
+            <a href="../html/admin/user/about.html">About</a>
+            <a href="../html/menu.html">Menu</a>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" aria-haspopup="true" aria-expanded="false">
+                    PAGES <i class="bi bi-chevron-down nav-arrow"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="../html/admin/user/reservation.html">Reservation</a></li>
+                    <li><a class="dropdown-item" href="../html/gallery.html">Gallery</a></li>
+                    <li><a class="dropdown-item" href="../html/faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <a href="../html/contact.html">Contact</a>
         </nav>
         <div class="mobile-menu-footer">
-            <a href="tel:+9988776345" class="nav-btn">Call Now</a>
-            <a href="#" class="nav-btn btn-outline">Reserve</a>
+            <a href="#" data-auth-open="signup" class="nav-btn">Signup</a>
+            <a href="../html/admin/user/reservation.html" class="nav-btn btn-outline">Reserve</a>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/common.js"></script>
+    
 <!-- ================= LOGIN / SIGNUP MODAL ================= -->
     <div class="auth-modal" id="authModal" aria-hidden="true">
         <div class="auth-modal-overlay" data-auth-close></div>
@@ -338,6 +343,114 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Right: Form Panel -->
+                <div class="auth-form-panel">
+                    <div class="auth-tabs">
+                        <button type="button" class="auth-tab active" data-auth-tab="login">Login</button>
+                        <button type="button" class="auth-tab" data-auth-tab="signup">Sign Up</button>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form class="auth-form active" id="authLoginForm" data-auth-form="login">
+                        <h2 class="auth-title" id="authModalTitle">Welcome Back</h2>
+                        <p class="auth-subtitle">Sign in to continue your fine dining experience.</p>
+
+                        <div class="auth-field">
+                            <label for="loginEmail">Email Address</label>
+                            <div class="auth-input-wrap">
+                                <i class="bi bi-envelope"></i>
+                                <input type="email" id="loginEmail" placeholder="you@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="auth-field">
+                            <label for="loginPassword">Password</label>
+                            <div class="auth-input-wrap">
+                                <i class="bi bi-lock"></i>
+                                <input type="password" id="loginPassword" placeholder="••••••••" required>
+                                <button type="button" class="auth-eye" data-auth-eye aria-label="Show password">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="auth-row">
+                            <label class="auth-check">
+                                <input type="checkbox"> Remember me
+                            </label>
+                            <a href="#" class="auth-forgot">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="auth-submit">Sign In</button>
+
+                        <div class="auth-divider"><span>or continue with</span></div>
+
+                        <div class="auth-social">
+                            <button type="button" class="auth-social-btn"><i class="bi bi-google"></i> Google</button>
+                            <button type="button" class="auth-social-btn"><i class="bi bi-facebook"></i>
+                                Facebook</button>
+                        </div>
+
+                        <p class="auth-switch">New here? <a href="#" data-auth-switch="signup">Create an account</a></p>
+                    </form>
+
+                    <!-- Signup Form -->
+                    <form class="auth-form" id="authSignupForm" data-auth-form="signup">
+                        <h2 class="auth-title">Join Zest &amp; Co.</h2>
+                        <p class="auth-subtitle">Create your account for exclusive dining privileges.</p>
+
+                        <div class="auth-field">
+                            <label for="signupName">Full Name</label>
+                            <div class="auth-input-wrap">
+                                <i class="bi bi-person"></i>
+                                <input type="text" id="signupName" placeholder="Your full name" required>
+                            </div>
+                        </div>
+
+                        <div class="auth-field">
+                            <label for="signupEmail">Email Address</label>
+                            <div class="auth-input-wrap">
+                                <i class="bi bi-envelope"></i>
+                                <input type="email" id="signupEmail" placeholder="you@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="auth-field">
+                            <label for="signupPassword">Password</label>
+                            <div class="auth-input-wrap">
+                                <i class="bi bi-lock"></i>
+                                <input type="password" id="signupPassword" placeholder="Create a password" required>
+                                <button type="button" class="auth-eye" data-auth-eye aria-label="Show password">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="auth-submit">Create Account</button>
+
+                        <div class="auth-divider"><span>or continue with</span></div>
+
+                        <div class="auth-social">
+                            <button type="button" class="auth-social-btn"><i class="bi bi-google"></i> Google</button>
+                            <button type="button" class="auth-social-btn"><i class="bi bi-facebook"></i>
+                                Facebook</button>
+                        </div>
+
+                        <p class="auth-switch">Already have an account? <a href="#" data-auth-switch="login">Sign in</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/common.js"></script>
+
 </body>
 
 </html>
