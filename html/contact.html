@@ -219,7 +219,7 @@
     <footer class="footer">
         <div class="container footer-grid">
             <div class="footer-col about-col">
-                <a href="#" class="logo footer-logo">
+                <!-- <a href="#" class="logo footer-logo">
                     <span class="logo-mark">
                         <svg width="26" height="26" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20 3C13 8 10 14 10 20c0 6 4.5 11 10 14 5.5-3 10-8 10-14 0-6-3-12-10-17Z"
@@ -229,7 +229,13 @@
                         </svg>
                     </span>
                     Zest &<span class="logo-accent">Co.</span>
+                </a> -->
+
+                <a class="navbar-brand header-logo" href="#">
+                    <img src="./assets/images/logo.png" alt="Zest & Co. Logo"
+                        style="height: 80px; width: auto; ">
                 </a>
+
                 <p>A fire-grill and noodle house built around three obsessions: char, rice, and broth. Come hungry.</p>
                 <div class="footer-social">
                     <a href="#">IG</a><a href="#">FB</a><a href="#">TT</a><a href="#">YT</a>
@@ -298,6 +304,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/common.js"></script>
+<!-- ================= LOGIN / SIGNUP MODAL ================= -->
+    <div class="auth-modal" id="authModal" aria-hidden="true">
+        <div class="auth-modal-overlay" data-auth-close></div>
+        <div class="auth-modal-box" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+            <button class="auth-modal-close" type="button" data-auth-close aria-label="Close modal">
+                <i class="bi bi-x-lg"></i>
+            </button>
+
+            <div class="auth-modal-grid">
+                <!-- Left: Brand / Image Panel -->
+                <div class="auth-brand-panel">
+                    <div class="auth-brand-inner">
+                        <span class="auth-brand-mark">
+                            <svg width="34" height="34" viewBox="0 0 40 40" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 3C13 8 10 14 10 20c0 6 4.5 11 10 14 5.5-3 10-8 10-14 0-6-3-12-10-17Z"
+                                    stroke="#D4AF37" stroke-width="1.6" />
+                                <path d="M20 12c-2.5 2.7-4 5.3-4 8s1.8 5 4 6.4c2.2-1.4 4-3.7 4-6.4s-1.5-5.3-4-8Z"
+                                    fill="#D4AF37" />
+                            </svg>
+                        </span>
+                        <h3 class="auth-brand-name">Zest &amp; <span>Co.</span></h3>
+                        <p class="auth-brand-sub">A fire-grill &amp; noodle house built around char, rice &amp; broth.
+                        </p>
+                        <div class="auth-brand-quote">
+                            <span>“</span> Fine dining begins with a warm welcome. <span>”</span>
+                        </div>
+                        <div class="auth-brand-features">
+                            <span><i class="bi bi-patch-check-fill"></i> Members-Only Menus</span>
+                            <span><i class="bi bi-patch-check-fill"></i> Priority Table Booking</span>
+                            <span><i class="bi bi-patch-check-fill"></i> Exclusive Chef’s Tastings</span>
+                        </div>
+                    </div>
+                </div>
 </body>
 
 </html>
