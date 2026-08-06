@@ -748,7 +748,7 @@
 .badge-corner {
   position: absolute;
   top: 15px;
-  left: 15px;
+  /* left: 15px; */
   z-index: 2;
   background: var(--accent-gold-bright);
   color: #111;
@@ -757,6 +757,7 @@
   font-size: 0.75rem;
   font-weight: 600;
   box-shadow: var(--neu-shadow-small);
+  width: fit-content;
 }
 
 .card-img-wrapper {
@@ -840,14 +841,10 @@
   box-shadow: var(--neu-shadow-elevated);
   transform: translateY(-2px);
 }
-
-/* Bring card content above the expanding gold circle so it stays clickable
-   and readable when the full-card hover effect activates */
 .food-card .card-body-content,
 .food-card .badge-corner,
 .food-card .card-img-wrapper {
   position: relative;
-  z-index: 2;
 }
 
 .food-card:hover .card-title {
@@ -858,8 +855,6 @@
   color: rgba(245, 245, 247, 0.85);
 }
 
-/* On hover the gold circle fills the card, so the rating turns white
-   (no pill) to stay readable on the gold background. */
 .food-card:hover .rating {
   color: var(--nav-text-light);
   background: transparent;
