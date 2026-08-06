@@ -839,11 +839,10 @@
 
 .food-card:hover .card-title {
   color: var(--accent-gold);
-  color: var(--nav-text-light);
 }
 
 .food-card:hover .small-desc {
-  color: rgba(245, 245, 247, 0.75);
+  color: var(--text-muted);
 }
 
 /* ===== MENU HIGHLIGHTS — FOOTER & VIEW DETAILS ===== */
