@@ -336,211 +336,89 @@ const DISHES = [
   },
 ];
 
-const track = document.getElementById("carTrack");
-const dotsWrap = document.getElementById("carDots");
-const popularCarouselEl = document.getElementById("carousel");
-const carNextBtn = document.getElementById("carNext");
-const carPrevBtn = document.getElementById("carPrev");
-const dialRing = carNextBtn ? carNextBtn.querySelector(".ring circle") : null;
+// ===== POPULAR ITEMS — SIGNATURE SHOWCASE =====
+// A premium "large featured dish + list" layout (no sliding track, so no
+// empty-space bug). Clicking a list item swaps the featured dish with a fade.
+const showcaseListEl = document.getElementById("showcaseList");
+const showcaseImg = document.getElementById("showcaseImg");
+const showcaseName = document.getElementById("showcaseName");
+const showcaseDesc = document.getElementById("showcaseDesc");
+const showcasePrice = document.getElementById("showcasePrice");
+const showcaseBadge = document.getElementById("showcaseBadge");
+const showcaseRating = document.getElementById("showcaseRating");
+const showcaseProgress = document
+  .getElementById("showcaseProgress")
+  ?.querySelector(".showcase-progress-bar");
 
 function starString(n) {
   return "★".repeat(n) + "☆".repeat(5 - n);
 }
 
-function buildDishCardHTML(d) {
-  return `
-    <div class="dish-img-wrap">
-      <div class="price-blob ${d.featured ? "gold" : "white"}">$${d.price}</div>
-      ${d.featured ? '<span class="dish-ribbon">Chef\'s Pick</span>' : ""}
-      <img src="${d.img}" alt="${d.name}" loading="lazy">
-      <button type="button" class="quick-order-btn" onclick="alert('${d.name} added to your order!')">
-        <i class="bi bi-lightning-charge-fill"></i> Order Now
-      </button>
-    </div>
-    <div class="dish-body">
-      <div class="dish-rating">
-        <span class="stars">${starString(d.rating)}</span>
-        <span class="reviews">Review(${d.reviews})</span>
+function renderShowcaseList() {
+  if (!showcaseListEl) return;
+  showcaseListEl.innerHTML = "";
+  DISHES.forEach((d, idx) => {
+    const item = document.createElement("div");
+    item.className = "showcase-item" + (idx === 0 ? " active" : "");
+    item.setAttribute("role", "button");
+    item.innerHTML = `
+      <div class="showcase-item-thumb">
+        <img src="${d.img}" alt="${d.name}" loading="lazy">
       </div>
-      <h3>${d.name}</h3>
-      <p>${d.desc}</p>
-    </div>
-  `;
+      <div class="showcase-item-info">
+        <h4>${d.name}</h4>
+        <span class="showcase-item-meta">
+          <span class="item-stars">${starString(d.rating)}</span>
+          <span>${d.reviews} reviews</span>
+        </span>
+      </div>
+      <span class="showcase-item-price">$${d.price}</span>
+      <span class="showcase-item-arrow"><i class="bi bi-arrow-right"></i></span>
+    `;
+    item.addEventListener("click", () => setShowcaseDish(idx));
+    showcaseListEl.appendChild(item);
+  });
 }
 
-function makeDishCard(d, isClone) {
-  const card = document.createElement("div");
-  card.className =
-    "dish-card" + (d.featured ? " featured" : "") + (isClone ? " clone" : "");
-  card.innerHTML = buildDishCardHTML(d);
-  return card;
-}
+function setShowcaseDish(idx) {
+  const d = DISHES[idx];
+  if (!d || !showcaseImg) return;
 
-const CLONE_COUNT = track ? Math.min(2, DISHES.length - 1) : 0;
-const totalDots = DISHES.length;
+  // Highlight active item
+  showcaseListEl?.querySelectorAll(".showcase-item").forEach((el, i) => {
+    el.classList.toggle("active", i === idx);
+  });
 
-if (track) {
-  DISHES.slice(-CLONE_COUNT).forEach((d) =>
-    track.appendChild(makeDishCard(d, true)),
-  ); // leading clones
-  DISHES.forEach((d) => track.appendChild(makeDishCard(d, false))); // real cards
-  DISHES.slice(0, CLONE_COUNT).forEach((d) =>
-    track.appendChild(makeDishCard(d, true)),
-  ); // trailing clones
-}
+  // Update progress bar
+  if (showcaseProgress) {
+    showcaseProgress.style.width = `${((idx + 1) / DISHES.length) * 100}%`;
+  }
 
-if (dotsWrap) {
-  for (let i = 0; i < totalDots; i++) {
-    const dot = document.createElement("span");
-    if (i === 0) dot.classList.add("active");
-    dot.addEventListener("click", () => {
-      goToDot(i);
-      restartAutoplay();
+  const update = () => {
+    if (showcaseImg) showcaseImg.src = d.img;
+    if (showcaseName) showcaseName.textContent = d.name;
+    if (showcaseDesc) showcaseDesc.textContent = d.desc;
+    if (showcasePrice) showcasePrice.textContent = `$${d.price}`;
+    if (showcaseBadge)
+      showcaseBadge.textContent = d.featured ? "Chef's Pick" : "Popular Choice";
+    if (showcaseRating) showcaseRating.textContent = starString(d.rating);
+  };
+
+  if (window.gsap && showcaseImg) {
+    gsap.to(showcaseImg, {
+      opacity: 0,
+      duration: 0.18,
+      onComplete: () => {
+        update();
+        gsap.to(showcaseImg, { opacity: 1, duration: 0.35 });
+      },
     });
-    dotsWrap.appendChild(dot);
-  }
-}
-
-let position = CLONE_COUNT; // index into the extended (clone + real + clone) track
-let cardWidthWithGap = 0;
-let autoplayTimer = null;
-
-function measure() {
-  if (!track) return;
-  const cards = track.querySelectorAll(".dish-card");
-  if (!cards.length) return;
-  const style = getComputedStyle(track);
-  const gap = parseFloat(style.gap) || 26;
-  cardWidthWithGap = cards[0].getBoundingClientRect().width + gap;
-}
-
-function updateDots(realIndex) {
-  if (!dotsWrap) return;
-  const dots = dotsWrap.querySelectorAll("span");
-  dots.forEach((d, idx) => d.classList.toggle("active", idx === realIndex));
-}
-
-function checkLoopBounds() {
-  if (position >= CLONE_COUNT + totalDots) {
-    position -= totalDots;
-    setTrackPosition(position, false);
-  } else if (position < CLONE_COUNT) {
-    position += totalDots;
-    setTrackPosition(position, false);
-  }
-}
-
-function setTrackPosition(pos, animate) {
-  if (!track) return;
-  measure();
-  const offset = pos * cardWidthWithGap;
-  if (window.gsap) {
-    gsap.to(track, {
-      x: -offset,
-      duration: animate ? 0.7 : 0,
-      ease: "power3.out",
-      onComplete: checkLoopBounds,
-    });
-  } else {
-    track.style.transition = animate
-      ? "transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)"
-      : "none";
-    track.style.transform = `translateX(-${offset}px)`;
-    checkLoopBounds();
-  }
-}
-
-function goToRelative(step) {
-  position += step;
-  const realIndex =
-    (((position - CLONE_COUNT) % totalDots) + totalDots) % totalDots;
-  updateDots(realIndex);
-  setTrackPosition(position, true);
-}
-
-function goToDot(i) {
-  position = CLONE_COUNT + i;
-  updateDots(i);
-  setTrackPosition(position, true);
-}
-
-carPrevBtn?.addEventListener("click", () => {
-  goToRelative(-1);
-  restartAutoplay();
-});
-carNextBtn?.addEventListener("click", () => {
-  goToRelative(1);
-  restartAutoplay();
-});
-
-// ----- Autoplay + dial-ring countdown -----
-function resetDialAnimation() {
-  if (!dialRing) return;
-  dialRing.classList.remove("run");
-  void dialRing.getBoundingClientRect(); // force reflow so the animation restarts cleanly
-  dialRing.classList.add("run");
-}
-
-function startAutoplay() {
-  if (!track) return;
-  stopAutoplay();
-  resetDialAnimation();
-  autoplayTimer = setInterval(() => {
-    goToRelative(1);
-    resetDialAnimation();
-  }, 4200);
-}
-
-function stopAutoplay() {
-  if (autoplayTimer) clearInterval(autoplayTimer);
-  if (dialRing) dialRing.classList.remove("run");
-}
-
-function restartAutoplay() {
-  startAutoplay();
-}
-
-// Pause on hover, resume on mouse leave
-popularCarouselEl?.addEventListener("mouseenter", () => {
-  if (dialRing) dialRing.classList.add("paused");
-  if (autoplayTimer) clearInterval(autoplayTimer);
-});
-popularCarouselEl?.addEventListener("mouseleave", () => {
-  if (dialRing) dialRing.classList.remove("paused");
-  startAutoplay();
-});
-
-// Swipe / drag support
-let startX = 0,
-  isDragging = false;
-track?.addEventListener("pointerdown", (e) => {
-  isDragging = true;
-  startX = e.clientX;
-});
-window.addEventListener("pointerup", (e) => {
-  if (!isDragging) return;
-  isDragging = false;
-  const diff = e.clientX - startX;
-  if (Math.abs(diff) > 40) {
-    if (diff < 0) goToRelative(1);
-    else goToRelative(-1);
-    restartAutoplay();
-  }
-});
-
-window.addEventListener("resize", () => {
-  measure();
-  setTrackPosition(position, false);
-});
-
-// THE FIX: actually initialize the carousel on load — set the correct
-// starting position AND start autoplay. Previously this never ran, so
-// the carousel sat misaligned and never auto-scrolled.
-window.addEventListener("load", () => {
-  measure();
-  setTrackPosition(position, false);
-  startAutoplay();
-});
+    if (showcaseName && showcaseDesc && showcasePrice) {
+      gsap.fromTo(
+        [showcaseName, showcaseDesc, showcasePrice, showcaseBadge, showcaseRating],
+        { y: 12, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4, stagger: 0.05, ease: "power2.out" },
+      );
 
 // ===== SPOTLIGHT GALLERY =====
 const thumbsWrap = document.getElementById("spotlightThumbs");

@@ -505,7 +505,8 @@
                         <div class="event-content text-center p-5 position-relative">
                             <span class="reserve-badge mb-2">✦ Reserve ✦</span>
                             <h3 class="event-heading mb-4">For Your Private Event</h3>
-                            <a href="./html/admin/user/reservation.html" class="btn btn-gold-premium py-3 px-4">Book Table</a>
+                            <a href="./html/admin/user/reservation.html" class="btn btn-gold-premium py-3 px-4">Book
+                                Table</a>
                         </div>
                     </div>
                 </div>
@@ -536,29 +537,48 @@
     </section>
     <!-- section 1 end-->
 
-    <!-- ================= POPULAR ITEMS CAROUSEL (section 2)================= -->
+    <!-- ================= POPULAR ITEMS SHOWCASE (section 2)================= -->
     <section class="popular" id="popular">
         <div class="popular-texture"></div>
         <div class="container">
             <div class="section-head light">
-                <p class="eyebrow">❖ Our Popular Item ❖</p>
-                <h2>Restho Popular Item List</h2>
+                <p class="eyebrow">❖ Signature Dishes ❖</p>
+                <h2>Guest Favourites Menu</h2>
             </div>
 
-            <div class="carousel" id="carousel">
-                <button class="car-arrow left" id="carPrev" aria-label="Previous">‹</button>
-                <div class="carousel-track" id="carTrack">
+            <!-- Signature showcase: large feature + list -->
+            <div class="popular-showcase" id="popularShowcase">
 
+                <!-- Left: Featured dish card -->
+                <div class="showcase-feature">
+                    <div class="showcase-feature-media">
+                        <span class="showcase-crown" aria-hidden="true">✦</span>
+                        <span class="showcase-badge" id="showcaseBadge">Chef's Pick</span>
+                        <img id="showcaseImg" src="./assets/images/dishes/beef-biryani.jpg" alt="Featured dish"
+                            loading="lazy">
+                        <div class="showcase-price" id="showcasePrice">$28</div>
+                    </div>
+                    <div class="showcase-feature-body">
+                        <div class="showcase-rating" id="showcaseRating">★★★★★</div>
+                        <h3 id="showcaseName">Beef Biryani</h3>
+                        <p id="showcaseDesc">48-hour dum-cooked rice, tender beef, whole chillies and a whisper of
+                            saffron.</p>
+                        <a href="./html/menu.html" class="showcase-order-btn">
+                            <i class="bi bi-lightning-charge-fill"></i> Order Now
+                        </a>
+                    </div>
                 </div>
-                <button class="car-arrow right" id="carNext" aria-label="Next">
-                    ›
-                    <svg class="ring" width="60" height="60" viewBox="0 0 60 60">
-                        <circle cx="30" cy="30" r="26"></circle>
-                    </svg>
-                </button>
+
+                <!-- Right: Dish list -->
+                <div class="showcase-list" id="showcaseList">
+                    <!-- Filled dynamically by JavaScript -->
+                </div>
+
             </div>
 
-            <div class="carousel-dots" id="carDots"></div>
+            <div class="showcase-progress" id="showcaseProgress">
+                <span class="showcase-progress-bar"></span>
+            </div>
         </div>
     </section>
     <!-- ================= STATS COUNTER SECTION ================= -->
@@ -730,45 +750,45 @@
     </section>
 
 
-<!-- //////////////////////////////////////PAGE END GALLERY START////////////////////////////////////// -->
-  <a href="gallery.html" class="insta-gallery-wrapper" aria-label="Go to Gallery Page">
-    <section class="insta-gallery-section">
-      <div class="insta-overlay-badge">
-        <div class="insta-icon-box">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-          </svg>
-        </div>
-        <h2 class="insta-title">Instagram Gallery</h2>
-      </div>
+    <!-- //////////////////////////////////////PAGE END GALLERY START////////////////////////////////////// -->
+    <a href="gallery.html" class="insta-gallery-wrapper" aria-label="Go to Gallery Page">
+        <section class="insta-gallery-section">
+            <div class="insta-overlay-badge">
+                <div class="insta-icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </div>
+                <h2 class="insta-title">Instagram Gallery</h2>
+            </div>
 
-      <div class="insta-grid">
-        <div class="insta-grid-item">
-          <img src="../../../assets/images/page end gallery 1.webp" alt="Gallery preview image 1" />
-        </div>
+            <div class="insta-grid">
+                <div class="insta-grid-item">
+                    <img src="../../../assets/images/page end gallery 1.webp" alt="Gallery preview image 1" />
+                </div>
 
-        <div class="insta-grid-item">
-          <img src="../../../assets/images/page end gallery 2.webp" alt="Gallery preview image 2" />
-        </div>
+                <div class="insta-grid-item">
+                    <img src="../../../assets/images/page end gallery 2.webp" alt="Gallery preview image 2" />
+                </div>
 
-        <div class="insta-grid-item">
-          <img src="../../../assets/images/page end gallery 3.webp" alt="Gallery preview image 3" />
-        </div>
+                <div class="insta-grid-item">
+                    <img src="../../../assets/images/page end gallery 3.webp" alt="Gallery preview image 3" />
+                </div>
 
-        <div class="insta-grid-item">
-          <img src="../../../assets/images/page end gallery 4.webp" alt="Gallery preview image 4" />
-        </div>
+                <div class="insta-grid-item">
+                    <img src="../../../assets/images/page end gallery 4.webp" alt="Gallery preview image 4" />
+                </div>
 
-        <div class="insta-grid-item">
-          <img src="../../../assets/images/page end gallery 5.webp" alt="Gallery preview image 5" />
-        </div>
-      </div>
-    </section>
-  </a>
-  <!-- //////////////////////////////////////PAGE END GALLERY END////////////////////////////////////// -->
+                <div class="insta-grid-item">
+                    <img src="../../../assets/images/page end gallery 5.webp" alt="Gallery preview image 5" />
+                </div>
+            </div>
+        </section>
+    </a>
+    <!-- //////////////////////////////////////PAGE END GALLERY END////////////////////////////////////// -->
 
 
 

@@ -841,6 +841,7 @@
   box-shadow: var(--neu-shadow-elevated);
   transform: translateY(-2px);
 }
+
 .food-card .card-body-content,
 .food-card .badge-corner,
 .food-card .card-img-wrapper {
@@ -1003,8 +1004,6 @@
   display: none;
 }
 
-/* "Show Less" state — swaps to a calmer, outlined style so users know
-   clicking again will collapse the list back to the first batch. */
 .load-more-btn.show-less {
   background: var(--card-bg);
   color: var(--text-dark);
@@ -1705,12 +1704,15 @@
 }
 
 
-/* ===== POPULAR ITEMS SECTION ===== */
+/* ===== POPULAR ITEMS SECTION (Signature Showcase) ===== */
 .popular {
   position: relative;
   overflow: hidden;
   padding: var(--section-padding-lg);
-  background: var(--main-bg);
+  background:
+    radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.07), transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(197, 168, 128, 0.06), transparent 45%),
+    var(--main-bg);
 }
 
 .section-head.light h2 {
@@ -1719,6 +1721,351 @@
 
 .section-head.light .eyebrow {
   color: var(--accent-gold-bright) !important;
+}
+
+/* Popular texture — subtle dotted pattern */
+.popular-texture {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(197, 168, 128, 0.045) 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+  z-index: 0;
+}
+
+.popular .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== SIGNATURE SHOWCASE LAYOUT ===== */
+.popular-showcase {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 26px;
+  align-items: stretch;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* Featured card */
+.showcase-feature {
+  background: var(--card-bg);
+  border: 1px solid var(--border-card);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: var(--neu-shadow-soft);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: box-shadow 0.5s var(--transition-smooth), transform 0.5s var(--transition-smooth);
+}
+
+.showcase-feature:hover {
+  box-shadow: var(--neu-shadow-elevated);
+  transform: translateY(-4px);
+}
+
+.showcase-feature-media {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+}
+
+.showcase-feature-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s var(--transition-smooth);
+}
+
+.showcase-feature:hover .showcase-feature-media img {
+  transform: scale(1.06);
+}
+
+.showcase-feature-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, rgba(10, 7, 4, 0.45) 100%);
+  pointer-events: none;
+}
+
+.showcase-price {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  z-index: 3;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-bright));
+  color: #20160a;
+  font-weight: 800;
+  font-size: 1.05rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.showcase-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 3;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: rgba(20, 15, 10, 0.82);
+  backdrop-filter: blur(5px);
+  color: var(--accent-gold-bright);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.showcase-crown {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  z-index: 3;
+  color: var(--accent-gold-bright);
+  font-size: 1.1rem;
+  animation: floatParticle 4s ease-in-out infinite;
+}
+
+.showcase-feature-body {
+  padding: 26px 28px 30px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.showcase-rating {
+  color: var(--accent-gold-bright);
+  letter-spacing: 0.12em;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.showcase-feature-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0 0 10px;
+}
+
+.showcase-feature-body p {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin: 0 0 22px;
+  flex: 1;
+}
+
+.showcase-order-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  align-self: flex-start;
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-bright));
+  color: #111;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 13px 26px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+  transition: all 0.4s var(--transition-bounce);
+}
+
+.showcase-order-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(212, 175, 55, 0.45);
+  color: #111;
+}
+
+.showcase-order-btn i {
+  font-size: 1rem;
+}
+
+/* Dish list (right column) */
+.showcase-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-card);
+  border-radius: 26px;
+  padding: 18px;
+  box-shadow: var(--neu-shadow-soft);
+  max-height: 560px;
+  overflow-y: auto;
+}
+
+.showcase-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.showcase-list::-webkit-scrollbar-track {
+  background: rgba(197, 168, 128, 0.08);
+  border-radius: 10px;
+}
+
+.showcase-list::-webkit-scrollbar-thumb {
+  background: var(--accent-gold-bright);
+  border-radius: 10px;
+}
+
+.showcase-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.35s var(--transition-smooth);
+}
+
+.showcase-item:hover {
+  background: var(--gold-soft-tint);
+  border-color: rgba(197, 168, 128, 0.25);
+  transform: translateX(4px);
+}
+
+.showcase-item.active {
+  background: linear-gradient(135deg, var(--gold-soft-tint), var(--card-bg));
+  border-color: var(--accent-gold-bright);
+  box-shadow: var(--neu-shadow-small);
+}
+
+.showcase-item-thumb {
+  width: 74px;
+  height: 74px;
+  border-radius: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: var(--neu-shadow-small);
+}
+
+.showcase-item-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.showcase-item:hover .showcase-item-thumb img,
+.showcase-item.active .showcase-item-thumb img {
+  transform: scale(1.1);
+}
+
+.showcase-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.showcase-item-info h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0 0 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.showcase-item-info .showcase-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.showcase-item-info .showcase-item-meta .item-stars {
+  color: var(--accent-gold-bright);
+  letter-spacing: 0.05em;
+}
+
+.showcase-item-price {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--accent-gold-bright);
+  flex-shrink: 0;
+}
+
+.showcase-item .showcase-item-arrow {
+  color: var(--accent-gold);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: all 0.35s var(--transition-bounce);
+  flex-shrink: 0;
+}
+
+.showcase-item:hover .showcase-item-arrow,
+.showcase-item.active .showcase-item-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Progress indicator */
+.showcase-progress {
+  max-width: 1180px;
+  margin: 26px auto 0;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(197, 168, 128, 0.18);
+  overflow: hidden;
+}
+
+.showcase-progress-bar {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-bright));
+  transition: width 0.6s var(--transition-smooth);
+}
+
+/* Responsive showcase */
+@media (max-width: 991.98px) {
+  .popular-showcase {
+    grid-template-columns: 1fr;
+  }
+
+  .showcase-list {
+    max-height: none;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .showcase-feature-media {
+    height: 230px;
+  }
+
+  .showcase-feature-body {
+    padding: 20px 20px 24px;
+  }
+
+  .showcase-feature-body h3 {
+    font-size: 1.5rem;
+  }
+
+  .showcase-item {
+    padding: 10px;
+  }
+
+  .showcase-item-thumb {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 /* peek effect: edges fade so partial next/prev card feels intentional */
@@ -2500,10 +2847,6 @@
 .reveal-text {
   opacity: 0;
   transform: translateY(30px);
-}
-
-.popular-texture {
-  display: none;
 }
 
 /* ======================Contact Page Styling start====================== */
