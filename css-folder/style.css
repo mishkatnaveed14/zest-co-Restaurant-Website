@@ -708,37 +708,20 @@
   box-shadow: var(--shadow-gold);
 }
 
-/* Rating colour */
+/* Rating colour — plain gold text, no pill background */
 .food-card .rating {
-  background: rgba(212, 175, 55, 0.12);
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.8em;
-}
-
-.food-card:before {
-  content: '';
-  position: absolute;
-  z-index: 1;
-  top: -16px;
-  right: -16px;
-  background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-bright));
-  height: 32px;
-  width: 32px;
-  border-radius: 50%;
-  transform: scale(1);
-  transform-origin: 50% 50%;
-  transition: transform 0.5s ease-out;
+  color: var(--accent-gold-bright);
+  font-size: 0.85em;
+  font-weight: 600;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
 }
 
 .food-card:hover {
   transform: translateY(-8px);
   border-color: var(--accent-gold);
   box-shadow: var(--neu-shadow-elevated);
-}
-
-.food-card:hover:before {
-  transform: scale(36);
 }
 
 .badge-corner {
