@@ -11,10 +11,10 @@ Reference: `index.html` (master) — contains nav, footer, mobile menu panel, au
 - [x] html/faq.html - add auth modal + fix mobile brand link
 - [x] html/gallery.html - add auth modal + fix mobile brand link
 
-## Other branches
+## Other branches (all now match master nav/footer/mobile/auth/common.js)
 
-- [ ] about branch
-- [ ] faq branch
-- [ ] fariha-branch
-- [ ] gallery branch
-- [ ] home branch
+- [x] about branch
+- [x] faq branch
+- [x] fariha-branch
+- [x] gallery branch
+- [x] home branch
