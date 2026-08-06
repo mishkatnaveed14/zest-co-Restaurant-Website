@@ -351,7 +351,7 @@ function renderSignatureMenu() {
   signatureMenuEl.innerHTML = "";
   DISHES.forEach((d, idx) => {
     const row = document.createElement("div");
-    row.className = "signature-row" + (idx === 0 ? " active" : "");
+    row.className = "signature-row px-3" + (idx === 0 ? " active" : "");
     row.setAttribute("role", "button");
     row.setAttribute("tabindex", "0");
     row.innerHTML = `
@@ -589,8 +589,6 @@ if (window.gsap && window.ScrollTrigger) {
     { y: 40, stagger: 0.1, ease: "back.out(1.4)" },
     ".quick-action-section",
   );
-  // NOTE: .stat-item is animated separately via IntersectionObserver in the
-  // "STATS COUNTER" block below (more reliable). Do not animate it here.
   animateFrom(".testimonial-card", { y: 50 }, ".testimonials-section");
   animateFrom(".footer-grid > div", { y: 40, stagger: 0.1 }, ".footer");
 
