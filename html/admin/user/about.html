@@ -599,37 +599,34 @@
   <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
   <div class="mobile-menu-panel" id="mobileMenuPanel">
     <div class="mobile-menu-head">
-      <a href="./index.html" class="mobile-brand">Zest &amp; Co.</a>
+      <a href="../../../index.html" class="mobile-brand">Zest &amp; Co.</a>
       <button class="mobile-close" type="button" aria-label="Close menu">
         <i class="bi bi-x-lg"></i>
       </button>
     </div>
     <nav class="mobile-nav-links">
-      <a href="index.html">Home</a>
-      <a href="./admin/user/about.html">About</a>
-      <a href="menu.html">Menu</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
+      <a href="../../../index.html">Home</a>
+      <a href="../../../html/admin/user/about.html">About</a>
+      <a href="../../../html/menu.html">Menu</a>
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" aria-haspopup="true" aria-expanded="false">
+          PAGES <i class="bi bi-chevron-down nav-arrow"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="../../../html/admin/user/reservation.html">Reservation</a></li>
+          <li><a class="dropdown-item" href="../../../html/gallery.html">Gallery</a></li>
+          <li><a class="dropdown-item" href="../../../html/faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <a href="../../../html/contact.html">Contact</a>
     </nav>
     <div class="mobile-menu-footer">
-      <a href="tel:+9988776345" class="nav-btn">Call Now</a>
-      <a href="#" class="nav-btn btn-outline">Reserve</a>
+      <a href="#" data-auth-open="signup" class="nav-btn">Signup</a>
+      <a href="../../../html/admin/user/reservation.html" class="nav-btn btn-outline">Reserve</a>
     </div>
   </div>
-  <!-- bootstrap js -->
-  <script src="../../../js/bootstrap.bundle.min.js"></script>
-  <!-- custom js -->
-  <script type="modules" src="../../../js/about.js"></script>
-  <script src="../../../js/common.js"></script>
-  <!-- AOS cdn -->
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
 
-
-
-
+  
 <!-- ================= LOGIN / SIGNUP MODAL ================= -->
   <div class="auth-modal" id="authModal" aria-hidden="true">
     <div class="auth-modal-overlay" data-auth-close></div>
