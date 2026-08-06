@@ -508,12 +508,10 @@
     height: 280px;
   }
 
-  .popular-showcase {
+  .signature-menu {
     grid-template-columns: 1fr;
-  }
-
-  .showcase-list {
-    max-height: none;
+    column-gap: 0;
+    max-width: 640px;
   }
 
   .footer-grid {
@@ -824,8 +822,37 @@
     font-size: 1.9rem;
   }
 
-  .showcase-feature-media {
-    height: 230px;
+  .popular .section-head.light h2 {
+    font-size: 1.8rem;
+  }
+
+  .popular-intro {
+    font-size: 0.9rem;
+  }
+
+  .signature-menu {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    max-width: 560px;
+  }
+
+  .signature-row {
+    gap: 14px;
+    padding: 16px 4px;
+  }
+
+  .signature-no {
+    font-size: 1.4rem;
+    width: 28px;
+  }
+
+  .signature-name,
+  .signature-price {
+    font-size: 1rem;
+  }
+
+  .signature-desc {
+    font-size: 0.82rem;
   }
 
   .spotlight {

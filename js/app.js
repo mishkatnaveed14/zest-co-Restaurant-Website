@@ -336,104 +336,72 @@ const DISHES = [
   },
 ];
 
-// ===== POPULAR ITEMS — SIGNATURE SHOWCASE =====
-// A premium "large featured dish + list" layout (no sliding track, so no
-// empty-space bug). Clicking a list item swaps the featured dish with a fade.
-const showcaseListEl = document.getElementById("showcaseList");
-const showcaseImg = document.getElementById("showcaseImg");
-const showcaseName = document.getElementById("showcaseName");
-const showcaseDesc = document.getElementById("showcaseDesc");
-const showcasePrice = document.getElementById("showcasePrice");
-const showcaseBadge = document.getElementById("showcaseBadge");
-const showcaseRating = document.getElementById("showcaseRating");
-const showcaseProgress = document
-  .getElementById("showcaseProgress")
-  ?.querySelector(".showcase-progress-bar");
+// ===== POPULAR ITEMS — SIGNATURE MENU BOARD =====
+// A unique dark "chef-crafted menu" board. No sliding track, so the old
+// empty-space bug is gone. Clicking a row highlights it as the active pick.
+const signatureMenuEl = document.getElementById("signatureMenu");
+const signatureProgress = document.getElementById("signatureProgress");
 
 function starString(n) {
   return "★".repeat(n) + "☆".repeat(5 - n);
 }
 
-function renderShowcaseList() {
-  if (!showcaseListEl) return;
-  showcaseListEl.innerHTML = "";
+function renderSignatureMenu() {
+  if (!signatureMenuEl) return;
+  signatureMenuEl.innerHTML = "";
   DISHES.forEach((d, idx) => {
-    const item = document.createElement("div");
-    item.className = "showcase-item" + (idx === 0 ? " active" : "");
-    item.setAttribute("role", "button");
-    item.innerHTML = `
-      <div class="showcase-item-thumb">
-        <img src="${d.img}" alt="${d.name}" loading="lazy">
-      </div>
-      <div class="showcase-item-info">
-        <h4>${d.name}</h4>
-        <span class="showcase-item-meta">
-          <span class="item-stars">${starString(d.rating)}</span>
-          <span>${d.reviews} reviews</span>
+    const row = document.createElement("div");
+    row.className = "signature-row" + (idx === 0 ? " active" : "");
+    row.setAttribute("role", "button");
+    row.setAttribute("tabindex", "0");
+    row.innerHTML = `
+      <span class="signature-no">${String(idx + 1).padStart(2, "0")}</span>
+      <div class="signature-main">
+        <div class="signature-title-line">
+          <h3 class="signature-name">${d.name}</h3>
+          <span class="signature-leader"></span>
+          <span class="signature-price">$${d.price}</span>
+        </div>
+        <p class="signature-desc">${d.desc}</p>
+        <span class="signature-tag ${d.featured ? "chef" : ""}">
+          ${d.featured ? "Chef's Pick" : "Popular"}
         </span>
       </div>
-      <span class="showcase-item-price">$${d.price}</span>
-      <span class="showcase-item-arrow"><i class="bi bi-arrow-right"></i></span>
     `;
-    item.addEventListener("click", () => setShowcaseDish(idx));
-    showcaseListEl.appendChild(item);
-  });
-}
-
-function setShowcaseDish(idx) {
-  const d = DISHES[idx];
-  if (!d || !showcaseImg) return;
-
-  // Highlight active item
-  showcaseListEl?.querySelectorAll(".showcase-item").forEach((el, i) => {
-    el.classList.toggle("active", i === idx);
-  });
-
-  // Update progress bar
-  if (showcaseProgress) {
-    showcaseProgress.style.width = `${((idx + 1) / DISHES.length) * 100}%`;
-  }
-
-  const update = () => {
-    if (showcaseImg) showcaseImg.src = d.img;
-    if (showcaseName) showcaseName.textContent = d.name;
-    if (showcaseDesc) showcaseDesc.textContent = d.desc;
-    if (showcasePrice) showcasePrice.textContent = `$${d.price}`;
-    if (showcaseBadge)
-      showcaseBadge.textContent = d.featured ? "Chef's Pick" : "Popular Choice";
-    if (showcaseRating) showcaseRating.textContent = starString(d.rating);
-  };
-
-  if (window.gsap && showcaseImg) {
-    gsap.to(showcaseImg, {
-      opacity: 0,
-      duration: 0.18,
-      onComplete: () => {
-        update();
-        gsap.to(showcaseImg, { opacity: 1, duration: 0.35 });
-      },
+    const activate = () => setSignatureActive(idx);
+    row.addEventListener("click", activate);
+    row.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        activate();
+      }
     });
-    if (showcaseName && showcaseDesc && showcasePrice) {
-      gsap.fromTo(
-        [
-          showcaseName,
-          showcaseDesc,
-          showcasePrice,
-          showcaseBadge,
-          showcaseRating,
-        ],
-        { y: 12, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.4, stagger: 0.05, ease: "power2.out" },
-      );
-    }
-  } else {
-    update();
+    signatureMenuEl.appendChild(row);
+  });
+}
+
+function setSignatureActive(idx) {
+  const rows = signatureMenuEl?.querySelectorAll(".signature-row");
+  if (!rows) return;
+  rows.forEach((r, i) => r.classList.toggle("active", i === idx));
+
+  // Progress indicator shows how far down the board you are
+  if (signatureProgress) {
+    signatureProgress.style.width = `${((idx + 1) / DISHES.length) * 100}%`;
+  }
+
+  if (window.gsap) {
+    gsap.fromTo(
+      rows[idx],
+      { x: 8 },
+      { x: 0, duration: 0.4, ease: "power2.out" },
+    );
   }
 }
 
-if (showcaseListEl) {
-  renderShowcaseList();
-  setShowcaseDish(0);
+if (signatureMenuEl) {
+  renderSignatureMenu();
+  setSignatureActive(0);
 }
 
 // ===== SPOTLIGHT GALLERY =====
@@ -606,7 +574,7 @@ if (window.gsap && window.ScrollTrigger) {
   }
 
   animateFrom(
-    ".showcase-feature, .showcase-list",
+    ".signature-menu, .signature-menu-footer",
     { y: 60, stagger: 0.1 },
     "#popular",
   );
