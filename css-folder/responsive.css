@@ -508,16 +508,12 @@
     height: 280px;
   }
 
-  .popular .carousel {
-    gap: 12px;
+  .popular-showcase {
+    grid-template-columns: 1fr;
   }
 
-  .popular .carousel-track {
-    gap: 16px;
-  }
-
-  .popular .dish-card {
-    flex-basis: 240px;
+  .showcase-list {
+    max-height: none;
   }
 
   .footer-grid {
@@ -828,17 +824,8 @@
     font-size: 1.9rem;
   }
 
-  .popular .carousel {
-    flex-direction: column;
-  }
-
-  .popular .car-arrow {
-    width: 42px;
-    height: 42px;
-  }
-
-  .popular .dish-card {
-    flex-basis: 220px;
+  .showcase-feature-media {
+    height: 230px;
   }
 
   .spotlight {

@@ -415,10 +415,26 @@ function setShowcaseDish(idx) {
     });
     if (showcaseName && showcaseDesc && showcasePrice) {
       gsap.fromTo(
-        [showcaseName, showcaseDesc, showcasePrice, showcaseBadge, showcaseRating],
+        [
+          showcaseName,
+          showcaseDesc,
+          showcasePrice,
+          showcaseBadge,
+          showcaseRating,
+        ],
         { y: 12, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.4, stagger: 0.05, ease: "power2.out" },
       );
+    }
+  } else {
+    update();
+  }
+}
+
+if (showcaseListEl) {
+  renderShowcaseList();
+  setShowcaseDish(0);
+}
 
 // ===== SPOTLIGHT GALLERY =====
 const thumbsWrap = document.getElementById("spotlightThumbs");
@@ -589,7 +605,11 @@ if (window.gsap && window.ScrollTrigger) {
     });
   }
 
-  animateFrom(".dish-card", { y: 60, stagger: 0.1 }, "#popular");
+  animateFrom(
+    ".showcase-feature, .showcase-list",
+    { y: 60, stagger: 0.1 },
+    "#popular",
+  );
   animateFrom(".premium-card", { y: 60 });
   animateFrom(
     ".food-card",
@@ -963,9 +983,6 @@ if (cursorGlow) {
 }
 
 // ===== STATS COUNTER =====
-// Uses the native IntersectionObserver (highly reliable) instead of
-// ScrollTrigger so the counters + entrance animations always trigger as
-// the section scrolls into view.
 document.addEventListener("DOMContentLoaded", () => {
   const statsSection = document.querySelector(".stats-counter-section");
   if (!statsSection) return;
