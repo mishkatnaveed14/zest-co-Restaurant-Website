@@ -4,11 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About</title>
-  <!-- Hover.css cdn -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+  <title>Reservation</title>
   <!-- AOS cdn -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- font awesome cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+    integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- google fonts cdn -->
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap"
@@ -18,10 +20,8 @@
   <!-- bootstrap css -->
   <link rel="stylesheet" href="../../../css-folder/bootstrap.min.css">
   <!-- custom css -->
-  <link rel="stylesheet" href="../../../css-folder/about.css">
+  <link rel="stylesheet" href="../../../css-folder/reservation.css">
   <link rel="stylesheet" href="../../../css-folder/responsive.css">
-
-  
 </head>
 
 <body>
@@ -86,10 +86,10 @@
               <a class="nav-link" href="../../../index.html">HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="./about.html">ABOUT</a>
+              <a class="nav-link" href="./about.html">ABOUT</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../../../html/menu.html">MENU</a>
+              <a class="nav-link" href="../../../html/admin/user/menu.html">MENU</a>
             </li>
             <li class="nav-item dropdown-holder">
               <a class="nav-link" href="../../../html/pages.html">PAGES <i class="bi bi-chevron-down nav-arrow"></i></a>
@@ -135,120 +135,207 @@
 
 
 
-  <!-- //////////////////////////////////ABOUT US SECTION START////////////////////////////////// -->
-  <section class="about-us py-5 text-white">
+
+  <!-- ///////////////////////////////////HERO SECTION START//////////////////////////////// -->
+  <section class="hero-section">
+    <div>
+      <h1 class="hero-title" data-aos="fade-up" data-aos-duration="1000">Reservation</h1>
+      <div class="hero-breadcrumb" data-aos="fade-up" data-aos-duration="1000">
+        <a href="#">Home</a> &nbsp;/&nbsp; Reservation
+      </div>
+    </div>
+  </section>
+  <!-- ///////////////////////////////////HERO SECTION END//////////////////////////////////// -->
+
+
+
+
+
+  <!-- /////////////////////////////////////RESERVATION FORM START///////////////////////////////////////////// -->
+  <div class="container text-center pt-5 pb-2">
+    <h1 style="font-family: serif; font-size: 4em; color: var(--text-dark); font-weight: 500;" data-aos="fade-up"
+      data-aos-duration="1000">
+      Reserve Your Table for an Unforgettable<br>Dining Experience at TNC Restaurant
+    </h1>
+  </div>
+
+  <section class="reservation-section" data-aos="zoom-in-up">
     <div class="container">
 
-      <div class="text-center mb-5">
-        <span class="sub-heading fw-bold d-block mb-2" data-aos="fade-up" data-aos-duration="1000">// ABOUT US //</span>
-        <h1 class="main-heading fw-black text-uppercase" data-aos="fade-up" data-aos-duration="1000">
-          INSPIRED BY FLAVOUR<br>
-          DRIVEN BY EXCELLENCE
-        </h1>
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="reservation-card">
+            <div class="section-header">
+              <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Reservation System</h2>
+              <p class="section-subtitle" data-aos="fade-up" data-aos-duration="1000">
+                Our commitment to excellence extends beyond the plate, creating an atmosphere that lingers in the
+                memory,
+                making your visit truly exceptional.
+              </p>
+            </div>
+            <form action="#" method="POST">
+
+              <div class="row g-4 mb-4">
+
+                <div class="col-md-4">
+                  <input type="text" class="form-control" placeholder="Full Name *" required>
+                </div>
+
+                <div class="col-md-4">
+                  <input type="email" class="form-control" placeholder="Email Address *" required>
+                </div>
+
+                <div class="col-md-4">
+                  <input type="tel" class="form-control" placeholder="Contact No *" required>
+                </div>
+
+              </div>
+
+              <div class="row g-4 mb-5">
+
+                <div class="col-md-4">
+                  <select class="form-select" required>
+                    <option selected>2 People</option>
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="3">3 People</option>
+                    <option value="4">4 People</option>
+                    <option value="5">5+ People</option>
+                  </select>
+                </div>
+
+                <div class="col-md-4">
+                  <select class="form-select" id="reservation-date" required>
+                  </select>
+                </div>
+
+                <div class="col-md-4">
+                  <select class="form-select" required>
+                    <option selected>10:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                  </select>
+                </div>
+
+              </div>
+
+              <a href="#" class="custom-btn">
+                <span class="btn-text">Book a table <span>&rarr;</span></span>
+              </a>
+
+            </form>
+          </div>
+        </div>
       </div>
 
-      <div class="row g-3">
+    </div>
+  </section>
+  <!-- ////////////////////////////////////RESERVATION FORM END////////////////////////////////////// -->
 
-        <div class="col-lg-5 col-12">
-          <div class="custom-card p-4 p-md-5 h-100 d-flex flex-column justify-content-center">
-            <h2 class="card-title fw-bold mb-3" data-aos="fade-up" data-aos-duration="1000">OUR HISTORY & GOALS</h2>
-            <p class="card-description mb-0" data-aos="fade-up" data-aos-duration="1000">
-              What started as a simple love for authentic culinary craft has grown into a destination for food lovers.
-              We are dedicated to bringing high-quality, handcrafted dishes to your table. Our mission is to elevate
-              everyday dining with fresh, locally sourced ingredients and unforgettable service.
+
+
+
+
+  <!-- ///////////////////////////////////////WHY CHOOSE US SECTION START/////////////////////////////// -->
+  <section class="why-choose-section">
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Why Choose TNC<br>Restaurant?</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-duration="1000">
+          We bring together exceptional flavors, locally sourced ingredients, and a warm, elegant atmosphere. Whether
+          you are celebrating a special occasion or enjoying a casual night out, our team is dedicated to providing an
+          unforgettable dining experience every time you visit.
+        </p>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-4">
+          <div class="feature-card" data-aos="zoom-in-up">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-utensils"></i>
+            </div>
+            <h3 class="feature-title" data-aos="fade-up" data-aos-duration="1000">Culinary Excellence</h3>
+            <p class="feature-desc" data-aos="fade-up" data-aos-duration="1000">
+              Every dish is crafted with precision, using the finest locally sourced ingredients to deliver rich,
+              unforgettable flavors in every single bite.
             </p>
           </div>
         </div>
 
-        <div class="col-lg-7 col-12">
-          <div class="custom-card image-card h-100">
-            <img src="../../../assets/images/about img 1.jpg" alt="Head Chef Preparing Food"
-              class="img-fluid w-100 h-100 object-fit-cover">
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 col-12">
-          <div class="custom-card image-card fixed-height-sm">
-            <img src="../../../assets/images/about img 2.avif" alt="Sushi Platter"
-              class="img-fluid w-100 h-100 object-fit-cover">
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 col-12">
-          <div
-            class="custom-card p-4 h-100 d-flex flex-column align-items-center justify-content-center text-center fixed-height-sm">
-            <div class="d-flex mb-2">
-              <img src="../../../assets/images/rating 1.avif" alt="User 1"
-                class="avatar-img rounded-circle border border-2 border-dark">
-              <img src="../../../assets/images/rating 2.avif" alt="User 2"
-                class="avatar-img rounded-circle border border-2 border-dark ms-n2">
-              <img src="../../../assets/images/rating 3.avif" alt="User 3"
-                class="avatar-img rounded-circle border border-2 border-dark ms-n2">
-              <img src="../../../assets/images/rating 4.avif" alt="User 4"
-                class="avatar-img rounded-circle border border-2 border-dark ms-n2">
+        <div class="col-md-4">
+          <div class="feature-card" data-aos="zoom-in-up">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-book-open"></i>
             </div>
-            <div class="d-flex align-items-baseline gap-2">
-              <span class="fs-4 fw-bold" data-aos="fade-up" data-aos-duration="1000">4.9/5</span>
-              <span class="text-secondary small" data-aos="fade-up" data-aos-duration="1000">Rating</span>
+            <h3 class="feature-title" data-aos="fade-up" data-aos-duration="1000">Diverse and Innovative Menu</h3>
+            <p class="feature-desc" data-aos="fade-up" data-aos-duration="1000">
+              From classic traditional favorites to contemporary culinary creations, our menu is thoughtfully curated to
+              satisfy every palate.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="feature-card" data-aos="zoom-in-up">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-cloud-sun"></i>
             </div>
-            <div class="stars-color mt-1" data-aos="fade-up" data-aos-duration="1000">★★★★★</div>
+            <h3 class="feature-title" data-aos="fade-up" data-aos-duration="1000">Warm and Inviting Atmosphere</h3>
+            <p class="feature-desc" data-aos="fade-up" data-aos-duration="1000">
+              Experience exceptional hospitality in an intimate, beautifully designed setting made for quiet dinners,
+              family gatherings, and special celebrations.
+            </p>
           </div>
         </div>
-
-        <div class="col-lg-4 col-12">
-          <div class="custom-card image-card fixed-height-sm">
-            <img src="../../../assets/images/about img 3.avif" alt="Steak and Fries"
-              class="img-fluid w-100 h-100 object-fit-cover">
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-12">
-          <div class="custom-card image-card fixed-height-lg">
-            <img src="../../../assets/images/about img 4.jpg" alt="Restaurant Atmosphere"
-              class="img-fluid w-100 h-100 object-fit-cover">
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-12">
-          <div class="custom-card p-4 p-md-5 h-100 d-flex flex-column justify-content-center">
-            <h2 class="card-title fw-bold mb-4" data-aos="fade-up" data-aos-duration="1000">OUR TIMINGS</h2>
-            <ul class="list-unstyled mb-0 w-100">
-              <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-dashed fs-7">
-                <span class="fw-bold" data-aos="fade-up" data-aos-duration="1000">SUNDAY</span>
-                <span class="timing fw-bold" data-aos="fade-up" data-aos-duration="1000">1:00 PM - 11:00 PM</span>
-              </li>
-              <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-dashed fs-7">
-                <span class="fw-bold" data-aos="fade-up" data-aos-duration="1000">MONDAY</span>
-                <span class="timing fw-bold" data-aos="fade-up" data-aos-duration="1000">4:00 PM - 11:00 PM</span>
-              </li>
-              <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-dashed fs-7">
-                <span class="fw-bold" data-aos="fade-up" data-aos-duration="1000">TUESDAY</span>
-                <span class="timing fw-bold" data-aos="fade-up" data-aos-duration="1000">4:00 PM - 11:00 PM</span>
-              </li>
-              <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-dashed fs-7">
-                <span class="fw-bold" data-aos="fade-up" data-aos-duration="1000">WEDNESDAY</span>
-                <span class="timing fw-bold" data-aos="fade-up" data-aos-duration="1000">4:00 PM - 11:00 PM</span>
-              </li>
-              <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-dashed fs-7">
-                <span class="fw-bold" data-aos="fade-up" data-aos-duration="1000">THURSDAY</span>
-                <span class="timing fw-bold" data-aos="fade-up" data-aos-duration="1000">4:00 PM - 11:00 PM</span>
-              </li>
-              <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-dashed fs-7">
-                <span class="fw-bold" data-aos="fade-up" data-aos-duration="1000">FRIDAY</span>
-                <span class="timing fw-bold" data-aos="fade-up" data-aos-duration="1000">4:00 PM - 11:00 PM</span>
-              </li>
-              <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-dashed fs-7">
-                <span class="fw-bold" data-aos="fade-up" data-aos-duration="1000">SATURDAY</span>
-                <span class="timing fw-bold" data-aos="fade-up" data-aos-duration="1000">4:00 PM - 11:00 PM</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
       </div>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature-card" data-aos="zoom-in-up">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-leaf"></i>
+            </div>
+            <h3 class="feature-title" data-aos="fade-up" data-aos-duration="1000">Commitment to Sustainability</h3>
+            <p class="feature-desc" data-aos="fade-up" data-aos-duration="1000">
+              We prioritize eco-conscious practices by partnering with local farms, minimizing waste, and choosing
+              organic ingredients whenever possible.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="feature-card" data-aos="zoom-in-up">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-concierge-bell"></i>
+            </div>
+            <h3 class="feature-title" data-aos="fade-up" data-aos-duration="1000">Seamless Reservations and Services
+            </h3>
+            <p class="feature-desc" data-aos="fade-up" data-aos-duration="1000">
+              From instant online table bookings to attentive table service, we ensure every moment of your dining
+              experience is completely effortless.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="feature-card" data-aos="zoom-in-up">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-utensils"></i>
+            </div>
+            <h3 class="feature-title" data-aos="fade-up" data-aos-duration="1000">Crafted Beverage Pairing</h3>
+            <p class="feature-desc" data-aos="fade-up" data-aos-duration="1000">
+              Complement your meal with our selection of artisanal cocktails and curated fine wines handpicked by our
+              expert team.
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
-  <!-- ///////////////////////////////////ABOUT US SECTION END//////////////////////////////////// -->
+  <!-- //////////////////////////////////////WHY CHOOSE US SECTION END/////////////////////////////////// -->
 
 
 
@@ -363,191 +450,6 @@
 
 
 
-
-  <!-- ////////////////////////////////////////STORY SECTION START/////////////////////////////////////// -->
-  <section class="about-section py-5">
-    <div class="container py-lg-4">
-      <div class="row align-items-center g-4 g-lg-5">
-
-        <div class="col-lg-7">
-          <div class="row g-4 align-items-end">
-
-            <div class="col-6">
-              <div class="stat-box mb-4">
-                <h2 class="stat-number display-3 mb-0" data-aos="fade-up" data-aos-duration="1000">20+</h2>
-                <p class="stat-label text-uppercase" data-aos="fade-up" data-aos-duration="1000">Years of Experience</p>
-              </div>
-
-              <div class="img-wrapper img-tall shadow-sm" data-aos="flip-left" data-aos-duration="1000">
-                <img src="../../../assets/images/about story img 2.webp" alt="Restaurant Interior Main">
-              </div>
-            </div>
-
-            <div class="col-6 d-flex flex-column gap-4">
-              <div class="img-wrapper img-top-right shadow-sm" data-aos="flip-left" data-aos-duration="1000">
-                <img src="../../../assets/images/about story img 1.webp" alt="Dining Area Top">
-              </div>
-
-              <div class="img-wrapper img-bottom-right shadow-sm" data-aos="flip-left" data-aos-duration="1000">
-                <img src="../../../assets/images/about story img 3.webp" alt="Dining Area Bottom">
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="col-lg-5 ps-lg-4">
-          <div class="story-content">
-            <h1 class="story-title mb-3" data-aos="fade-up" data-aos-duration="1000">Our Story</h1>
-            <p class="story-text mb-4" data-aos="fade-up" data-aos-duration="1000">
-              Founded over two decades ago, our kitchen began with a simple vision: to bring people together over
-              authentic flavors and time-honored recipes. What started as a small passion project has grown into a
-              culinary home where tradition meets modern taste.
-
-              Every dish we craft tells a story of carefully sourced ingredients, artisanal techniques, and an
-              unwavering commitment to hospitality. Whether you are joining us for an intimate dinner or celebrating a
-              special moment, we welcome you to sit back, savor the experience, and become part of our ongoing story.
-            </p>
-            <a href="#contact" class="contact-btn">
-              <span>Contact us <span class="ms-1">&rarr;</span></span>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-  <!-- ///////////////////////////STORY SECTION END///////////////////////////////////// -->
-
-
-
-
-
-  <!-- ///////////////////////////FEATURES SECTION START//////////////////////////////////// -->
-  <section class="feature-sections py-5 overflow-hidden">
-    <div class="container py-4">
-
-      <div class="row align-items-center g-5 mb-5 pb-lg-5 position-relative">
-
-        <div class="col-lg-6">
-          <div class="content-box pe-lg-4">
-            <h2 class="section-title fw-bold mb-4" data-aos="fade-up" data-aos-duration="1000">Culinary Excellence</h2>
-            <p class="section-text mb-4" data-aos="fade-up" data-aos-duration="1000">
-              Led by our talented and dedicated chefs, the heart of Zest & Co.'s success lies in the kitchen.
-              Every dish is a masterpiece, crafted with precision and passion. We take pride in sourcing
-              the finest ingredients, ensuring that each bite is a harmonious blend of freshness and flavor.
-            </p>
-            <a href="#reservation" class="contact-btn">
-              <span>Reserve Your Table <span class="ms-1">&rarr;</span></span>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-6 hvr-outline-in" data-aos="fade-up" data-aos-duration="1000">
-          <img src="../../../assets/images/about features img 1.webp" alt="Chef preparing dish"
-            class="img-fluid w-100 object-fit-cover">
-        </div>
-      </div>
-
-
-      <div class="row align-items-center g-5 pt-lg-5">
-        <div class="col-lg-5 order-2 order-lg-1 hvr-outline-in">
-          <div class="sustainability-image-wrapper rounded-4 overflow-hidden shadow-sm" data-aos="fade-up"
-            data-aos-duration="1000">
-            <img src="../../../assets/images/about features img 2.webp" alt="Waitress serving"
-              class="img-fluid w-100 object-fit-cover">
-          </div>
-        </div>
-
-        <div class="col-lg-7 order-1 order-lg-2 ps-lg-5">
-          <div class="content-box">
-            <h2 class="section-title fw-bold mb-4" data-aos="fade-up" data-aos-duration="1000">Sustainability</h2>
-            <p class="section-text mb-4" data-aos="fade-up" data-aos-duration="1000">
-              As stewards of the environment, we are committed to sustainability, from supporting
-              local farmers to minimizing waste. Zest & Co. seeks to make a positive impact on
-              both the community and the planet. We believe that a commitment to quality can
-              coexist with a commitment to our world.
-            </p>
-            <a href="#reservation" class="contact-btn">
-              <span>Reserve Your Table <span class="ms-1">&rarr;</span></span>
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-  <!-- /////////////////////////////////////FEATURES SECTION END/////////////////////////////// -->
-
-
-
-
-
-  <!-- /////////////////////////////////////TEAM SECTION START//////////////////////////////////// -->
-  <section class="team-section">
-    <div class="team-container">
-      <div class="team-header">
-        <div class="team-title-group">
-          <h1 class="section-title" data-aos="fade-up" data-aos-duration="1000">Our Culinary Team</h1>
-        </div>
-        <p class="section-description" data-aos="fade-up" data-aos-duration="1000">
-          Behind every unforgettable meal is a passionate group of creators. From early morning kitchen prep to the
-          final table garnish, our team works together to share our love of good food and great company with you.
-        </p>
-        <a href="#about" class="contact-btn read-more-btn">
-          <span>Read More <span class="ms-1">&rarr;</span></span>
-        </a>
-      </div>
-
-      <div class="team-grid">
-        <div class="team-card">
-          <div class="image-placeholder">
-            <img src="../../../assets/images/team img 3.jpg" alt="team" data-aos="zoom-in">
-          </div>
-          <div class="member-info">
-            <h3 class="member-name" data-aos="fade-up" data-aos-duration="1000">Marcus Vance</h3>
-            <p class="member-title" data-aos="fade-up" data-aos-duration="1000">Founder & Head Chef</p>
-          </div>
-        </div>
-
-        <div class="team-card">
-          <div class="image-placeholder">
-            <img src="../../../assets/images/team img 2.jpg" alt="team" data-aos="zoom-in">
-          </div>
-          <div class="member-info">
-            <h3 class="member-name" data-aos="fade-up" data-aos-duration="1000">Julian Hayes</h3>
-            <p class="member-title" data-aos="fade-up" data-aos-duration="1000">Pastry & Dessert Specialist</p>
-          </div>
-        </div>
-
-        <div class="team-card">
-          <div class="image-placeholder">
-            <img src="../../../assets/images/team img 1.jpg" alt="team" data-aos="zoom-in">
-          </div>
-          <div class="member-info">
-            <h3 class="member-name" data-aos="fade-up" data-aos-duration="1000">Sophia Laurent</h3>
-            <p class="member-title" data-aos="fade-up" data-aos-duration="1000">Beverage Director</p>
-          </div>
-        </div>
-
-        <div class="team-card">
-          <div class="image-placeholder">
-            <img src="../../../assets/images/team img 4.jpg" alt="team" data-aos="zoom-in">
-          </div>
-          <div class="member-info">
-            <h3 class="member-name" data-aos="fade-up" data-aos-duration="1000">John Smythe</h3>
-            <p class="member-title" data-aos="fade-up" data-aos-duration="1000">Culinary Lead</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ////////////////////////////////////TEAM SECTION END//////////////////////////////////// -->
-
-
-
-
-
   <!-- //////////////////////////////////////PAGE END GALLERY START////////////////////////////////////// -->
   <a href="gallery.html" class="insta-gallery-wrapper" aria-label="Go to Gallery Page">
     <section class="insta-gallery-section">
@@ -591,7 +493,8 @@
 
 
 
-  
+
+
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
     <div class="container footer-grid">
@@ -641,7 +544,6 @@
     </div>
   </footer>
 
-
   <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
   <div class="mobile-menu-panel" id="mobileMenuPanel">
     <div class="mobile-menu-head">
@@ -672,12 +574,7 @@
     </div>
   </div>
 
-<<<<<<< HEAD
-  
-<!-- ================= LOGIN / SIGNUP MODAL ================= -->
-=======
   <!-- ================= LOGIN / SIGNUP MODAL ================= -->
->>>>>>> e2324c53346f70df9a4224302353b3297ee810a7
   <div class="auth-modal" id="authModal" aria-hidden="true">
     <div class="auth-modal-overlay" data-auth-close></div>
     <div class="auth-modal-box" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
@@ -811,20 +708,16 @@
     </div>
   </div>
 
-  <!-- bootstrap js -->
-  <script src="../../../js/bootstrap.bundle.min.js"></script>
-  <!-- custom js -->
-  <script type="modules" src="../../../js/about.js"></script>
-  <script src="../../../js/common.js"></script>
   <!-- AOS cdn -->
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
   </script>
-
-
-
-
+  <!-- bootstrap js -->
+  <script src="../../../js/bootstrap.bundle.min.js"></script>
+  <!-- custom js -->
+  <script src="../../../js/reservation.js"></script>
+  <script src="../../../js/common.js"></script>
 </body>
 
 </html>

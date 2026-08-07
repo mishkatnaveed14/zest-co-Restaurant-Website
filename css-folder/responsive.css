@@ -171,6 +171,88 @@
   color: #111 !important;
 }
 
+/* ===== MOBILE MENU DROPDOWN (PAGES) ===== */
+.mobile-nav-links .nav-item.dropdown {
+  position: static;
+}
+
+/* Force mobile nav links visible — overrides the GSAP `.nav-link` opacity
+   entrance animation that runs on page load while the menu is hidden. */
+.mobile-nav-links .nav-link,
+.mobile-nav-links .dropdown-toggle,
+.mobile-nav-links .dropdown-item {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.mobile-nav-links .dropdown-toggle {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  color: rgba(245, 245, 247, 0.9) !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+}
+
+.mobile-nav-links .dropdown-toggle::after {
+  display: none !important;
+}
+
+.mobile-nav-links .dropdown-toggle .nav-arrow {
+  transition: transform 0.3s ease;
+  color: var(--accent-gold-bright);
+}
+
+.mobile-nav-links .dropdown-toggle.show .nav-arrow {
+  transform: rotate(180deg);
+}
+
+.mobile-nav-links .dropdown-menu {
+  position: static !important;
+  display: block !important;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: rgba(212, 175, 55, 0.06);
+  border: 1px solid var(--border-nav);
+  border-radius: 10px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: max-height 0.35s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-nav-links .dropdown-menu.show {
+  display: block !important;
+  max-height: 300px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-nav-links .dropdown-menu li {
+  margin: 0;
+  list-style: none;
+}
+
+.mobile-nav-links .dropdown-menu .dropdown-item {
+  display: block;
+  padding: 12px 18px 12px 26px;
+  font-size: 15px;
+  color: rgba(245, 245, 247, 0.75) !important;
+  border: none;
+  border-radius: 0;
+  background: transparent !important;
+}
+
+.mobile-nav-links .dropdown-menu .dropdown-item:hover {
+  background: rgba(212, 175, 55, 0.12) !important;
+  color: var(--accent-gold-bright) !important;
+  padding-left: 30px;
+}
+
 @media (max-width: 991.98px) {
   #primaryNavbar {
     display: none !important;
@@ -260,6 +342,43 @@
   }
 }
 
+/* ===== MENU HIGHLIGHTS RESPONSIVE ===== */
+.menu-highlights-section {
+  padding: 60px 16px;
+}
+
+.menu-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 991.98px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .food-card {
+    max-width: 340px;
+  }
+
+  .menu-highlights-footer {
+    gap: 16px;
+  }
+
+  .load-more-btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 991.98px) {
   .top-bar {
     padding: 12px 0;
@@ -279,7 +398,7 @@
 
   .main-navbar {
     height: auto;
-    padding: 12px 0;
+    /* padding: 12px 0; */
   }
 
   .header-logo img {
@@ -389,16 +508,10 @@
     height: 280px;
   }
 
-  .popular .carousel {
-    gap: 12px;
-  }
-
-  .popular .carousel-track {
-    gap: 16px;
-  }
-
-  .popular .dish-card {
-    flex-basis: 240px;
+  .signature-menu {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    max-width: 640px;
   }
 
   .footer-grid {
@@ -411,6 +524,62 @@
     width: calc(50% - 16px);
     max-width: 300px;
     height: 280px;
+  }
+}
+
+/* ===== MENU HIGHLIGHTS SECTION — RESPONSIVE ===== */
+@media (max-width: 991.98px) {
+  .menu-highlights-section {
+    padding: 60px 18px;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .food-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .menu-highlights-footer {
+    margin-top: 32px;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .menu-highlights-section {
+    padding: 50px 14px;
+  }
+
+  .menu-highlights-section .section-title {
+    font-size: 1.7rem;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .category-tabs {
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .tab-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .load-more-btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+    padding: 13px 24px;
+    font-size: 0.85rem;
   }
 }
 
@@ -464,11 +633,11 @@
 
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
+    gap: 14px;
   }
 
   .stat-item {
-    padding: 35px 20px;
+    padding: 32px 18px;
   }
 
   .stat-number {
@@ -504,6 +673,19 @@
 
   .spotlight-thumbs {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ===== MENU HIGHLIGHTS — RESPONSIVE (card footer polish) ===== */
+@media (max-width: 575.98px) {
+  .food-card .card-footer {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .food-card .card-footer .add-btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -640,17 +822,37 @@
     font-size: 1.9rem;
   }
 
-  .popular .carousel {
-    flex-direction: column;
+  .popular .section-head.light h2 {
+    font-size: 1.8rem;
   }
 
-  .popular .car-arrow {
-    width: 42px;
-    height: 42px;
+  .popular-intro {
+    font-size: 0.9rem;
   }
 
-  .popular .dish-card {
-    flex-basis: 220px;
+  .signature-menu {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    max-width: 560px;
+  }
+
+  .signature-row {
+    gap: 14px;
+    padding: 16px 4px;
+  }
+
+  .signature-no {
+    font-size: 1.4rem;
+    width: 28px;
+  }
+
+  .signature-name,
+  .signature-price {
+    font-size: 1rem;
+  }
+
+  .signature-desc {
+    font-size: 0.82rem;
   }
 
   .spotlight {
