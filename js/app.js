@@ -336,211 +336,73 @@ const DISHES = [
   },
 ];
 
-const track = document.getElementById("carTrack");
-const dotsWrap = document.getElementById("carDots");
-const popularCarouselEl = document.getElementById("carousel");
-const carNextBtn = document.getElementById("carNext");
-const carPrevBtn = document.getElementById("carPrev");
-const dialRing = carNextBtn ? carNextBtn.querySelector(".ring circle") : null;
+// ===== POPULAR ITEMS — SIGNATURE MENU BOARD =====
+// A unique dark "chef-crafted menu" board. No sliding track, so the old
+// empty-space bug is gone. Clicking a row highlights it as the active pick.
+const signatureMenuEl = document.getElementById("signatureMenu");
+const signatureProgress = document.getElementById("signatureProgress");
 
 function starString(n) {
   return "★".repeat(n) + "☆".repeat(5 - n);
 }
 
-function buildDishCardHTML(d) {
-  return `
-    <div class="dish-img-wrap">
-      <div class="price-blob ${d.featured ? "gold" : "white"}">$${d.price}</div>
-      ${d.featured ? '<span class="dish-ribbon">Chef\'s Pick</span>' : ""}
-      <img src="${d.img}" alt="${d.name}" loading="lazy">
-      <button type="button" class="quick-order-btn" onclick="alert('${d.name} added to your order!')">
-        <i class="bi bi-lightning-charge-fill"></i> Order Now
-      </button>
-    </div>
-    <div class="dish-body">
-      <div class="dish-rating">
-        <span class="stars">${starString(d.rating)}</span>
-        <span class="reviews">Review(${d.reviews})</span>
+function renderSignatureMenu() {
+  if (!signatureMenuEl) return;
+  signatureMenuEl.innerHTML = "";
+  DISHES.forEach((d, idx) => {
+    const row = document.createElement("div");
+    row.className = "signature-row px-3" + (idx === 0 ? " active" : "");
+    row.setAttribute("role", "button");
+    row.setAttribute("tabindex", "0");
+    row.innerHTML = `
+      <span class="signature-no">${String(idx + 1).padStart(2, "0")}</span>
+      <div class="signature-main">
+        <div class="signature-title-line">
+          <h3 class="signature-name">${d.name}</h3>
+          <span class="signature-leader"></span>
+          <span class="signature-price">$${d.price}</span>
+        </div>
+        <p class="signature-desc">${d.desc}</p>
+        <span class="signature-tag ${d.featured ? "chef" : ""}">
+          ${d.featured ? "Chef's Pick" : "Popular"}
+        </span>
       </div>
-      <h3>${d.name}</h3>
-      <p>${d.desc}</p>
-    </div>
-  `;
-}
-
-function makeDishCard(d, isClone) {
-  const card = document.createElement("div");
-  card.className =
-    "dish-card" + (d.featured ? " featured" : "") + (isClone ? " clone" : "");
-  card.innerHTML = buildDishCardHTML(d);
-  return card;
-}
-
-const CLONE_COUNT = track ? Math.min(2, DISHES.length - 1) : 0;
-const totalDots = DISHES.length;
-
-if (track) {
-  DISHES.slice(-CLONE_COUNT).forEach((d) =>
-    track.appendChild(makeDishCard(d, true)),
-  ); // leading clones
-  DISHES.forEach((d) => track.appendChild(makeDishCard(d, false))); // real cards
-  DISHES.slice(0, CLONE_COUNT).forEach((d) =>
-    track.appendChild(makeDishCard(d, true)),
-  ); // trailing clones
-}
-
-if (dotsWrap) {
-  for (let i = 0; i < totalDots; i++) {
-    const dot = document.createElement("span");
-    if (i === 0) dot.classList.add("active");
-    dot.addEventListener("click", () => {
-      goToDot(i);
-      restartAutoplay();
+    `;
+    const activate = () => setSignatureActive(idx);
+    row.addEventListener("click", activate);
+    row.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        activate();
+      }
     });
-    dotsWrap.appendChild(dot);
+    signatureMenuEl.appendChild(row);
+  });
+}
+
+function setSignatureActive(idx) {
+  const rows = signatureMenuEl?.querySelectorAll(".signature-row");
+  if (!rows) return;
+  rows.forEach((r, i) => r.classList.toggle("active", i === idx));
+
+  // Progress indicator shows how far down the board you are
+  if (signatureProgress) {
+    signatureProgress.style.width = `${((idx + 1) / DISHES.length) * 100}%`;
   }
-}
 
-let position = CLONE_COUNT; // index into the extended (clone + real + clone) track
-let cardWidthWithGap = 0;
-let autoplayTimer = null;
-
-function measure() {
-  if (!track) return;
-  const cards = track.querySelectorAll(".dish-card");
-  if (!cards.length) return;
-  const style = getComputedStyle(track);
-  const gap = parseFloat(style.gap) || 26;
-  cardWidthWithGap = cards[0].getBoundingClientRect().width + gap;
-}
-
-function updateDots(realIndex) {
-  if (!dotsWrap) return;
-  const dots = dotsWrap.querySelectorAll("span");
-  dots.forEach((d, idx) => d.classList.toggle("active", idx === realIndex));
-}
-
-function checkLoopBounds() {
-  if (position >= CLONE_COUNT + totalDots) {
-    position -= totalDots;
-    setTrackPosition(position, false);
-  } else if (position < CLONE_COUNT) {
-    position += totalDots;
-    setTrackPosition(position, false);
-  }
-}
-
-function setTrackPosition(pos, animate) {
-  if (!track) return;
-  measure();
-  const offset = pos * cardWidthWithGap;
   if (window.gsap) {
-    gsap.to(track, {
-      x: -offset,
-      duration: animate ? 0.7 : 0,
-      ease: "power3.out",
-      onComplete: checkLoopBounds,
-    });
-  } else {
-    track.style.transition = animate
-      ? "transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)"
-      : "none";
-    track.style.transform = `translateX(-${offset}px)`;
-    checkLoopBounds();
+    gsap.fromTo(
+      rows[idx],
+      { x: 8 },
+      { x: 0, duration: 0.4, ease: "power2.out" },
+    );
   }
 }
 
-function goToRelative(step) {
-  position += step;
-  const realIndex =
-    (((position - CLONE_COUNT) % totalDots) + totalDots) % totalDots;
-  updateDots(realIndex);
-  setTrackPosition(position, true);
+if (signatureMenuEl) {
+  renderSignatureMenu();
+  setSignatureActive(0);
 }
-
-function goToDot(i) {
-  position = CLONE_COUNT + i;
-  updateDots(i);
-  setTrackPosition(position, true);
-}
-
-carPrevBtn?.addEventListener("click", () => {
-  goToRelative(-1);
-  restartAutoplay();
-});
-carNextBtn?.addEventListener("click", () => {
-  goToRelative(1);
-  restartAutoplay();
-});
-
-// ----- Autoplay + dial-ring countdown -----
-function resetDialAnimation() {
-  if (!dialRing) return;
-  dialRing.classList.remove("run");
-  void dialRing.getBoundingClientRect(); // force reflow so the animation restarts cleanly
-  dialRing.classList.add("run");
-}
-
-function startAutoplay() {
-  if (!track) return;
-  stopAutoplay();
-  resetDialAnimation();
-  autoplayTimer = setInterval(() => {
-    goToRelative(1);
-    resetDialAnimation();
-  }, 4200);
-}
-
-function stopAutoplay() {
-  if (autoplayTimer) clearInterval(autoplayTimer);
-  if (dialRing) dialRing.classList.remove("run");
-}
-
-function restartAutoplay() {
-  startAutoplay();
-}
-
-// Pause on hover, resume on mouse leave
-popularCarouselEl?.addEventListener("mouseenter", () => {
-  if (dialRing) dialRing.classList.add("paused");
-  if (autoplayTimer) clearInterval(autoplayTimer);
-});
-popularCarouselEl?.addEventListener("mouseleave", () => {
-  if (dialRing) dialRing.classList.remove("paused");
-  startAutoplay();
-});
-
-// Swipe / drag support
-let startX = 0,
-  isDragging = false;
-track?.addEventListener("pointerdown", (e) => {
-  isDragging = true;
-  startX = e.clientX;
-});
-window.addEventListener("pointerup", (e) => {
-  if (!isDragging) return;
-  isDragging = false;
-  const diff = e.clientX - startX;
-  if (Math.abs(diff) > 40) {
-    if (diff < 0) goToRelative(1);
-    else goToRelative(-1);
-    restartAutoplay();
-  }
-});
-
-window.addEventListener("resize", () => {
-  measure();
-  setTrackPosition(position, false);
-});
-
-// THE FIX: actually initialize the carousel on load — set the correct
-// starting position AND start autoplay. Previously this never ran, so
-// the carousel sat misaligned and never auto-scrolled.
-window.addEventListener("load", () => {
-  measure();
-  setTrackPosition(position, false);
-  startAutoplay();
-});
 
 // ===== SPOTLIGHT GALLERY =====
 const thumbsWrap = document.getElementById("spotlightThumbs");
@@ -681,14 +543,19 @@ if (window.gsap && window.ScrollTrigger) {
   });
 
   // Highlight pills entrance (single source of truth — do not duplicate elsewhere)
-  gsap.from(".highlight-pill", {
-    y: 30,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.15,
-    ease: "back.out(1.4)",
-    delay: 0.8,
-  });
+  gsap.fromTo(
+    ".highlight-pill",
+    { y: 30, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.5,
+      stagger: 0.15,
+      ease: "back.out(1.4)",
+      delay: 0.8,
+      clearProps: "opacity,transform",
+    },
+  );
 
   // Scroll-triggered animations
   function animateFrom(selector, vars, trigger) {
@@ -706,7 +573,11 @@ if (window.gsap && window.ScrollTrigger) {
     });
   }
 
-  animateFrom(".dish-card", { y: 60, stagger: 0.1 }, "#popular");
+  animateFrom(
+    ".signature-menu, .signature-menu-footer",
+    { y: 60, stagger: 0.1 },
+    "#popular",
+  );
   animateFrom(".premium-card", { y: 60 });
   animateFrom(
     ".food-card",
@@ -718,7 +589,6 @@ if (window.gsap && window.ScrollTrigger) {
     { y: 40, stagger: 0.1, ease: "back.out(1.4)" },
     ".quick-action-section",
   );
-  animateFrom(".stat-item", { y: 40, stagger: 0.1 }, ".stats-counter-section");
   animateFrom(".testimonial-card", { y: 50 }, ".testimonials-section");
   animateFrom(".footer-grid > div", { y: 40, stagger: 0.1 }, ".footer");
 
@@ -748,7 +618,7 @@ if (window.gsap && window.ScrollTrigger) {
   // Fallback — GSAP/ScrollTrigger not available, just show everything instantly
   document
     .querySelectorAll(
-      ".dish-card, .premium-card, .food-card, .quick-card, .stat-item, .footer-grid > div, .spotlight-feature, .spotlight-thumbs .thumb, .highlight-pill",
+      ".signature-menu, .signature-menu-footer, .premium-card, .food-card, .quick-card, .stat-item, .footer-grid > div, .spotlight-feature, .spotlight-thumbs .thumb, .highlight-pill",
     )
     .forEach((el) => {
       el.style.opacity = "1";
@@ -838,10 +708,136 @@ const dishesData = [
     desc: "Buttery pastry shell filled with tropical fruit curd and toasted meringue.",
     image: "./assets/images/menu/mango-passionfruit-tart.jpg",
   },
+  {
+    id: 9,
+    name: "Grilled Salmon Steak",
+    category: "bestsellers",
+    badge: "Chef's Pick ⭐",
+    price: "$21.00",
+    rating: "4.9 ★",
+    desc: "Pan-seared Atlantic salmon with a golden butter glaze and charred lemon.",
+    image: "./assets/images/spotlight/grilled-salmon-steak.jpg",
+  },
+  {
+    id: 10,
+    name: "Golden Fried Chicken",
+    category: "bestsellers",
+    badge: "Crispy 🍗",
+    price: "$13.00",
+    rating: "4.8 ★",
+    desc: "Double-dredged, crackling-crisp fried chicken rested on a bed of herb salt.",
+    image: "./assets/images/spotlight/golden-fried-chicken.jpg",
+  },
+  {
+    id: 11,
+    name: "Artisan Pepperoni Pizza",
+    category: "combos",
+    badge: "Wood-Fired 🔥",
+    price: "$16.00",
+    rating: "4.8 ★",
+    desc: "Wood-fired crust, San Marzano tomato, fresh mozzarella and spicy pepperoni.",
+    image: "./assets/images/spotlight/artisan-pepperoni-pizza.jpg",
+  },
+  {
+    id: 12,
+    name: "Smoky BBQ Ribs",
+    category: "combos",
+    badge: "Family Combo 🍖",
+    price: "$22.00",
+    rating: "4.9 ★",
+    desc: "Slow-cooked pork ribs smothered in house smoky barbecue glaze.",
+    image: "./assets/images/spotlight/smoky-bbq-ribs.jpg",
+  },
+  {
+    id: 13,
+    name: "Chef's Fried Rice",
+    category: "specials",
+    badge: "Wok-Tossed 🍳",
+    price: "$12.00",
+    rating: "4.7 ★",
+    desc: "Jasmine rice tossed in a hot wok with prawns, charred scallion and egg.",
+    image: "./assets/images/spotlight/chefs-fried-rice.jpg",
+  },
+  {
+    id: 14,
+    name: "Ramen Bowl",
+    category: "specials",
+    badge: "Signature 🍜",
+    price: "$19.00",
+    rating: "4.9 ★",
+    desc: "Hand-pulled noodles in an 18-hour broth with chashu pork and marinated egg.",
+    image: "./assets/images/spotlight/ramen-bowl.jpg",
+  },
+  {
+    id: 15,
+    name: "Strawberry Waffles",
+    category: "desserts",
+    badge: "Sweet Treat 🍓",
+    price: "$7.00",
+    rating: "4.7 ★",
+    desc: "Golden waffles crowned with fresh strawberries, cream and warm syrup.",
+    image: "./assets/images/food/strawberry-waffles.jpg",
+  },
+  {
+    id: 16,
+    name: "Chocolate Lava Cake",
+    category: "desserts",
+    badge: "Molten 🍫",
+    price: "$6.50",
+    rating: "4.8 ★",
+    desc: "Warm chocolate cake with a gooey molten centre and a scoop of vanilla.",
+    image: "./assets/images/food/chocolate-lava.jpg",
+  },
 ];
 
 const menuGrid = document.getElementById("menuGrid");
 const categoryTabs = document.getElementById("categoryTabs");
+const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+const CARDS_PER_PAGE = 4;
+
+// Track pagination state per category
+let currentCategory = "all";
+let visibleCount = CARDS_PER_PAGE;
+
+function getFilteredItems() {
+  if (currentCategory === "all") return dishesData;
+  return dishesData.filter((item) => item.category === currentCategory);
+}
+
+function buildFoodCard(item) {
+  const card = document.createElement("div");
+  card.className = "food-card";
+  card.style.opacity = "0";
+  card.style.transform = "translateY(20px) scale(0.95)";
+  card.innerHTML = `
+    <span class="badge-corner">${item.badge}</span>
+    <div class="card-img-wrapper">
+      <img src="${item.image}" alt="${item.name}" class="card-img" />
+      <div class="card-img-overlay">
+        <span class="quick-view" onclick="addToCart(${item.id})"><i class="bi bi-bag-plus"></i> Quick Add</span>
+      </div>
+    </div>
+    <div class="card-body-content">
+      <div class="card-title-row">
+        <h3 class="card-title">${item.name}</h3>
+        <span class="rating">${item.rating}</span>
+      </div>
+      <p class="small-desc">${item.desc}</p>
+      <div class="card-divider"></div>
+      <div class="card-footer">
+        <span class="price">${item.price}</span>
+        <button class="add-btn" onclick="addToCart(${item.id})">
+          <i class="bi bi-plus-lg"></i> Add to Cart
+        </button>
+      </div>
+      <a href="./html/menu.html" class="view-details-link">
+        <i class="bi bi-arrow-right"></i> View Details
+      </a>
+    </div>
+  `;
+  return card;
+}
 
 function renderMenuCards(items) {
   if (!menuGrid) return;
@@ -849,26 +845,7 @@ function renderMenuCards(items) {
   const fragment = document.createDocumentFragment();
 
   items.forEach((item) => {
-    const card = document.createElement("div");
-    card.className = "food-card";
-    card.style.opacity = "0";
-    card.style.transform = "translateY(20px) scale(0.95)";
-    card.innerHTML = `
-      <span class="badge-corner">${item.badge}</span>
-      <div class="card-img-wrapper">
-        <img src="${item.image}" alt="${item.name}" class="card-img" />
-      </div>
-      <div class="card-title-row">
-        <h3 class="card-title">${item.name}</h3>
-        <span class="rating">${item.rating}</span>
-      </div>
-      <p class="small-desc">${item.desc}</p>
-      <div class="card-footer">
-        <span class="price">${item.price}</span>
-        <button class="add-btn" onclick="addToCart(${item.id})">+ Add to Cart</button>
-      </div>
-    `;
-    fragment.appendChild(card);
+    fragment.appendChild(buildFoodCard(item));
   });
 
   menuGrid.appendChild(fragment);
@@ -891,6 +868,45 @@ function renderMenuCards(items) {
   }
 }
 
+function updateLoadMoreButton() {
+  if (!loadMoreBtn) return;
+  const label = loadMoreBtn.querySelector(".load-more-label");
+  const icon = loadMoreBtn.querySelector(".load-more-icon");
+  const total = getFilteredItems().length;
+  const allShown = visibleCount >= total;
+
+  loadMoreBtn.classList.remove("hide");
+
+  if (allShown) {
+    // Toggle to "Show Less" once everything is loaded
+    loadMoreBtn.classList.add("show-less");
+    if (label) label.textContent = "Show Less Dishes";
+    if (icon) icon.innerHTML = '<i class="bi bi-dash-lg"></i>';
+  } else {
+    loadMoreBtn.classList.remove("show-less");
+    if (label) label.textContent = "Load More Dishes";
+    if (icon) icon.innerHTML = '<i class="bi bi-plus-lg"></i>';
+  }
+}
+
+function renderMenuSlice() {
+  if (!menuGrid) return;
+  const items = getFilteredItems().slice(0, visibleCount);
+  renderMenuCards(items);
+  updateLoadMoreButton();
+}
+
+loadMoreBtn?.addEventListener("click", () => {
+  const total = getFilteredItems().length;
+  if (visibleCount >= total) {
+    // Already showing everything → collapse back to the first batch
+    visibleCount = CARDS_PER_PAGE;
+  } else {
+    visibleCount += CARDS_PER_PAGE;
+  }
+  renderMenuSlice();
+});
+
 categoryTabs?.addEventListener("click", (e) => {
   if (!e.target.classList.contains("tab-btn")) return;
 
@@ -907,12 +923,9 @@ categoryTabs?.addEventListener("click", (e) => {
     );
   }
 
-  const selectedCategory = e.target.getAttribute("data-category");
-  const filtered =
-    selectedCategory === "all"
-      ? dishesData
-      : dishesData.filter((item) => item.category === selectedCategory);
-  renderMenuCards(filtered);
+  currentCategory = e.target.getAttribute("data-category");
+  visibleCount = CARDS_PER_PAGE;
+  renderMenuSlice();
 });
 
 function addToCart(itemId) {
@@ -920,7 +933,7 @@ function addToCart(itemId) {
   if (item) alert(`${item.name} added to your cart!`);
 }
 
-renderMenuCards(dishesData);
+renderMenuSlice();
 
 // ===== CURSOR GLOW =====
 const cursorGlow = document.getElementById("cursorGlow");
@@ -937,45 +950,68 @@ if (cursorGlow) {
 
 // ===== STATS COUNTER =====
 document.addEventListener("DOMContentLoaded", () => {
+  const statsSection = document.querySelector(".stats-counter-section");
+  if (!statsSection) return;
+
   function animateCounters() {
     const counters = document.querySelectorAll(".stat-count");
-    if (!counters.length) return;
-
     counters.forEach((counter) => {
+      if (counter.dataset.animated === "true") return;
+      counter.dataset.animated = "true";
+
       const target = parseInt(counter.getAttribute("data-target"), 10);
       if (isNaN(target)) return;
 
-      const duration = 2500;
-      const step = Math.ceil(target / (duration / 16));
-      let current = 0;
+      const duration = 2200;
+      const start = performance.now();
 
-      const update = () => {
-        current += step;
-        if (current >= target) {
-          counter.textContent = target;
-          return;
-        }
-        counter.textContent = current;
-        requestAnimationFrame(update);
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        // easeOutExpo for a satisfying, snappy count-up
+        const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        counter.textContent = Math.round(target * eased);
+        if (progress < 1) requestAnimationFrame(tick);
       };
-      update();
+      requestAnimationFrame(tick);
     });
   }
 
-  const statsSection = document.querySelector(".stats-counter-section");
-
-  if (statsSection) {
-    if (window.gsap && window.ScrollTrigger) {
-      ScrollTrigger.create({
-        trigger: statsSection,
-        start: "top 85%",
-        onEnter: () => animateCounters(),
-        once: true,
-      });
-    } else {
-      animateCounters();
-    }
+  // Attractive staggered entrance for each stat item
+  const statItems = Array.from(statsSection.querySelectorAll(".stat-item"));
+  if (statItems.length) {
+    // Set the initial hidden state (only if GSAP is available we let GSAP
+    // animate; otherwise use CSS transitions via inline styles).
+    statItems.forEach((item) => {
+      item.style.opacity = "0";
+      item.style.transform = "translateY(50px) scale(0.9) rotateX(12deg)";
+      item.style.transition =
+        "opacity 0.7s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)";
+    });
   }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Count up the numbers
+          animateCounters();
+
+          // Reveal each stat item with a staggered flip-up animation
+          statItems.forEach((item, i) => {
+            setTimeout(() => {
+              item.style.opacity = "1";
+              item.style.transform = "translateY(0) scale(1) rotateX(0)";
+            }, i * 140);
+          });
+
+          obs.disconnect();
+        }
+      });
+    },
+    { threshold: 0.25, rootMargin: "0px 0px -10% 0px" },
+  );
+
+  observer.observe(statsSection);
 });
 
 // ===== FORMS & UTILITIES =====
