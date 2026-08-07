@@ -342,6 +342,43 @@
   }
 }
 
+/* ===== MENU HIGHLIGHTS RESPONSIVE ===== */
+.menu-highlights-section {
+  padding: 60px 16px;
+}
+
+.menu-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 991.98px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .food-card {
+    max-width: 340px;
+  }
+
+  .menu-highlights-footer {
+    gap: 16px;
+  }
+
+  .load-more-btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 991.98px) {
   .top-bar {
     padding: 12px 0;
@@ -471,16 +508,10 @@
     height: 280px;
   }
 
-  .popular .carousel {
-    gap: 12px;
-  }
-
-  .popular .carousel-track {
-    gap: 16px;
-  }
-
-  .popular .dish-card {
-    flex-basis: 240px;
+  .signature-menu {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    max-width: 640px;
   }
 
   .footer-grid {
@@ -493,6 +524,62 @@
     width: calc(50% - 16px);
     max-width: 300px;
     height: 280px;
+  }
+}
+
+/* ===== MENU HIGHLIGHTS SECTION — RESPONSIVE ===== */
+@media (max-width: 991.98px) {
+  .menu-highlights-section {
+    padding: 60px 18px;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .food-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .menu-highlights-footer {
+    margin-top: 32px;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .menu-highlights-section {
+    padding: 50px 14px;
+  }
+
+  .menu-highlights-section .section-title {
+    font-size: 1.7rem;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .category-tabs {
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .tab-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .load-more-btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+    padding: 13px 24px;
+    font-size: 0.85rem;
   }
 }
 
@@ -546,11 +633,11 @@
 
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
+    gap: 14px;
   }
 
   .stat-item {
-    padding: 35px 20px;
+    padding: 32px 18px;
   }
 
   .stat-number {
@@ -586,6 +673,19 @@
 
   .spotlight-thumbs {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ===== MENU HIGHLIGHTS — RESPONSIVE (card footer polish) ===== */
+@media (max-width: 575.98px) {
+  .food-card .card-footer {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .food-card .card-footer .add-btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -722,17 +822,37 @@
     font-size: 1.9rem;
   }
 
-  .popular .carousel {
-    flex-direction: column;
+  .popular .section-head.light h2 {
+    font-size: 1.8rem;
   }
 
-  .popular .car-arrow {
-    width: 42px;
-    height: 42px;
+  .popular-intro {
+    font-size: 0.9rem;
   }
 
-  .popular .dish-card {
-    flex-basis: 220px;
+  .signature-menu {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    max-width: 560px;
+  }
+
+  .signature-row {
+    gap: 14px;
+    padding: 16px 4px;
+  }
+
+  .signature-no {
+    font-size: 1.4rem;
+    width: 28px;
+  }
+
+  .signature-name,
+  .signature-price {
+    font-size: 1rem;
+  }
+
+  .signature-desc {
+    font-size: 0.82rem;
   }
 
   .spotlight {
