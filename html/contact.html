@@ -30,55 +30,85 @@
 
 <body class="contact-body-bg">
 
+    <!-- upper part start -->
+    <div class="top-bar bg-black">
+        <div class="container-lg container-fluid gy-2">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
+                    <div class="open-time">
+                        <p>
+                            <span style="font-weight: 600; color: var(--accent-gold)">Opening Hour:</span>
+                            9.00 am to 10.00 pm
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-7 d-flex justify-content-center justify-content-md-end">
+                    <div class="contact-info">
+                        <ul>
+                            <li>
+                                <a href="mailto:zest.co@gmail.com" class="email">
+                                    <i class="bi bi-envelope"></i>
+                                    zest.co@gmail.com
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://maps.google.com/?q=Road-01, Block-B, West Karachi City" target="_blank"
+                                    class="location d-flex align-items-center">
+                                    <i class="bi bi-geo-alt"></i>
+                                    Road-01, Block-B, West Karachi City
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- upper part end  -->
     <!-- navbar start  -->
     <header class="site-header">
         <nav class="navbar navbar-expand-lg main-navbar">
             <div class="container-xl">
                 <!-- Logo -->
-                <a class="navbar-brand header-logo" href="#">
+                <a class="navbar-brand header-logo" href="../index.html">
                     <img src="../assets/images/logo.png" alt="Zest & Co. Logo">
                 </a>
 
                 <!-- Toggler (Mobile View) -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavbar"
-                    aria-controls="primaryNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler mobile-nav-toggle" type="button" aria-controls="mobileMenuPanel"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="primaryNavbar">
                     <!-- Nav links -->
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" href="../index.html">HOME</a>
+                            <a class="nav-link" href="../index.html">HOME</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./admin/user/about.html">ABOUT</a>
                         </li>
-                        <li class="nav-item dropdown-holder">
-                            <a class="nav-link" href="../html/menu.html">MENU <i class="bi bi-chevron-down nav-arrow"></i></a>
-                            <ul class="nav-dropdown">
-                                <li><a href="#">Menu List 01</a></li>
-                                <li><a href="#">Menu List 02</a></li>
-                                <li><a href="#">Food Category</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./menu.html">MENU</a>
                         </li>
                         <li class="nav-item dropdown-holder">
-                            <a class="nav-link" href="#">PAGES <i class="bi bi-chevron-down nav-arrow"></i></a>
+                            <a class="nav-link" href="./pages.html">PAGES <i
+                                    class="bi bi-chevron-down nav-arrow"></i></a>
                             <ul class="nav-dropdown">
-                                <li><a href="../html/chef.html">Chef</a></li>
-                                <li><a href="../html/gallery.html">Gallery</a></li>
-                                <li><a href="../html/faq.html">FAQ</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown-holder">
-                            <a class="nav-link" href="../html/blog.html">BLOG <i class="bi bi-chevron-down nav-arrow"></i></a>
-                            <ul class="nav-dropdown">
-                                <li><a href="#">Blog Grid</a></li>
-                                <li><a href="#">Blog Standard</a></li>
+                                <li><a href="./admin/user/reservation.html">Reservation</a></li>
+                                <li><a href="./gallery.html">Gallery</a></li>
+                                <li><a href="./service.html">Service</a></li>
+                                <li><a href="./faq.html">FAQ</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../html/contact.html">CONTACT</a>
+                            <a class="nav-link" href="./blog.html">BLOG </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="./contact.html">CONTACT</a>
                         </li>
                     </ul>
 
@@ -93,8 +123,10 @@
                                 <a href="tel:+9988776345">+998-8776345</a>
                             </div>
                         </div>
-                        <a href="#" class="nav-btn">
-                            <span>Connect Now</span>
+                        <a href="#" class="login-link d-none d-sm-inline-block d-lg-inline-block"
+                            data-auth-open="login">Login</a>
+                        <a href="#" class="nav-btn" data-auth-open="signup">
+                            <span>Signup</span>
                         </a>
                     </div>
 
@@ -123,7 +155,6 @@
         <div class="container">
             <div class="d-flex gap-5">
                 <div class="d-flex flex-column">
-                    <!-- <div class="address-line-horizontal mb-5"></div> -->
                     <div class="row">
                         <div class="col-md-6">
                             <h6 class="contact-title">Contact Address</h6>
@@ -153,8 +184,6 @@
 
                         </div>
                     </div>
-
-                    <!-- <div class="address-line-horizontal mt-5"></div> -->
                 </div>
                 <div class="vertical-line">&nbsp;</div>
                 <div class="map-container animate__animated animate__fadeInUp">
@@ -213,12 +242,51 @@
     </section>
     <!-- Contact Form End -->
 
+<!-- //////////////////////////////////////PAGE END GALLERY START////////////////////////////////////// -->
+  <a href="gallery.html" class="insta-gallery-wrapper" aria-label="Go to Gallery Page">
+    <section class="insta-gallery-section">
+      <div class="insta-overlay-badge">
+        <div class="insta-icon-box">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </div>
+        <h2 class="insta-title">Instagram Gallery</h2>
+      </div>
 
+      <div class="insta-grid">
+        <div class="insta-grid-item">
+          <img src="../../../assets/images/page end gallery 1.webp" alt="Gallery preview image 1" />
+        </div>
+
+        <div class="insta-grid-item">
+          <img src="../../../assets/images/page end gallery 2.webp" alt="Gallery preview image 2" />
+        </div>
+
+        <div class="insta-grid-item">
+          <img src="../../../assets/images/page end gallery 3.webp" alt="Gallery preview image 3" />
+        </div>
+
+        <div class="insta-grid-item">
+          <img src="../../../assets/images/page end gallery 4.webp" alt="Gallery preview image 4" />
+        </div>
+
+        <div class="insta-grid-item">
+          <img src="../../../assets/images/page end gallery 5.webp" alt="Gallery preview image 5" />
+        </div>
+      </div>
+    </section>
+  </a>
+  <!-- //////////////////////////////////////PAGE END GALLERY END////////////////////////////////////// -->
 
     <!-- ================= FOOTER ================= -->
     <footer class="footer">
         <div class="container footer-grid">
             <div class="footer-col about-col">
+<<<<<<< HEAD
                 <!-- <a href="#" class="logo footer-logo">
                     <span class="logo-mark">
                         <svg width="26" height="26" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -234,6 +302,10 @@
                 <a class="navbar-brand header-logo" href="#">
                     <img src="./assets/images/logo.png" alt="Zest & Co. Logo"
                         style="height: 80px; width: auto; ">
+=======
+                <a class="navbar-brand header-logo" href="../index.html">
+                    <img src="../assets/images/logo.png" alt="Zest & Co. Logo" style="height: 80px; width: auto; ">
+>>>>>>> 014a5b203f26489cbf1b60beddf204de852c7364
                 </a>
 
                 <p>A fire-grill and noodle house built around three obsessions: char, rice, and broth. Come hungry.</p>
@@ -308,8 +380,12 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     
 <!-- ================= LOGIN / SIGNUP MODAL ================= -->
+=======
+    <!-- ================= LOGIN / SIGNUP MODAL ================= -->
+>>>>>>> 014a5b203f26489cbf1b60beddf204de852c7364
     <div class="auth-modal" id="authModal" aria-hidden="true">
         <div class="auth-modal-overlay" data-auth-close></div>
         <div class="auth-modal-box" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
