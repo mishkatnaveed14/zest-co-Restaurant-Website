@@ -949,6 +949,9 @@ if (cursorGlow) {
 }
 
 // ===== STATS COUNTER =====
+// Uses the native IntersectionObserver (highly reliable) instead of
+// ScrollTrigger so the counters + entrance animations always trigger as
+// the section scrolls into view.
 document.addEventListener("DOMContentLoaded", () => {
   const statsSection = document.querySelector(".stats-counter-section");
   if (!statsSection) return;
