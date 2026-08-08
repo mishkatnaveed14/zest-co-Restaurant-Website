@@ -251,6 +251,39 @@ const signup = async (e) => {
 signupForm?.addEventListener("submit", signup);
 
 
+// sign in form autnentication
+const signinEmail = document.getElementById("loginEmail");
+const signinPassword = document.getElementById("loginPassword");
+const signinForm = document.getElementById("authLoginForm");
+
+const signin = async (e) => {
+  e.preventDefault();
+    if (!signinEmail || !signinPassword || !signinForm) return;
+  if (!signinEmail.value || !signinPassword.value) {
+    alert("All fields are required!");
+    return;
+  }
+try {
+    const credential = await signInWithEmailAndPassword(
+      auth, 
+      signinEmail.value,
+      signinPassword.value,
+    );
+    const user = credential.user;
+    console.log("User signed in successfully:", user);
+  }
+  catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+  }
+};
+
+signinForm?.addEventListener("submit", signin);
+
+
+
+
 
 
 
