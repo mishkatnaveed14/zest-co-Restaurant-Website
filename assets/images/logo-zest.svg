@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
+  <defs>
+    <linearGradient id="zc-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0E3B8"/>
+      <stop offset="40%" stop-color="#D4AF37"/>
+      <stop offset="75%" stop-color="#B8860B"/>
+      <stop offset="100%" stop-color="#8C6D1F"/>
+    </linearGradient>
+    <linearGradient id="zc-gold-hi" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF7DD"/>
+      <stop offset="50%" stop-color="#E8C95E"/>
+      <stop offset="100%" stop-color="#C9A227"/>
+    </linearGradient>
+    <linearGradient id="zc-emblem" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1F2126"/>
+      <stop offset="100%" stop-color="#0C0D10"/>
+    </linearGradient>
+    <radialGradient id="zc-glow" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="rgba(212,175,55,0.26)"/>
+      <stop offset="100%" stop-color="rgba(212,175,55,0)"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Soft golden glow -->
+  <circle cx="110" cy="105" r="106" fill="url(#zc-glow)"/>
+
+  <!-- Outer seal ring -->
+  <circle cx="110" cy="105" r="97" fill="none" stroke="url(#zc-gold)" stroke-width="2.6" opacity="0.95"/>
+
+  <!-- Fine dotted inner ring (couture detail) -->
+  <circle cx="110" cy="105" r="90" fill="none" stroke="#C9A227" stroke-width="1" stroke-dasharray="1.5 4.5" opacity="0.7"/>
+
+  <!-- Emblem disc -->
+  <circle cx="110" cy="105" r="84" fill="url(#zc-emblem)"/>
+
+  <!-- Inner hairline ring -->
+  <circle cx="110" cy="105" r="78" fill="none" stroke="rgba(212,175,55,0.4)" stroke-width="1"/>
+
+  <!-- ======= THE ZEST CURL : stylized "Z" ribbon ======= -->
+  <!-- Top horizontal stroke that curls under like a paused flourish -->
+  <path d="M78 78 C84 72 92 69 100 69 L142 69 C150 69 156 74 157 80 C158 86 153 90 147 90 L104 90"
+        fill="none" stroke="url(#zc-gold-hi)" stroke-width="6.5" stroke-linecap="round"/>
+
+  <!-- Diagonal stroke flowing down-left, thinning like a ribbon edge -->
+  <path d="M104 90 L136 122 C143 129 147 137 148 146"
+        fill="none" stroke="url(#zc-gold-hi)" stroke-width="6.5" stroke-linecap="round"/>
+
+  <!-- Bottom horizontal stroke that curls into a citrus-zest spiral -->
+  <path d="M148 146 C148 156 140 162 130 162 C121 162 114 157 114 150 C114 143 120 138 128 138 C134 138 139 142 139 147 C139 151 135 154 131 154"
+        fill="none" stroke="url(#zc-gold-hi)" stroke-width="6.5" stroke-linecap="round"/>
+
+  <!-- ======= Garnish sparkles ======= -->
+  <g fill="url(#zc-gold-hi)">
+    <path d="M70 118 l2.2 6 6 2.2 -6 2.2 -2.2 6 -2.2 -6 -6 -2.2 6 -2.2 Z"/>
+    <path d="M152 96 l1.8 5 5 1.8 -5 1.8 -1.8 5 -1.8 -5 -5 -1.8 5 -1.8 Z"/>
+  </g>
+
+  <!-- Small trailing spark dots -->
+  <g fill="#E8C95E" opacity="0.85">
+    <circle cx="64" cy="100" r="1.6"/>
+    <circle cx="160" cy="120" r="1.4"/>
+    <circle cx="158" cy="170" r="1.6"/>
+  </g>
+
+  <!-- ======= WORDMARK: ZEST ======= -->
+  <text x="110" y="186" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="34" font-weight="700" fill="url(#zc-gold)" letter-spacing="3">ZEST</text>
+
+  <!-- ======= SUBMARK: & CO. ======= -->
+  <text x="110" y="204" text-anchor="middle" font-family="'Jost', Arial, sans-serif" font-size="13" fill="rgba(245,245,247,0.72)" letter-spacing="6">&amp; CO.</text>
+</svg>
