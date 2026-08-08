@@ -1060,10 +1060,34 @@ if (heroSection) {
 
 
 // ---------firebase authentication working start ---------------
+import {
+  auth,
+  createUserWithEmailAndPassword
+}
+from "./firebase.js";
 
 
+const email = document.getElementById(".email");
+const password = document.querySelector(".password");
 
-// -------- firebase authentication working end------------------
+const signupForm = document.getElementById("signupForm");
+
+// signupForm.addEventListener("submit",)
+const signup = async (e) => {
+  e.preventDefault();
+
+  if (!email.value || !password.value) alert('All fields are required!')
+    try{
+    let credential = await createUserWithEmailAndPassword(auth, email.value, password.value)
+    const user = userCredential.user;
+    
+
+}catch (error) {
+  const errorCode = error.code;
+  const errorMessage = error.message;
+  console.log(errorCode, errorMessage)
+}}
+// -------- firebase authentication working end-------------------
 
 
 
