@@ -336,9 +336,6 @@ const DISHES = [
   },
 ];
 
-// ===== POPULAR ITEMS — SIGNATURE MENU BOARD =====
-// A unique dark "chef-crafted menu" board. No sliding track, so the old
-// empty-space bug is gone. Clicking a row highlights it as the active pick.
 const signatureMenuEl = document.getElementById("signatureMenu");
 const signatureProgress = document.getElementById("signatureProgress");
 
@@ -1058,34 +1055,6 @@ if (heroSection) {
   });
 }
 
-// ---------firebase authentication working start ---------------
-import { auth, createUserWithEmailAndPassword } from "./firebase.js";
 
-const email = document.getElementById(".email");
-const password = document.querySelector(".password");
-
-const signupForm = document.getElementById("authSignupForm");
-
-// signupForm.addEventListener("submit",)
-const signup = async (e) => {
-  e.preventDefault();
-
-  if (!email.value || !password.value) alert("All fields are required!");
-  try {
-    let credential = await createUserWithEmailAndPassword(
-      auth,
-      email.value,
-      password.value,
-    );
-    const user = userCredential.user;
-    console.log("User created successfully:", user);
-  } catch (error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode, errorMessage);
-  }
-};
-signupForm.addEventListener("submit", signup);
-// -------- firebase authentication working end-------------------
 
 // ===== END OF FILE =====

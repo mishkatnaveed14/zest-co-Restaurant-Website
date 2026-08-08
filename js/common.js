@@ -208,6 +208,51 @@ authModal
 authModal?.querySelectorAll(".auth-form").forEach((form) => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    alert("This is a demo — authentication is not connected yet.");
   });
 });
+
+
+// ---------firebase authentication working start ---------------
+import { auth,
+   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword 
+
+} 
+  from "../firebase.config.js";
+// sign up form autnentication
+const email = document.getElementById("signupEmail");
+const password = document.getElementById("signupPassword");
+const signupForm = document.getElementById("authSignupForm");
+
+const signup = async (e) => {
+  e.preventDefault();
+
+  if (!email || !password || !signupForm) return;
+  if (!email.value || !password.value) {
+    alert("All fields are required!");
+    return;
+  }
+
+  try {
+    const credential = await createUserWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value,
+    );
+    const user = credential.user;
+    console.log("User created successfully:", user);
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+  }
+};
+
+signupForm?.addEventListener("submit", signup);
+
+
+
+
+
+
+// -------- firebase authentication working end-------------------
