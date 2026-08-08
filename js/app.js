@@ -1057,3 +1057,15 @@ if (heroSection) {
     if (slideImage) slideImage.style.transform = "";
   });
 }
+
+
+// ---------firebase authentication working start ---------------
+
+
+
+// -------- firebase authentication working end------------------
+
+
+
+
+// ===== END OF FILE =====
