@@ -1057,3 +1057,35 @@ if (heroSection) {
     if (slideImage) slideImage.style.transform = "";
   });
 }
+
+// ---------firebase authentication working start ---------------
+import { auth, createUserWithEmailAndPassword } from "./firebase.js";
+
+const email = document.getElementById(".email");
+const password = document.querySelector(".password");
+
+const signupForm = document.getElementById("authSignupForm");
+
+// signupForm.addEventListener("submit",)
+const signup = async (e) => {
+  e.preventDefault();
+
+  if (!email.value || !password.value) alert("All fields are required!");
+  try {
+    let credential = await createUserWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value,
+    );
+    const user = userCredential.user;
+    console.log("User created successfully:", user);
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+  }
+};
+signupForm.addEventListener("submit", signup);
+// -------- firebase authentication working end-------------------
+
+// ===== END OF FILE =====
