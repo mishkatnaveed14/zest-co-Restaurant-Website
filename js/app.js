@@ -336,9 +336,6 @@ const DISHES = [
   },
 ];
 
-// ===== POPULAR ITEMS — SIGNATURE MENU BOARD =====
-// A unique dark "chef-crafted menu" board. No sliding track, so the old
-// empty-space bug is gone. Clicking a row highlights it as the active pick.
 const signatureMenuEl = document.getElementById("signatureMenu");
 const signatureProgress = document.getElementById("signatureProgress");
 
@@ -949,6 +946,9 @@ if (cursorGlow) {
 }
 
 // ===== STATS COUNTER =====
+// Uses the native IntersectionObserver (highly reliable) instead of
+// ScrollTrigger so the counters + entrance animations always trigger as
+// the section scrolls into view.
 document.addEventListener("DOMContentLoaded", () => {
   const statsSection = document.querySelector(".stats-counter-section");
   if (!statsSection) return;
@@ -1054,3 +1054,7 @@ if (heroSection) {
     if (slideImage) slideImage.style.transform = "";
   });
 }
+
+
+
+// ===== END OF FILE =====
