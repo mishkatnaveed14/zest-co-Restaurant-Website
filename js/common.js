@@ -211,12 +211,12 @@ authModal?.querySelectorAll(".auth-form").forEach((form) => {
   });
 });
 
-// ---------firebase authentication working start ---------------
+// =======================firebase authentication working start========================
 import {
   auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  // goo  gle authentication
+  // google authentication
   signInWithRedirect,
   getRedirectResult,
   GoogleAuthProvider,
@@ -350,4 +350,4 @@ const _singOut = () => {
 
 document.getElementById("logout")?.addEventListener("click", _singOut);
 
-// -------- firebase authentication working end-------------------
+// ================== firebase authentication working end ============================

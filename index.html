@@ -917,7 +917,15 @@
                             <a href="#" class="auth-forgot">Forgot password?</a>
                         </div>
 
-                        <button type="submit" class="auth-submit">Sign In</button>
+                        <div class="auth-error" id="loginError">
+                            <i class="bi bi-exclamation-circle"></i>
+                            <span></span>
+                        </div>
+
+                        <button type="submit" class="auth-submit" id="loginSubmitBtn">
+                            <span class="auth-spinner"></span>
+                            <span class="auth-btn-label">Sign In</span>
+                        </button>
 
                         <div class="auth-divider"><span>or continue with</span></div>
 
@@ -928,7 +936,7 @@
                                 Facebook</button>
                         </div>
 
-                        <p class="auth-switch">New here? <a href="#" data-auth-switch="signup">Create an
+                   <p class="auth-switch">New here? <a href="#" data-auth-switch="signup">Create an
                                 account</a></p>
                     </form>
 
@@ -964,7 +972,15 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="auth-submit">Create Account</button>
+                        <div class="auth-error" id="signupError">
+                            <i class="bi bi-exclamation-circle"></i>
+                            <span></span>
+                        </div>
+
+                        <button type="submit" class="auth-submit" id="signupSubmitBtn">
+                            <span class="auth-spinner"></span>
+                            <span class="auth-btn-label">Create Account</span>
+                        </button>
 
                         <div class="auth-divider"><span>or continue with</span></div>
 
