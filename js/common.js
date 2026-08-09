@@ -244,7 +244,6 @@ const signup = async (e) => {
       password.value,
     );
     const user = credential.user;
-    const user = credential.user;
     console.log("User created successfully:", user);
     if (!credential.user.emailVerified) {
       await sendEmailVerification(user);
