@@ -249,6 +249,9 @@ const signup = async (e) => {
       await sendEmailVerification(user);
       signOut(auth);
       alert("Please verify your Email!");
+    } else {
+      closeAuthModal();
+      alert("Account created successfully! Welcome to Zest & Co.");
     }
   } catch (error) {
     const errorCode = error.code;
@@ -283,6 +286,9 @@ const signin = async (e) => {
       await sendEmailVerification(user);
       signOut(auth);
       alert("Please verify your Email!");
+    } else {
+      closeAuthModal();
+      alert("Welcome back to Zest & Co.!");
     }
   } catch (error) {
     const errorCode = error.code;
