@@ -336,9 +336,6 @@ const DISHES = [
   },
 ];
 
-// ===== POPULAR ITEMS — SIGNATURE MENU BOARD =====
-// A unique dark "chef-crafted menu" board. No sliding track, so the old
-// empty-space bug is gone. Clicking a row highlights it as the active pick.
 const signatureMenuEl = document.getElementById("signatureMenu");
 const signatureProgress = document.getElementById("signatureProgress");
 
@@ -1057,3 +1054,7 @@ if (heroSection) {
     if (slideImage) slideImage.style.transform = "";
   });
 }
+
+
+
+// ===== END OF FILE =====
