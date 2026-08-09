@@ -246,8 +246,8 @@ const signup = async (e) => {
     const user = credential.user;
     console.log("User created successfully:", user);
     if (!credential.user.emailVerified) {
+      await sendEmailVerification(user);
       signOut(auth);
-      await sendEmailVerification(auth.currentUser);
       alert("Please verify your Email!");
     }
   } catch (error) {
@@ -280,8 +280,8 @@ const signin = async (e) => {
     const user = credential.user;
     console.log("User signed in successfully:", user);
     if (!credential.user.emailVerified) {
+      await sendEmailVerification(user);
       signOut(auth);
-      await sendEmailVerification(auth.currentUser);
       alert("Please verify your Email!");
     }
   } catch (error) {
