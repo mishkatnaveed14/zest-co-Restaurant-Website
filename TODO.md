@@ -1,20 +1,20 @@
-# Task: Standardize Nav & Footer to match master/index.html
+# Zest & Co. Logo Redesign — Task Tracking
 
-Reference: `index.html` (master) — contains nav, footer, mobile menu panel, auth modal, common.js
+## Goal
 
-## Master branch (current)
+Create a unique logo for the fine-dining restaurant website that is distinct from
+typical restaurant/food logos (no fork & knife, chef hat, plate, or wine glass clichés).
 
-- [x] html/contact.html - update nav + footer (+ auth modal, common.js)
-- [x] html/admin/user/reservation.html - add mobile menu panel
-- [x] html/admin/user/about.html - add auth modal
-- [x] html/admin/user/reservation.html - add auth modal + common.js
-- [x] html/faq.html - add auth modal + fix mobile brand link
-- [x] html/gallery.html - add auth modal + fix mobile brand link
+## Steps
 
-## Other branches (all now match master nav/footer/mobile/auth/common.js)
+- [x] Analyze existing branding (index.html, logo.svg, style.css, common.css, responsive.css)
+- [x] Design unique "Zest Curl" concept — stylized "Z" with citrus-zest spiral ribbon,
+      gold sparkles, and a double gold ring seal
+- [x] Create `assets/images/logo-zest.svg` (scalable, gold-on-dark, matches site theme)
+- [x] Update navbar logo in `index.html` → `logo-zest.svg`
+- [x] Update footer logo in `index.html` → `logo-zest.svg`
 
-- [x] about branch
-- [x] faq branch
-- [x] fariha-branch
-- [x] gallery branch
-- [x] home branch
+## Notes
+
+- SVG keeps the logo crisp at any size (navbar 90px, footer 80px)
+- Gold foil gradient + dark emblem disc matches the site's dark-nav & gold-accent theme
