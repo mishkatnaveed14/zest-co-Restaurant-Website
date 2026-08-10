@@ -354,9 +354,11 @@ body{
 }
 
 .widget-area .widget_sm-banner>img {
+    width:400px;
+    height:380px;
     border-radius: 10px;
     width: 100%;
- animation: zoomImage 5s ease-in-out infinite alternate;
+    animation: zoomImage 5s ease-in-out infinite alternate;
   }
 @keyframes zoomImage {
     0% {
