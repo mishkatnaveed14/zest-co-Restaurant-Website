@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zest & Co.</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Swiper.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!-- google fonts cdn -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Jost:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- boostrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- custom css -->
+    <link rel="stylesheet" href="../css-folder/style.css">
+    <link rel="stylesheet" href="../css-folder/responsive.css">
+    <!-- blog css -->
+    <link rel="stylesheet" href="../css-folder/blog.css" class="css">
+
+</head>
+
+<body>
+
+    <!-- upper part start -->
+    <div class="top-bar bg-black">
+        <div class="container-lg container-fluid gy-2">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
+                    <div class="open-time">
+                        <p>
+                            <span style="font-weight: 600; color: var(--accent-gold)">Opening Hour:</span>
+                            9.00 am to 10.00 pm
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-7 d-flex justify-content-center justify-content-md-end">
+                    <div class="contact-info">
+                        <ul>
+                            <li>
+                                <a href="mailto:zest.co@gmail.com" class="email">
+                                    <i class="bi bi-envelope"></i>
+                                    zest.co@gmail.com
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://maps.google.com/?q=Road-01, Block-B, West Karachi City" target="_blank"
+                                    class="location d-flex align-items-center">
+                                    <i class="bi bi-geo-alt"></i>
+                                    Road-01, Block-B, West Karachi City
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- upper part end  -->
+    <!-- navbar start  -->
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg main-navbar">
+            <div class="container-xl">
+                <!-- Logo -->
+                <a class="navbar-brand header-logo" href="../index.html">
+                    <img src="../assets/images/logo.png" alt="Zest & Co. Logo">
+                </a>
+
+                <!-- Toggler (Mobile View) -->
+                <button class="navbar-toggler mobile-nav-toggle" type="button" aria-controls="mobileMenuPanel"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="primaryNavbar">
+                    <!-- Nav links -->
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./admin/user/about.html">ABOUT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./menu.html">MENU</a>
+                        </li>
+                        <li class="nav-item dropdown-holder">
+                            <a class="nav-link" href="./pages.html">PAGES <i
+                                    class="bi bi-chevron-down nav-arrow"></i></a>
+                            <ul class="nav-dropdown">
+                                <li><a href="./admin/user/reservation.html">Reservation</a></li>
+                                <li><a href="./gallery.html">Gallery</a></li>
+                                <li><a href="./service.html">Service</a></li>
+                                <li><a href="./faq.html">FAQ</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./blog.html">BLOG </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="./contact.html">CONTACT</a>
+                        </li>
+                    </ul>
+
+                    <!-- Right Actions -->
+                    <div class="navbar-actions d-flex align-items-center">
+                        <div class="header-call d-none d-xl-flex align-items-center">
+                            <div class="call-icon">
+                                <i class="bi bi-telephone"></i>
+                            </div>
+                            <div class="call-info">
+                                <span>Call Now</span>
+                                <a href="tel:+9988776345">+998-8776345</a>
+                            </div>
+                        </div>
+                        <a href="#" class="login-link d-none d-sm-inline-block d-lg-inline-block"
+                            data-auth-open="login">Login</a>
+                        <a href="#" class="nav-btn" data-auth-open="signup">
+                            <span>Signup</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- navbar end -->
+    <!-- Hero Section Start -->
+    <div id="contact-hero-container" class="contact-hero-section">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <img src="../assets/images/icon-dining-white.png" alt="Icon"
+                class="contact-hero-icon my-5 animate__animated animate__fadeInDown">
+            <h1 class="text-white mb-5 animate__animated animate__fadeInUp">WHAT'S NEW IN OUR RESTAURANT
+            </h1>
+            <div class="d-flex justify-content-center align-items-center gap-4 animate__animated animate__fadeInUp">
+                <div class="line"></div>
+                <p class="text-white fs-5 ">Check Our Blogs & News</p>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Section End -->
+     <!-- Blog Section Start -->
+    <div class="blog-standard-pages pt-120 mt-5 p-5">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="news-wrap2">
+                        <div class="post-thum"><img class="img-fluid" src="../assets/images/about img 1.jpg"
+                                alt="blog-st-01" />
+                            <div class="batch"><a href="/blog-grid">01 Aug,2026</a></div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <div class="publisher"><a href="/blog-grid"><img src="../assets/images/icon/User.svg"
+                                            alt="" /> By<!-- --> <!-- -->John</a></div>
+                                <div class="comment"><a href="/blog-grid"><img src="../assets/images/icon/Comment.svg"
+                                            alt="" /> Comment(<!-- -->10<!-- -->)</a></div>
+                            </div>
+                            <h3><a href="/blog-details">Eat Healthy Food &amp; Get Your Happiness.</a></h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea nostrum voluptas consequuntur et amet quod architecto ab aspernatur illum veritatis, incidunt illo sed facilis laborum nulla molestiae in! Porro perferendis expedita error.                            </p>
+                        </div>
+                    </div>
+                    <div class="news-wrap2">
+                        <div class="post-thum"><img class="img-fluid" src="../assets/images/blog/blog-st-02.png"
+                                alt="blog-st-01" />
+                            <div class="batch"><a href="/blog-grid">1 June,2022</a></div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <div class="publisher"><a href="/blog-grid"><img src="../assets/images/icon/User.svg"
+                                            alt="" /> By<!-- --> <!-- -->Admin</a></div>
+                                <div class="comment"><a href="/blog-grid"><img src="../assets/images/icon/Comment.svg"
+                                            alt="" /> Comment(<!-- -->18<!-- -->)</a></div>
+                            </div>
+                            <h3><a href="/blog-details">Cooking Delicious Food Our Experties Chef.</a></h3>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                                doloremque , totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+                                architecto beatae vitae dicta sunt explicaboconsequuntur magni dolores eos qui ratione.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="news-wrap2">
+                        <div class="post-thum"><img class="img-fluid" src="../assets/images/blog/blog-st-04.png"
+                                alt="blog-st-01" />
+                            <div class="batch"><a href="/blog-grid">11 July,2022</a></div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <div class="publisher"><a href="/blog-grid"><img src="../assets/images/icon/User.svg"
+                                            alt="" /> By<!-- --> <!-- -->Doue</a></div>
+                                <div class="comment"><a href="/blog-grid"><img src="../assets/images/icon/Comment.svg"
+                                            alt="" /> Comment(<!-- -->90<!-- -->)</a></div>
+                            </div>
+                            <h3><a href="/blog-details">To Serve Food Customer With Coffee.</a></h3>
+                            <p>&amp;nbsp;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                                doloremque , totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+                                architecto beatae vitae dicta sunt explicaboconsequuntur magni dolores eos qui ratione.
+                            </p>
+                        </div>
+                    </div>
+                    <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <i  class="bi bi-arrow-left"></i>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <i class="bi bi-arrow-right"></i>
+      </a>
+    </li>
+  </ul>
+</nav>
+                    <!-- <ul class="pagination" role="navigation" aria-label="Pagination">
+                        <li class="page-item disabled"><a class="page-link " tabindex="-1" role="button"
+                                aria-disabled="true" aria-label="Previous page" rel="prev"><i
+                                    class="bi bi-arrow-left"></i></a></li>
+                        <li class="page-item active"><a rel="canonical" role="button" class="page-link" tabindex="-1"
+                                aria-label="Page 1 is your current page" aria-current="page">1</a></li>
+                        <li class="page-item"><a rel="next" role="button" class="page-link" tabindex="0"
+                                aria-label="Page 2">2</a></li>
+                        <li class="page-item"><a role="button" class="page-link" tabindex="0" aria-label="Page 3">3</a>
+                        </li>
+                        <li class="page-item"><a role="button" class="page-link" tabindex="0" aria-label="Page 4">4</a>
+                        </li>
+                        <li class="page-item"><a role="button" class="page-link" tabindex="0" aria-label="Page 5">5</a>
+                        </li>
+                        <li class="page-item"><a role="button" class="page-link" tabindex="0" aria-label="Page 6">6</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" tabindex="0" role="button" aria-disabled="false"
+                                aria-label="Next page" rel="next"><i class="bi bi-arrow-right"></i></a></li>
+                    </ul> -->
+                </div>
+                <div class="col-lg-4">
+                    <div class="widget-area">
+                        <div class="single-widgets widget_sm-banner"><img class="img-fluid"
+                                src="../assets/images/blog/blog-sidebar-img.png" alt="blog-sidebar-img" />
+                            <div class="overlay d-flex align-items-center justify-content-center">
+                                <div class="items-content text-center"><span><img class="left-vec"
+                                            src="../assets/images/icon/shape-white1.svg" alt="sub-title-vec" />Reserve<img
+                                            class="right-vec" src="../assets/images/icon/shape-white1.svg"
+                                            alt="sub-title-vec" /></span>
+                                    <h3><a href="/reservation">For Your Private Event</a></h3><a
+                                        class="primary-btn btn-sm nav-btn" href="/reservation">Book Table</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="single-widgets widget_search">
+                            <form>
+                                <div class="wp-block-search__inside-wrapper "><input type="search"
+                                        id="wp-block-search__input-1" class="wp-block-search__input" name="s"
+                                        placeholder="Search..." />
+                                        <button type="submit"
+                                        class="wp-block-search__button">
+                                        <svg width="16" height="16" viewBox="0 0 20 20"  xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M7.10227 0.0713005C1.983 0.760967 -1.22002 5.91264 0.44166 10.7773C1.13596 12.8 2.60323 14.471 4.55652 15.4476C6.38483 16.3595 8.59269 16.5354 10.5737 15.9151C11.4023 15.6559 12.6011 15.0218 13.2121 14.5126L13.3509 14.3969L16.1281 17.1695C19.1413 20.1735 18.9932 20.0531 19.4237 19.9698C19.6505 19.9281 19.9282 19.6504 19.9699 19.4236C20.0532 18.9932 20.1735 19.1413 17.1695 16.128L14.397 13.3509L14.5127 13.212C14.7858 12.8834 15.2394 12.152 15.4755 11.6614C17.0029 8.48153 16.3271 4.74159 13.7814 2.28379C11.9994 0.561935 9.52304 -0.257332 7.10227 0.0713005ZM9.38418 1.59412C11.0135 1.9135 12.4669 2.82534 13.4666 4.15376C14.0591 4.94062 14.4572 5.82469 14.6793 6.83836C14.8136 7.44471 14.8228 8.75925 14.7025 9.34708C14.3507 11.055 13.4713 12.4622 12.1336 13.4666C11.3467 14.059 10.4627 14.4571 9.44898 14.6793C8.80097 14.8228 7.48644 14.8228 6.83843 14.6793C4.78332 14.2303 3.0985 12.9389 2.20054 11.1337C1.75156 10.2312 1.54328 9.43503 1.49699 8.4445C1.36276 5.62566 3.01055 3.05677 5.6535 1.96904C6.10248 1.7839 6.8014 1.59412 7.28741 1.52932C7.74102 1.46452 8.92595 1.50155 9.38418 1.59412Z">
+                                            </path>
+                                        </svg>
+                                    </button></div>
+                            </form>
+                        </div> -->
+                        <div class="single-widgets widget_egns_recent_post">
+                            <div class="widget-title">
+                                <h3>Recent Post: </h3>
+                                <div class="slder-btn">
+
+                                    <a class="prev-btn" href="#carouselExampleControls" role="button"
+                                        data-slide="prev">
+                                       <i class="bi bi-chevron-left"></i>
+                                    </a>
+                                    <a class="next-btn" href="#carouselExampleControls" role="button"
+                                        data-slide="next">
+                                       
+                                            <i class="bi bi-chevron-right"></i>
+                                      
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="recent-post-wraper">
+                                <div class="swiper recent-post-slider">
+                                    <div class="swiper-wrapper">
+                                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                   <div class="swiper-slide" data-swiper-slide-index="1">
+                                            <div class="news-wrap">
+                                                <div class="post-thum">
+                                                    <img class="img-fluid"
+                                                        src="../assets/images/about img 1.jpg" /></div>
+                                                <div class="news-content">
+                                                    <div class="news-meta">
+                                                        <div class="publisher">
+                                                            <img  src="../assets/images/icon/User.svg" alt="" /> By
+                                                                Admin</div>
+                                                        <div class="comment"><img
+                                                                    src="../assets/images/icon/Comment.svg" alt="" />
+                                                                <!-- -->Comment(10)
+                                                                </div>
+                                                    </div>
+                                                    <h3><a href="/blog-details">Esay To Make Some Special Food In
+                                                            Home.</a></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                   <div class="swiper-slide" data-swiper-slide-index="1">
+                                            <div class="news-wrap">
+                                                <div class="post-thum">
+                                                    <img class="img-fluid"
+                                                        src="../assets/images/about img 4.jpg" /></div>
+                                                <div class="news-content">
+                                                    <div class="news-meta">
+                                                        <div class="publisher">
+                                                            <img  src="../assets/images/icon/User.svg" alt="" /> By
+                                                                Admin</div>
+                                                        <div class="comment"><img
+                                                                    src="../assets/images/icon/Comment.svg" alt="" />
+                                                                <!-- -->Comment(10)
+                                                                </div>
+                                                    </div>
+                                                    <h3><a href="/blog-details">Esay To Make Some Special Food In
+                                                            Home.</a></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                   <div class="swiper-slide" data-swiper-slide-index="1">
+                                            <div class="news-wrap">
+                                                <div class="post-thum">
+                                                    <img class="img-fluid"
+                                                        src="../assets/images/about features img 1.webp" /></div>
+                                                <div class="news-content">
+                                                    <div class="news-meta">
+                                                        <div class="publisher">
+                                                            <img  src="../assets/images/icon/User.svg" alt="" /> By
+                                                                Admin</div>
+                                                        <div class="comment"><img
+                                                                    src="../assets/images/icon/Comment.svg" alt="" />
+                                                                <!-- -->Comment(10)
+                                                                </div>
+                                                    </div>
+                                                    <h3><a href="/blog-details">Esay To Make Some Special Food In
+                                                            Home.</a></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-widgets widget_egns_categoris">
+                            <div class="widget-title">
+                                <h3>Category:</h3>
+                            </div>
+                            <ul class="wp-block-categoris-cloud">
+                                <li><a href="/blog-standard"><span class="tag-name">Food</span> <img class="img-fluid"
+                                            src="../assets/images/blog/category-divider.png" alt="" /> <span
+                                            class="qty">05</span> </a></li>
+                                <li><a href="/blog-standard"><span class="tag-name">Modern Life</span> <img
+                                            class="img-fluid" src="../assets/images/blog/category-divider.png" alt="" />
+                                        <span class="qty">03</span> </a></li>
+                                <li><a href="/blog-standard"><span class="tag-name">Healthy</span> <img
+                                            class="img-fluid" src="../assets/images/blog/category-divider.png" alt="" />
+                                        <span class="qty">02</span> </a></li>
+                                <li><a href="/blog-standard"><span class="tag-name">Dessert</span> <img
+                                            class="img-fluid" src="../assets/images/blog/category-divider.png" alt="" />
+                                        <span class="qty">05</span> </a></li>
+                                <li><a href="/blog-standard"><span class="tag-name">Recipes</span> <img
+                                            class="img-fluid" src="../assets/images/blog/category-divider.png" alt="" />
+                                        <span class="qty">06</span> </a></li>
+                                <li><a href="/blog-standard"><span class="tag-name">Uncategoried</span> <img
+                                            class="img-fluid" src="../assets/images/blog/category-divider.png" alt="" />
+                                        <span class="qty">01</span> </a></li>
+                            </ul>
+                        </div>
+                        <div class="single-widgets widget_egns_tag">
+                            <div class="widget-title">
+                                <h3>Tag:</h3>
+                            </div>
+                            <ul class="wp-block-tag-cloud">
+                                <li><a href="/blog-standard">Dinner</a></li>
+                                <li><a href="/blog-standard">Breakfast</a></li>
+                                <li><a href="/blog-standard">Dessert</a></li>
+                                <li><a href="/blog-standard">Beverage</a></li>
+                                <li><a href="/blog-standard">Lunch</a></li>
+                                <li><a href="/blog-standard">Food</a></li>
+                                <li><a href="/blog-standard">Menu</a></li>
+                                <li><a href="/blog-standard">Sea Food</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col about-col">
+                <a class="navbar-brand header-logo" href="../index.html">
+                    <img src="../assets/images/logo.png" alt="Zest & Co. Logo" style="height: 80px; width: auto; ">
+                </a>
+                <p>A fire-grill and noodle house built around three obsessions: char, rice, and broth. Come hungry.</p>
+                <div class="footer-social">
+                    <a href="#">IG</a><a href="#">FB</a><a href="#">TT</a><a href="#">YT</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <a href="#home">Home</a>
+                <a href="#menu">Menu</a>
+                <a href="#about">About Us</a>
+                <a href="#chefs">Our Chefs</a>
+                <a href="#reserve">Reservations</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Visit</h4>
+                <p>24 Ember Lane, Karachi</p>
+                <p>Tue – Sun · 12:00 – 23:00</p>
+                <p>+92 100 000 00</p>
+                <p>hello@restho.example</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Stay In The Loop</h4>
+                <p>New menus, chef pop-ups, one email a month.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Email address" required>
+                    <button type="submit" aria-label="Subscribe">→</button>
+                </form>
+                <p class="newsletter-confirm" id="newsletterConfirm"></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>© <span id="year"></span> Zest & Co. All rights reserved.</p>
+                <p>Crafted with fire, rice &amp; a little bit of gold leaf.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+        <div class="mobile-menu-head">
+            <a href="../index.html" class="mobile-brand">Zest &amp; Co.</a>
+            <button class="mobile-close" type="button" aria-label="Close menu">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../html/admin/user/about.html">About</a>
+            <a href="../html/menu.html">Menu</a>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" aria-haspopup="true" aria-expanded="false">
+                    PAGES <i class="bi bi-chevron-down nav-arrow"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="../html/admin/user/reservation.html">Reservation</a></li>
+                    <li><a class="dropdown-item" href="../html/gallery.html">Gallery</a></li>
+                    <li><a class="dropdown-item" href="../html/faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <a href="../html/contact.html">Contact</a>
+        </nav>
+        <div class="mobile-menu-footer">
+            <a href="#" data-auth-open="signup" class="nav-btn">Signup</a>
+            <a href="../html/admin/user/reservation.html" class="nav-btn btn-outline">Reserve</a>
+        </div>
+    </div>
+
+    <!-- ================= LOGIN / SIGNUP MODAL ================= -->
+    <div class="auth-modal" id="authModal" aria-hidden="true">
+        <div class="auth-modal-overlay" data-auth-close></div>
+        <div class="auth-modal-box" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+            <button class="auth-modal-close" type="button" data-auth-close aria-label="Close modal">
+                <i class="bi bi-x-lg"></i>
+            </button>
+
+            <div class="auth-modal-grid">
+                <!-- Left: Brand / Image Panel -->
+                <div class="auth-brand-panel">
+                    <div class="auth-brand-inner">
+                        <span class="auth-brand-mark">
+                            <svg width="34" height="34" viewBox="0 0 40 40" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 3C13 8 10 14 10 20c0 6 4.5 11 10 14 5.5-3 10-8 10-14 0-6-3-12-10-17Z"
+                                    stroke="#D4AF37" stroke-width="1.6" />
+                                <path d="M20 12c-2.5 2.7-4 5.3-4 8s1.8 5 4 6.4c2.2-1.4 4-3.7 4-6.4s-1.5-5.3-4-8Z"
+                                    fill="#D4AF37" />
+                            </svg>
+                        </span>
+                        <h3 class="auth-brand-name">Zest &amp; <span>Co.</span></h3>
+                        <p class="auth-brand-sub">A fire-grill &amp; noodle house built around char, rice &amp; broth.
+                        </p>
+                        <div class="auth-brand-quote">
+                            <span>“</span> Fine dining begins with a warm welcome. <span>”</span>
+                        </div>
+                        <div class="auth-brand-features">
+                            <span><i class="bi bi-patch-check-fill"></i> Members-Only Menus</span>
+                            <span><i class="bi bi-patch-check-fill"></i> Priority Table Booking</span>
+                            <span><i class="bi bi-patch-check-fill"></i> Exclusive Chef’s Tastings</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Form Panel -->
+                <div class="auth-form-panel">
+                    <div class="auth-tabs">
+                        <button type="button" class="auth-tab active" data-auth-tab="login">Login</button>
+                        <button type="button" class="auth-tab" data-auth-tab="signup">Sign Up</button>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form class="auth-form active" id="authLoginForm" data-auth-form="login">
+                        <h2 class="auth-title" id="authModalTitle">Welcome Back</h2>
+                        <p class="auth-subtitle">Sign in to continue your fine dining experience.</p>
+
+                        <div class="auth-field">
+                            <label for="loginEmail">Email Address</label>
+                            <div class="auth-input-wrap">
+                                <i class="bi bi-envelope"></i>
+                                <input type="email" id="loginEmail" placeholder="you@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="auth-field">
+                            <label for="loginPassword">Password</label>
+                            <div class="auth-input-wrap">
+                                <i class="bi bi-lock"></i>
+                                <input type="password" id="loginPassword" placeholder="••••••••" required>
+                                <button type="button" class="auth-eye" data-auth-eye aria-label="Show password">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="auth-row">
+                            <label class="auth-check">
+                                <input type="checkbox"> Remember me
+                            </label>
+                            <a href="#" class="auth-forgot">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="auth-submit">Sign In</button>
+
+                        <div class="auth-divider"><span>or continue with</span></div>
+
+                        <div class="auth-social">
+                            <button type="button" class="auth-social-btn"><i class="bi bi-google"></i> Google</button>
+                            <button type="button" class="auth-social-btn"><i class="bi bi-facebook"></i>
+                                Facebook</button>
+                        </div>
+
+                        <p class="auth-switch">New here? <a href="#" data-auth-switch="signup">Create an account</a></p>
+                    </form>
+
+                    <!-- Signup Form -->
+                    <form class="auth-form" id="authSignupForm" data-auth-form="signup">
+                        <h2 class="auth-title">Join Zest &amp; Co.</h2>
+                        <p class="auth-subtitle">Create your account for exclusive dining privileges.</p>
+
+                        <div class="auth-field">
+                            <label for="signupName">Full Name</label>
+                            <div class="auth-input-wrap">
+                                <i class="bi bi-person"></i>
+                                <input type="text" id="signupName" placeholder="Your full name" required>
+                            </div>
+                        </div>
+
+                        <div class="auth-field">
+                            <label for="signupEmail">Email Address</label>
+                            <div class="auth-input-wrap">
+                                <i class="bi bi-envelope"></i>
+                                <input type="email" id="signupEmail" placeholder="you@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="auth-field">
+                            <label for="signupPassword">Password</label>
+                            <div class="auth-input-wrap">
+                                <i class="bi bi-lock"></i>
+                                <input type="password" id="signupPassword" placeholder="Create a password" required>
+                                <button type="button" class="auth-eye" data-auth-eye aria-label="Show password">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="auth-submit">Create Account</button>
+
+                        <div class="auth-divider"><span>or continue with</span></div>
+
+                        <div class="auth-social">
+                            <button type="button" class="auth-social-btn"><i class="bi bi-google"></i> Google</button>
+                            <button type="button" class="auth-social-btn"><i class="bi bi-facebook"></i>
+                                Facebook</button>
+                        </div>
+
+                        <p class="auth-switch">Already have an account? <a href="#" data-auth-switch="login">Sign in</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-element-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="../js/common.js"></script>
+</body>
+
+</html>
