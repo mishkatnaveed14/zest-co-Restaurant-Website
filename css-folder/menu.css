@@ -2,7 +2,7 @@
 
 
 
-/* Hero Section Styling */
+/* ------------------------------------MENU HERO SECTION START----------------------------------- */
         .hero-menu {
             position: relative;
             background-color: var(--nav-bg);
@@ -12,25 +12,21 @@
             border-bottom: 1px solid var(--border-nav);
         }
 
-        /* Dimmed Background Image Layer */
         .hero-bg-image {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            /* Replace with your image URL */
-            background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80');
+            background-image: url('../assets/images/menu\ hero\ bg.avif');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            /* Creates the dull/dimmed effect using dark tint + brightness filter */
             filter: brightness(0.35) contrast(1.1);
-            transform: scale(1.05); /* Slight zoom to prevent edge bleeding from blur/filters */
+            transform: scale(1.05);
             z-index: 1;
         }
 
-        /* Dark Gradient Overlay for optimal text readability */
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -46,7 +42,6 @@
             z-index: 2;
         }
 
-        /* Interactive Mouse Radial Glow Effect */
         .hero-bg-glow {
             position: absolute;
             top: 50%;
@@ -59,7 +54,6 @@
             z-index: 3;
         }
 
-        /* Foreground Content */
         .hero-content {
             position: relative;
             z-index: 4;
@@ -106,7 +100,6 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
         }
 
-        /* CTA Buttons */
         .btn-gold {
             background: var(--gold-gradient);
             color: #0A0B0E;
@@ -145,7 +138,6 @@
             border-color: var(--accent-gold-bright);
         }
 
-        /* Quick Stat Highlights */
         .hero-stats {
             margin-top: 60px;
             padding-top: 40px;
@@ -180,16 +172,17 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+/* ------------------------------------MENU HERO SECTION END----------------------------------- */
 
 
 
 
 
-       .menu-section {
+/* -------------------------------------MENU CARDS SECTION START------------------------------------ */
+     .menu-section {
             padding: var(--section-padding-lg);
         }
 
-        /* Sidebar Panels */
         .filter-widget {
             background-color: var(--card-bg);
             border: 1px solid var(--border-nav);
@@ -217,18 +210,16 @@
             background: var(--gold-gradient);
         }
 
-        /* Search Filter Input */
         .search-box {
             position: relative;
         }
 
         .search-input {
             width: 100%;
-            background-color: var(--stat-bg-dark);
-            border: 1px solid var(--border-nav);
+            border: 1px solid var(--accent-gold);
             border-radius: 8px;
             padding: 12px 42px 12px 16px;
-            color: var(--nav-text-light);
+            color: var(--text-muted);
             font-size: 0.95rem;
             transition: var(--transition-smooth);
         }
@@ -277,7 +268,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 8px 0;
-            transition: 0.3s ease;
+            transition: var(--transition-smooth);
             font-size: 0.95rem;
         }
 
@@ -326,43 +317,24 @@
             position: relative;
             width: 100%;
             height: 220px;
-            background-color: #1f2126;
+            background-color: #1a1b1e;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border: 5px solid var(--accent-gold);
+            border-radius: 20px;
+            border-bottom: none;
         }
 
         .dish-img-wrapper img {
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center; 
             transition: transform 0.6s var(--transition-smooth);
         }
 
         .dish-card:hover .dish-img-wrapper img {
-            transform: scale(1.08);
-        }
-
-        .image-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            border: 2px dashed rgba(197, 168, 128, 0.2);
-            width: 90%;
-            height: 85%;
-            border-radius: 8px;
-        }
-
-        .image-placeholder i {
-            font-size: 2rem;
-            color: var(--accent-gold);
+            transform: scale(1.08); 
         }
 
         .dish-overlay {
@@ -429,7 +401,7 @@
             transition: color 0.3s ease;
         }
 
-        .dish-card:hover {
+        .dish-card:hover .dish-title {
             color: var(--accent-gold);
         }
 
@@ -466,7 +438,6 @@
             color: var(--accent-gold-bright);
         }
 
-        /* Pagination */
         .custom-pagination {
             margin-top: 50px;
         }
@@ -491,3 +462,67 @@
             border-color: transparent;
             box-shadow: var(--shadow-gold);
         }
+
+@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+.hidden-dish {
+            display: none;
+        }
+
+.menu-section aside {
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+            z-index: 10;
+        }
+       /* btn styling  */
+.btn-view-all {
+  background-color: var(--accent-gold-bright);
+  color: var(--text-light);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 10px 0px 10px 0px;
+  border: 1px solid var(--accent-gold);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  display: inline-block;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.18);
+}
+
+.btn-view-all::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--nav-text-light);
+  z-index: -1;
+  transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-view-all:hover {
+  color: var(--accent-gold) !important;
+  border-color: var(--nav-text-light);
+}
+
+.btn-view-all:hover::before {
+  width: 100%;
+}
+
+/* btn styling end */
+        /* -------------------------------------MENU CARDS SECTION START------------------------------------ */

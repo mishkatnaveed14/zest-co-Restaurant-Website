@@ -1492,3 +1492,24 @@ body {
 }
 
 /* ---------------------------PAGE END GALLERY END-------------------------------- */
+
+
+
+
+/*-------------------------- TEXT ANIMATION START -----------------------*/
+.reveal-text {
+  font-size: 2rem;
+  font-weight: bold;
+
+
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease-out;
+}
+
+.reveal-text.visible {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+}
+
+/* ---------------------------TEXT ANIMATION END-------------------------- */
