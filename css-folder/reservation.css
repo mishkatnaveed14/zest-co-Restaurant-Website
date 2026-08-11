@@ -14,41 +14,207 @@ body {
 }
 
 /* -----------------------------HERO SECTION START---------------------------- */
-.hero-section {
+/* Base Container */
+.reservation-hero {
   position: relative;
-  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-    url('../assets/images/reservation\ hero\ bg.jpg') no-repeat center center/cover;
-  height: 380px;
+  width: 100%;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  background-color: var(--nav-bg);
+  padding: var(--section-padding-md) 20px;
+}
+
+/* Background Image Layer (Dull & Blurred) */
+.hero-bg-layer {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(12px) brightness(0.45) contrast(0.9);
+  transform: scale(1.08); /* Scale up so blurred edges don't show bleed */
+  z-index: 1;
+}
+
+/* Dark Gradient Vignette Overlay */
+.hero-dark-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(18, 19, 21, 0.4) 0%,
+    var(--footer-dark) 100%
+  );
+  z-index: 2;
+}
+
+/* Hero Inner Layout */
+.hero-container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  color: var(--text-light);
+  gap: 2.5rem;
 }
 
-.hero-title {
-  font-size: 3.2rem;
-  font-family: serif;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-}
-
-.hero-breadcrumb {
-  font-size: 0.95rem;
+/* Header Text Styles */
+.hero-tagline {
+  display: inline-block;
   color: var(--accent-gold);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
 }
 
-.hero-breadcrumb a {
-  color: var(--text-light);
-  text-decoration: none;
-  transition: color 0.3s ease;
+.hero-main-title {
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
 }
 
-.hero-breadcrumb a:hover {
+.hero-subtext {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: var(--nav-text-light);
+  opacity: 0.85;
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Interactive Floating Bar Widget */
+.reservation-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: rgba(18, 19, 21, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-nav);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  box-shadow: var(--shadow-hover);
+  transition: border-color 0.3s var(--transition-smooth);
+}
+
+.reservation-bar:hover {
+  border-color: rgba(197, 168, 128, 0.4);
+}
+
+.res-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  padding: 0 0.75rem;
+}
+
+.res-field label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
   color: var(--accent-gold);
+  margin-bottom: 0.25rem;
+  font-weight: 600;
 }
 
+.res-input {
+  background: transparent;
+  border: none;
+  color: var(--nav-text-light);
+  font-size: 1rem;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+}
+
+.res-input option {
+  background-color: var(--stat-bg-dark);
+  color: var(--nav-text-light);
+}
+
+.res-divider {
+  width: 1px;
+  height: 35px;
+  background: var(--border-nav);
+}
+
+.btn-gold {
+            background: var(--gold-gradient);
+            color: #0A0B0E;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 4px;
+            border: none;
+            transition: var(--transition-bounce);
+            box-shadow: var(--shadow-gold);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            color: #0A0B0E;
+        }
+
+        .btn-outline-gold {
+            background: rgba(18, 19, 21, 0.4);
+            backdrop-filter: blur(4px);
+            color: var(--accent-gold);
+            font-weight: 600;
+            padding: 13px 32px;
+            border-radius: 4px;
+            border: 1px solid var(--accent-gold);
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline-gold:hover {
+            background: rgba(197, 168, 128, 0.2);
+            color: var(--accent-gold-bright);
+            border-color: var(--accent-gold-bright);
+        }
+
+/* Responsive Layout Adjustments */
+@media (max-width: 768px) {
+  .reservation-bar {
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.5rem;
+  }
+
+  .res-field {
+    width: 100%;
+    padding: 0;
+  }
+
+  .res-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .res-btn-submit {
+    width: 100%;
+  }
+}
 /* -----------------------------HERO SECTION END----------------------------- */
 
 
