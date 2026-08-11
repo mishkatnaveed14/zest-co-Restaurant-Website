@@ -208,6 +208,146 @@ authModal
 authModal?.querySelectorAll(".auth-form").forEach((form) => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    alert("This is a demo — authentication is not connected yet.");
   });
 });
+
+// =======================firebase authentication working start========================
+import {
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  // google authentication
+  signInWithRedirect,
+  getRedirectResult,
+  GoogleAuthProvider,
+  signOut,
+  sendEmailVerification,
+} from "../firebase.config.js";
+// sign up form autnentication
+const email = document.getElementById("signupEmail");
+const password = document.getElementById("signupPassword");
+const signupForm = document.getElementById("authSignupForm");
+
+const signup = async (e) => {
+  e.preventDefault();
+
+  if (!email || !password || !signupForm) return;
+  if (!email.value || !password.value) {
+    alert("All fields are required!");
+    return;
+  }
+
+  try {
+    const credential = await createUserWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value,
+    );
+    const user = credential.user;
+    console.log("User created successfully:", user);
+    if (!credential.user.emailVerified) {
+      await sendEmailVerification(user);
+      signOut(auth);
+      alert("Please verify your Email!");
+    } else {
+      closeAuthModal();
+      alert("Account created successfully! Welcome to Zest & Co.");
+    }
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+  }
+};
+
+signupForm?.addEventListener("submit", signup);
+
+// sign in form autnentication
+const signinEmail = document.getElementById("loginEmail");
+const signinPassword = document.getElementById("loginPassword");
+const signinForm = document.getElementById("authLoginForm");
+
+const signin = async (e) => {
+  e.preventDefault();
+  if (!signinEmail || !signinPassword || !signinForm) return;
+  if (!signinEmail.value || !signinPassword.value) {
+    alert("All fields are required!");
+    return;
+  }
+  try {
+    const credential = await signInWithEmailAndPassword(
+      auth,
+      signinEmail.value,
+      signinPassword.value,
+    );
+    const user = credential.user;
+    console.log("User signed in successfully:", user);
+    if (!credential.user.emailVerified) {
+      await sendEmailVerification(user);
+      signOut(auth);
+      alert("Please verify your Email!");
+    } else {
+      closeAuthModal();
+      alert("Welcome back to Zest & Co.!");
+    }
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+  }
+};
+
+signinForm?.addEventListener("submit", signin);
+
+// google authentication
+const googleButtons = document.querySelectorAll(".google");
+const provider = new GoogleAuthProvider();
+provider.setCustomParameters({
+  prompt: "select_account",
+});
+
+const handleGoogleRedirectResult = async () => {
+  try {
+    const result = await getRedirectResult(auth);
+    if (result?.user) {
+      console.log("Google sign-in successful:", result.user);
+      const redirectTo = new URL("/", window.location.origin);
+      window.location.assign(redirectTo.href);
+    }
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    const email = error.email;
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    console.log(errorCode, errorMessage, email, credential);
+
+    if (errorCode === "auth/unauthorized-domain") {
+      alert(
+        "This domain is not authorized in Firebase. Please add localhost or 127.0.0.1 in Firebase Authentication > Settings > Authorized domains.",
+      );
+    }
+  }
+};
+
+const google = async (e) => {
+  e.preventDefault();
+  try {
+    await signInWithRedirect(auth, provider);
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+  }
+};
+
+googleButtons.forEach((btn) => btn.addEventListener("click", google));
+handleGoogleRedirectResult();
+// //////////////////////////// Signout
+
+const _singOut = () => {
+  signOut(auth);
+};
+
+document.getElementById("logout")?.addEventListener("click", _singOut);
+
+// ================== firebase authentication working end ============================

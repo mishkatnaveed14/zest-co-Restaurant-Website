@@ -336,211 +336,70 @@ const DISHES = [
   },
 ];
 
-const track = document.getElementById("carTrack");
-const dotsWrap = document.getElementById("carDots");
-const popularCarouselEl = document.getElementById("carousel");
-const carNextBtn = document.getElementById("carNext");
-const carPrevBtn = document.getElementById("carPrev");
-const dialRing = carNextBtn ? carNextBtn.querySelector(".ring circle") : null;
+const signatureMenuEl = document.getElementById("signatureMenu");
+const signatureProgress = document.getElementById("signatureProgress");
 
 function starString(n) {
   return "★".repeat(n) + "☆".repeat(5 - n);
 }
 
-function buildDishCardHTML(d) {
-  return `
-    <div class="dish-img-wrap">
-      <div class="price-blob ${d.featured ? "gold" : "white"}">$${d.price}</div>
-      ${d.featured ? '<span class="dish-ribbon">Chef\'s Pick</span>' : ""}
-      <img src="${d.img}" alt="${d.name}" loading="lazy">
-      <button type="button" class="quick-order-btn" onclick="alert('${d.name} added to your order!')">
-        <i class="bi bi-lightning-charge-fill"></i> Order Now
-      </button>
-    </div>
-    <div class="dish-body">
-      <div class="dish-rating">
-        <span class="stars">${starString(d.rating)}</span>
-        <span class="reviews">Review(${d.reviews})</span>
+function renderSignatureMenu() {
+  if (!signatureMenuEl) return;
+  signatureMenuEl.innerHTML = "";
+  DISHES.forEach((d, idx) => {
+    const row = document.createElement("div");
+    row.className = "signature-row px-3" + (idx === 0 ? " active" : "");
+    row.setAttribute("role", "button");
+    row.setAttribute("tabindex", "0");
+    row.innerHTML = `
+      <span class="signature-no">${String(idx + 1).padStart(2, "0")}</span>
+      <div class="signature-main">
+        <div class="signature-title-line">
+          <h3 class="signature-name">${d.name}</h3>
+          <span class="signature-leader"></span>
+          <span class="signature-price">$${d.price}</span>
+        </div>
+        <p class="signature-desc">${d.desc}</p>
+        <span class="signature-tag ${d.featured ? "chef" : ""}">
+          ${d.featured ? "Chef's Pick" : "Popular"}
+        </span>
       </div>
-      <h3>${d.name}</h3>
-      <p>${d.desc}</p>
-    </div>
-  `;
-}
-
-function makeDishCard(d, isClone) {
-  const card = document.createElement("div");
-  card.className =
-    "dish-card" + (d.featured ? " featured" : "") + (isClone ? " clone" : "");
-  card.innerHTML = buildDishCardHTML(d);
-  return card;
-}
-
-const CLONE_COUNT = track ? Math.min(2, DISHES.length - 1) : 0;
-const totalDots = DISHES.length;
-
-if (track) {
-  DISHES.slice(-CLONE_COUNT).forEach((d) =>
-    track.appendChild(makeDishCard(d, true)),
-  ); // leading clones
-  DISHES.forEach((d) => track.appendChild(makeDishCard(d, false))); // real cards
-  DISHES.slice(0, CLONE_COUNT).forEach((d) =>
-    track.appendChild(makeDishCard(d, true)),
-  ); // trailing clones
-}
-
-if (dotsWrap) {
-  for (let i = 0; i < totalDots; i++) {
-    const dot = document.createElement("span");
-    if (i === 0) dot.classList.add("active");
-    dot.addEventListener("click", () => {
-      goToDot(i);
-      restartAutoplay();
+    `;
+    const activate = () => setSignatureActive(idx);
+    row.addEventListener("click", activate);
+    row.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        activate();
+      }
     });
-    dotsWrap.appendChild(dot);
+    signatureMenuEl.appendChild(row);
+  });
+}
+
+function setSignatureActive(idx) {
+  const rows = signatureMenuEl?.querySelectorAll(".signature-row");
+  if (!rows) return;
+  rows.forEach((r, i) => r.classList.toggle("active", i === idx));
+
+  // Progress indicator shows how far down the board you are
+  if (signatureProgress) {
+    signatureProgress.style.width = `${((idx + 1) / DISHES.length) * 100}%`;
   }
-}
 
-let position = CLONE_COUNT; // index into the extended (clone + real + clone) track
-let cardWidthWithGap = 0;
-let autoplayTimer = null;
-
-function measure() {
-  if (!track) return;
-  const cards = track.querySelectorAll(".dish-card");
-  if (!cards.length) return;
-  const style = getComputedStyle(track);
-  const gap = parseFloat(style.gap) || 26;
-  cardWidthWithGap = cards[0].getBoundingClientRect().width + gap;
-}
-
-function updateDots(realIndex) {
-  if (!dotsWrap) return;
-  const dots = dotsWrap.querySelectorAll("span");
-  dots.forEach((d, idx) => d.classList.toggle("active", idx === realIndex));
-}
-
-function checkLoopBounds() {
-  if (position >= CLONE_COUNT + totalDots) {
-    position -= totalDots;
-    setTrackPosition(position, false);
-  } else if (position < CLONE_COUNT) {
-    position += totalDots;
-    setTrackPosition(position, false);
-  }
-}
-
-function setTrackPosition(pos, animate) {
-  if (!track) return;
-  measure();
-  const offset = pos * cardWidthWithGap;
   if (window.gsap) {
-    gsap.to(track, {
-      x: -offset,
-      duration: animate ? 0.7 : 0,
-      ease: "power3.out",
-      onComplete: checkLoopBounds,
-    });
-  } else {
-    track.style.transition = animate
-      ? "transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)"
-      : "none";
-    track.style.transform = `translateX(-${offset}px)`;
-    checkLoopBounds();
+    gsap.fromTo(
+      rows[idx],
+      { x: 8 },
+      { x: 0, duration: 0.4, ease: "power2.out" },
+    );
   }
 }
 
-function goToRelative(step) {
-  position += step;
-  const realIndex =
-    (((position - CLONE_COUNT) % totalDots) + totalDots) % totalDots;
-  updateDots(realIndex);
-  setTrackPosition(position, true);
+if (signatureMenuEl) {
+  renderSignatureMenu();
+  setSignatureActive(0);
 }
-
-function goToDot(i) {
-  position = CLONE_COUNT + i;
-  updateDots(i);
-  setTrackPosition(position, true);
-}
-
-carPrevBtn?.addEventListener("click", () => {
-  goToRelative(-1);
-  restartAutoplay();
-});
-carNextBtn?.addEventListener("click", () => {
-  goToRelative(1);
-  restartAutoplay();
-});
-
-// ----- Autoplay + dial-ring countdown -----
-function resetDialAnimation() {
-  if (!dialRing) return;
-  dialRing.classList.remove("run");
-  void dialRing.getBoundingClientRect(); // force reflow so the animation restarts cleanly
-  dialRing.classList.add("run");
-}
-
-function startAutoplay() {
-  if (!track) return;
-  stopAutoplay();
-  resetDialAnimation();
-  autoplayTimer = setInterval(() => {
-    goToRelative(1);
-    resetDialAnimation();
-  }, 4200);
-}
-
-function stopAutoplay() {
-  if (autoplayTimer) clearInterval(autoplayTimer);
-  if (dialRing) dialRing.classList.remove("run");
-}
-
-function restartAutoplay() {
-  startAutoplay();
-}
-
-// Pause on hover, resume on mouse leave
-popularCarouselEl?.addEventListener("mouseenter", () => {
-  if (dialRing) dialRing.classList.add("paused");
-  if (autoplayTimer) clearInterval(autoplayTimer);
-});
-popularCarouselEl?.addEventListener("mouseleave", () => {
-  if (dialRing) dialRing.classList.remove("paused");
-  startAutoplay();
-});
-
-// Swipe / drag support
-let startX = 0,
-  isDragging = false;
-track?.addEventListener("pointerdown", (e) => {
-  isDragging = true;
-  startX = e.clientX;
-});
-window.addEventListener("pointerup", (e) => {
-  if (!isDragging) return;
-  isDragging = false;
-  const diff = e.clientX - startX;
-  if (Math.abs(diff) > 40) {
-    if (diff < 0) goToRelative(1);
-    else goToRelative(-1);
-    restartAutoplay();
-  }
-});
-
-window.addEventListener("resize", () => {
-  measure();
-  setTrackPosition(position, false);
-});
-
-// THE FIX: actually initialize the carousel on load — set the correct
-// starting position AND start autoplay. Previously this never ran, so
-// the carousel sat misaligned and never auto-scrolled.
-window.addEventListener("load", () => {
-  measure();
-  setTrackPosition(position, false);
-  startAutoplay();
-});
 
 // ===== SPOTLIGHT GALLERY =====
 const thumbsWrap = document.getElementById("spotlightThumbs");
@@ -711,7 +570,11 @@ if (window.gsap && window.ScrollTrigger) {
     });
   }
 
-  animateFrom(".dish-card", { y: 60, stagger: 0.1 }, "#popular");
+  animateFrom(
+    ".signature-menu, .signature-menu-footer",
+    { y: 60, stagger: 0.1 },
+    "#popular",
+  );
   animateFrom(".premium-card", { y: 60 });
   animateFrom(
     ".food-card",
@@ -723,8 +586,6 @@ if (window.gsap && window.ScrollTrigger) {
     { y: 40, stagger: 0.1, ease: "back.out(1.4)" },
     ".quick-action-section",
   );
-  // NOTE: .stat-item is animated separately via IntersectionObserver in the
-  // "STATS COUNTER" block below (more reliable). Do not animate it here.
   animateFrom(".testimonial-card", { y: 50 }, ".testimonials-section");
   animateFrom(".footer-grid > div", { y: 40, stagger: 0.1 }, ".footer");
 
@@ -754,7 +615,7 @@ if (window.gsap && window.ScrollTrigger) {
   // Fallback — GSAP/ScrollTrigger not available, just show everything instantly
   document
     .querySelectorAll(
-      ".dish-card, .premium-card, .food-card, .quick-card, .stat-item, .footer-grid > div, .spotlight-feature, .spotlight-thumbs .thumb, .highlight-pill",
+      ".signature-menu, .signature-menu-footer, .premium-card, .food-card, .quick-card, .stat-item, .footer-grid > div, .spotlight-feature, .spotlight-thumbs .thumb, .highlight-pill",
     )
     .forEach((el) => {
       el.style.opacity = "1";
@@ -1006,11 +867,22 @@ function renderMenuCards(items) {
 
 function updateLoadMoreButton() {
   if (!loadMoreBtn) return;
+  const label = loadMoreBtn.querySelector(".load-more-label");
+  const icon = loadMoreBtn.querySelector(".load-more-icon");
   const total = getFilteredItems().length;
-  if (visibleCount >= total) {
-    loadMoreBtn.classList.add("hide");
+  const allShown = visibleCount >= total;
+
+  loadMoreBtn.classList.remove("hide");
+
+  if (allShown) {
+    // Toggle to "Show Less" once everything is loaded
+    loadMoreBtn.classList.add("show-less");
+    if (label) label.textContent = "Show Less Dishes";
+    if (icon) icon.innerHTML = '<i class="bi bi-dash-lg"></i>';
   } else {
-    loadMoreBtn.classList.remove("hide");
+    loadMoreBtn.classList.remove("show-less");
+    if (label) label.textContent = "Load More Dishes";
+    if (icon) icon.innerHTML = '<i class="bi bi-plus-lg"></i>';
   }
 }
 
@@ -1022,7 +894,13 @@ function renderMenuSlice() {
 }
 
 loadMoreBtn?.addEventListener("click", () => {
-  visibleCount += CARDS_PER_PAGE;
+  const total = getFilteredItems().length;
+  if (visibleCount >= total) {
+    // Already showing everything → collapse back to the first batch
+    visibleCount = CARDS_PER_PAGE;
+  } else {
+    visibleCount += CARDS_PER_PAGE;
+  }
   renderMenuSlice();
 });
 
@@ -1176,3 +1054,7 @@ if (heroSection) {
     if (slideImage) slideImage.style.transform = "";
   });
 }
+
+
+
+// ===== END OF FILE =====
