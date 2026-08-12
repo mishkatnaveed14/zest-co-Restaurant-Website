@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- Animate CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+     <!-- AOS cdn -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- custom css -->
     <link rel="stylesheet" href="../css-folder/style.css">
     <link rel="stylesheet" href="../css-folder/responsive.css">
@@ -156,19 +158,19 @@
             <div class="d-flex flex-column flex-lg-row gap-5">
                 <div class="d-flex flex-column">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 aos-init aos-animate" data-aos-duration="1000" data-aos="fade-up">
                             <h6 class="contact-title">Contact Address</h6>
                             <p>24 Ember Lane, Karachi</p>
                             <p>Karachi, Pakistan</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 aos-init aos-animate" data-aos-duration="1000" data-aos="fade-up">
                             <h6 class="contact-title">Opening Hours</h6>
                             <p>Lunch: Monday – Friday 12 pm to 3:30 pm </p>
                             <p>Dinner: Monday – Saturday 4 pm to 11 pm </p>
                             <p>Dinner: Sunday 4 pm to 10 pm</p>
 
                         </div>
-                        <div class="col-md-6 mt-5">
+                        <div class="col-md-6 mt-5 aos-init aos-animate" data-aos-duration="1000" data-aos="fade-up">
                             <h6 class="contact-title">Reservations</h6>
                             <p>Call: <a href="tel:+92 100 000 00" class="text-light text-decoration-none">+92 100 000
                                     00</a></p>
@@ -176,7 +178,7 @@
                             <p>Email: <a href="mailto:info@zest-co.com"
                                     class="text-light text-decoration-none">info@zest-co.com</a></p>
                         </div>
-                        <div class="col-md-6 mt-5">
+                        <div class="col-md-6 mt-5 aos-init aos-animate" data-aos-duration="1000" data-aos="fade-up">
                             <h6 class="contact-title">Parking Details</h6>
                             <p>Street Parking after 7:00pm</p>
                             <p>Monday to Saturday, feed the meter. </p>
@@ -186,7 +188,7 @@
                     </div>
                 </div>
                 <!-- <div class="vertical-line">&nbsp;</div> -->
-                <div class="map-container animate__animated animate__fadeInUp">
+                <div class="map-container aos-init aos-animate" data-aos-duration="1000" data-aos="fade-up">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3622.1806938272216!2d67.06072507400907!3d24.789265448105212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33ce5f0b27b1f%3A0xcf4a17b98090926f!2s24th%20St%2C%20Karachi%2C%20Pakistan!5e0!3m2!1sen!2s!4v1784735720931!5m2!1sen!2s"
                         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
@@ -287,28 +289,17 @@
     <footer class="footer">
         <div class="container footer-grid">
             <div class="footer-col about-col">
-                <!-- <a href="#" class="logo footer-logo">
-                    <span class="logo-mark">
-                        <svg width="26" height="26" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20 3C13 8 10 14 10 20c0 6 4.5 11 10 14 5.5-3 10-8 10-14 0-6-3-12-10-17Z"
-                                stroke="#D4AF37" stroke-width="1.6" />
-                            <path d="M20 12c-2.5 2.7-4 5.3-4 8s1.8 5 4 6.4c2.2-1.4 4-3.7 4-6.4s-1.5-5.3-4-8Z"
-                                fill="#D4AF37" />
-                        </svg>
-                    </span>
-                    Zest &<span class="logo-accent">Co.</span>
-                </a> -->
 
-                    <a class="navbar-brand header-logo" href="../index.html">
-                        <img src="../assets/images/zset and co logo.png" alt="Zest & Co. Logo"
-                            style="height: 80px; width: auto; ">
-                    </a>
+                <a class="navbar-brand header-logo" href="../index.html">
+                    <img src="../assets/images/logo.png" alt="Zest & Co. Logo" style="height: 80px; width: auto; ">
 
-                    <p>A fire-grill and noodle house built around three obsessions: char, rice, and broth. Come hungry.
-                    </p>
-                    <div class="footer-social">
-                        <a href="#">IG</a><a href="#">FB</a><a href="#">TT</a><a href="#">YT</a>
-                    </div>
+                </a>
+
+                <p>A fire-grill and noodle house built around three obsessions: char, rice, and broth. Come hungry.</p>
+
+                <div class="footer-social">
+                    <a href="#">IG</a><a href="#">FB</a><a href="#">TT</a><a href="#">YT</a>
+                </div>
             </div>
 
             <div class="footer-col">
@@ -378,7 +369,6 @@
     </div>
 
 
-    <!-- ================= LOGIN / SIGNUP MODAL ================= -->
     <div class="auth-modal" id="authModal" aria-hidden="true">
         <div class="auth-modal-overlay" data-auth-close></div>
         <div class="auth-modal-box" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
@@ -518,7 +508,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/common.js"></script>
+    <script type="module" src="../js/common.js"></script>
+    <script src="../js/about.js"></script>
+      <!-- AOS cdn -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+   <script>
+    AOS.init();
+  </script>
 
 </body>
 
