@@ -886,6 +886,173 @@ body {
 }
 
 /* =============================================
+   AUTH STATUS FEEDBACK (error / loading / success)
+   ============================================= */
+.auth-error {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: rgba(220, 38, 38, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin: 4px 0 14px;
+    color: #fca5a5;
+    font-size: 0.82rem;
+    font-weight: 500;
+    animation: authErrorIn 0.35s var(--transition-bounce);
+}
+
+.auth-error.show {
+    display: flex;
+}
+
+.auth-error i {
+    font-size: 1rem;
+    color: #ef4444;
+    flex-shrink: 0;
+}
+
+@keyframes authErrorIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Red border on invalid inputs */
+.auth-input-wrap.input-error input {
+    border-color: rgba(239, 68, 68, 0.7) !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12) !important;
+}
+
+.auth-input-wrap.input-error>i {
+    color: #ef4444;
+}
+
+/* Success toast (bottom-right) */
+.auth-toast {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 4000;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 320px;
+    max-width: 420px;
+    background: linear-gradient(145deg, #1a1c21, #14151a);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 16px;
+    padding: 16px 18px;
+    color: #fff;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.04);
+    transform: translateY(30px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s var(--transition-bounce);
+}
+
+.auth-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.auth-toast-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-bright));
+    color: #111;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35);
+}
+
+.auth-toast-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.auth-toast-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 2px;
+    color: var(--accent-gold-bright);
+}
+
+.auth-toast-text {
+    font-size: 0.82rem;
+    color: rgba(245, 245, 247, 0.75);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.auth-toast-close {
+    border: none;
+    background: transparent;
+    color: rgba(245, 245, 247, 0.4);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 4px;
+    transition: color 0.3s ease;
+}
+
+.auth-toast-close:hover {
+    color: #fff;
+}
+
+/* Loading spinner on submit button */
+.auth-submit.loading {
+    pointer-events: none;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.auth-spinner {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(17, 17, 17, 0.25);
+    border-top-color: #111;
+    border-radius: 50%;
+    animation: authSpin 0.7s linear infinite;
+}
+
+.auth-submit.loading .auth-spinner {
+    display: inline-block;
+}
+
+.auth-submit.loading .auth-btn-label {
+    opacity: 0.85;
+}
+
+@keyframes authSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Success check animation inside modal (optional) */
+.auth-success-check {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* =============================================
    GLOBAL GOLDEN GLOW CURSOR (every page)
    ============================================= */
 .cursor-glow {
@@ -1182,146 +1349,167 @@ body {
 
 /* ---------------------------PAGE END GALLERY START-------------------------------- */
 .insta-gallery-wrapper {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  width: 100%;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
 }
 
 .insta-gallery-section {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background-color: var(--nav-bg);
-  border-top: 1px solid var(--border-nav);
-  border-bottom: 1px solid var(--border-nav);
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--nav-bg);
+    border-top: 1px solid var(--border-nav);
+    border-bottom: 1px solid var(--border-nav);
 }
 
 .insta-overlay-badge {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  background: rgba(18, 19, 21, 0.65);
-  backdrop-filter: blur(8px);
-  padding: 18px 32px;
-  border-radius: 12px;
-  border: 1px solid var(--border-nav);
-  box-shadow: var(--shadow-gold);
-  transition: transform 0.4s var(--transition-bounce), box-shadow 0.3s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    background: rgba(18, 19, 21, 0.65);
+    backdrop-filter: blur(8px);
+    padding: 18px 32px;
+    border-radius: 12px;
+    border: 1px solid var(--border-nav);
+    box-shadow: var(--shadow-gold);
+    transition: transform 0.4s var(--transition-bounce), box-shadow 0.3s ease;
 }
 
 .insta-icon-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--gold-soft-bg);
-  color: var(--accent-gold-bright);
-  box-shadow: var(--neu-shadow-small);
-  margin-bottom: 10px;
-  transition: color 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--gold-soft-bg);
+    color: var(--accent-gold-bright);
+    box-shadow: var(--neu-shadow-small);
+    margin-bottom: 10px;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .insta-title {
-  font-family: 'Playfair Display', serif, Georgia;
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: var(--nav-text-light);
-  margin: 0;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
+    font-family: 'Playfair Display', serif, Georgia;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--nav-text-light);
+    margin: 0;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
 .insta-grid {
-  display: flex;
-  width: 100%;
-  height: 320px;
+    display: flex;
+    width: 100%;
+    height: 320px;
 }
 
 .insta-grid-item {
-  flex: 1;
-  position: relative;
-  overflow: hidden;
-  background-color: var(--nav-bg);
-  border-right: 1px solid rgba(197, 168, 128, 0.1);
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--nav-bg);
+    border-right: 1px solid rgba(197, 168, 128, 0.1);
 }
 
 .insta-grid-item:last-child {
-  border-right: none;
+    border-right: none;
 }
 
 .insta-grid-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s var(--transition-smooth), filter 0.4s ease;
-  filter: brightness(0.8) contrast(1.05);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s var(--transition-smooth), filter 0.4s ease;
+    filter: brightness(0.8) contrast(1.05);
 }
 
 .insta-grid-item::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10, 11, 14, 0.25);
-  transition: background 0.4s ease;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 11, 14, 0.25);
+    transition: background 0.4s ease;
 }
 
 .insta-gallery-wrapper:hover .insta-overlay-badge {
-  transform: translate(-50%, -50%) scale(1.05);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--accent-gold-bright);
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-gold-bright);
 }
 
 .insta-gallery-wrapper:hover .insta-icon-box {
-  color: var(--nav-bg);
-  background-color: var(--accent-gold-bright);
+    color: var(--nav-bg);
+    background-color: var(--accent-gold-bright);
 }
 
 .insta-gallery-wrapper:hover .insta-grid-item img {
-  transform: scale(1.08);
-  filter: brightness(1);
+    transform: scale(1.08);
+    filter: brightness(1);
 }
 
 .insta-gallery-wrapper:hover .insta-grid-item::after {
-  background: rgba(10, 11, 14, 0.1);
+    background: rgba(10, 11, 14, 0.1);
 }
 
 @media (max-width: 992px) {
-  .insta-grid {
-    height: 240px;
-  }
+    .insta-grid {
+        height: 240px;
+    }
 }
 
 @media (max-width: 768px) {
-  .insta-grid {
-    height: 180px;
-  }
+    .insta-grid {
+        height: 180px;
+    }
 
-  .insta-title {
-    font-size: 1.2rem;
-  }
+    .insta-title {
+        font-size: 1.2rem;
+    }
 
-  .insta-overlay-badge {
-    padding: 12px 20px;
-  }
+    .insta-overlay-badge {
+        padding: 12px 20px;
+    }
 
-  .insta-icon-box {
-    width: 36px;
-    height: 36px;
-  }
+    .insta-icon-box {
+        width: 36px;
+        height: 36px;
+    }
 }
 
 /* ---------------------------PAGE END GALLERY END-------------------------------- */
+
+
+
+
+/*-------------------------- TEXT ANIMATION START -----------------------*/
+.reveal-text {
+  font-size: 2rem;
+  font-weight: bold;
+
+
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease-out;
+}
+
+.reveal-text.visible {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+}
+
+/* ---------------------------TEXT ANIMATION END-------------------------- */

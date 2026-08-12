@@ -211,12 +211,12 @@ authModal?.querySelectorAll(".auth-form").forEach((form) => {
   });
 });
 
-// ---------firebase authentication working start ---------------
+// =======================firebase authentication working start========================
 import {
   auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  // goo  gle authentication
+  // google authentication
   signInWithRedirect,
   getRedirectResult,
   GoogleAuthProvider,
@@ -246,9 +246,12 @@ const signup = async (e) => {
     const user = credential.user;
     console.log("User created successfully:", user);
     if (!credential.user.emailVerified) {
+      await sendEmailVerification(user);
       signOut(auth);
-      await sendEmailVerification(auth.currentUser);
       alert("Please verify your Email!");
+    } else {
+      closeAuthModal();
+      alert("Account created successfully! Welcome to Zest & Co.");
     }
   } catch (error) {
     const errorCode = error.code;
@@ -280,9 +283,12 @@ const signin = async (e) => {
     const user = credential.user;
     console.log("User signed in successfully:", user);
     if (!credential.user.emailVerified) {
+      await sendEmailVerification(user);
       signOut(auth);
-      await sendEmailVerification(auth.currentUser);
       alert("Please verify your Email!");
+    } else {
+      closeAuthModal();
+      alert("Welcome back to Zest & Co.!");
     }
   } catch (error) {
     const errorCode = error.code;
@@ -344,4 +350,4 @@ const _singOut = () => {
 
 document.getElementById("logout")?.addEventListener("click", _singOut);
 
-// -------- firebase authentication working end-------------------
+// ================== firebase authentication working end ============================
