@@ -130,24 +130,73 @@
   <!-- navbar end -->
 
   <!-- ///////////////////////////////////HERO SECTION START//////////////////////////////// -->
-  <section class="hero-section">
-    <div>
-      <h1 class="hero-title" data-aos="fade-up" data-aos-duration="1000">Reservation</h1>
-      <div class="hero-breadcrumb" data-aos="fade-up" data-aos-duration="1000">
-        <a href="#">Home</a> &nbsp;/&nbsp; Reservation
-      </div>
-    </div>
-  </section>
+  <section class="hero-reservation text-center">
+        <div class="hero-bg-image"></div>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-bg-glow"></div>
+
+        <div class="container hero-content">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+
+                    <div class="hero-badge" id="heroBadge">
+                       <i class="fa-solid fa-chair"></i>
+                        <span data-aos="fade-up" data-aos-duration="1000">Exquisite Dining Experience</span>
+                    </div>
+
+                    <h1 class="hero-title gold-gradient-text" data-aos="fade-up" data-aos-duration="1000">
+                        Reserve a Table
+                    </h1>
+
+                    <p class="hero-subtitle" data-aos="fade-up" data-aos-duration="1000">
+                        Your perfect experience is just a click away. Select your date, lock in your reservation, and let us take care of the details.
+                    </p>
+
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="#reservations" class="btn-gold" data-aos="fade-up" data-aos-duration="1000">
+                            <i class="fa-solid fa-calendar-check me-2"></i> Reserve A Table
+                        </a>
+                        <a href="./menu.html" class="btn-outline-gold" data-aos="fade-up" data-aos-duration="1000">
+                            <i class="fa-solid fa-book-open me-2"></i> View Full Menu
+                        </a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="row g-3 justify-content-center">
+                            <div class="col-6 col-md-3">
+                                <div class="stat-card" data-aos="fade-up" data-aos-duration="1000">
+                                    <span class="stat-number">100%</span>
+                                    <span class="stat-label">Organic Ingredients</span>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="stat-card" data-aos="fade-up" data-aos-duration="1000">
+                                    <span class="stat-number">45+</span>
+                                    <span class="stat-label">Artisanal Dishes</span>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="stat-card" data-aos="fade-up" data-aos-duration="1000">
+                                    <span class="stat-number">12</span>
+                                    <span class="stat-label">Sommelier Pairings</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+      </section>
   <!-- ///////////////////////////////////HERO SECTION END//////////////////////////////////// -->
 
-  <!-- /////////////////////////////////////RESERVATION FORM START///////////////////////////////////////////// -->
-  <div class="container text-center pt-5 pb-2">
-    <h1 style="font-family: serif; font-size: 4em; color: var(--text-dark); font-weight: 500;" data-aos="fade-up"
-      data-aos-duration="1000">
-      Reserve Your Table for an Unforgettable<br>Dining Experience at TNC Restaurant
-    </h1>
-  </div>
 
+
+
+
+  <!-- /////////////////////////////////////RESERVATION FORM START///////////////////////////////////////////// -->
   <section class="reservation-section" data-aos="zoom-in-up">
     <div class="container">
 
@@ -155,7 +204,7 @@
         <div class="col-lg-10">
           <div class="reservation-card">
             <div class="section-header">
-              <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Reservation System</h2>
+              <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000" style="color: white;">Reservation System</h2>
               <p class="section-subtitle" data-aos="fade-up" data-aos-duration="1000">
                 Our commitment to excellence extends beyond the plate, creating an atmosphere that lingers in the
                 memory,
@@ -193,17 +242,17 @@
                   </select>
                 </div>
 
-                <div class="col-md-4">
-                  <select class="form-select" id="reservation-date" required>
-                  </select>
+                <div class="col-md-4 mt-0">
+                  <label for="res-date">Date</label>
+                  <input type="date" id="reservation-date" class="form-select" required/>
                 </div>
 
                 <div class="col-md-4">
                   <select class="form-select" required>
                     <option selected>10:00 AM</option>
-                    <option value="10:00">10:00 AM</option>
-                    <option value="11:00">11:00 AM</option>
-                    <option value="12:00">12:00 PM</option>
+                    <option value="10:00">11:00 AM</option>
+                    <option value="11:00">12:00 PM</option>
+                    <option value="12:00">1:00 PM</option>
                   </select>
                 </div>
 
@@ -222,12 +271,16 @@
   </section>
   <!-- ////////////////////////////////////RESERVATION FORM END////////////////////////////////////// -->
 
+
+
+
+
   <!-- ///////////////////////////////////////WHY CHOOSE US SECTION START/////////////////////////////// -->
   <section class="why-choose-section">
     <div class="container">
 
       <div class="section-header">
-        <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Why Choose TNC<br>Restaurant?</h2>
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Why Choose Zest & Co. <br> Restaurant?</h2>
         <p class="section-subtitle" data-aos="fade-up" data-aos-duration="1000">
           We bring together exceptional flavors, locally sourced ingredients, and a warm, elegant atmosphere. Whether
           you are celebrating a special occasion or enjoying a casual night out, our team is dedicated to providing an
