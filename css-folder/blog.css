@@ -1,6 +1,7 @@
 /* @import url('./common.css'); */
 :root {
     --primary-color1: #bf9444;
+      --accent-gold: #c09d59;
     --title-color-dark: #09161d;
     --text-color1: #5e5e5e;
     --white: #fff;
@@ -8,6 +9,94 @@
     --border: 1px solid #eee;
     --font-Jost: "Jost", sans-serif;
     --font-cormorant: "Cormorant Garamond", serif;
+}
+
+
+/* Blog Hero Main Container */
+#contact-hero-container.blog-hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 60vh; /* Responsive Viewport Height */
+  padding: 100px 20px 80px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  /* Background Image with Dark Gradient Overlay for Readability */
+  background: linear-gradient(
+      to bottom, 
+      rgba(0, 0, 0, 0.5), 
+      rgba(0, 0, 0, 0.8)
+    ),
+    url('../assets/images/blog/bg-page.webp') center/cover no-repeat;
+  
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Icon Styling */
+.contact-hero-icon {
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+/* Main Heading (H1) */
+#contact-hero-container h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff !important;
+  max-width: 900px;
+  line-height: 1.25;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+/* Paragraph Subtitle */
+#contact-hero-container p {
+  font-family: 'Poppins', sans-serif;
+  color: #e0e0e0 !important;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  margin-bottom: 0;
+}
+
+/* Decorative Gold Lines */
+#contact-hero-container .line {
+  width: 70px;
+  height: 2px;
+  background: var(--accent-gold);
+  display: inline-block;
+  border-radius: 2px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  #contact-hero-container.blog-hero-section {
+    min-height: 45vh;
+    padding: 80px 15px 50px 15px;
+  }
+
+  #contact-hero-container h1 {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+
+  #contact-hero-container p {
+    font-size: 1rem !important;
+  }
+
+  #contact-hero-container .line {
+    width: 35px;
+  }
+
+  .contact-hero-icon {
+    width: 45px;
+  }
 }
 a, a:hover {
     text-decoration: none;
