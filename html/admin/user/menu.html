@@ -122,9 +122,9 @@
                                 <a href="tel:+9988776345">+998-8776345</a>
                             </div>
                         </div>
-                        <a href="#" class="login-link d-none d-sm-inline-block d-lg-inline-block"
+                        <a href="#authmodal" class="login-link d-none d-sm-inline-block d-lg-inline-block"
                             data-auth-open="login">Login</a>
-                        <a href="#" class="nav-btn" data-auth-open="signup">
+                        <a href="#authmodal" class="nav-btn" data-auth-open="signup">
                             <span>Signup</span>
                         </a>
                     </div>
@@ -231,8 +231,9 @@
                             <li class="category-item"><a href="#" class="category-link">Lunch</a></li>
                             <li class="category-item"><a href="#" class="category-link">Dinner</a></li>
                             <li class="category-item"><a href="#" class="category-link">Dessert</a></li>
-                            <li class="category-item"><a href="#" class="category-link">Beverages</a></li>
+                            <li class="category-item"><a href="#" class="category-link">Chef Special</a></li>
                         </ul>
+                        <button type="button" class="clear-filter-btn" id="clearFilterBtn">Clear Filter</button>
                     </div>
 
                     <div class="filter-widget">
@@ -525,35 +526,6 @@
                                     <div class="dish-price-group">
                                         <span class="original-price">$8.50</span>
                                         <span class="current-price">$7.50</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-xl-4 dish-item hidden-dish">
-                            <div class="dish-card">
-                                <div class="dish-img-wrapper">
-                                    <img src="../../../assets/images/spotlight/grilled-salmon-steak.jpg" alt="Grilled Salmon Steak">
-                                    <div class="dish-overlay">
-                                        <a href="#" class="overlay-btn" title="Quick View"><i
-                                                class="fa-solid fa-eye"></i></a>
-                                        <a href="#" class="overlay-btn" title="Add to Favorites"><i
-                                                class="fa-solid fa-heart"></i></a>
-                                        <a href="#" class="overlay-btn" title="Cart"><i
-                                                class="fa-solid fa-cart-shopping"></i></a>
-                                    </div>
-                                </div>
-                                <div class="dish-body">
-                                    <h5 class="dish-title">Grilled Salmon Steak</h5>
-                                    <p class="dish-description">Pan-seared Atlantic salmon with a golden butter glaze and charred lemon.</p>
-                                    <div class="dish-rating">
-                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                            class="fa-solid fa-star-half-stroke"></i> (4.9★)
-                                    </div>
-                                    <div class="dish-price-group">
-                                        <span class="original-price">$22.50</span>
-                                        <span class="current-price">$21.00</span>
                                     </div>
                                 </div>
                             </div>
@@ -1446,6 +1418,63 @@
         </div>
     </div>
 
+    <div class="dish-detail-modal" id="dishDetailModal" aria-hidden="true">
+        <div class="dish-detail-backdrop" data-dish-close></div>
+        <div class="dish-detail-dialog" role="dialog" aria-modal="true" aria-labelledby="dishDetailTitle">
+            <div class="dish-detail-layout">
+                <div class="dish-detail-image-wrap">
+                    <img id="dishDetailImage" src="" alt="Dish image">
+                </div>
+
+                <div class="dish-detail-content">
+                    <div class="dish-detail-badges">
+                        <span class="dish-detail-category" id="dishDetailCategory">Chef Special</span>
+                        <div class="dish-detail-price-stack">
+                            <span class="dish-detail-old-price" id="dishDetailOldPrice">$0.00</span>
+                            <span class="dish-detail-price" id="dishDetailPrice">$0.00</span>
+                        </div>
+                    </div>
+
+                    <h3 id="dishDetailTitle">Dish name</h3>
+                    <p class="dish-detail-summary" id="dishDetailSummary">Dish summary</p>
+
+                    <div class="dish-detail-rating-row">
+                        <div class="dish-detail-stars" id="dishDetailStars"></div>
+                        <span id="dishDetailRatingText">(4.8★)</span>
+                    </div>
+
+                    <div class="dish-detail-meta">
+                        <div class="meta-box">
+                            <span>Ordered this week</span>
+                            <strong id="dishDetailOrders">0</strong>
+                        </div>
+                        <div class="meta-box">
+                            <span>Chef</span>
+                            <strong id="dishDetailChef">Head Chef</strong>
+                        </div>
+                        <div class="meta-box">
+                            <span>Prep time</span>
+                            <strong id="dishDetailPrep">15 min</strong>
+                        </div>
+                    </div>
+
+                    <div class="dish-detail-section">
+                        <h4>Ingredients</h4>
+                        <ul id="dishDetailIngredients"></ul>
+                    </div>
+
+                    <div class="dish-detail-section">
+                        <h4>Highlights</h4>
+                        <div class="dish-detail-highlights">
+                            <span>Served with: <strong id="dishDetailServedWith">House sides</strong></span>
+                            <span id="dishDetailSpiceRow"><strong>Spice:</strong> <strong id="dishDetailSpice">Medium</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- bootstrap js -->
     <script src="../../../js/bootstrap.bundle.min.js"></script>
     <!-- AOS cdn -->
@@ -1454,7 +1483,7 @@
         AOS.init();
     </script>
     <!-- custom js -->
-<script src="../../../js/menu.js"></script>
+    <script src="../../../js/menu.js"></script>
     <script src="../../../js/common.js"></script>
 
 </body>
