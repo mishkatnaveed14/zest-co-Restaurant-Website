@@ -1,0 +1,184 @@
+:root {
+            /* Dark Elements */
+            --nav-bg: #121315;
+            --nav-text-light: #F5F5F7;
+            --accent-gold: #C5A880;
+            --accent-gold-bright: #D4AF37;
+            --border-nav: rgba(197, 168, 128, 0.18);
+
+            /* Light Elements */
+            --section-light-bg: #FCFAF6;
+            --card-light-bg: #FFFFFF;
+            --text-dark: #1E1F22;
+            --text-muted: #6B7280;
+            --border-card: rgba(197, 168, 128, 0.22);
+            --card-shadow: 0 20px 45px rgba(197, 168, 128, 0.08);
+            --gold-soft-tint: #FAF5EC;
+
+            /* Globals */
+            --main-bg: #FCFAF6;
+            --card-bg: #FFFFFF;
+            --text-light: #F5F5F7;
+            --border: rgba(197, 168, 128, .18);
+            --gold-bright: #D4AF37;
+            --gold-soft-bg: #FAF5EC;
+            --border-light: rgba(197, 168, 128, 0.22);
+
+            /* Design Tokens */
+            --gold-gradient: linear-gradient(135deg, #C5A880, #D4AF37, #C5A880);
+            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.2);
+            --transition-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+            
+            --sidebar-width: 260px;
+        }
+
+        body {
+            background-color: var(--main-bg);
+            color: var(--text-dark);
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: var(--card-light-bg);
+            border-right: 1px solid var(--border-card);
+            z-index: 1050;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.5rem 1rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 0 0.75rem 1.5rem;
+        }
+
+        .sidebar-brand i {
+            color: var(--accent-gold-bright);
+            font-size: 1.5rem;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-item {
+            margin-bottom: 0.35rem;
+        }
+
+        .nav-link-custom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link-custom .link-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-link-custom i.icon {
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link-custom:hover, 
+        .nav-link-custom.active {
+            background-color: var(--gold-soft-tint);
+            color: var(--text-dark);
+        }
+
+        .nav-link-custom:hover i.icon, 
+        .nav-link-custom.active i.icon {
+            color: var(--accent-gold-bright);
+        }
+
+        .chevron-icon {
+            font-size: 0.85rem;
+            transition: transform 0.3s ease;
+        }
+
+        /* Submenu Styling */
+        .submenu {
+            height: 0;
+            overflow: hidden;
+            padding-left: 0.75rem;
+            list-style: none;
+            margin: 0;
+        }
+
+        .submenu .nav-link-custom {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Drawer Toggle & Overlay */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(3px);
+            z-index: 1040;
+            display: none;
+            opacity: 0;
+        }
+
+        .mobile-header {
+            display: none;
+            padding: 1rem;
+            background: var(--card-light-bg);
+            border-bottom: 1px solid var(--border-card);
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 991.98px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .mobile-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .main-content {
+                margin-left: 0 !important;
+            }
+        }
+
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 2rem;
+            transition: margin-left 0.4s var(--transition-smooth);
+        }

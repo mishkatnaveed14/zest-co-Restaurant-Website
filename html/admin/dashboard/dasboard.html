@@ -4,15 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dasboard</title>
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../css-folder/admin-css/admin-common.css">
     <link rel="stylesheet" href="../../../css-folder/admin-css/admin-dashboard.css">
 </head>
 <body>
+<!-- Mobile Header Navigation -->
+    <div class="mobile-header">
+        <a href="./dasboard.html" class="sidebar-brand p-0">
+            <i class="bi bi-cup-hot-fill"></i>
+            <span>ZestCo</span>
+        </a>
+        <button class="btn border-0 fs-3 p-0" id="sidebarToggle">
+            <i class="bi bi-list"></i>
+        </button>
+    </div>
+
+    <!-- Backdrop Overlay for Mobile Drawer -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Sidebar Drawer Structure -->
+    <aside class="sidebar" id="sidebar">
+        <div>
+            <!-- Brand Logo -->
+            <a href="./dasboard.html" class="sidebar-brand">
+                <i class="bi bi-cup-hot-fill"></i>
+                <span>ZestCo Admin</span>
+            </a>
+
+            <!-- Sidebar Items -->
+            <ul class="nav-list mt-3">
+                <li class="nav-item">
+                    <a href="./dasboard.html" class="nav-link-custom active">
+                        <span class="link-content">
+                            <i class="bi bi-grid-1x2-fill icon"></i>
+                            <span>Dashboard</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./orders.html" class="nav-link-custom">
+                        <span class="link-content">
+                            <i class="bi bi-cart3 icon"></i>
+                            <span>Orders</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./menu.html" class="nav-link-custom">
+                        <span class="link-content">
+                            <i class="bi bi-journal-richtext icon"></i>
+                            <span>Menu</span>
+                        </span>
+                    </a>
+                </li>
+
+                <!-- Inventory Animated Dropdown Toggle -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link-custom" id="inventoryToggle">
+                        <span class="link-content">
+                            <i class="bi bi-box-seam icon"></i>
+                            <span>Inventory</span>
+                        </span>
+                        <i class="bi bi-chevron-down chevron-icon"></i>
+                    </a>
+                    
+                    <!-- Submenu Pages -->
+                    <ul class="submenu" id="inventorySubmenu">
+                        <li class="nav-item">
+                            <a href="./inventory.html" class="nav-link-custom">
+                                <span class="link-content">
+                                    <i class="bi bi-dot icon"></i>
+                                    <span>Stock Inventory</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./purchase-order.html" class="nav-link-custom">
+                                <span class="link-content">
+                                    <i class="bi bi-dot icon"></i>
+                                    <span>Purchase Order</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="./messages.html" class="nav-link-custom">
+                        <span class="link-content">
+                            <i class="bi bi-chat-dots icon"></i>
+                            <span>Messages</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./calendar.html" class="nav-link-custom">
+                        <span class="link-content">
+                            <i class="bi bi-calendar-event icon"></i>
+                            <span>Calendar</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./reveiws.html" class="nav-link-custom">
+                        <span class="link-content">
+                            <i class="bi bi-star icon"></i>
+                            <span>Reviews</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./setting.html" class="nav-link-custom">
+                        <span class="link-content">
+                            <i class="bi bi-gear icon"></i>
+                            <span>Settings</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <h2>Dashboard Content</h2>
+        <p>Aapka dashboard ka baaqi design yahan display hoga.</p>
+    </main>
 
 
 
-
-    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="../../../js/admin-js/admin-common.js"></script>
     <script src="../../../js/admin-js//admin-dashboard.js"></script>
 </body>
