@@ -66,7 +66,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem 0.75rem 1.25rem;
+    padding: 1.2rem 1rem 1.25rem;
     margin-bottom: 0.5rem;
     border-bottom: 1px solid rgba(197, 168, 128, 0.12);
     cursor: pointer;
@@ -95,6 +95,9 @@ body {
     font-size: 1.6rem;
     min-width: 28px;
     text-align: center;
+    /* padding: 0 2px;  */
+   padding :0  0 0 18px;
+
 }
 
 .brand-toggle-arrow {
@@ -191,11 +194,12 @@ body {
 
 .sidebar.collapsed .sidebar-brand-wrapper {
     justify-content: center;
-    padding: 0.5rem 0 1.25rem;
+    padding: 1rem 0 1.25rem;
 }
 
 .sidebar.collapsed .brand-toggle-arrow {
     transform: rotate(180deg);
+   padding :0 15px 0 0;
 }
 
 .sidebar.collapsed .nav-link-custom {
@@ -214,7 +218,7 @@ body {
 /* Content Adjustments */
 .main-content {
     margin-left: var(--sidebar-width);
-    padding: 1.5rem 2rem;
+    /* padding: 1.5rem 1.5rem; */
     min-height: 100vh;
     transition: margin-left 0.35s cubic-bezier(0.25, 1, 0.5, 1);
     box-sizing: border-box;
