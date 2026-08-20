@@ -18,32 +18,30 @@
             <button class="btn border-0 fs-3 p-0" id="mobileSidebarToggle">
                 <i class="bi bi-list"></i>
             </button>
-            <a href="./dasboard.html" class="sidebar-brand p-0 mb-0">
-                <i class="bi bi-cup-hot-fill"></i>
+            <div class="sidebar-brand p-0 mb-0">
+                <i class="bi bi-cup-hot-fill brand-logo-icon"></i>
                 <span>ZestCo</span>
-            </a>
+            </div>
         </div>
     </div>
 
     <!-- Backdrop Overlay for Mobile -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- Main Sidebar Drawer Structure -->
+    <!-- Sidebar Drawer -->
     <aside class="sidebar" id="sidebar">
         <div>
-            <!-- Header Brand & Collapse Toggle Button -->
-            <div class="d-flex align-items-center justify-content-between mb-2">
-                <a href="./dasboard.html" class="sidebar-brand mb-0 p-0">
-                    <i class="bi bi-cup-hot-fill"></i>
+            <!-- Professional Logo Header Trigger (Cleans up extra buttons) -->
+            <div class="sidebar-brand-wrapper" id="brandToggleTrigger" title="Click to Collapse / Expand Sidebar">
+                <div class="sidebar-brand">
+                    <i class="bi bi-cup-hot-fill brand-logo-icon"></i>
                     <span class="link-text">ZestCo Admin</span>
-                </a>
-                <button class="desktop-toggle-btn d-none d-lg-block" id="desktopSidebarCollapse" title="Toggle Sidebar">
-                    <i class="bi bi-layout-sidebar-inset"></i>
-                </button>
+                </div>
+                <i class="bi bi-chevron-left brand-toggle-arrow d-none d-lg-inline-block"></i>
             </div>
 
             <!-- Navigation Items -->
-            <ul class="nav-list mt-4">
+            <ul class="nav-list">
                 <li class="nav-item">
                     <a href="./dasboard.html" class="nav-link-custom active" title="Dashboard">
                         <span class="link-content">
@@ -136,10 +134,10 @@
         </div>
     </aside>
 
-    <!-- Main Content Area -->
+    <!-- Main Content -->
     <main class="main-content">
-        <h2>Dashboard Content</h2>
-        <p>Screen size resize karke dekhein ya sidebar icon button press karein, mini icon bar auto-adjust hogi.</p>
+        <h2>Dashboard Area</h2>
+        <p>Logo header par click karke sidebar expansion toggle karke check kar sakte hain.</p>
     </main>
 
 
