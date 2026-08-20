@@ -1,3 +1,5 @@
+//  ===================================== aside bar start ======================================= 
+
 document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.getElementById('sidebar');
     const brandToggleTrigger = document.getElementById('brandToggleTrigger');
@@ -138,4 +140,14 @@ mobileSidebarToggle.addEventListener('click', () => {
 });
 
 sidebarOverlay.addEventListener('click', closeMobileDrawer);
+// Mobile Dedicated Close Button Event
+const mobileDrawerClose = document.getElementById('mobileDrawerClose');
+
+if (mobileDrawerClose) {
+    mobileDrawerClose.addEventListener('click', (e) => {
+        e.stopPropagation(); // Brand toggle click prevent karne ke liye
+        closeMobileDrawer();
+    });
+}
 });
+//  ===================================== aside bar end ======================================= 
