@@ -95,32 +95,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 4. Mobile Off-Canvas Drawer GSAP Controls
-    const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
-    const sidebarOverlay = document.getElementById('sidebarOverlay');
-    let isMobileOpen = false;
+// 4. Enhanced Mobile Off-Canvas Drawer Controls with Staggered Entrance
+const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+let isMobileOpen = false;
 
-    function openMobileDrawer() {
-        sidebarOverlay.style.display = 'block';
-        gsap.to(sidebar, { x: '0%', duration: 0.4, ease: 'power3.out' });
-        gsap.to(sidebarOverlay, { opacity: 1, duration: 0.3 });
-        isMobileOpen = true;
-    }
+function openMobileDrawer() {
+    sidebarOverlay.style.display = 'block';
+    
+    // Toggle Animated Hamburger Class
+    mobileSidebarToggle.classList.add('active');
 
-    function closeMobileDrawer() {
-        gsap.to(sidebar, { x: '-100%', duration: 0.3, ease: 'power3.in' });
-        gsap.to(sidebarOverlay, { 
-            opacity: 0, 
-            duration: 0.3, 
-            onComplete: () => { sidebarOverlay.style.display = 'none'; } 
-        });
-        isMobileOpen = false;
-    }
+    // Drawer Slide In
+    gsap.to(sidebar, { x: '0%', duration: 0.4, ease: 'power3.out' });
+    gsap.to(sidebarOverlay, { opacity: 1, duration: 0.3 });
 
-    mobileSidebarToggle.addEventListener('click', () => {
-        if (!isMobileOpen) openMobileDrawer();
-        else closeMobileDrawer();
+    // Text & Items Smooth Stagger Animation
+    gsap.fromTo('.sidebar .nav-item', 
+        { opacity: 0, x: -25 }, 
+        { opacity: 1, x: 0, duration: 0.35, stagger: 0.04, delay: 0.1, ease: 'power2.out' }
+    );
+
+    isMobileOpen = true;
+}
+
+function closeMobileDrawer() {
+    mobileSidebarToggle.classList.remove('active');
+
+    gsap.to(sidebar, { x: '-100%', duration: 0.3, ease: 'power3.in' });
+    gsap.to(sidebarOverlay, { 
+        opacity: 0, 
+        duration: 0.3, 
+        onComplete: () => { sidebarOverlay.style.display = 'none'; } 
     });
+    
+    isMobileOpen = false;
+}
 
-    sidebarOverlay.addEventListener('click', closeMobileDrawer);
+mobileSidebarToggle.addEventListener('click', () => {
+    if (!isMobileOpen) openMobileDrawer();
+    else closeMobileDrawer();
+});
+
+sidebarOverlay.addEventListener('click', closeMobileDrawer);
 });
