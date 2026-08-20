@@ -15,10 +15,9 @@
 
 <body>
     <!-- ===================================== aside bar start ======================================= -->
-    <!-- Mobile Header -->
+<!-- Mobile Header -->
     <div class="mobile-header">
         <div class="d-flex align-items-center gap-3">
-            <!-- Animated Hamburger Button -->
             <button class="hamburger-btn" id="mobileSidebarToggle" aria-label="Toggle Navigation">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -31,37 +30,25 @@
         </div>
     </div>
 
-    <!-- Backdrop Overlay for Mobile -->
+    <!-- Mobile Overlay Backdrop -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- Sidebar Drawer -->
     <aside class="sidebar" id="sidebar">
         <div>
-            <!-- Professional Logo Header Trigger (Cleans up extra buttons) -->
+            <!-- Clean Header Trigger -->
             <div class="sidebar-brand-wrapper" id="brandToggleTrigger" title="Click to Collapse / Expand Sidebar">
-                <!-- Sidebar Drawer Header -->
-                <div class="sidebar-brand-wrapper" id="brandToggleTrigger" title="Click to Collapse / Expand Sidebar">
-                    <div class="sidebar-brand">
-                        <i class="bi bi-cup-hot-fill brand-logo-icon"></i>
-                        <span class="link-text">ZestCo Admin</span>
-                    </div>
-
-                    <!-- Desktop Chevron Indicator -->
-                    <i class="bi bi-chevron-left brand-toggle-arrow d-none d-lg-inline-block"></i>
-
-                    <!-- Mobile Close (X) Button -->
-                    <button class="drawer-close-btn d-lg-none" id="mobileDrawerClose" aria-label="Close Drawer">
-                        <i class="bi bi-x-lg"></i>
-                    </button>
-                </div>
                 <div class="sidebar-brand">
                     <i class="bi bi-cup-hot-fill brand-logo-icon"></i>
                     <span class="link-text">ZestCo Admin</span>
                 </div>
                 <i class="bi bi-chevron-left brand-toggle-arrow d-none d-lg-inline-block"></i>
+                <button class="drawer-close-btn d-lg-none" id="mobileDrawerClose" aria-label="Close Drawer">
+                    <i class="bi bi-x-lg"></i>
+                </button>
             </div>
 
-            <!-- Navigation Items -->
+            <!-- Navigation Links -->
             <ul class="nav-list">
                 <li class="nav-item">
                     <a href="./dasboard.html" class="nav-link-custom active" title="Dashboard">
@@ -159,6 +146,7 @@
     <!--================= Top Navbar Header start ======================== -->
     <!-- Top Synchronized Header Bar -->
     <main class="main-content">
+        <!-- Top Navbar Header -->
         <header class="top-navbar" id="topNavbar">
             <div class="header-left">
                 <div class="header-title">
@@ -167,28 +155,21 @@
                 </div>
             </div>
 
-            <!-- Right Controls Section -->
+            <!-- Right Controls -->
             <div class="header-right">
-                <!-- Search Bar with Dynamic Expand Animation -->
                 <div class="search-box d-none d-md-flex" id="searchBox">
                     <i class="bi bi-search search-icon"></i>
                     <input type="text" placeholder="Search anything..." class="search-input">
                 </div>
 
-                <!-- Action Controls -->
                 <div class="header-actions">
-                    <!-- Mobile Search Toggle -->
                     <button class="action-btn d-md-none" id="mobileSearchBtn" title="Search">
                         <i class="bi bi-search"></i>
                     </button>
-
-                    <!-- Notifications Button -->
                     <button class="action-btn position-relative" id="notificationBtn" title="Notifications">
                         <i class="bi bi-bell"></i>
                         <span class="notification-badge"></span>
                     </button>
-
-                    <!-- Messages Button -->
                     <button class="action-btn position-relative" id="messageBtn" title="Messages">
                         <i class="bi bi-chat-text"></i>
                         <span class="notification-badge bg-gold"></span>
@@ -198,8 +179,7 @@
                 <!-- User Profile Dropdown -->
                 <div class="user-profile-dropdown" id="userProfileDropdown">
                     <div class="profile-trigger" id="profileTrigger">
-                        <img src="https://ui-avatars.com/api/?name=Alexander+R&background=D4AF37&color=fff"
-                            alt="User Profile" class="profile-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Alexander+R&background=D4AF37&color=fff" alt="User Profile" class="profile-avatar">
                         <div class="profile-info d-none d-xl-block">
                             <span class="profile-name">Alexander R.</span>
                             <span class="profile-role">Admin</span>
@@ -207,7 +187,6 @@
                         <i class="bi bi-chevron-down profile-chevron d-none d-sm-inline-block"></i>
                     </div>
 
-                    <!-- Profile Popup Menu -->
                     <div class="profile-menu" id="profileMenu">
                         <a href="./setting.html" class="profile-menu-item">
                             <i class="bi bi-person"></i>
@@ -223,11 +202,13 @@
                             <span>Logout</span>
                         </a>
                     </div>
-                </div>
+                </div>  
             </div>
         </header>
-        </main>
-        <!--================= Top Navbar Headerend ======================== -->
+        
+        <!-- Aapki Dashboard Cards/Charts Yahan Aayein Ge -->
+    </main>
+        <!--================= Top Navbar Header end ======================== -->
 
 
 
