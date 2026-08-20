@@ -1,0 +1,343 @@
+:root {
+    /* Theme Variables */
+    --nav-bg: #121315;
+    --nav-text-light: #F5F5F7;
+    --accent-gold: #C5A880;
+    --accent-gold-bright: #D4AF37;
+    --border-nav: rgba(197, 168, 128, 0.18);
+
+    --section-light-bg: #FCFAF6;
+    --card-light-bg: #FFFFFF;
+    --text-dark: #1E1F22;
+    --text-muted: #6B7280;
+    --border-card: rgba(197, 168, 128, 0.22);
+    --card-shadow: 0 20px 45px rgba(197, 168, 128, 0.08);
+    --gold-soft-tint: #FAF5EC;
+
+    /* --main-bg: #FCFAF6;  */
+      --main-bg: #FAF8F5;
+    --transition-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+ --sidebar-width: 260px;
+    --sidebar-collapsed-width: 88px;
+    /* --sidebar-width: 250px;
+    --sidebar-collapsed-width: 80px; */
+}
+
+body {
+    background-color: var(--main-bg);
+    color: var(--text-dark);
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+    /* ===================================== aside bar start =======================================  */
+
+/* Base Sidebar Styling */
+/* .sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--card-light-bg);
+    border-right: 1px solid var(--border-card);
+    z-index: 1040;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem 0.75rem;
+    box-shadow: var(--card-shadow);
+    transition: width 0.35s var(--transition-smooth), transform 0.35s var(--transition-smooth);
+    white-space: nowrap;
+} */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    background: #FFFFFF;
+    border-right: 1px solid rgba(197, 168, 128, 0.15);
+    transition: width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+/* Professional Interactive Brand Logo Header */
+.sidebar-brand-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem 1.25rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(197, 168, 128, 0.12);
+    cursor: pointer;
+    user-select: none;
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar-brand-wrapper:hover {
+    background-color: var(--gold-soft-tint);
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.sidebar-brand i.brand-logo-icon {
+    color: var(--accent-gold-bright);
+    font-size: 1.6rem;
+    min-width: 28px;
+    text-align: center;
+}
+
+.brand-toggle-arrow {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: transform 0.35s var(--transition-smooth), color 0.2s ease;
+}
+
+.sidebar-brand-wrapper:hover .brand-toggle-arrow {
+    color: var(--accent-gold-bright);
+}
+
+/* Navigation List */
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    margin-bottom: 0.35rem;
+    position: relative;
+}
+
+.nav-link-custom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0.85rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.nav-link-custom .link-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.nav-link-custom i.icon {
+    font-size: 1.25rem;
+    min-width: 28px;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.nav-link-custom:hover,
+.nav-link-custom.active {
+    background-color: var(--gold-soft-tint);
+    color: var(--text-dark);
+}
+
+.nav-link-custom:hover i.icon,
+.nav-link-custom.active i.icon {
+    color: var(--accent-gold-bright);
+}
+
+.chevron-icon {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+/* Submenu Styling */
+.submenu {
+    height: 0;
+    overflow: hidden;
+    padding-left: 0.5rem;
+    list-style: none;
+    margin: 0;
+}
+
+.submenu .nav-link-custom {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.9rem;
+}
+
+/* ------------------------------------------------------------- */
+/* COLLAPSED STATE (MINI MODE TRIGGERED VIA LOGO CLICK)          */
+/* ------------------------------------------------------------- */
+.sidebar.collapsed {
+    width: var(--sidebar-collapsed-width) !important;
+}
+
+.sidebar.collapsed .link-text,
+.sidebar.collapsed .sidebar-brand span,
+.sidebar.collapsed .chevron-icon {
+    display: none !important;
+    opacity: 0;
+}
+
+.sidebar.collapsed .sidebar-brand-wrapper {
+    justify-content: center;
+    padding: 0.5rem 0 1.25rem;
+}
+
+.sidebar.collapsed .brand-toggle-arrow {
+    transform: rotate(180deg);
+}
+
+.sidebar.collapsed .nav-link-custom {
+    justify-content: center;
+    padding: 0.75rem 0;
+}
+
+.sidebar.collapsed .nav-link-custom .link-content {
+    gap: 0;
+}
+
+.sidebar.collapsed .submenu {
+    display: none !important;
+}
+
+/* Content Adjustments */
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 1.5rem 2rem;
+    min-height: 100vh;
+    transition: margin-left 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    box-sizing: border-box;
+}
+
+.sidebar.collapsed~.main-content {
+    margin-left: var(--sidebar-collapsed-width) !important;
+}
+
+/* Mobile Header */
+.mobile-header {
+    display: none;
+    padding: 1rem 1.5rem;
+    background: var(--card-light-bg);
+    border-bottom: 1px solid var(--border-card);
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
+    z-index: 1040;
+    display: none;
+    opacity: 0;
+}
+
+@media (max-width: 991.98px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+        width: 260px !important;
+    }
+
+    /* Ensure all link text and chevron icons show up instantly without reload */
+    .sidebar .link-text,
+    .sidebar .sidebar-brand span,
+    .sidebar .chevron-icon {
+        display: inline-block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .sidebar .nav-link-custom {
+        justify-content: space-between !important;
+        padding: 0.75rem 0.85rem !important;
+    }
+
+    .sidebar .nav-link-custom .link-content {
+        gap: 14px !important;
+    }
+
+    .mobile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+    }
+}
+/* Animated Hamburger Button Styling */
+.hamburger-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 20px;
+    z-index: 1060;
+}
+
+.hamburger-btn .bar {
+    width: 100%;
+    height: 2.5px;
+    background-color: var(--text-dark);
+    border-radius: 4px;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Morphing Animation to 'X' */
+.hamburger-btn.active .bar:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+    background-color: var(--accent-gold-bright);
+}
+
+.hamburger-btn.active .bar:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.hamburger-btn.active .bar:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+    background-color: var(--accent-gold-bright);
+}
+/* Mobile Drawer Dedicated Close (X) Button */
+.drawer-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+}
+
+.drawer-close-btn:hover,
+.drawer-close-btn:active {
+    color: var(--accent-gold-bright);
+    background-color: var(--gold-soft-tint);
+}
+    /* ===================================== aside bar end =======================================  */
