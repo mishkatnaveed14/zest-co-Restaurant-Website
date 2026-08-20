@@ -156,11 +156,73 @@
     </aside>
     <!-- ===================================== aside bar end ======================================= -->
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <h2>Dashboard Area</h2>
-        <p>Logo header par click karke sidebar expansion toggle karke check kar sakte hain.</p>
-    </main>
+ <!--================= Top Navbar Header start ======================== -->
+<header class="top-navbar">
+    <!-- Page Title & Greeting -->
+    <div class="header-title">
+        <h1 class="m-0 fs-4 fw-bold">Dashboard</h1>
+        <p class="text-muted m-0 small">Hello Alexander, welcome back!</p>
+    </div>
+
+    <!-- Search & Right Profile Controls -->
+    <div class="header-controls">
+        <!-- Search Bar -->
+        <div class="search-box d-none d-md-flex">
+            <i class="bi bi-search search-icon"></i>
+            <input type="text" placeholder="Search anything..." class="search-input">
+        </div>
+
+        <!-- Action Icons (Search Mobile, Notifications, Messages) -->
+        <div class="header-actions">
+            <!-- Mobile Search Icon Toggle -->
+            <button class="action-btn d-md-none" title="Search">
+                <i class="bi bi-search"></i>
+            </button>
+
+            <!-- Notifications -->
+            <button class="action-btn position-relative" title="Notifications">
+                <i class="bi bi-bell"></i>
+                <span class="notification-badge"></span>
+            </button>
+
+            <!-- Messages -->
+            <button class="action-btn position-relative" title="Messages">
+                <i class="bi bi-chat-text"></i>
+                <span class="notification-badge bg-gold"></span>
+            </button>
+        </div>
+
+        <!-- User Profile Dropdown -->
+        <div class="user-profile-dropdown" id="userProfileDropdown">
+            <div class="profile-trigger">
+                <img src="https://ui-avatars.com/api/?name=Alexander+R&background=D4AF37&color=fff" alt="User Profile" class="profile-avatar">
+                <div class="profile-info d-none d-xl-block">
+                    <span class="profile-name">Alexander R.</span>
+                    <span class="profile-role">Admin</span>
+                </div>
+                <i class="bi bi-chevron-down profile-chevron d-none d-sm-inline-block"></i>
+            </div>
+
+            <!-- Profile Menu Dropdown -->
+            <div class="profile-menu" id="profileMenu">
+                <a href="./setting.html" class="profile-menu-item">
+                    <i class="bi bi-person"></i>
+                    <span>My Profile</span>
+                </a>
+                <a href="./setting.html" class="profile-menu-item">
+                    <i class="bi bi-gear"></i>
+                    <span>Account Settings</span>
+                </a>
+                <hr class="dropdown-divider my-1">
+                <a href="#" class="profile-menu-item text-danger">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+ <!--================= Top Navbar Headerend ======================== -->
 
 
 
