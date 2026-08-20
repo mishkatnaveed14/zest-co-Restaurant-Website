@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zest & Co.</title>
     <!-- bootstrap css -->
@@ -11,11 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- Animate CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-     <!-- AOS cdn -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <!-- custom css -->
-    <link rel="stylesheet" href="../css-folder/style.css">
-    <link rel="stylesheet" href="../css-folder/responsive.css">
+
     <!-- google fonts cdn -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap"
@@ -24,15 +19,20 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Jost:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+      <!-- AOS cdn -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- boostrap icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
+    <!-- custom css -->
+    <link rel="stylesheet" href="../css-folder/style.css">
+    <link rel="stylesheet" href="../css-folder/responsive.css">
+            <!-- Service.css -->
+  <link rel="stylesheet" href="../css-folder/service.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-
-<body class="contact-body-bg">
-
-    <!-- upper part start -->
+<body>
+   <!-- upper part start -->
     <div class="top-bar bg-black">
         <div class="container-lg container-fluid gy-2">
             <div class="row align-items-center">
@@ -94,7 +94,7 @@
                             <a class="nav-link" href="./admin/user/about.html">ABOUT</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../html/admin/user/menu.html">MENU</a>
+                            <a class="nav-link" href="./menu.html">MENU</a>
                         </li>
                         <li class="nav-item dropdown-holder">
                             <a class="nav-link" href="./pages.html">PAGES <i
@@ -137,115 +137,210 @@
         </nav>
     </header>
     <!-- navbar end -->
-    <!-- Hero Section Start -->
-    <div id="contact-hero-container" class="contact-hero-section">
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <img src="../assets/images/icon-dining-white.png" alt="Icon"
-                class="contact-hero-icon my-5 animate__animated animate__fadeInDown">
-            <h1 class="text-white mb-5 animate__animated animate__fadeInUp">CONTACT US FOR <br> ENQUIRIES & BOOKINGS
-            </h1>
-            <div class="d-flex justify-content-center align-items-center gap-4 animate__animated animate__fadeInUp">
-                <div class="line"></div>
-                <p class="text-white fs-5 ">Get In Touch With Us</p>
-                <div class="line"></div>
-            </div>
-        </div>
+<!-- Hero Banner Section -->
+<section class="hero-banner d-flex align-items-center">
+  <!-- Overlay for Dark Contrast -->
+  <div class="hero-overlay"></div>
+
+  <div class="container text-center text-white position-relative z-2">
+    <!-- Subheading -->
+    <span class="hero-subtitle text-uppercase tracking-wider fs-6 text-gold mb-2 d-inline-block">
+      Welcome To Zest & Co.
+    </span>
+
+    <!-- Animated Main Title -->
+    <h1 class="hero-title display-3 fw-bold mb-3">
+      Exquisite Dining & Culinary Artistry
+    </h1>
+
+    <!-- Animated Tagline -->
+    <p class="hero-description lead mx-auto mb-4 col-11 col-md-8 text-light-50">
+      Embark on an unforgettable journey of flavors, crafted with passion by our world-class chefs in an atmosphere of refined luxury.
+    </p>
+
+    <!-- Action Buttons -->
+    <div class="hero-buttons d-flex justify-content-center gap-3">
+      <a href="./admin/user/reservation.html" class="btn btn-gold px-4 py-3 fw-semibold">
+        Book A Table
+      </a>
+      <a href="./menu.html" class="btn btn-outline-light px-4 py-3 fw-semibold">
+        Explore Menu
+      </a>
     </div>
-    <!-- Hero Section End -->
-    <!-- Contact Address Section Start -->
-    <section class="contact-address-section mt-5">
-        <div class="container">
-            <div class="d-flex flex-column flex-lg-row gap-5">
-                <div class="d-flex flex-column">
-                    <div class="row">
-                        <div class="col-md-6 aos-init aos-animate" data-aos-duration="1000" data-aos="fade-up">
-                            <h6 class="contact-title">Contact Address</h6>
-                            <p>24 Ember Lane, Karachi</p>
-                            <p>Karachi, Pakistan</p>
-                        </div>
-                        <div class="col-md-6 aos-init aos-animate" data-aos-duration="1000" data-aos="fade-up">
-                            <h6 class="contact-title">Opening Hours</h6>
-                            <p>Lunch: Monday – Friday 12 pm to 3:30 pm </p>
-                            <p>Dinner: Monday – Saturday 4 pm to 11 pm </p>
-                            <p>Dinner: Sunday 4 pm to 10 pm</p>
+    
+  </div>
+</section>
 
-                        </div>
-                        <div class="col-md-6 mt-5 aos-init aos-animate" data-aos-duration="1000" data-aos="fade-up">
-                            <h6 class="contact-title">Reservations</h6>
-                            <p>Call: <a href="tel:+92 100 000 00" class="text-light text-decoration-none">+92 100 000
-                                    00</a></p>
 
-                            <p>Email: <a href="mailto:info@zest-co.com"
-                                    class="text-light text-decoration-none">info@zest-co.com</a></p>
-                        </div>
-                        <div class="col-md-6 mt-5 aos-init aos-animate" data-aos-duration="1000" data-aos="fade-up">
-                            <h6 class="contact-title">Parking Details</h6>
-                            <p>Street Parking after 7:00pm</p>
-                            <p>Monday to Saturday, feed the meter. </p>
-                            <p>Sunday free street parking.</p>
 
-                        </div>
+ <!-- Alternating Services Section (Sticky Overlapping) -->
+  <section class="services-list-section">
+    <div class="container">
+
+      <!-- Item 1 -->
+      <div class="service-row sticky-card" style="--card-top: 100px;">
+        <div class="service-media">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Dining Experience">
+        </div>
+        <div class="service-content">
+          <span class="service-number">01</span>
+          <h2>Dining Experience</h2>
+          <p>Embark on a culinary journey with our exceptional dining experience. Our menu features a diverse selection of dishes crafted with care by our talented chefs. From appetizers to desserts, each item is a celebration of flavors, ensuring a memorable meal every time you visit.</p>
+          <a href="#" class="btn-text">Reserve your table &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="service-row sticky-card" style="--card-top: 130px;">
+        <div class="service-media">
+          <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=800&q=80" alt="Catering and Private Events">
+        </div>
+        <div class="service-content">
+          <span class="service-number">02</span>
+          <h2>Catering and Private Events</h2>
+          <p>Celebrate life's special moments with our catering services. TNC Restaurant offers a bespoke catering experience, bringing our culinary expertise to your chosen venue. From weddings to corporate events, our team is dedicated to making your occasion extraordinary.</p>
+          <a href="#" class="btn-text">Learn More &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="service-row sticky-card" style="--card-top: 160px;">
+        <div class="service-media">
+          <img src="https://images.unsplash.com/photo-1526367790999-0150786686a2?auto=format&fit=crop&w=800&q=80" alt="Online Ordering and Delivery">
+        </div>
+        <div class="service-content">
+          <span class="service-number">03</span>
+          <h2>Online Ordering and Delivery</h2>
+          <p>Enjoy TNC's exquisite dishes from the comfort of your home with our online ordering and delivery services. Browse our menu, place your order online, and have your favorite meals delivered straight to your doorstep. Indulge in the TNC experience at your convenience.</p>
+          <a href="#" class="btn-text">Order Online &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="service-row sticky-card" style="--card-top: 190px;">
+        <div class="service-media">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Private Dining Room">
+        </div>
+        <div class="service-content">
+          <span class="service-number">04</span>
+          <h2>Private Dining Room</h2>
+          <p>For intimate gatherings or business meetings, take advantage of our private dining room. Immerse yourself in a personalized dining experience with a dedicated staff, curated menu options, and a private space to celebrate in style.</p>
+          <a href="#" class="btn-text">Book Room &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+   <!-- ================= TESTIMONIALS SECTION ================= -->
+    <section class="testimonials-section">
+        <div class="testimonials-header">
+            <span class="subtitle" data-aos="fade-up" data-aos-duration="1000">// OUR TESTIMONIALS //</span>
+            <h2 class="title" data-aos="fade-up" data-aos-duration="1000">DISCOVER THE ART OF TASTE</h2>
+        </div>
+
+        <div class="marquee-wrapper">
+            <div class="marquee-track">
+
+                <div class="testimonial-card">
+                    <p class="quote-text">
+                        "The food here is on another level! Every dish was fresh, hot, and bursting with flavor. Can’t
+                        wait to come
+                        back."
+                    </p>
+                    <div class="stars">★★★★★</div>
+                    <div class="profile-container">
+                        <img src="../assets/images/testimonial img 1.jpg" alt="Kathryn Murphy" class="profile-avatar" />
+                        <h3 class="author-name">Marcus Brody</h3>
                     </div>
                 </div>
-                <!-- <div class="vertical-line">&nbsp;</div> -->
-                <div class="map-container aos-init aos-animate" data-aos-duration="1000" data-aos="fade-up">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3622.1806938272216!2d67.06072507400907!3d24.789265448105212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33ce5f0b27b1f%3A0xcf4a17b98090926f!2s24th%20St%2C%20Karachi%2C%20Pakistan!5e0!3m2!1sen!2s!4v1784735720931!5m2!1sen!2s"
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+
+                <div class="testimonial-card video-card">
+                    <div class="media-container">
+                        <video src="../assets/images/testimonial vid 1.mp4" autoplay loop muted playsinline></video>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <h3 class="author-name">Maya Lin</h3>
                 </div>
 
+                <div class="testimonial-card">
+                    <p class="quote-text">
+                        "Hands down the best dining experience I've had in a long time. Great atmosphere, incredible
+                        service, and
+                        unforgettable food!"
+                    </p>
+                    <div class="stars">★★★★★</div>
+                    <div class="profile-container">
+                        <img src="../assets/images/testimonial img 2.jpg" alt="Ralph Edwards" class="profile-avatar" />
+                        <h3 class="author-name">Jessica Vance</h3>
+                    </div>
+                </div>
+
+                <div class="testimonial-card video-card">
+                    <div class="media-container">
+                        <video src="../assets/images/testimonial vid 2.webm" autoplay loop muted playsinline></video>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <h3 class="author-name">Alex Morgan</h3>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="quote-text">
+                        "From the appetizers to the dessert, everything was absolute perfection. Highly recommend the
+                        chef’s
+                        specials!"
+                    </p>
+                    <div class="stars">★★★★★</div>
+                    <div class="profile-container">
+                        <img src="../assets/images/testimonial img 3.jpg" alt="Marcus Brody" class="profile-avatar" />
+                        <h3 class="author-name">Kathryn Murphy</h3>
+                    </div>
+                </div>
+
+                <div class="testimonial-card video-card">
+                    <div class="media-container">
+                        <video src="../assets/images/testimonial vid 3.mp4" autoplay loop muted playsinline></video>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <h3 class="author-name">Olivia Chang</h3>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="quote-text">
+                        "The cozy ambiance combined with top-tier gourmet dishes makes this place a hidden gem. Truly
+                        impressed!"
+                    </p>
+                    <div class="stars">★★★★★</div>
+                    <div class="profile-container">
+                        <img src="../assets/images/testimonial img 4.jpg" alt="Ralph Edwards" class="profile-avatar" />
+                        <h3 class="author-name">Elena Rostova</h3>
+                    </div>
+                </div>
+
+                <div class="testimonial-card video-card">
+                    <div class="media-container">
+                        <video src="../assets/images/testimonial vid 4.mp4" autoplay loop muted playsinline></video>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <h3 class="author-name">Esther Howard</h3>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="quote-text">
+                        "Brought my family here for dinner and everyone loved their meal. The presentation was gorgeous
+                        and the
+                        flavors were spot on."
+                    </p>
+                    <div class="stars">★★★★★</div>
+                    <div class="profile-container">
+                        <img src="../assets/images/testimonial img 5.jpg" alt="Marcus Brody" class="profile-avatar" />
+                        <h3 class="author-name">Jack Brooks</h3>
+                    </div>
+                </div>
 
             </div>
         </div>
-
     </section>
-    <!-- Contact Address Section End -->
-
-    <!-- Contact Form Section Start -->
-    <section class="contact-form-section mt-5">
-        <div class="container p-5">
-
-            <div class="d-flex justify-content-center align-items-center gap-4">
-                <div class="line"></div>
-                <p class="text-white">Get In Touch With Us</p>
-                <div class="line"></div>
-            </div>
-            <h1 class="text-center">Contact Us</h1>
-            <div class="form-container row  justify-content-center g-4 p-5">
-                <div class="col-lg-6 col-md-6 mb-25">
-                    <div class="form-inner">
-                        <input type="text" class="form-input" placeholder="Name">
-                    </div>
-
-                </div>
-                <div class="col-lg-6 col-md-6 mb-25">
-                    <div class="form-inner">
-                        <input type="email" class="form-input" placeholder="Email">
-                    </div>
-
-                </div>
-                <div class="col-lg-12 col-md-12 mb-25">
-                    <div class="form-inner">
-                        <textarea class="form-text" placeholder="Message"></textarea>
-                    </div>
-
-                </div>
-                <div class="col-lg-12 col-md-12">
-                    <div class="form-inner text-center">
-                        <button class="nav-btn mb-5">Send Message</button>
-                    </div>
-                </div>
-
-
-
-            </div>
-        </div>
-
-    </section>
-    <!-- Contact Form End -->
-
-    <!-- //////////////////////////////////////PAGE END GALLERY START////////////////////////////////////// -->
+     <!-- //////////////////////////////////////GALLERY START ////////// -->
     <a href="gallery.html" class="insta-gallery-wrapper" aria-label="Go to Gallery Page">
         <section class="insta-gallery-section">
             <div class="insta-overlay-badge">
@@ -283,20 +378,17 @@
             </div>
         </section>
     </a>
-    <!-- //////////////////////////////////////PAGE END GALLERY END////////////////////////////////////// -->
+    <!-- //////////////////////// GALLERY END //////////////// -->
 
-    <!-- ================= FOOTER ================= -->
+
+   <!-- ================= FOOTER ================= -->
     <footer class="footer">
         <div class="container footer-grid">
             <div class="footer-col about-col">
-
                 <a class="navbar-brand header-logo" href="../index.html">
                     <img src="../assets/images/zset and co logo.png" alt="Zest & Co. Logo" style="height: 80px; width: auto; ">
-
                 </a>
-
                 <p>A fire-grill and noodle house built around three obsessions: char, rice, and broth. Come hungry.</p>
-
                 <div class="footer-social">
                     <a href="#">IG</a><a href="#">FB</a><a href="#">TT</a><a href="#">YT</a>
                 </div>
@@ -337,39 +429,7 @@
             </div>
         </div>
     </footer>
-
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-    <div class="mobile-menu-panel" id="mobileMenuPanel">
-        <div class="mobile-menu-head">
-            <a href="../index.html" class="mobile-brand">Zest &amp; Co.</a>
-            <button class="mobile-close" type="button" aria-label="Close menu">
-                <i class="bi bi-x-lg"></i>
-            </button>
-        </div>
-        <nav class="mobile-nav-links">
-            <a href="../index.html">Home</a>
-            <a href="../html/admin/user/about.html">About</a>
-            <a href="../html/menu.html">Menu</a>
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" aria-haspopup="true" aria-expanded="false">
-                    PAGES <i class="bi bi-chevron-down nav-arrow"></i>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="../html/admin/user/reservation.html">Reservation</a></li>
-                    <li><a class="dropdown-item" href="../html/gallery.html">Gallery</a></li>
-                    <li><a class="dropdown-item" href="../html/faq.html">FAQ</a></li>
-                </ul>
-            </div>
-            <a href="../html/contact.html">Contact</a>
-        </nav>
-        <div class="mobile-menu-footer">
-            <a href="#" data-auth-open="signup" class="nav-btn">Signup</a>
-            <a href="../html/admin/user/reservation.html" class="nav-btn btn-outline">Reserve</a>
-        </div>
-    </div>
-
-
-<!-- ================= LOGIN / SIGNUP MODAL ================= -->
+  <!-- ================= LOGIN / SIGNUP MODAL ================= -->
     <div class="auth-modal" id="authModal" aria-hidden="true">
         <div class="auth-modal-overlay" data-auth-close></div>
         <div class="auth-modal-box" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
@@ -525,19 +585,21 @@
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
     <script type="module" src="../js/common.js"></script>
-    <script src="../js/about.js"></script>
-      <!-- AOS cdn -->
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-   <script>
-    AOS.init();
-  </script>
 
+  <!-- GSAP Libraries (Add before closing </body> tag) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="../js/service.js"></script>
 </body>
-
 </html>

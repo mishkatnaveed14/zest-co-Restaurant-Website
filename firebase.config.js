@@ -9,13 +9,10 @@ import {
   signOut,
   sendEmailVerification,
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
-const currentHost = window.location.hostname;
-// const isLocalDev = ["localhost", "127.0.0.1"].includes(currentHost);
-// const authDomain = isLocalDev ? "localhost" : "zestandco-7b360.firebaseapp.com";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBm9kCZhDtXJOK148a-8acVIoLBux4w2Pc",
-  authDomain,
+  authDomain:"zestandco-7b360.firebaseapp.com",
   projectId: "zestandco-7b360",
   storageBucket: "zestandco-7b360.firebasestorage.app",
   messagingSenderId: "345032386958",
