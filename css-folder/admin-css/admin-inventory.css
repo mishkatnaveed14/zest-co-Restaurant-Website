@@ -1,4 +1,5 @@
 /* Styling & Layout overrides using custom variables */
+@import url("./admin-common.css");
 body {
   background-color: var(--main-bg);
   color: var(--text-dark);
