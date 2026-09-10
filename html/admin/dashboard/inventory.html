@@ -51,7 +51,7 @@
             <!-- Navigation Links -->
             <ul class="nav-list">
                 <li class="nav-item">
-                    <a href="./dasboard.html" class="nav-link-custom active" title="Dashboard">
+                    <a href="./dasboard.html" class="nav-link-custom" title="Dashboard">
                         <span class="link-content">
                             <i class="bi bi-grid-1x2-fill icon"></i>
                             <span class="link-text">Dashboard</span>
@@ -77,7 +77,7 @@
 
                 <!-- Inventory Dropdown Toggle -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link-custom" id="inventoryToggle" title="Inventory">
+                    <a href="#" class="nav-link-custom active" id="inventoryToggle" title="Inventory">
                         <span class="link-content">
                             <i class="bi bi-box-seam icon"></i>
                             <span class="link-text">Inventory</span>
@@ -143,7 +143,7 @@
     </aside>
     <!-- ===================================== aside bar end ======================================= -->
 
-    <!--================= Top Navbar Header start ======================== -->
+     <!--================= Top Navbar Header start ======================== -->
     <!-- Top Synchronized Header Bar -->
     <main class="main-content">
         <!-- Top Navbar Header -->
@@ -205,188 +205,6 @@
                 </div>  
             </div>
         </header>
-
-
-        <!-- Analytics Cards Row -->
-  <div class="row g-4 mb-4">
-    <!-- Supply Overview Card -->
-    <div class="col-12 col-xl-7">
-      <div class="card custom-card h-100">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-              <h6 class="card-subtitle text-muted mb-1">Supply Overview</h6>
-              <h3 class="card-title fw-bold text-dark mb-0">1,654</h3>
-            </div>
-            <select class="form-select form-select-sm custom-select w-auto">
-              <option selected>Last 6 Months</option>
-              <option>Last Year</option>
-            </select>
-          </div>
-          <!-- Chart Placeholder / SVG Container -->
-          <div class="chart-container mt-3">
-            <canvas id="supplyChart" height="120"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stock Level Card -->
-    <div class="col-12 col-xl-5">
-      <div class="card custom-card h-100">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-              <h6 class="card-subtitle text-muted mb-1">Stock Level</h6>
-              <h3 class="card-title fw-bold text-dark mb-0">205 <span class="fs-6 text-muted fw-normal">Products</span></h3>
-            </div>
-            <select class="form-select form-select-sm custom-select w-auto">
-              <option selected>This Month</option>
-            </select>
-          </div>
-          <!-- Bar Graph / Progress Bars -->
-          <div class="stock-bars d-flex gap-1 align-items-end my-3" style="height: 70px;">
-            <div class="bar bar-fill" style="height: 60%;"></div>
-            <div class="bar bar-fill" style="height: 80%;"></div>
-            <div class="bar bar-fill" style="height: 100%;"></div>
-            <div class="bar bar-fill" style="height: 75%;"></div>
-            <div class="bar bar-fill" style="height: 50%;"></div>
-            <div class="bar bar-low" style="height: 35%;"></div>
-            <div class="bar bar-low" style="height: 25%;"></div>
-            <div class="bar bar-out" style="height: 15%;"></div>
-            <div class="bar bar-out" style="height: 10%;"></div>
-          </div>
-          <!-- Legend -->
-          <div class="d-flex justify-content-between border-top pt-3 fs-7">
-            <div><span class="legend-dot bg-gold"></span> In Stock <strong>120</strong></div>
-            <div><span class="legend-dot bg-orange"></span> Low Stock <strong>55</strong></div>
-            <div><span class="legend-dot bg-dark"></span> Out of Stock <strong>30</strong></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Inventory Table Section -->
-  <div class="card custom-card">
-    <div class="card-body">
-      <!-- Controls Header -->
-      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
-        <!-- Tabs -->
-        <div class="tab-btn-group">
-          <button class="btn btn-tab active">Inventory</button>
-          <button class="btn btn-tab">Purchase Order</button>
-        </div>
-
-        <!-- Filters & Action -->
-        <div class="d-flex flex-wrap align-items-center gap-2 ms-auto">
-          <div class="search-input-wrap">
-            <input type="text" class="form-control custom-input" placeholder="Search for item">
-          </div>
-          <select class="form-select custom-select w-auto">
-            <option selected>All Category</option>
-          </select>
-          <select class="form-select custom-select w-auto">
-            <option selected>All Status</option>
-          </select>
-          <button class="btn btn-gold">+ Add Product</button>
-        </div>
-      </div>
-
-      <!-- Data Table -->
-      <div class="table-responsive">
-        <table class="table align-middle custom-table">
-          <thead>
-            <tr>
-              <th><input type="checkbox" class="form-check-input"></th>
-              <th>Item</th>
-              <th>Category</th>
-              <th>Status</th>
-              <th>Qty in Stock</th>
-              <th>Qty in Reorder</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="checkbox" class="form-check-input"></td>
-              <td>
-                <div class="d-flex align-items-center gap-2">
-                  <div class="item-img-placeholder"></div>
-                  <div>
-                    <div class="fw-bold text-dark">Fresh Salmon</div>
-                    <small class="text-muted">Food Ingredients</small>
-                  </div>
-                </div>
-              </td>
-              <td>Food Ingredients</td>
-              <td><span class="badge badge-success">Available</span></td>
-              <td><strong>45</strong></td>
-              <td>50</td>
-              <td>
-                <button class="btn btn-outline-custom btn-sm">Reorder</button>
-                <button class="btn btn-soft-custom btn-sm">Update Stock</button>
-              </td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" class="form-check-input"></td>
-              <td>
-                <div class="d-flex align-items-center gap-2">
-                  <div class="item-img-placeholder"></div>
-                  <div>
-                    <div class="fw-bold text-dark">Olive Oil</div>
-                    <small class="text-muted">Food Ingredients</small>
-                  </div>
-                </div>
-              </td>
-              <td>Food Ingredients</td>
-              <td><span class="badge badge-warning">Low</span></td>
-              <td><strong>10</strong></td>
-              <td>20</td>
-              <td>
-                <button class="btn btn-outline-custom btn-sm">Reorder</button>
-                <button class="btn btn-soft-custom btn-sm">Update Stock</button>
-              </td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" class="form-check-input"></td>
-              <td>
-                <div class="d-flex align-items-center gap-2">
-                  <div class="item-img-placeholder"></div>
-                  <div>
-                    <div class="fw-bold text-dark">Cutting Board</div>
-                    <small class="text-muted">Kitchen Tools & Equipment</small>
-                  </div>
-                </div>
-              </td>
-              <td>Kitchen Tools & Equipment</td>
-              <td><span class="badge badge-danger">Out of Stock</span></td>
-              <td><strong>0</strong></td>
-              <td>15</td>
-              <td>
-                <button class="btn btn-outline-custom btn-sm">Reorder</button>
-                <button class="btn btn-soft-custom btn-sm">Update Stock</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Pagination Footer -->
-      <div class="d-flex justify-content-between align-items-center mt-4">
-        <small class="text-muted">Showing 10 out of 205</small>
-        <ul class="pagination custom-pagination mb-0">
-          <li class="page-item disabled"><a class="page-link" href="#">&lt;</a></li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">...</a></li>
-          <li class="page-item"><a class="page-link" href="#">18</a></li>
-          <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
         
         <!-- Aapki Dashboard Cards/Charts Yahan Aayein Ge -->
     </main>
@@ -394,9 +212,11 @@
 
 
 
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
         <script src="../../../js/admin-js/admin-common.js"></script>
-        <script src="../../../js/admin-js//admin-inventory.js"></script>
+        <script type="module" src="../../../js/admin-js//admin-inventory.js"></script>
 </body>
 
 </html>

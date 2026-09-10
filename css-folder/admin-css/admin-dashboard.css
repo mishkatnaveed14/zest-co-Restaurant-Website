@@ -5,7 +5,7 @@
 .top-navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; 
     padding: 0.85rem 1.5rem;
     margin-bottom: 1.5rem;
     background-color: var(--card-light-bg);
