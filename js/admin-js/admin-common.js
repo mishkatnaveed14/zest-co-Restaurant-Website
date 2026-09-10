@@ -1,3 +1,9 @@
+const animationApi = window.gsap || {
+    from: () => {},
+    to: () => {},
+    fromTo: () => {}
+};
+
 //  ===================================== aside bar start ======================================= 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDropdownOpen = false;
 
     // 1. Initial GSAP Entrance Animation (Sidebar Load Effect)
-    gsap.from('.nav-item', {
+    animationApi.from('.nav-item', {
         opacity: 0,
         x: -20,
         duration: 0.5,
@@ -25,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isCollapsed = sidebar.classList.contains('collapsed');
 
             // Arrow Rotate Animation
-            gsap.to(brandArrow, {
+            animationApi.to(brandArrow, {
                 rotate: isCollapsed ? 180 : 0,
                 duration: 0.4,
                 ease: 'back.out(1.7)'
@@ -37,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Quick bounce animation for icons on view mode change
-            gsap.fromTo('.nav-link-custom i.icon', 
+            animationApi.fromTo('.nav-link-custom i.icon', 
                 { scale: 0.8 }, 
                 { scale: 1, duration: 0.3, stagger: 0.02, ease: 'power1.out' }
             );
@@ -46,19 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Submenu Dropdown Accordion GSAP Functions
     function openDropdown() {
-        gsap.to(inventorySubmenu, { 
+        animationApi.to(inventorySubmenu, { 
             height: 'auto', 
             duration: 0.4, 
             ease: 'power3.out' 
         });
-        gsap.to(chevron, { 
+        animationApi.to(chevron, { 
             rotate: 180, 
             duration: 0.3, 
             ease: 'power2.out' 
         });
         
         // Submenu Links Fade In
-        gsap.fromTo('#inventorySubmenu .nav-item', 
+        animationApi.fromTo('#inventorySubmenu .nav-item', 
             { opacity: 0, y: -10 },
             { opacity: 1, y: 0, duration: 0.3, stagger: 0.05, delay: 0.1 }
         );
@@ -66,12 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function closeDropdown() {
-        gsap.to(inventorySubmenu, { 
+        animationApi.to(inventorySubmenu, { 
             height: 0, 
             duration: 0.3, 
             ease: 'power3.in' 
         });
-        gsap.to(chevron, { 
+        animationApi.to(chevron, { 
             rotate: 0, 
             duration: 0.3, 
             ease: 'power2.in' 
@@ -85,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Mini mode mein hover/click par sidebar pehle auto-expand hogi
         if (sidebar.classList.contains('collapsed')) {
             sidebar.classList.remove('collapsed');
-            gsap.to(brandArrow, { rotate: 0, duration: 0.3 });
+            animationApi.to(brandArrow, { rotate: 0, duration: 0.3 });
             openDropdown();
             return;
         }
@@ -109,11 +115,11 @@ function openMobileDrawer() {
     mobileSidebarToggle.classList.add('active');
 
     // Drawer Slide In
-    gsap.to(sidebar, { x: '0%', duration: 0.4, ease: 'power3.out' });
-    gsap.to(sidebarOverlay, { opacity: 1, duration: 0.3 });
+    animationApi.to(sidebar, { x: '0%', duration: 0.4, ease: 'power3.out' });
+    animationApi.to(sidebarOverlay, { opacity: 1, duration: 0.3 });
 
     // Text & Items Smooth Stagger Animation
-    gsap.fromTo('.sidebar .nav-item', 
+    animationApi.fromTo('.sidebar .nav-item', 
         { opacity: 0, x: -25 }, 
         { opacity: 1, x: 0, duration: 0.35, stagger: 0.04, delay: 0.1, ease: 'power2.out' }
     );
@@ -124,8 +130,8 @@ function openMobileDrawer() {
 function closeMobileDrawer() {
     mobileSidebarToggle.classList.remove('active');
 
-    gsap.to(sidebar, { x: '-100%', duration: 0.3, ease: 'power3.in' });
-    gsap.to(sidebarOverlay, { 
+    animationApi.to(sidebar, { x: '-100%', duration: 0.3, ease: 'power3.in' });
+    animationApi.to(sidebarOverlay, { 
         opacity: 0, 
         duration: 0.3, 
         onComplete: () => { sidebarOverlay.style.display = 'none'; } 
