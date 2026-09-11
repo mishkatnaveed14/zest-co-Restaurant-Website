@@ -19,6 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.toggle("sidebar-collapsed", collapsed);
     sidebar.classList.toggle("collapsed", collapsed);
     brandArrow?.classList.toggle("is-collapsed", collapsed);
+    if (window.innerWidth >= 992) {
+      sidebar.style.setProperty(
+        "width",
+        collapsed ? "88px" : "260px",
+        "important",
+      );
+    } else {
+      sidebar.style.removeProperty("width");
+    }
     if (collapsed) closeInventory();
   };
 
@@ -94,6 +103,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth >= 992) closeDrawer();
+    if (window.innerWidth >= 992) {
+      closeDrawer();
+      sidebar.style.removeProperty("width");
+    } else {
+      sidebar.style.removeProperty("width");
+      document.body.classList.remove("sidebar-collapsed");
+      sidebar.classList.remove("collapsed");
+    }
   });
 });
