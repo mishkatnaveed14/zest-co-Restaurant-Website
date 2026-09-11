@@ -1,10 +1,19 @@
+import { db } from "../../firebase.config.js";
+import {
+    addDoc,
+    collection,
+    doc,
+    getDocs,
+    updateDoc
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
 const inventoryAnimationApi = window.gsap || {
     from: () => {},
     to: () => {}
 };
 
 // Dummy Restaurant Data (Using Bootstrap Icon classes)
-const inventoryData = [
+const defaultInventoryData = [
     { id: 1, name: "Fresh Salmon", icon: "bi-fish", category: "Food Ingredients", status: "Available", qty: 45, maxQty: 50, reorder: 50 },
     { id: 2, name: "Olive Oil", icon: "bi-droplet-half", category: "Food Ingredients", status: "Low", qty: 8, maxQty: 20, reorder: 20 },
     { id: 3, name: "Spaghetti Pasta", icon: "bi-egg-fried", category: "Food Ingredients", status: "Available", qty: 38, maxQty: 40, reorder: 40 },
@@ -17,7 +26,9 @@ const inventoryData = [
     { id: 10, name: "Mixing Bowls", icon: "bi-circle", category: "Kitchen Tools & Equipment", status: "Available", qty: 12, maxQty: 15, reorder: 15 }
 ];
 
-const purchaseData = [
+let inventoryData = [];
+
+const defaultPurchaseData = [
     { id: "PO-1001", supplier: "Ocean Catch Ltd", category: "Food Ingredients", qty: 50, cost: "$450.00", status: "Completed", date: "2026-09-06" },
     { id: "PO-1002", supplier: "Tuscany Imports", category: "Food Ingredients", qty: 20, cost: "$180.00", status: "Pending", date: "2026-09-08" },
     { id: "PO-1003", supplier: "Kitchenware Co.", category: "Kitchen Tools & Equipment", qty: 10, cost: "$320.00", status: "Pending", date: "2026-09-09" },
@@ -25,6 +36,7 @@ const purchaseData = [
 ];
 
 let currentView = 'inventory';
+let purchaseData = [];
 let currentPage = 1;
 const rowsPerPage = 5;
 let filteredData = [];
@@ -33,9 +45,50 @@ let editingInventoryId = null;
 document.addEventListener("DOMContentLoaded", () => {
     setupEventListeners();
     initCharts();
-    switchView('inventory');
-    animateDashboardEntrance();
+    loadInventoryData();
 });
+
+async function loadInventoryData() {
+    try {
+        const inventorySnapshot = await getDocs(collection(db, "inventory"));
+        const purchaseSnapshot = await getDocs(collection(db, "purchaseOrders"));
+
+        if (inventorySnapshot.empty) {
+            const seededItems = await Promise.all(defaultInventoryData.map(async (item) => {
+                const itemReference = await addDoc(collection(db, "inventory"), item);
+                return { ...item, id: itemReference.id };
+            }));
+            inventoryData = seededItems;
+        } else {
+            inventoryData = inventorySnapshot.docs.map((inventoryDocument) => ({
+                id: inventoryDocument.id,
+                ...inventoryDocument.data()
+            }));
+        }
+
+        if (purchaseSnapshot.empty) {
+            const seededOrders = await Promise.all(defaultPurchaseData.map(async (order) => {
+                await addDoc(collection(db, "purchaseOrders"), order);
+                return order;
+            }));
+            purchaseData = seededOrders;
+        } else {
+            purchaseData = purchaseSnapshot.docs.map((purchaseDocument) => ({
+                firestoreId: purchaseDocument.id,
+                ...purchaseDocument.data()
+            }));
+        }
+
+        switchView('inventory');
+        animateDashboardEntrance();
+    } catch (error) {
+        console.error("Unable to load inventory from Firebase:", error);
+        const errorCode = error.code ? ` (${error.code})` : "";
+        alert(`Inventory could not be loaded${errorCode}: ${error.message}`);
+        switchView('inventory');
+        animateDashboardEntrance();
+    }
+}
 
 // GSAP Page Entrance Animation
 function animateDashboardEntrance() {
@@ -117,7 +170,7 @@ function setupEventListeners() {
     document.getElementById('cancelModalBtn').addEventListener('click', closeModal);
 
     window.openStockEditor = (itemId) => {
-        const item = inventoryData.find((inventoryItem) => inventoryItem.id === itemId);
+        const item = inventoryData.find((inventoryItem) => String(inventoryItem.id) === String(itemId));
         if (!item) return;
         editingInventoryId = itemId;
         document.getElementById('itemName').value = item.name;
@@ -154,7 +207,7 @@ function setupEventListeners() {
     document.getElementById('closeDetailsFooterBtn').addEventListener('click', closeDetails);
 
     // Handle Modal Form Submission
-    document.getElementById('productForm').addEventListener('submit', (e) => {
+    document.getElementById('productForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const name = document.getElementById('itemName').value;
         const category = document.getElementById('itemCategory').value;
@@ -164,41 +217,56 @@ function setupEventListeners() {
         const cost = parseFloat(document.getElementById('itemCost').value) || 0;
         const date = document.getElementById('itemDate').value || new Date().toISOString().split('T')[0];
 
-        if (currentView === 'inventory' && editingInventoryId !== null) {
-            const item = inventoryData.find((inventoryItem) => inventoryItem.id === editingInventoryId);
-            if (item) {
-                item.qty = qty;
-                item.reorder = maxQty;
-                item.maxQty = maxQty;
-                item.status = status;
+        try {
+            if (currentView === 'inventory' && editingInventoryId !== null) {
+                const item = inventoryData.find((inventoryItem) => String(inventoryItem.id) === String(editingInventoryId));
+                if (item) {
+                    item.qty = qty;
+                    item.reorder = maxQty;
+                    item.maxQty = maxQty;
+                    item.status = status;
+                    await updateDoc(doc(db, "inventory", item.id), {
+                        qty,
+                        reorder: maxQty,
+                        maxQty,
+                        status
+                    });
+                }
+            } else if (currentView === 'inventory') {
+                const newItem = {
+                    name: name,
+                    icon: "bi-box-seam",
+                    category: category,
+                    status: status,
+                    qty: qty,
+                    maxQty: maxQty,
+                    reorder: maxQty
+                };
+                const itemReference = await addDoc(collection(db, "inventory"), newItem);
+                inventoryData.unshift({ ...newItem, id: itemReference.id });
+            } else {
+                const newPurchaseOrder = {
+                    id: "PO-" + Math.floor(1000 + Math.random() * 9000),
+                    supplier: name,
+                    category: category,
+                    qty: qty,
+                    cost: "$" + cost.toFixed(2),
+                    status: status,
+                    date: date
+                };
+                const orderReference = await addDoc(collection(db, "purchaseOrders"), newPurchaseOrder);
+                purchaseData.unshift({ ...newPurchaseOrder, firestoreId: orderReference.id });
             }
-        } else if (currentView === 'inventory') {
-            inventoryData.unshift({
-                id: Date.now(),
-                name: name,
-                icon: "bi-box-seam",
-                category: category,
-                status: status,
-                qty: qty,
-                maxQty: maxQty,
-                reorder: maxQty
-            });
-        } else {
-            purchaseData.unshift({
-                id: "PO-" + Math.floor(1000 + Math.random() * 9000),
-                supplier: name,
-                category: category,
-                qty: qty,
-                cost: "$" + cost.toFixed(2),
-                status: status,
-                date: date
-            });
-        }
 
-        closeModal();
-        document.getElementById('productForm').reset();
-        editingInventoryId = null;
-        handleFilter();
+            closeModal();
+            document.getElementById('productForm').reset();
+            editingInventoryId = null;
+            handleFilter();
+        } catch (error) {
+            console.error("Unable to save item to Firebase:", error);
+            const errorCode = error.code ? ` (${error.code})` : "";
+            alert(`The item could not be saved${errorCode}: ${error.message}`);
+        }
     });
 }
 
@@ -301,7 +369,7 @@ function renderTable() {
                         ${item.qty}
                     </td>
                     <td>${item.reorder}</td>
-                    <td><button class="action-btn" onclick="openStockEditor(${item.id})">Update Stock</button></td>
+                    <td><button class="action-btn" onclick="openStockEditor('${item.id}')">Update Stock</button></td>
                 `;
             } else {
                 row.innerHTML = `
