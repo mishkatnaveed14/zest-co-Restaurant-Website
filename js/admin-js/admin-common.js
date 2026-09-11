@@ -1,159 +1,63 @@
-const animationApi = window.gsap || {
-    from: () => {},
-    to: () => {},
-    fromTo: () => {}
-};
-
-//  ===================================== aside bar start ======================================= 
-
 document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.getElementById('sidebar');
-    const brandToggleTrigger = document.getElementById('brandToggleTrigger');
-    const brandArrow = brandToggleTrigger.querySelector('.brand-toggle-arrow');
+    if (!sidebar) return;
+
+    const brandTrigger = document.getElementById('brandToggleTrigger');
+    const brandArrow = document.querySelector('.brand-toggle-arrow');
     const inventoryToggle = document.getElementById('inventoryToggle');
     const inventorySubmenu = document.getElementById('inventorySubmenu');
-    const chevron = inventoryToggle.querySelector('.chevron-icon');
-    let isDropdownOpen = false;
+    const mobileToggle = document.getElementById('mobileSidebarToggle') || document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileDrawerClose');
+    const overlay = document.getElementById('sidebarOverlay') || document.getElementById('overlay');
 
-    // 1. Initial GSAP Entrance Animation (Sidebar Load Effect)
-    animationApi.from('.nav-item', {
-        opacity: 0,
-        x: -20,
-        duration: 0.5,
-        stagger: 0.05,
-        ease: 'power2.out'
+    const setCollapsed = (collapsed) => {
+        document.body.classList.toggle('sidebar-collapsed', collapsed);
+        sidebar.classList.toggle('collapsed', collapsed);
+        brandArrow?.classList.toggle('is-collapsed', collapsed);
+        if (collapsed) closeInventory();
+    };
+
+    const closeInventory = () => {
+        if (!inventorySubmenu) return;
+        inventorySubmenu.style.height = '0px';
+        inventoryToggle?.setAttribute('aria-expanded', 'false');
+        inventoryToggle?.querySelector('.chevron-icon')?.classList.remove('is-open');
+    };
+
+    const toggleInventory = (event) => {
+        event.preventDefault();
+        if (sidebar.classList.contains('collapsed')) setCollapsed(false);
+        const open = inventoryToggle.getAttribute('aria-expanded') === 'true';
+        inventoryToggle.setAttribute('aria-expanded', String(!open));
+        inventorySubmenu.style.height = open ? '0px' : `${inventorySubmenu.scrollHeight}px`;
+        inventoryToggle.querySelector('.chevron-icon')?.classList.toggle('is-open', !open);
+    };
+
+    const closeDrawer = () => {
+        document.body.classList.remove('mobile-sidebar-open');
+        mobileToggle?.classList.remove('active');
+    };
+
+    brandTrigger?.addEventListener('click', (event) => {
+        if (event.target.closest('a')) return;
+        if (window.innerWidth >= 992) setCollapsed(!document.body.classList.contains('sidebar-collapsed'));
     });
 
-    // 2. Logo Click - Smooth Collapse / Expand with GSAP
-    brandToggleTrigger.addEventListener('click', () => {
-        if (window.innerWidth >= 992) {
-            sidebar.classList.toggle('collapsed');
-            const isCollapsed = sidebar.classList.contains('collapsed');
+    inventoryToggle?.addEventListener('click', toggleInventory);
 
-            // Arrow Rotate Animation
-            animationApi.to(brandArrow, {
-                rotate: isCollapsed ? 180 : 0,
-                duration: 0.4,
-                ease: 'back.out(1.7)'
-            });
-
-            // Close Submenu automatically if collapsing
-            if (isCollapsed && isDropdownOpen) {
-                closeDropdown();
-            }
-
-            // Quick bounce animation for icons on view mode change
-            animationApi.fromTo('.nav-link-custom i.icon', 
-                { scale: 0.8 }, 
-                { scale: 1, duration: 0.3, stagger: 0.02, ease: 'power1.out' }
-            );
-        }
+    mobileToggle?.addEventListener('click', () => {
+        const open = document.body.classList.toggle('mobile-sidebar-open');
+        mobileToggle.classList.toggle('active', open);
     });
 
-    // 3. Submenu Dropdown Accordion GSAP Functions
-    function openDropdown() {
-        animationApi.to(inventorySubmenu, { 
-            height: 'auto', 
-            duration: 0.4, 
-            ease: 'power3.out' 
-        });
-        animationApi.to(chevron, { 
-            rotate: 180, 
-            duration: 0.3, 
-            ease: 'power2.out' 
-        });
-        
-        // Submenu Links Fade In
-        animationApi.fromTo('#inventorySubmenu .nav-item', 
-            { opacity: 0, y: -10 },
-            { opacity: 1, y: 0, duration: 0.3, stagger: 0.05, delay: 0.1 }
-        );
-        isDropdownOpen = true;
-    }
+    mobileClose?.addEventListener('click', closeDrawer);
+    overlay?.addEventListener('click', closeDrawer);
 
-    function closeDropdown() {
-        animationApi.to(inventorySubmenu, { 
-            height: 0, 
-            duration: 0.3, 
-            ease: 'power3.in' 
-        });
-        animationApi.to(chevron, { 
-            rotate: 0, 
-            duration: 0.3, 
-            ease: 'power2.in' 
-        });
-        isDropdownOpen = false;
-    }
-
-    inventoryToggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        // Mini mode mein hover/click par sidebar pehle auto-expand hogi
-        if (sidebar.classList.contains('collapsed')) {
-            sidebar.classList.remove('collapsed');
-            animationApi.to(brandArrow, { rotate: 0, duration: 0.3 });
-            openDropdown();
-            return;
-        }
-
-        if (!isDropdownOpen) {
-            openDropdown();
-        } else {
-            closeDropdown();
-        }
+    sidebar.querySelectorAll('.nav-link-custom[href]:not([href="#"])').forEach((link) => {
+        link.addEventListener('click', closeDrawer);
     });
 
-// 4. Enhanced Mobile Off-Canvas Drawer Controls with Staggered Entrance
-const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
-let isMobileOpen = false;
-
-function openMobileDrawer() {
-    sidebarOverlay.style.display = 'block';
-    
-    // Toggle Animated Hamburger Class
-    mobileSidebarToggle.classList.add('active');
-
-    // Drawer Slide In
-    animationApi.to(sidebar, { x: '0%', duration: 0.4, ease: 'power3.out' });
-    animationApi.to(sidebarOverlay, { opacity: 1, duration: 0.3 });
-
-    // Text & Items Smooth Stagger Animation
-    animationApi.fromTo('.sidebar .nav-item', 
-        { opacity: 0, x: -25 }, 
-        { opacity: 1, x: 0, duration: 0.35, stagger: 0.04, delay: 0.1, ease: 'power2.out' }
-    );
-
-    isMobileOpen = true;
-}
-
-function closeMobileDrawer() {
-    mobileSidebarToggle.classList.remove('active');
-
-    animationApi.to(sidebar, { x: '-100%', duration: 0.3, ease: 'power3.in' });
-    animationApi.to(sidebarOverlay, { 
-        opacity: 0, 
-        duration: 0.3, 
-        onComplete: () => { sidebarOverlay.style.display = 'none'; } 
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 992) closeDrawer();
     });
-    
-    isMobileOpen = false;
-}
-
-mobileSidebarToggle.addEventListener('click', () => {
-    if (!isMobileOpen) openMobileDrawer();
-    else closeMobileDrawer();
 });
-
-sidebarOverlay.addEventListener('click', closeMobileDrawer);
-// Mobile Dedicated Close Button Event
-const mobileDrawerClose = document.getElementById('mobileDrawerClose');
-
-if (mobileDrawerClose) {
-    mobileDrawerClose.addEventListener('click', (e) => {
-        e.stopPropagation(); // Brand toggle click prevent karne ke liye
-        closeMobileDrawer();
-    });
-}
-});
-//  ===================================== aside bar end ======================================= 
