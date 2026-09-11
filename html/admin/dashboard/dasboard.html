@@ -8,6 +8,7 @@
     <title>Restro - Restaurant Dashboard</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="../../../css-folder/admin-css/admin-common.css" />
 
     <style>
         :root {
@@ -2021,45 +2022,6 @@
             categoryChart.update();
         }
 
-        function setSidebarCollapsed(isCollapsed) {
-            const sidebar = $("#sidebar");
-            const arrow = $(".brand-toggle-arrow");
-            document.body.classList.toggle("sidebar-collapsed", isCollapsed);
-            sidebar?.classList.toggle("collapsed", isCollapsed);
-            arrow?.classList.toggle("is-collapsed", isCollapsed);
-        }
-
-        function setupSidebarInteractions() {
-            const sidebar = $("#sidebar");
-            const brandToggleTrigger = $("#brandToggleTrigger");
-            const inventoryToggle = $("#inventoryToggle");
-            const inventorySubmenu = $("#inventorySubmenu");
-            const inventoryChevron = inventoryToggle?.querySelector(".chevron-icon");
-            const mobileDrawerClose = $("#mobileDrawerClose");
-
-            brandToggleTrigger?.addEventListener("click", (event) => {
-                if (event.target.closest("a")) return;
-                setSidebarCollapsed(!document.body.classList.contains("sidebar-collapsed"));
-            });
-
-            inventoryToggle?.addEventListener("click", (event) => {
-                event.preventDefault();
-                if (sidebar?.classList.contains("collapsed")) {
-                    sidebar.classList.remove("collapsed");
-                    document.body.classList.remove("sidebar-collapsed");
-                }
-                const isOpen = inventoryToggle.getAttribute("aria-expanded") === "true";
-                inventoryToggle.setAttribute("aria-expanded", String(!isOpen));
-                inventorySubmenu.style.height = isOpen ? "0px" : `${inventorySubmenu.scrollHeight}px`;
-                inventoryChevron?.classList.toggle("is-open", !isOpen);
-            });
-
-            mobileDrawerClose?.addEventListener("click", () => {
-                document.body.classList.remove("mobile-sidebar-open");
-                $("#mobileSidebarToggle")?.classList.remove("active");
-            });
-        }
-
         function renderOrders(query = "") {
             const normalizedQuery = query.trim().toLowerCase();
 
@@ -2441,28 +2403,15 @@
             });
         }
 
-        $("#sidebarToggle").addEventListener("click", () => {
-            setSidebarCollapsed(!document.body.classList.contains("sidebar-collapsed"));
-
+        $("#sidebarToggle")?.addEventListener("click", () => {
+            document.body.classList.toggle("sidebar-collapsed");
+            document.querySelector("#sidebar")?.classList.toggle("collapsed");
             setTimeout(() => {
                 revenueChart?.resize();
                 categoryChart?.resize();
                 ordersChart?.resize();
             }, 420);
         });
-
-        const openMobileDrawer = () => {
-            document.body.classList.add("mobile-sidebar-open");
-            $("#mobileSidebarToggle")?.classList.add("active");
-        };
-
-        const closeMobileDrawer = () => {
-            document.body.classList.remove("mobile-sidebar-open");
-            $("#mobileSidebarToggle")?.classList.remove("active");
-        };
-
-        $("#mobileSidebarToggle")?.addEventListener("click", openMobileDrawer);
-        $("#mobileMenu")?.addEventListener("click", openMobileDrawer);
 
         const topbarContext = $(".topbar-context");
         const returnToDashboard = () => {
@@ -2474,18 +2423,6 @@
                 event.preventDefault();
                 returnToDashboard();
             }
-        });
-
-        $("#overlay").addEventListener("click", () => {
-            closeMobileDrawer();
-        });
-
-        $$(".nav-item").forEach((item) => {
-            item.addEventListener("click", () => {
-                $$(".nav-item").forEach((link) => link.classList.remove("active"));
-                item.classList.add("active");
-                closeMobileDrawer();
-            });
         });
 
         themeButton.addEventListener("click", () => {
@@ -2544,7 +2481,6 @@
             renderOrders();
             buildCharts();
             animateInterface();
-            setupSidebarInteractions();
             loadOrdersFromFirebase();
         });
     </script>
