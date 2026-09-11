@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeDrawer = () => {
     document.body.classList.remove("mobile-sidebar-open");
     mobileToggle?.classList.remove("active");
-      if (window.innerWidth < 992) {
-          sidebar.style.setProperty('transform', 'translateX(-105%)', 'important');
-          sidebar.style.setProperty('visibility', 'hidden', 'important');
-          sidebar.style.setProperty('opacity', '0', 'important');
-      }
-    };
+    if (window.innerWidth < 992) {
+      sidebar.style.setProperty("transform", "translateX(-105%)", "important");
+      sidebar.style.setProperty("visibility", "hidden", "important");
+      sidebar.style.setProperty("opacity", "0", "important");
+    }
+  };
 
   brandTrigger?.addEventListener("click", (event) => {
     if (event.target.closest("a")) return;
@@ -69,11 +69,19 @@ document.addEventListener("DOMContentLoaded", () => {
   mobileToggle?.addEventListener("click", () => {
     const open = document.body.classList.toggle("mobile-sidebar-open");
     mobileToggle.classList.toggle("active", open);
-      if (window.innerWidth < 992) {
-          sidebar.style.setProperty('transform', open ? 'translateX(0)' : 'translateX(-105%)', 'important');
-          sidebar.style.setProperty('visibility', open ? 'visible' : 'hidden', 'important');
-          sidebar.style.setProperty('opacity', open ? '1' : '0', 'important');
-      }
+    if (window.innerWidth < 992) {
+      sidebar.style.setProperty(
+        "transform",
+        open ? "translateX(0)" : "translateX(-105%)",
+        "important",
+      );
+      sidebar.style.setProperty(
+        "visibility",
+        open ? "visible" : "hidden",
+        "important",
+      );
+      sidebar.style.setProperty("opacity", open ? "1" : "0", "important");
+    }
   });
 
   mobileClose?.addEventListener("click", closeDrawer);
