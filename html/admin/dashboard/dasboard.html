@@ -1825,6 +1825,7 @@
     <!-- <script src="[cdn.jsdelivr.net](https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js)"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="../../../js/admin-js/admin-common.js"></script>
 
     <!-- <script src="[cdnjs.cloudflare.com](https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js)"></script> -->
 
@@ -2402,16 +2403,6 @@
                 });
             });
         }
-
-        $("#sidebarToggle")?.addEventListener("click", () => {
-            document.body.classList.toggle("sidebar-collapsed");
-            document.querySelector("#sidebar")?.classList.toggle("collapsed");
-            setTimeout(() => {
-                revenueChart?.resize();
-                categoryChart?.resize();
-                ordersChart?.resize();
-            }, 420);
-        });
 
         const topbarContext = $(".topbar-context");
         const returnToDashboard = () => {
