@@ -1660,6 +1660,7 @@
                     }
                     updateDashboardStats();
                     renderOrders(searchInput.value);
+                    updateCategoryChart();
                 }, (error) => {
                     console.warn("Orders could not be synced from Firebase; using fallback data.", error);
                     updateDashboardStats();
@@ -1669,6 +1670,18 @@
                 console.warn("Firebase orders listener could not start.", error);
                 updateDashboardStats();
             }
+        }
+
+        function updateCategoryChart() {
+            if (!categoryChart || !orders.length) return;
+            const categories = orders.reduce((counts, order) => {
+                const category = order.type || "Other";
+                counts[category] = (counts[category] || 0) + 1;
+                return counts;
+            }, {});
+            categoryChart.data.labels = Object.keys(categories);
+            categoryChart.data.datasets[0].data = Object.values(categories);
+            categoryChart.update();
         }
 
         function renderOrders(query = "") {
