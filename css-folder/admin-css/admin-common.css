@@ -230,6 +230,15 @@ body {
     margin-left: var(--sidebar-collapsed-width) !important;
 }
 
+body.sidebar-collapsed .sidebar {
+    width: var(--sidebar-collapsed-width) !important;
+}
+
+body.sidebar-collapsed .main-content,
+body.sidebar-collapsed .main {
+    margin-left: var(--sidebar-collapsed-width) !important;
+}
+
 /* Mobile Header */
 .mobile-header {
     display: none;
@@ -254,11 +263,25 @@ body {
     opacity: 0;
 }
 
+body.mobile-sidebar-open .sidebar {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+body.mobile-sidebar-open .sidebar-overlay,
+body.mobile-sidebar-open .overlay {
+    display: block;
+    opacity: 1;
+}
+
 @media (max-width: 991.98px) {
 
     .sidebar {
         transform: translateX(-100%);
         width: 260px !important;
+        visibility: hidden;
+        opacity: 0;
     }
 
     /* Ensure all link text and chevron icons show up instantly without reload */
