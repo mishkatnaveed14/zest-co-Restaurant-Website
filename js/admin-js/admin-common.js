@@ -25,8 +25,20 @@ document.addEventListener("DOMContentLoaded", () => {
         collapsed ? "88px" : "260px",
         "important",
       );
+      sidebar.style.setProperty(
+        "min-width",
+        collapsed ? "88px" : "260px",
+        "important",
+      );
+      sidebar.style.setProperty(
+        "max-width",
+        collapsed ? "88px" : "260px",
+        "important",
+      );
     } else {
       sidebar.style.removeProperty("width");
+      sidebar.style.removeProperty("min-width");
+      sidebar.style.removeProperty("max-width");
     }
     if (collapsed) closeInventory();
   };
@@ -106,8 +118,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.innerWidth >= 992) {
       closeDrawer();
       sidebar.style.removeProperty("width");
+      sidebar.style.removeProperty("min-width");
+      sidebar.style.removeProperty("max-width");
     } else {
       sidebar.style.removeProperty("width");
+      sidebar.style.removeProperty("min-width");
+      sidebar.style.removeProperty("max-width");
       document.body.classList.remove("sidebar-collapsed");
       sidebar.classList.remove("collapsed");
     }
