@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const overlay =
     document.getElementById("sidebarOverlay") ||
     document.getElementById("overlay");
-    const desktopToggle = document.getElementById('sidebarToggle');
+  const desktopToggle = document.getElementById("sidebarToggle");
 
   const setCollapsed = (collapsed) => {
     document.body.classList.toggle("sidebar-collapsed", collapsed);
@@ -55,9 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
       setCollapsed(!document.body.classList.contains("sidebar-collapsed"));
   });
 
-    desktopToggle?.addEventListener("click", () => {
-        setCollapsed(!document.body.classList.contains('sidebar-collapsed'));
-    });
+  desktopToggle?.addEventListener("click", () => {
+    setCollapsed(!document.body.classList.contains("sidebar-collapsed"));
+  });
 
   inventoryToggle?.addEventListener("click", toggleInventory);
 
