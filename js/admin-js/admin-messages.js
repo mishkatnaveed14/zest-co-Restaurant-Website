@@ -1,52 +1,52 @@
-const conversations = [
-    {
-        id: "maya-chen", name: "Maya Chen", initials: "MC", color: "#9b6f55", time: "09:42", unread: 2,
-        detail: "Guest · Chatling", messages: [
-            { from: "customer", text: "Hi! Do you have a table for two tonight?", time: "09:35" },
-            { from: "admin", text: "Hello Maya, I can help with that. What time would you prefer?", time: "09:38" },
-            { from: "customer", text: "Around 8:30 would be perfect.", time: "09:42" }
-        ]
-    },
-    {
-        id: "daniel-wong", name: "Daniel Wong", initials: "DW", color: "#537d87", time: "Yesterday", unread: 0,
-        detail: "Guest · Chatling", messages: [
-            { from: "customer", text: "Is the chef's tasting menu available this weekend?", time: "Yesterday" },
-            { from: "admin", text: "Yes, Daniel. We serve it Friday through Sunday from 6pm.", time: "Yesterday" }
-        ]
-    },
-    {
-        id: "sophia-reed", name: "Sophia Reed", initials: "SR", color: "#886b91", time: "Mon", unread: 1,
-        detail: "Guest · Chatling", messages: [
-            { from: "customer", text: "Can I change my reservation from 4 to 6 guests?", time: "Mon" }
-        ]
-    },
-    {
-        id: "omar-hassan", name: "Omar Hassan", initials: "OH", color: "#7b8151", time: "Sun", unread: 0,
-        detail: "Guest · Chatling", messages: [
-            { from: "customer", text: "Thank you for the recommendation. The brisket was excellent!", time: "Sun" },
-            { from: "admin", text: "We are delighted you enjoyed it, Omar.", time: "Sun" }
-        ]
-    }
-];
+const STORAGE_KEY = "zestcoChatConversations";
 
+let conversations = [];
 let selectedConversationId = null;
 let activeFilter = "all";
+
+function getStoredConversations() {
+    try {
+        const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+        return Array.isArray(stored) ? stored : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function renderFromStorage() {
+    conversations = getStoredConversations();
+    renderConversationList();
+    if (!selectedConversationId && conversations.length) {
+        selectedConversationId = conversations[0].id;
+        selectConversation(selectedConversationId);
+    }
+}
+
+window.addEventListener("storage", (event) => {
+    if (event.key === STORAGE_KEY) {
+        renderFromStorage();
+    }
+});
+
+window.addEventListener("zestco-chat-updated", () => {
+    renderFromStorage();
+});
 
 const listElement = document.getElementById("conversationList");
 const workspaceElement = document.getElementById("chatWorkspace");
 const panelElement = document.getElementById("chatPanel");
 
 function renderConversationList() {
-    const query = document.getElementById("conversationSearch").value.trim().toLowerCase();
+    const queryTerm = document.getElementById("conversationSearch").value.trim().toLowerCase();
     const visibleConversations = conversations.filter((conversation) => {
-        const matchesSearch = `${conversation.name} ${conversation.messages.at(-1)?.text || ""}`.toLowerCase().includes(query);
+        const matchesSearch = `${conversation.name} ${conversation.messages.at(-1)?.text || ""}`.toLowerCase().includes(queryTerm);
         const matchesFilter = activeFilter === "all" || conversation.unread > 0;
         return matchesSearch && matchesFilter;
     });
 
     listElement.innerHTML = visibleConversations.length
         ? visibleConversations.map((conversation) => {
-            const lastMessage = conversation.messages.at(-1);
+            const lastMessage = conversation.messages.at(-1) || { text: "No message yet" };
             return `<button class="conversation-item ${conversation.id === selectedConversationId ? "active" : ""}" data-conversation-id="${conversation.id}">
                 <span class="conversation-avatar" style="--avatar-color: ${conversation.color}">${conversation.initials}</span>
                 <span class="conversation-copy"><span class="conversation-name">${conversation.name}</span><span class="conversation-preview">${lastMessage.text}</span></span>
@@ -65,9 +65,8 @@ function selectConversation(conversationId) {
     if (!conversation) return;
     selectedConversationId = conversationId;
     conversation.unread = 0;
-    panelElement.innerHTML = `<div class="chat-header"><div class="chat-contact"><button class="back-to-inbox" id="backToInbox" aria-label="Back to inbox"><i class="bi bi-arrow-left"></i></button><span class="conversation-avatar chat-avatar" style="--avatar-color: ${conversation.color}">${conversation.initials}</span><div><h3>${conversation.name}</h3><p>${conversation.detail}</p></div></div><div class="chat-actions"><button title="Start call"><i class="bi bi-telephone"></i></button><button title="More options"><i class="bi bi-three-dots-vertical"></i></button></div></div><div class="chat-history" id="chatHistory">${conversation.messages.map(renderMessage).join("")}</div><form class="reply-box" id="replyForm"><textarea id="replyInput" rows="1" placeholder="Write a reply..." aria-label="Write a reply"></textarea><button class="send-button" type="submit" aria-label="Send reply"><i class="bi bi-send-fill"></i></button></form>`;
+    panelElement.innerHTML = `<div class="chat-header"><div class="chat-contact"><button class="back-to-inbox" id="backToInbox" aria-label="Back to inbox"><i class="bi bi-arrow-left"></i></button><span class="conversation-avatar chat-avatar" style="--avatar-color: ${conversation.color}">${conversation.initials}</span><div><h3>${conversation.name}</h3><p>${conversation.detail}</p></div></div></div><div class="chat-history" id="chatHistory">${conversation.messages.map(renderMessage).join("")}</div>`;
     document.getElementById("backToInbox")?.addEventListener("click", () => workspaceElement.classList.remove("show-chat"));
-    document.getElementById("replyForm").addEventListener("submit", sendReply);
     workspaceElement.classList.add("show-chat");
     renderConversationList();
     document.getElementById("chatHistory").scrollTop = document.getElementById("chatHistory").scrollHeight;
@@ -77,20 +76,33 @@ function renderMessage(message) {
     return `<div class="message-bubble ${message.from}">${message.text}<time>${message.time}</time></div>`;
 }
 
-function sendReply(event) {
-    event.preventDefault();
-    const input = document.getElementById("replyInput");
-    const text = input.value.trim();
-    const conversation = conversations.find((item) => item.id === selectedConversationId);
-    if (!text || !conversation) return;
-    conversation.messages.push({ from: "admin", text, time: "Now" });
-    conversation.time = "Now";
-    input.value = "";
-    selectConversation(conversation.id);
-}
+window.zestcoDebugSeedConversation = () => {
+    const existing = getStoredConversations();
+    const newConversation = {
+        id: `debug-${Date.now()}`,
+        name: "New Guest User",
+        initials: "NG",
+        color: "#9b6f55",
+        email: "guest@example.com",
+        detail: "Guest · Chatling",
+        unread: 1,
+        time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        messages: [
+            {
+                from: "customer",
+                text: "Hi, I would like to know if you have vegan options for dinner.",
+                time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+            },
+        ],
+    };
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([newConversation, ...existing]));
+    renderFromStorage();
+    return true;
+};
 
 document.addEventListener("DOMContentLoaded", () => {
-    renderConversationList();
+    renderFromStorage();
     document.getElementById("conversationSearch").addEventListener("input", renderConversationList);
     document.querySelectorAll(".filter-button").forEach((button) => button.addEventListener("click", () => {
         activeFilter = button.dataset.filter;
