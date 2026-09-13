@@ -8,7 +8,7 @@ import {
   GoogleAuthProvider,
   signOut,
   sendEmailVerification,
-} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 import{
   getFirestore, 
     collection, 
@@ -16,7 +16,7 @@ import{
     doc, 
     updateDoc, 
     deleteDoc 
-} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBfGPlgUuzJgDa4kNVV1ksjRZwfhFMXW9I",

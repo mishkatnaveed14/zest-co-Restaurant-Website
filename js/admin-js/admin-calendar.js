@@ -1,5 +1,5 @@
 import { 
-    auth,
+    
     db, 
     collection, 
     onSnapshot, 
