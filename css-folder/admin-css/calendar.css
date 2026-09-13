@@ -1,0 +1,89 @@
+/* Calendar Specific Styling */
+.calendar-card {
+    border-radius: 16px;
+    background: #FFFFFF;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-card);
+}
+
+.calendar-sidebar-card {
+    border-radius: 16px;
+    background: #FFFFFF;
+    border: 1px solid var(--border-card);
+}
+
+/* Event Dot Colors */
+.event-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.bg-reservation { background-color: #d4af37 !important; }
+.bg-shift { background-color: #0284c7 !important; }
+.bg-special { background-color: #7e22ce !important; }
+.bg-maintenance { background-color: #dc2626 !important; }
+
+/* Customizing FullCalendar Theme to match ZestCo Gold Theme */
+.fc-theme-standard th {
+    background-color: var(--gold-soft-tint);
+    border-color: rgba(197, 168, 128, 0.2);
+    padding: 8px 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.fc .fc-button-primary {
+    background-color: var(--main-bg);
+    border-color: var(--border-card);
+    color: var(--text-dark);
+    font-weight: 500;
+    text-transform: capitalize;
+    border-radius: 8px;
+}
+
+.fc .fc-button-primary:hover,
+.fc .fc-button-primary:focus,
+.fc .fc-button-primary:active {
+    background-color: var(--gold-soft-tint) !important;
+    border-color: var(--accent-gold) !important;
+    color: var(--accent-gold-bright) !important;
+    box-shadow: none !important;
+}
+
+.fc .fc-button-active {
+    background-color: var(--accent-gold-bright) !important;
+    border-color: var(--accent-gold-bright) !important;
+    color: #FFFFFF !important;
+}
+
+.fc-event {
+    border-radius: 6px !important;
+    padding: 2px 4px !important;
+    font-size: 0.8rem !important;
+    border: none !important;
+    cursor: pointer;
+}
+
+.btn-gold {
+    background-color: var(--accent-gold-bright);
+    color: #FFFFFF;
+    border: none;
+}
+
+.btn-gold:hover {
+    background-color: var(--accent-gold);
+    color: #FFFFFF;
+}
+
+.upcoming-item {
+    border-left: 3px solid #D4AF37;
+    padding-left: 10px;
+}

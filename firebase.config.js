@@ -8,8 +8,15 @@ import {
   GoogleAuthProvider,
   signOut,
   sendEmailVerification,
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+import{
+  getFirestore, 
+    collection, 
+    onSnapshot, 
+    doc, 
+    updateDoc, 
+    deleteDoc 
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBfGPlgUuzJgDa4kNVV1ksjRZwfhFMXW9I",
@@ -36,4 +43,10 @@ export {
   GoogleAuthProvider,
   signOut,
   sendEmailVerification,
+  getFirestore, 
+    collection, 
+    onSnapshot, 
+    doc, 
+    updateDoc, 
+    deleteDoc 
 };
