@@ -9,7 +9,14 @@ import {
   signOut,
   sendEmailVerification,
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
-
+import{
+  getFirestore, 
+    collection, 
+    onSnapshot, 
+    doc, 
+    updateDoc, 
+    deleteDoc 
+} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 const firebaseConfig = {
   apiKey: "AIzaSyBm9kCZhDtXJOK148a-8acVIoLBux4w2Pc",
   authDomain:"zestandco-7b360.firebaseapp.com",
@@ -22,10 +29,12 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 //  export
 export {
   auth,
+  db,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithRedirect,
@@ -33,4 +42,10 @@ export {
   GoogleAuthProvider,
   signOut,
   sendEmailVerification,
+  getFirestore, 
+    collection, 
+    onSnapshot, 
+    doc, 
+    updateDoc, 
+    deleteDoc 
 };

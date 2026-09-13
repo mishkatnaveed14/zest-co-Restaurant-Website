@@ -1,0 +1,64 @@
+/* Metric Stats Styling */
+.stat-card {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid var(--border-card);
+    box-shadow: var(--card-shadow);
+    transition: transform 0.25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+/* Table & Card Styles */
+.order-card {
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-card);
+}
+
+.filter-select {
+    width: 160px;
+    border-radius: 20px;
+    border-color: var(--border-card);
+    padding-left: 12px;
+}
+
+.filter-select:focus {
+    border-color: var(--accent-gold-bright);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+/* Badge Tweaks */
+.badge-pending { background-color: #fef3c7; color: #d97706; }
+.badge-preparing { background-color: #e0f2fe; color: #0284c7; }
+.badge-ready { background-color: #f3e8ff; color: #7e22ce; }
+.badge-delivered { background-color: #dcfce7; color: #15803d; }
+.badge-cancelled { background-color: #fee2e2; color: #b91c1c; }
+
+.btn-gold {
+    background-color: var(--accent-gold-bright);
+    color: #ffffff;
+    border: none;
+    font-weight: 500;
+}
+
+.btn-gold:hover {
+    background-color: #c5a880;
+    color: #ffffff;
+}
