@@ -140,6 +140,42 @@ function getScrollbarWidth() {
   return w > 0 ? w : 0;
 }
 
+function updateNavbarForAuth(user) {
+  document.querySelectorAll(".navbar-actions [data-auth-open]").forEach((button) => {
+    button.hidden = Boolean(user);
+  });
+  document.querySelectorAll(".chat-with-us").forEach((button) => {
+    button.hidden = !user;
+  });
+}
+
+function openChatlingWidget() {
+  const widgetApis = [window.chtlWidget, window.Chatling, window.chatling, window.chtl];
+  for (const widgetApi of widgetApis) {
+    const openMethod = widgetApi?.open || widgetApi?.openChat;
+    if (typeof openMethod === "function") {
+      openMethod.call(widgetApi);
+      return;
+    }
+  }
+
+  const launcher = document.querySelector(
+    "[data-chatling-widget] button, [data-chatling-widget] [role='button']",
+  );
+  if (launcher) {
+    launcher.click();
+    return;
+  }
+
+  if (document.getElementById("chtl-script")) {
+    window.setTimeout(openChatlingWidget, 300);
+  }
+}
+
+document.querySelectorAll(".chat-with-us").forEach((button) => {
+  button.addEventListener("click", openChatlingWidget);
+});
+
 // ===== CHATLING CUSTOMER CHATBOT (only for signed-in users) =====
 (function initChatlingWidget() {
   if (window.location.pathname.includes("/admin/")) return;
@@ -182,6 +218,7 @@ function getScrollbarWidth() {
   };
 
   onAuthStateChanged(auth, (user) => {
+    updateNavbarForAuth(user);
     if (user) {
       loadChatlingWidget();
     } else {
@@ -681,94 +718,3 @@ document.getElementById("logout")?.addEventListener("click", _singOut);
 
 // ================== firebase authentication working end ============================
 
-// ===== TEST CHAT PANEL (manual demo for admin inbox) =====
-function initManualChatTestWidget() {
-  if (window.location.pathname.includes("/admin/")) return;
-  if (document.getElementById("zestcoTestChatWidget")) return;
-
-  const panel = document.createElement("div");
-  panel.id = "zestcoTestChatWidget";
-  panel.style.position = "fixed";
-  panel.style.right = "18px";
-  panel.style.bottom = "18px";
-  panel.style.zIndex = "9999";
-  panel.style.width = "290px";
-  panel.style.maxWidth = "calc(100vw - 24px)";
-  panel.style.background = "#fff";
-  panel.style.border = "1px solid rgba(197,168,128,0.3)";
-  panel.style.boxShadow = "0 12px 30px rgba(0,0,0,0.12)";
-  panel.style.borderRadius = "14px";
-  panel.style.overflow = "hidden";
-  panel.style.fontFamily = "Poppins, sans-serif";
-
-  const header = document.createElement("div");
-  header.style.background = "linear-gradient(135deg, #d4af37, #c59d5b)";
-  header.style.color = "#fff";
-  header.style.padding = "10px 12px";
-  header.style.fontWeight = "600";
-  header.style.fontSize = "13px";
-  header.textContent = "Quick Test Chat";
-
-  const body = document.createElement("div");
-  body.style.padding = "12px";
-
-  const input = document.createElement("input");
-  input.type = "text";
-  input.placeholder = "Name (optional)";
-  input.style.width = "100%";
-  input.style.border = "1px solid #e5ddd0";
-  input.style.borderRadius = "8px";
-  input.style.padding = "8px 10px";
-  input.style.marginBottom = "8px";
-  input.style.boxSizing = "border-box";
-
-  const textarea = document.createElement("textarea");
-  textarea.placeholder = "Type a test message";
-  textarea.rows = 3;
-  textarea.style.width = "100%";
-  textarea.style.border = "1px solid #e5ddd0";
-  textarea.style.borderRadius = "8px";
-  textarea.style.padding = "8px 10px";
-  textarea.style.resize = "vertical";
-  textarea.style.boxSizing = "border-box";
-
-  const button = document.createElement("button");
-  button.type = "button";
-  button.textContent = "Send to admin";
-  button.style.width = "100%";
-  button.style.marginTop = "8px";
-  button.style.border = "none";
-  button.style.borderRadius = "8px";
-  button.style.padding = "10px";
-  button.style.background = "#1d1d1d";
-  button.style.color = "#fff";
-  button.style.cursor = "pointer";
-  button.style.fontWeight = "600";
-
-  button.addEventListener("click", () => {
-    const message = textarea.value.trim();
-    if (!message) {
-      textarea.focus();
-      return;
-    }
-
-    window.zestcoAddChatMessage({
-      name: input.value.trim() || undefined,
-      text: message,
-    });
-
-    textarea.value = "";
-    textarea.focus();
-  });
-
-  body.appendChild(input);
-  body.appendChild(textarea);
-  body.appendChild(button);
-  panel.appendChild(header);
-  panel.appendChild(body);
-  document.body.appendChild(panel);
-}
-
-if (!window.location.pathname.includes("/admin/")) {
-  initManualChatTestWidget();
-}
