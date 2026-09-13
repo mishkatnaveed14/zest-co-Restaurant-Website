@@ -1,4 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -8,7 +8,7 @@ import {
   GoogleAuthProvider,
   signOut,
   sendEmailVerification,
-} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 import{
   getFirestore, 
     collection, 
@@ -16,7 +16,7 @@ import{
     doc, 
     updateDoc, 
     deleteDoc 
-} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 const firebaseConfig = {
   apiKey: "AIzaSyBm9kCZhDtXJOK148a-8acVIoLBux4w2Pc",
   authDomain:"zestandco-7b360.firebaseapp.com",
