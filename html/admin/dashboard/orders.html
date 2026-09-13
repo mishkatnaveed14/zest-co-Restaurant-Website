@@ -170,7 +170,7 @@
             </div>
         </header>
 
-        <div class="container-fluid px-0 mt-4">
+        <div class="container-fluid px-3 mt-4">
             <!-- Summary Metric Cards -->
             <div class="row g-3 mb-4">
                 <div class="col-12 col-sm-6 col-xl-3">
@@ -274,7 +274,10 @@
                 </thead>
                 <tbody id="ordersTableBody">
                     <tr>
-                        <td colspan="7" class="text-center py-4 text-muted">Loading orders...</td>
+                        <td colspan="7" class="text-center py-4 text-muted">
+                            <div class="spinner-border text-warning mb-2" role="status"></div>
+                           <p class="mb-0">Loading Orders...</p>
+                        </td>
                     </tr>
                 </tbody>
             </table>
