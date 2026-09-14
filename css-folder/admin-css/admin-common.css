@@ -1322,7 +1322,7 @@ img {
 
     overflow: hidden;
 
-    color: #aeafb3;
+    color: #dfe1e5 !important;
 
     text-decoration: none;
     white-space: nowrap;
@@ -1353,7 +1353,7 @@ img {
 
 .nav-link-custom:hover,
 .nav-link-custom.active {
-    color: var(--nav-text-light);
+    color: #ffffff !important;
 
     background: rgba(197, 168, 128, 0.11);
 
