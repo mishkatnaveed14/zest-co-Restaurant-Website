@@ -24,6 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const brandArrow = document.querySelector(".brand-toggle-arrow");
   const inventoryToggle = document.getElementById("inventoryToggle");
   const inventorySubmenu = document.getElementById("inventorySubmenu");
+  const inventoryLinks = inventorySubmenu
+    ? inventorySubmenu.querySelectorAll(".nav-link-custom")
+    : [];
   const mobileToggle =
     document.getElementById("mobileSidebarToggle") ||
     document.getElementById("mobileMenu");
@@ -97,6 +100,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (inventoryToggle?.dataset.keepOpen === "true") openInventory();
 
+  const syncInventoryActiveState = () => {
+    const isPurchasePage = window.location.pathname.endsWith("purchase-order.html");
+    inventoryLinks.forEach((link) => {
+      const href = link.getAttribute("href") || "";
+      link.classList.toggle("active", isPurchasePage
+        ? href.includes("purchase-order.html")
+        : href.includes("inventory.html") && !href.includes("purchase-order.html"));
+    });
+
+    if (inventoryToggle) {
+      inventoryToggle.classList.toggle("active", !isPurchasePage);
+      inventoryToggle.setAttribute("aria-expanded", "true");
+      inventorySubmenu && (inventorySubmenu.style.height = `${inventorySubmenu.scrollHeight}px`);
+    }
+  };
+
   const toggleInventory = (event) => {
     if (inventoryToggle.dataset.keepOpen === "true") {
       event.preventDefault();
@@ -132,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   inventoryToggle?.addEventListener("click", toggleInventory);
+  syncInventoryActiveState();
 
   mobileToggle?.addEventListener("click", () => {
     const open = document.body.classList.toggle("mobile-sidebar-open");
