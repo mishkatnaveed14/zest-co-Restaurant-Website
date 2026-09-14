@@ -8,7 +8,18 @@ import {
   GoogleAuthProvider,
   signOut,
   sendEmailVerification,
+  onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+<<<<<<< HEAD
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  onSnapshot,
+  serverTimestamp,
+=======
 import{
   getFirestore, 
     collection, 
@@ -16,6 +27,7 @@ import{
     doc, 
     updateDoc, 
     deleteDoc 
+>>>>>>> 14a21fe26338d6e8fb158df9ded9853ce3a82b19
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -36,6 +48,12 @@ const db = getFirestore(app);
 export {
   auth,
   db,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  onSnapshot,
+  serverTimestamp,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithRedirect,
@@ -43,10 +61,14 @@ export {
   GoogleAuthProvider,
   signOut,
   sendEmailVerification,
+<<<<<<< HEAD
+  onAuthStateChanged,
+=======
   getFirestore, 
     collection, 
     onSnapshot, 
     doc, 
     updateDoc, 
     deleteDoc 
+>>>>>>> 14a21fe26338d6e8fb158df9ded9853ce3a82b19
 };

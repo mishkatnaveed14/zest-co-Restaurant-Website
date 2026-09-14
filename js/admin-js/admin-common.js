@@ -2,6 +2,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.getElementById("sidebar");
   if (!sidebar) return;
 
+  const themeButton = document.getElementById("themeToggle");
+  const applyTheme = (isDark) => {
+    document.body.classList.toggle("dark", isDark);
+    if (themeButton) {
+      themeButton.innerHTML = isDark
+        ? '<i class="fa-regular fa-sun"></i>'
+        : '<i class="fa-regular fa-moon"></i>';
+    }
+  };
+
+  applyTheme(localStorage.getItem("restro-theme") === "dark");
+  themeButton?.addEventListener("click", () => {
+    const isDark = !document.body.classList.contains("dark");
+    applyTheme(isDark);
+    localStorage.setItem("restro-theme", isDark ? "dark" : "light");
+  });
+
   const brandTrigger = document.getElementById("brandToggleTrigger");
   const brandArrow = document.querySelector(".brand-toggle-arrow");
   const inventoryToggle = document.getElementById("inventoryToggle");
@@ -14,6 +31,20 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("sidebarOverlay") ||
     document.getElementById("overlay");
   const desktopToggle = document.getElementById("sidebarToggle");
+
+  document.querySelectorAll(".profile").forEach((profile) => {
+    profile.setAttribute("role", "link");
+    profile.setAttribute("tabindex", "0");
+    profile.addEventListener("click", () => {
+      window.location.assign("./profile.html");
+    });
+    profile.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        window.location.assign("./profile.html");
+      }
+    });
+  });
 
   const setCollapsed = (collapsed) => {
     document.body.classList.toggle("sidebar-collapsed", collapsed);
@@ -52,17 +83,29 @@ document.addEventListener("DOMContentLoaded", () => {
       ?.classList.remove("is-open");
   };
 
-  const toggleInventory = (event) => {
-    event.preventDefault();
-    if (sidebar.classList.contains("collapsed")) setCollapsed(false);
-    const open = inventoryToggle.getAttribute("aria-expanded") === "true";
-    inventoryToggle.setAttribute("aria-expanded", String(!open));
-    inventorySubmenu.style.height = open
-      ? "0px"
-      : `${inventorySubmenu.scrollHeight}px`;
+  const openInventory = () => {
+    if (!inventorySubmenu) return;
+    inventorySubmenu.style.height = `${inventorySubmenu.scrollHeight}px`;
+    inventoryToggle?.setAttribute("aria-expanded", "true");
     inventoryToggle
-      .querySelector(".chevron-icon")
-      ?.classList.toggle("is-open", !open);
+      ?.querySelector(".chevron-icon")
+      ?.classList.add("is-open");
+  };
+
+  if (inventoryToggle?.dataset.keepOpen === "true") openInventory();
+
+  const toggleInventory = (event) => {
+    if (inventoryToggle.dataset.keepOpen === "true") {
+      event.preventDefault();
+      openInventory();
+      return;
+    }
+
+    if (inventoryToggle.getAttribute("href") === "#") {
+      event.preventDefault();
+      window.location.assign("./inventory.html");
+      return;
+    }
   };
 
   const closeDrawer = () => {

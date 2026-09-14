@@ -140,6 +140,93 @@ function getScrollbarWidth() {
   return w > 0 ? w : 0;
 }
 
+function updateNavbarForAuth(user) {
+  document.querySelectorAll(".navbar-actions [data-auth-open]").forEach((button) => {
+    button.hidden = Boolean(user);
+  });
+  document.querySelectorAll(".chat-with-us").forEach((button) => {
+    button.hidden = !user;
+  });
+}
+
+function openChatlingWidget() {
+  const widgetApis = [window.chtlWidget, window.Chatling, window.chatling, window.chtl];
+  for (const widgetApi of widgetApis) {
+    const openMethod = widgetApi?.open || widgetApi?.openChat;
+    if (typeof openMethod === "function") {
+      openMethod.call(widgetApi);
+      return;
+    }
+  }
+
+  const launcher = document.querySelector(
+    "[data-chatling-widget] button, [data-chatling-widget] [role='button']",
+  );
+  if (launcher) {
+    launcher.click();
+    return;
+  }
+
+  if (document.getElementById("chtl-script")) {
+    window.setTimeout(openChatlingWidget, 300);
+  }
+}
+
+document.querySelectorAll(".chat-with-us").forEach((button) => {
+  button.addEventListener("click", openChatlingWidget);
+});
+
+// ===== CHATLING CUSTOMER CHATBOT (only for signed-in users) =====
+(function initChatlingWidget() {
+  if (window.location.pathname.includes("/admin/")) return;
+
+  const chatbotId = "1425934228";
+  const scriptId = "chtl-script";
+
+  const removeChatlingWidget = () => {
+    const existingScript = document.getElementById(scriptId);
+    if (existingScript) existingScript.remove();
+
+    const existingWidget = document.querySelector("[data-chatling-widget]");
+    if (existingWidget) existingWidget.remove();
+
+    const existingIframe = document.querySelector("iframe[title*='chatling' i]");
+    if (existingIframe) existingIframe.remove();
+
+    const legacyConfig = document.getElementById("chtl-config");
+    if (legacyConfig) legacyConfig.remove();
+
+    delete window.chtlConfig;
+  };
+
+  const loadChatlingWidget = () => {
+    if (document.getElementById(scriptId)) return;
+
+    const config = document.createElement("script");
+    config.id = "chtl-config";
+    config.type = "text/javascript";
+    config.textContent = `window.chtlConfig = { chatbotId: "${chatbotId}" };`;
+    document.head.appendChild(config);
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.id = scriptId;
+    script.type = "text/javascript";
+    script.dataset.id = chatbotId;
+    script.src = "https://chatling.ai/js/embed.js";
+    document.head.appendChild(script);
+  };
+
+  onAuthStateChanged(auth, (user) => {
+    updateNavbarForAuth(user);
+    if (user) {
+      loadChatlingWidget();
+    } else {
+      removeChatlingWidget();
+    }
+  });
+})();
+
 function switchAuthTab(tab) {
   if (!authModal) return;
   const tabs = authModal.querySelectorAll(".auth-tab");
@@ -217,6 +304,7 @@ import {
   db,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
   // google authentication
   signInWithRedirect,
   getRedirectResult,
@@ -227,14 +315,162 @@ import {
 import {
   doc,
   getDoc,
-  serverTimestamp,
   setDoc,
+  serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 // sign up form autnentication
 const name = document.getElementById("signupName");
 const email = document.getElementById("signupEmail");
 const password = document.getElementById("signupPassword");
 const signupForm = document.getElementById("authSignupForm");
+
+function saveCurrentUserSession(userData) {
+  if (!userData) {
+    localStorage.removeItem("zestcoCurrentUser");
+    return;
+  }
+
+  localStorage.setItem("zestcoCurrentUser", JSON.stringify(userData));
+}
+
+window.zestcoAddChatMessage = function ({
+  name,
+  email,
+  text,
+  conversationId,
+} = {}) {
+  if (!text || !String(text).trim()) return false;
+
+  const profile = JSON.parse(localStorage.getItem("zestcoCurrentUser") || "null");
+  const currentUser = auth?.currentUser;
+  const userName = name || profile?.name || currentUser?.displayName || currentUser?.email?.split("@")[0] || "Guest User";
+  const userEmail = email || profile?.email || currentUser?.email || "";
+  const id = conversationId || currentUser?.uid || profile?.uid || `guest-${Date.now()}`;
+  const time = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+  const stored = JSON.parse(localStorage.getItem("zestcoChatConversations") || "[]");
+  const existingIndex = stored.findIndex(
+    (conversation) =>
+      conversation.id === id ||
+      conversation.email === userEmail ||
+      conversation.name === userName,
+  );
+
+  const newMessage = {
+    from: "customer",
+    text: String(text).trim(),
+    time,
+  };
+
+  if (existingIndex >= 0) {
+    const existingConversation = stored[existingIndex];
+    existingConversation.messages.push(newMessage);
+    existingConversation.time = time;
+    existingConversation.unread = (existingConversation.unread || 0) + 1;
+    stored[existingIndex] = existingConversation;
+  } else {
+    stored.unshift({
+      id,
+      name: userName,
+      initials: userName.split(" ").filter(Boolean).slice(0, 2).map((part) => part[0].toUpperCase()).join("") || "GU",
+      color: ["#9b6f55", "#537d87", "#886b91", "#7b8151"][Math.floor(Math.random() * 4)],
+      email: userEmail,
+      detail: "Guest · Chatling",
+      unread: 1,
+      time,
+      messages: [newMessage],
+    });
+  }
+
+  localStorage.setItem("zestcoChatConversations", JSON.stringify(stored));
+  window.dispatchEvent(new CustomEvent("zestco-chat-updated", { detail: stored }));
+
+  try {
+    window.dispatchEvent(
+      new StorageEvent("storage", {
+        key: "zestcoChatConversations",
+        newValue: JSON.stringify(stored),
+      }),
+    );
+  } catch (error) {
+    // StorageEvent is not always constructible in all browsers.
+  }
+
+  return true;
+};
+
+window.zestcoDebugSaveChat = async ({
+  name,
+  email,
+  text,
+  conversationId,
+} = {}) => {
+  return window.zestcoAddChatMessage({
+    name,
+    email,
+    text,
+    conversationId,
+  });
+};
+
+function saveChatMessageFromUser(message, authorName = "Guest User") {
+  if (!message || !String(message).trim()) return;
+
+  const cleanedMessage = String(message).trim();
+  const storedProfile = JSON.parse(localStorage.getItem("zestcoCurrentUser") || "null");
+  const currentName = authorName || storedProfile?.name || "Guest User";
+  const currentEmail = storedProfile?.email || "";
+  const storageKey = "zestcoChatConversations";
+  const existing = JSON.parse(localStorage.getItem(storageKey) || "[]");
+  const now = new Date();
+  const timeLabel = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+  const matchingIndex = existing.findIndex((conversation) => {
+    const sameName = conversation.name && conversation.name.toLowerCase() === currentName.toLowerCase();
+    const sameEmail = currentEmail && conversation.email && conversation.email.toLowerCase() === currentEmail.toLowerCase();
+    return sameName || sameEmail;
+  });
+
+  const record = {
+    id: matchingIndex >= 0 ? existing[matchingIndex].id : `${Date.now()}`,
+    name: currentName,
+    email: currentEmail,
+    initials: currentName
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0].toUpperCase())
+      .join("") || "GU",
+    color: ["#9b6f55", "#537d87", "#886b91", "#7b8151"][Math.floor(Math.random() * 4)],
+    time: timeLabel,
+    unread: 1,
+    detail: "Guest · Chatling",
+    messages: [
+      {
+        from: "customer",
+        text: cleanedMessage,
+        time: timeLabel,
+      },
+    ],
+  };
+
+  if (matchingIndex >= 0) {
+    const existingConversation = existing[matchingIndex];
+    existingConversation.messages.push({
+      from: "customer",
+      text: cleanedMessage,
+      time: timeLabel,
+    });
+    existingConversation.time = timeLabel;
+    existingConversation.unread = (existingConversation.unread || 0) + 1;
+    existingConversation.detail = "Guest · Chatling";
+    existing[matchingIndex] = existingConversation;
+  } else {
+    existing.unshift(record);
+  }
+
+  localStorage.setItem(storageKey, JSON.stringify(existing));
+}
 
 const signup = async (e) => {
   e.preventDefault();
@@ -254,13 +490,29 @@ const signup = async (e) => {
     const user = credential.user;
     console.log("User created successfully:", user);
 
+<<<<<<< HEAD
+
+    const userName = name?.value.trim() || "Guest User";
+
+=======
+>>>>>>> 14a21fe26338d6e8fb158df9ded9853ce3a82b19
     await setDoc(doc(db, "users", user.uid), {
-      name: name?.value.trim() || "",
+      name: userName,
       email: user.email,
       role: "user",
       timestamp: serverTimestamp(),
     });
 
+<<<<<<< HEAD
+    saveCurrentUserSession({
+      uid: user.uid,
+      name: userName,
+      email: user.email,
+      role: "user",
+    });
+
+=======
+>>>>>>> 14a21fe26338d6e8fb158df9ded9853ce3a82b19
     if (!credential.user.emailVerified) {
       await sendEmailVerification(user);
       signOut(auth);
@@ -311,6 +563,17 @@ const signin = async (e) => {
     );
     const user = credential.user;
     console.log("User signed in successfully:", user);
+
+    const userDocument = await getDoc(doc(db, "users", user.uid));
+    const userData = userDocument.exists() ? userDocument.data() : null;
+
+    saveCurrentUserSession({
+      uid: user.uid,
+      name: userData?.name || user.email?.split("@")[0] || "Guest User",
+      email: user.email,
+      role: userData?.role || "user",
+    });
+
     if (!credential.user.emailVerified) {
       await sendEmailVerification(user);
       signOut(auth);
@@ -369,6 +632,81 @@ const google = async (e) => {
   }
 };
 
+window.addEventListener("message", (event) => {
+  const payload = event.data;
+  if (!payload || typeof payload !== "object") return;
+
+  const textFromPayload =
+    payload.text ||
+    payload.message ||
+    payload.content ||
+    payload.data?.text ||
+    payload.data?.message ||
+    payload.payload?.text ||
+    payload.payload?.message;
+
+  if (!textFromPayload) return;
+
+  const source = payload.source || payload.type || payload.event || "chatling";
+  const allowChat = String(source).toLowerCase().includes("chatling") || String(textFromPayload).length > 0;
+
+  if (allowChat) {
+    const profile = JSON.parse(localStorage.getItem("zestcoCurrentUser") || "null");
+    const currentUser = auth?.currentUser;
+    const userName = profile?.name || currentUser?.displayName || currentUser?.email?.split("@")[0] || "Guest User";
+    const userEmail = profile?.email || currentUser?.email || "";
+    const conversationId = currentUser?.uid || profile?.uid || `guest-${Date.now()}`;
+    const time = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+    const stored = JSON.parse(localStorage.getItem("zestcoChatConversations") || "[]");
+    const existingIndex = stored.findIndex(
+      (conversation) =>
+        conversation.id === conversationId ||
+        conversation.email === userEmail ||
+        conversation.name === userName,
+    );
+
+    const newMessage = {
+      from: "customer",
+      text: String(textFromPayload).trim(),
+      time,
+    };
+
+    if (existingIndex >= 0) {
+      const existingConversation = stored[existingIndex];
+      existingConversation.messages.push(newMessage);
+      existingConversation.time = time;
+      existingConversation.unread = (existingConversation.unread || 0) + 1;
+      stored[existingIndex] = existingConversation;
+    } else {
+      stored.unshift({
+        id: conversationId,
+        name: userName,
+        initials: userName.split(" ").filter(Boolean).slice(0, 2).map((part) => part[0].toUpperCase()).join("") || "GU",
+        color: ["#9b6f55", "#537d87", "#886b91", "#7b8151"][Math.floor(Math.random() * 4)],
+        email: userEmail,
+        detail: "Guest · Chatling",
+        unread: 1,
+        time,
+        messages: [newMessage],
+      });
+    }
+
+    localStorage.setItem("zestcoChatConversations", JSON.stringify(stored));
+    window.dispatchEvent(new CustomEvent("zestco-chat-updated", { detail: stored }));
+    try {
+      window.dispatchEvent(
+        new StorageEvent("storage", {
+          key: "zestcoChatConversations",
+          newValue: JSON.stringify(stored),
+        }),
+      );
+    } catch (error) {
+      // StorageEvent may not be constructible in all browsers; custom event is the fallback.
+    }
+  }
+});
+
 googleButtons.forEach((btn) => btn.addEventListener("click", google));
 handleGoogleRedirectResult();
 // //////////////////////////// Signout
@@ -380,3 +718,4 @@ const _singOut = () => {
 document.getElementById("logout")?.addEventListener("click", _singOut);
 
 // ================== firebase authentication working end ============================
+
