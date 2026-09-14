@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,51 +11,165 @@
     <link rel="stylesheet" href="../../../css-folder/admin-css/admin-session.css">
     <link rel="stylesheet" href="../../../css-folder/admin-css/setting.css">
 </head>
+
 <body>
     <div class="app">
         <div class="mobile-header">
-            <button class="hamburger-btn" id="mobileSidebarToggle" type="button" aria-label="Open navigation"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
-            <a href="./dashboard.html" class="mobile-header-brand"><i class="fa-solid fa-utensils"></i><span>ZestCo</span></a>
+            <button class="hamburger-btn" id="mobileSidebarToggle" type="button" aria-label="Open navigation"><span
+                    class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+            <a href="./dashboard.html" class="mobile-header-brand"><i
+                    class="fa-solid fa-utensils"></i><span>ZestCo</span></a>
         </div>
         <aside class="sidebar" id="sidebar">
             <div>
                 <div class="sidebar-brand-wrapper" id="brandToggleTrigger" title="Collapse or expand sidebar">
-                    <a href="./dashboard.html" class="sidebar-brand"><i class="fa-solid fa-utensils brand-logo-icon"></i><span class="link-text">ZestCo</span></a>
-                    <button class="drawer-close-btn mobile-menu" id="mobileDrawerClose" type="button" aria-label="Close sidebar"><i class="fa-solid fa-xmark"></i></button>
+                    <a href="./dashboard.html" class="sidebar-brand"><i
+                            class="fa-solid fa-utensils brand-logo-icon"></i><span class="link-text">ZestCo</span></a>
+                    <button class="drawer-close-btn mobile-menu" id="mobileDrawerClose" type="button"
+                        aria-label="Close sidebar"><i class="fa-solid fa-xmark"></i></button>
                     <i class="fa-solid fa-chevron-left brand-toggle-arrow desktop-menu" aria-hidden="true"></i>
                 </div>
                 <div class="nav-title">Workspace</div>
                 <nav aria-label="Workspace navigation">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="./dashboard.html" class="nav-link-custom"><span class="link-content"><i class="fa-solid fa-table-columns icon"></i><span class="link-text">Dashboard</span></span></a></li>
-                        <li class="nav-item"><a href="./orders.html" class="nav-link-custom"><span class="link-content"><i class="fa-solid fa-cart-shopping icon"></i><span class="link-text">Orders</span></span></a></li>
-                        <li class="nav-item"><a href="./menu.html" class="nav-link-custom"><span class="link-content"><i class="fa-solid fa-book-open icon"></i><span class="link-text">Menu</span></span></a></li>
-                        <li class="nav-item"><a href="#" class="nav-link-custom" id="inventoryToggle" aria-expanded="false"><span class="link-content"><i class="fa-solid fa-boxes-stacked icon"></i><span class="link-text">Inventory</span></span><i class="fa-solid fa-chevron-down chevron-icon"></i></a><ul class="submenu" id="inventorySubmenu"><li class="nav-item"><a href="./inventory.html" class="nav-link-custom"><span class="link-content"><i class="fa-solid fa-cubes icon"></i><span class="link-text">Stock Inventory</span></span></a></li><li class="nav-item"><a href="./purchase-order.html" class="nav-link-custom"><span class="link-content"><i class="fa-solid fa-file-invoice-dollar icon"></i><span class="link-text">Purchase Order</span></span></a></li></ul></li>
-                        <li class="nav-item"><a href="./messages.html" class="nav-link-custom"><span class="link-content"><i class="fa-solid fa-comments icon"></i><span class="link-text">Messages</span></span></a></li>
-                        <li class="nav-item"><a href="./calendar.html" class="nav-link-custom"><span class="link-content"><i class="fa-solid fa-calendar-days icon"></i><span class="link-text">Calendar</span></span></a></li>
-                        <li class="nav-item"><a href="./reveiws.html" class="nav-link-custom"><span class="link-content"><i class="fa-solid fa-star icon"></i><span class="link-text">Reviews</span></span></a></li>
+                        <li class="nav-item"><a href="./dashboard.html" class="nav-link-custom"><span
+                                    class="link-content"><i class="fa-solid fa-table-columns icon"></i><span
+                                        class="link-text">Dashboard</span></span></a></li>
+                        <li class="nav-item"><a href="./orders.html" class="nav-link-custom"><span
+                                    class="link-content"><i class="fa-solid fa-cart-shopping icon"></i><span
+                                        class="link-text">Orders</span></span></a></li>
+                        <li class="nav-item"><a href="./menu.html" class="nav-link-custom"><span class="link-content"><i
+                                        class="fa-solid fa-book-open icon"></i><span
+                                        class="link-text">Menu</span></span></a></li>
+                        <li class="nav-item"><a href="#" class="nav-link-custom" id="inventoryToggle"
+                                aria-expanded="false"><span class="link-content"><i
+                                        class="fa-solid fa-boxes-stacked icon"></i><span
+                                        class="link-text">Inventory</span></span><i
+                                    class="fa-solid fa-chevron-down chevron-icon"></i></a>
+                            <ul class="submenu" id="inventorySubmenu">
+                                <li class="nav-item"><a href="./inventory.html" class="nav-link-custom"><span
+                                            class="link-content"><i class="fa-solid fa-cubes icon"></i><span
+                                                class="link-text">Stock Inventory</span></span></a></li>
+                                <li class="nav-item"><a href="./purchase-order.html" class="nav-link-custom"><span
+                                            class="link-content"><i
+                                                class="fa-solid fa-file-invoice-dollar icon"></i><span
+                                                class="link-text">Purchase Order</span></span></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="./messages.html" class="nav-link-custom"><span
+                                    class="link-content"><i class="fa-solid fa-comments icon"></i><span
+                                        class="link-text">Messages</span></span></a></li>
+                        <li class="nav-item"><a href="./calendar.html" class="nav-link-custom"><span
+                                    class="link-content"><i class="fa-solid fa-calendar-days icon"></i><span
+                                        class="link-text">Calendar</span></span></a></li>
+                        <li class="nav-item"><a href="./reveiws.html" class="nav-link-custom"><span
+                                    class="link-content"><i class="fa-solid fa-star icon"></i><span
+                                        class="link-text">Reviews</span></span></a></li>
                     </ul>
                 </nav>
                 <div class="nav-title">Management</div>
-                <nav aria-label="Management navigation"><ul class="nav-list"><li class="nav-item"><a href="./setting.html" class="nav-link-custom active"><span class="link-content"><i class="fa-solid fa-gear icon"></i><span class="link-text">Settings</span></span></a></li></ul></nav>
+                <nav aria-label="Management navigation">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="./setting.html" class="nav-link-custom active"><span
+                                    class="link-content"><i class="fa-solid fa-gear icon"></i><span
+                                        class="link-text">Settings</span></span></a></li>
+                    </ul>
+                </nav>
             </div>
-            <div class="sidebar-footer"><div class="upgrade-card"><i class="fa-solid fa-crown"></i><strong>Unlock Premium</strong><small>Get advanced restaurant reports and AI insights.</small><button type="button">Upgrade Plan</button></div></div>
+            <div class="sidebar-footer">
+                <div class="upgrade-card"><i class="fa-solid fa-crown"></i><strong>Unlock Premium</strong><small>Get
+                        advanced restaurant reports and AI insights.</small><button type="button">Upgrade Plan</button>
+                </div>
+            </div>
         </aside>
         <div class="overlay" id="overlay"></div>
         <main class="main">
             <header class="topbar">
-                <button class="icon-button desktop-menu" id="sidebarToggle" type="button" aria-label="Collapse sidebar"><i class="fa-solid fa-bars-staggered"></i></button>
-                <button class="icon-button mobile-menu" id="mobileMenu" type="button" aria-label="Open sidebar"><i class="fa-solid fa-bars"></i></button>
-                <div class="topbar-context"><span class="topbar-context-icon"><i class="fa-solid fa-gear"></i></span><span class="topbar-context-copy"><strong>Settings center</strong><small><i class="fa-solid fa-circle"></i>Account and workspace preferences</small></span></div>
-                <div class="top-actions"><button class="icon-button" id="themeToggle" type="button" aria-label="Toggle dark mode"><i class="fa-regular fa-moon"></i></button><button class="icon-button notification" type="button" aria-label="Notifications"><i class="fa-regular fa-bell"></i></button><div class="profile"><div class="avatar">AR</div><div class="profile-copy"><strong>Ahmed Raza</strong><small>Administrator</small></div></div></div>
+                <button class="icon-button desktop-menu" id="sidebarToggle" type="button"
+                    aria-label="Collapse sidebar"><i class="fa-solid fa-bars-staggered"></i></button>
+                <button class="icon-button mobile-menu" id="mobileMenu" type="button" aria-label="Open sidebar"><i
+                        class="fa-solid fa-bars"></i></button>
+                <div class="topbar-context"><span class="topbar-context-icon"><i
+                            class="fa-solid fa-gear"></i></span><span class="topbar-context-copy"><strong>Settings
+                            center</strong><small><i class="fa-solid fa-circle"></i>Account and workspace
+                            preferences</small></span></div>
+                <div class="top-actions"><button class="icon-button" id="themeToggle" type="button"
+                        aria-label="Toggle dark mode"><i class="fa-regular fa-moon"></i></button><button
+                        class="icon-button notification" type="button" aria-label="Notifications"><i
+                            class="fa-regular fa-bell"></i></button>
+                    <div class="profile">
+                        <div class="avatar">AR</div>
+                        <div class="profile-copy"><strong>Ahmed Raza</strong><small>Administrator</small></div>
+                    </div>
+                </div>
             </header>
             <section class="settings-page">
-                <div class="settings-intro"><p class="eyebrow">Workspace management</p><h2>Settings</h2><p>Manage your administrator profile, restaurant preferences, and notifications in one place.</p></div>
+                <div class="settings-intro">
+                    <p class="eyebrow">Workspace management</p>
+                    <h2>Settings</h2>
+                    <p>Manage your administrator profile, restaurant preferences, and notifications in one place.</p>
+                </div>
                 <div class="settings-layout">
-                    <nav class="settings-tabs" aria-label="Settings sections"><button class="settings-tab active" type="button"><i class="fa-regular fa-user"></i>Profile</button><button class="settings-tab" type="button"><i class="fa-solid fa-sliders"></i>Preferences</button><button class="settings-tab" type="button"><i class="fa-solid fa-shield-halved"></i>Security</button></nav>
+                    <nav class="settings-tabs" aria-label="Settings sections"><button class="settings-tab active"
+                            type="button"><i class="fa-regular fa-user"></i>Profile</button><button class="settings-tab"
+                            type="button"><i class="fa-solid fa-sliders"></i>Preferences</button><button
+                            class="settings-tab" type="button"><i
+                                class="fa-solid fa-shield-halved"></i>Security</button></nav>
                     <div class="settings-content">
-                        <section class="settings-card"><div class="settings-card-header"><div><h3>Administrator profile</h3><p>Keep the information used across your dashboard up to date.</p></div><span class="status delivered">Active account</span></div><div class="profile-editor"><div class="settings-avatar">AR</div><div><strong>Ahmed Raza</strong><small>Administrator account</small></div></div><form class="settings-form" id="profileSettingsForm"><div class="settings-field"><label for="settingsName">Full name</label><input id="settingsName" type="text" value="Ahmed Raza"></div><div class="settings-field"><label for="settingsEmail">Email address</label><input id="settingsEmail" type="email" value="admin@zestco.com"></div><div class="settings-field"><label for="settingsPhone">Phone number</label><input id="settingsPhone" type="tel" value="+92 300 1234567"></div><div class="settings-field"><label for="settingsRole">Role</label><select id="settingsRole"><option>Administrator</option><option>Manager</option></select></div><div class="settings-field full"><label for="settingsRestaurant">Restaurant name</label><input id="settingsRestaurant" type="text" value="ZestCo Restaurant"></div><div class="settings-actions full"><button class="settings-button" type="reset">Discard</button><button class="settings-button primary" type="submit">Save changes</button></div></form></section>
-                        <section class="settings-card"><div class="settings-card-header"><div><h3>Preferences</h3><p>Choose how the admin dashboard behaves for your team.</p></div></div><div class="preference-row"><div><strong>Dark mode</strong><small>Use the shared dashboard theme across all pages.</small></div><label class="settings-switch"><input id="settingsTheme" type="checkbox"><span></span></label></div><div class="preference-row"><div><strong>Email notifications</strong><small>Receive updates about orders and reservations.</small></div><label class="settings-switch"><input type="checkbox" checked><span></span></label></div><div class="preference-row"><div><strong>Compact navigation</strong><small>Keep the sidebar collapsed on desktop screens.</small></div><label class="settings-switch"><input type="checkbox" id="settingsCompact"><span></span></label></div></section>
+                        <section class="settings-card">
+                            <div class="settings-card-header">
+                                <div>
+                                    <h3>Administrator profile</h3>
+                                    <p>Keep the information used across your dashboard up to date.</p>
+                                </div><span class="status delivered">Active account</span>
+                            </div>
+                            <div class="profile-editor">
+                                <div class="settings-avatar">AR</div>
+                                <div><strong>Ahmed Raza</strong><small>Administrator account</small></div>
+                            </div>
+                            <form class="settings-form" id="profileSettingsForm">
+                                <div class="settings-field"><label for="settingsName">Full name</label><input
+                                        id="settingsName" type="text" value="Ahmed Raza"></div>
+                                <div class="settings-field"><label for="settingsEmail">Email address</label><input
+                                        id="settingsEmail" type="email" value="admin@zestco.com"></div>
+                                <div class="settings-field"><label for="settingsPhone">Phone number</label><input
+                                        id="settingsPhone" type="tel" value="+92 300 1234567"></div>
+                                <div class="settings-field"><label for="settingsRole">Role</label><select
+                                        id="settingsRole">
+                                        <option>Administrator</option>
+                                        <option>Manager</option>
+                                    </select></div>
+                                <div class="settings-field full"><label for="settingsRestaurant">Restaurant
+                                        name</label><input id="settingsRestaurant" type="text"
+                                        value="ZestCo Restaurant"></div>
+                                <div class="settings-actions full"><button class="settings-button"
+                                        type="reset">Discard</button><button class="settings-button primary"
+                                        type="submit">Save changes</button></div>
+                            </form>
+                        </section>
+                        <section class="settings-card">
+                            <div class="settings-card-header">
+                                <div>
+                                    <h3>Preferences</h3>
+                                    <p>Choose how the admin dashboard behaves for your team.</p>
+                                </div>
+                            </div>
+                            <div class="preference-row">
+                                <div><strong>Dark mode</strong><small>Use the shared dashboard theme across all
+                                        pages.</small></div><label class="settings-switch"><input id="settingsTheme"
+                                        type="checkbox"><span></span></label>
+                            </div>
+                            <div class="preference-row">
+                                <div><strong>Email notifications</strong><small>Receive updates about orders and
+                                        reservations.</small></div><label class="settings-switch"><input type="checkbox"
+                                        checked><span></span></label>
+                            </div>
+                            <div class="preference-row">
+                                <div><strong>Compact navigation</strong><small>Keep the sidebar collapsed on desktop
+                                        screens.</small></div><label class="settings-switch"><input type="checkbox"
+                                        id="settingsCompact"><span></span></label>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </section>
@@ -73,4 +188,5 @@
         });
     </script>
 </body>
+
 </html>
