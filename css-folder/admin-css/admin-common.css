@@ -1240,7 +1240,7 @@ img {
 
     gap: 11px;
 
-    margin-top: 30px;
+    margin-top: 0;
 
     cursor: pointer;
 
@@ -1674,7 +1674,11 @@ body.sidebar-collapsed .brand-toggle-arrow {
     }
 
     .topbar>.mobile-menu {
-        display: none !important;
+        display: inline-grid !important;
+    }
+
+    .mobile-header .hamburger-btn {
+        display: none;
     }
 
     .sidebar .drawer-close-btn {
