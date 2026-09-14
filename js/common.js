@@ -141,16 +141,23 @@ function getScrollbarWidth() {
 }
 
 function updateNavbarForAuth(user) {
-  document.querySelectorAll(".navbar-actions [data-auth-open]").forEach((button) => {
-    button.hidden = Boolean(user);
-  });
+  document
+    .querySelectorAll(".navbar-actions [data-auth-open]")
+    .forEach((button) => {
+      button.hidden = Boolean(user);
+    });
   document.querySelectorAll(".chat-with-us").forEach((button) => {
     button.hidden = !user;
   });
 }
 
 function openChatlingWidget() {
-  const widgetApis = [window.chtlWidget, window.Chatling, window.chatling, window.chtl];
+  const widgetApis = [
+    window.chtlWidget,
+    window.Chatling,
+    window.chatling,
+    window.chtl,
+  ];
   for (const widgetApi of widgetApis) {
     const openMethod = widgetApi?.open || widgetApi?.openChat;
     if (typeof openMethod === "function") {
@@ -190,7 +197,9 @@ document.querySelectorAll(".chat-with-us").forEach((button) => {
     const existingWidget = document.querySelector("[data-chatling-widget]");
     if (existingWidget) existingWidget.remove();
 
-    const existingIframe = document.querySelector("iframe[title*='chatling' i]");
+    const existingIframe = document.querySelector(
+      "iframe[title*='chatling' i]",
+    );
     if (existingIframe) existingIframe.remove();
 
     const legacyConfig = document.getElementById("chtl-config");
@@ -341,14 +350,27 @@ window.zestcoAddChatMessage = function ({
 } = {}) {
   if (!text || !String(text).trim()) return false;
 
-  const profile = JSON.parse(localStorage.getItem("zestcoCurrentUser") || "null");
+  const profile = JSON.parse(
+    localStorage.getItem("zestcoCurrentUser") || "null",
+  );
   const currentUser = auth?.currentUser;
-  const userName = name || profile?.name || currentUser?.displayName || currentUser?.email?.split("@")[0] || "Guest User";
+  const userName =
+    name ||
+    profile?.name ||
+    currentUser?.displayName ||
+    currentUser?.email?.split("@")[0] ||
+    "Guest User";
   const userEmail = email || profile?.email || currentUser?.email || "";
-  const id = conversationId || currentUser?.uid || profile?.uid || `guest-${Date.now()}`;
-  const time = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const id =
+    conversationId || currentUser?.uid || profile?.uid || `guest-${Date.now()}`;
+  const time = new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
-  const stored = JSON.parse(localStorage.getItem("zestcoChatConversations") || "[]");
+  const stored = JSON.parse(
+    localStorage.getItem("zestcoChatConversations") || "[]",
+  );
   const existingIndex = stored.findIndex(
     (conversation) =>
       conversation.id === id ||
@@ -372,8 +394,16 @@ window.zestcoAddChatMessage = function ({
     stored.unshift({
       id,
       name: userName,
-      initials: userName.split(" ").filter(Boolean).slice(0, 2).map((part) => part[0].toUpperCase()).join("") || "GU",
-      color: ["#9b6f55", "#537d87", "#886b91", "#7b8151"][Math.floor(Math.random() * 4)],
+      initials:
+        userName
+          .split(" ")
+          .filter(Boolean)
+          .slice(0, 2)
+          .map((part) => part[0].toUpperCase())
+          .join("") || "GU",
+      color: ["#9b6f55", "#537d87", "#886b91", "#7b8151"][
+        Math.floor(Math.random() * 4)
+      ],
       email: userEmail,
       detail: "Guest · Chatling",
       unread: 1,
@@ -383,7 +413,9 @@ window.zestcoAddChatMessage = function ({
   }
 
   localStorage.setItem("zestcoChatConversations", JSON.stringify(stored));
-  window.dispatchEvent(new CustomEvent("zestco-chat-updated", { detail: stored }));
+  window.dispatchEvent(
+    new CustomEvent("zestco-chat-updated", { detail: stored }),
+  );
 
   try {
     window.dispatchEvent(
@@ -417,17 +449,27 @@ function saveChatMessageFromUser(message, authorName = "Guest User") {
   if (!message || !String(message).trim()) return;
 
   const cleanedMessage = String(message).trim();
-  const storedProfile = JSON.parse(localStorage.getItem("zestcoCurrentUser") || "null");
+  const storedProfile = JSON.parse(
+    localStorage.getItem("zestcoCurrentUser") || "null",
+  );
   const currentName = authorName || storedProfile?.name || "Guest User";
   const currentEmail = storedProfile?.email || "";
   const storageKey = "zestcoChatConversations";
   const existing = JSON.parse(localStorage.getItem(storageKey) || "[]");
   const now = new Date();
-  const timeLabel = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const timeLabel = now.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
   const matchingIndex = existing.findIndex((conversation) => {
-    const sameName = conversation.name && conversation.name.toLowerCase() === currentName.toLowerCase();
-    const sameEmail = currentEmail && conversation.email && conversation.email.toLowerCase() === currentEmail.toLowerCase();
+    const sameName =
+      conversation.name &&
+      conversation.name.toLowerCase() === currentName.toLowerCase();
+    const sameEmail =
+      currentEmail &&
+      conversation.email &&
+      conversation.email.toLowerCase() === currentEmail.toLowerCase();
     return sameName || sameEmail;
   });
 
@@ -435,13 +477,16 @@ function saveChatMessageFromUser(message, authorName = "Guest User") {
     id: matchingIndex >= 0 ? existing[matchingIndex].id : `${Date.now()}`,
     name: currentName,
     email: currentEmail,
-    initials: currentName
-      .split(" ")
-      .filter(Boolean)
-      .slice(0, 2)
-      .map((part) => part[0].toUpperCase())
-      .join("") || "GU",
-    color: ["#9b6f55", "#537d87", "#886b91", "#7b8151"][Math.floor(Math.random() * 4)],
+    initials:
+      currentName
+        .split(" ")
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((part) => part[0].toUpperCase())
+        .join("") || "GU",
+    color: ["#9b6f55", "#537d87", "#886b91", "#7b8151"][
+      Math.floor(Math.random() * 4)
+    ],
     time: timeLabel,
     unread: 1,
     detail: "Guest · Chatling",
@@ -490,12 +535,7 @@ const signup = async (e) => {
     const user = credential.user;
     console.log("User created successfully:", user);
 
-<<<<<<< HEAD
-
     const userName = name?.value.trim() || "Guest User";
-
-=======
->>>>>>> 14a21fe26338d6e8fb158df9ded9853ce3a82b19
     await setDoc(doc(db, "users", user.uid), {
       name: userName,
       email: user.email,
@@ -503,16 +543,12 @@ const signup = async (e) => {
       timestamp: serverTimestamp(),
     });
 
-<<<<<<< HEAD
     saveCurrentUserSession({
       uid: user.uid,
       name: userName,
       email: user.email,
       role: "user",
     });
-
-=======
->>>>>>> 14a21fe26338d6e8fb158df9ded9853ce3a82b19
     if (!credential.user.emailVerified) {
       await sendEmailVerification(user);
       signOut(auth);
@@ -543,7 +579,7 @@ const redirectByRole = async (user) => {
     : "user";
   const destination =
     role === "admin"
-      ? "/html/admin/dashboard/dasboard.html"
+      ? "/html/admin/dashboard/dashboard.html"
       : "/html/admin/user/menu.html";
   window.location.assign(destination);
 };
@@ -648,17 +684,31 @@ window.addEventListener("message", (event) => {
   if (!textFromPayload) return;
 
   const source = payload.source || payload.type || payload.event || "chatling";
-  const allowChat = String(source).toLowerCase().includes("chatling") || String(textFromPayload).length > 0;
+  const allowChat =
+    String(source).toLowerCase().includes("chatling") ||
+    String(textFromPayload).length > 0;
 
   if (allowChat) {
-    const profile = JSON.parse(localStorage.getItem("zestcoCurrentUser") || "null");
+    const profile = JSON.parse(
+      localStorage.getItem("zestcoCurrentUser") || "null",
+    );
     const currentUser = auth?.currentUser;
-    const userName = profile?.name || currentUser?.displayName || currentUser?.email?.split("@")[0] || "Guest User";
+    const userName =
+      profile?.name ||
+      currentUser?.displayName ||
+      currentUser?.email?.split("@")[0] ||
+      "Guest User";
     const userEmail = profile?.email || currentUser?.email || "";
-    const conversationId = currentUser?.uid || profile?.uid || `guest-${Date.now()}`;
-    const time = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    const conversationId =
+      currentUser?.uid || profile?.uid || `guest-${Date.now()}`;
+    const time = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
 
-    const stored = JSON.parse(localStorage.getItem("zestcoChatConversations") || "[]");
+    const stored = JSON.parse(
+      localStorage.getItem("zestcoChatConversations") || "[]",
+    );
     const existingIndex = stored.findIndex(
       (conversation) =>
         conversation.id === conversationId ||
@@ -682,8 +732,16 @@ window.addEventListener("message", (event) => {
       stored.unshift({
         id: conversationId,
         name: userName,
-        initials: userName.split(" ").filter(Boolean).slice(0, 2).map((part) => part[0].toUpperCase()).join("") || "GU",
-        color: ["#9b6f55", "#537d87", "#886b91", "#7b8151"][Math.floor(Math.random() * 4)],
+        initials:
+          userName
+            .split(" ")
+            .filter(Boolean)
+            .slice(0, 2)
+            .map((part) => part[0].toUpperCase())
+            .join("") || "GU",
+        color: ["#9b6f55", "#537d87", "#886b91", "#7b8151"][
+          Math.floor(Math.random() * 4)
+        ],
         email: userEmail,
         detail: "Guest · Chatling",
         unread: 1,
@@ -693,7 +751,9 @@ window.addEventListener("message", (event) => {
     }
 
     localStorage.setItem("zestcoChatConversations", JSON.stringify(stored));
-    window.dispatchEvent(new CustomEvent("zestco-chat-updated", { detail: stored }));
+    window.dispatchEvent(
+      new CustomEvent("zestco-chat-updated", { detail: stored }),
+    );
     try {
       window.dispatchEvent(
         new StorageEvent("storage", {
@@ -718,4 +778,3 @@ const _singOut = () => {
 document.getElementById("logout")?.addEventListener("click", _singOut);
 
 // ================== firebase authentication working end ============================
-
