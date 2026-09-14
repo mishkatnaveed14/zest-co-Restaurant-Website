@@ -379,6 +379,62 @@
   }
 }
 
+/* ===== USER PAGE MOBILE POLISH ===== */
+@media (max-width: 767.98px) {
+  .hero-menu,
+  .hero-reservation {
+    padding: var(--section-padding-md);
+  }
+
+  .hero-menu .hero-title,
+  .hero-reservation .hero-title {
+    font-size: clamp(2.1rem, 10vw, 3rem);
+    line-height: 1.08;
+  }
+
+  .hero-menu .hero-subtitle,
+  .hero-reservation .hero-subtitle {
+    font-size: 0.98rem;
+  }
+
+  .hero-menu .hero-stats,
+  .hero-reservation .hero-stats {
+    margin-top: 38px;
+    padding-top: 26px;
+  }
+
+  .testimonials-section {
+    padding: 4rem 0;
+  }
+
+  .testimonials-header .title {
+    padding: 0 16px;
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    line-height: 1.15;
+  }
+
+  .testimonial-card {
+    width: min(280px, calc(100vw - 40px));
+  }
+
+  .reservation-section,
+  .why-choose-section {
+    padding: 56px 0 68px;
+  }
+
+  .reservation-card {
+    padding: 32px 18px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+}
+
 @media (max-width: 991.98px) {
   .top-bar {
     padding: 12px 0;
