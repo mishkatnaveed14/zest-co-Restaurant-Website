@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const themeButton = document.getElementById("themeToggle");
   const applyTheme = (isDark) => {
-    document.body.classList.toggle("dark", isDark);
+    document.body.classList.toggle("dark-theme", isDark);
+    document.body.classList.remove("dark");
     if (themeButton) {
       themeButton.innerHTML = isDark
         ? '<i class="fa-regular fa-sun"></i>'
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   applyTheme(localStorage.getItem("restro-theme") === "dark");
   themeButton?.addEventListener("click", () => {
-    const isDark = !document.body.classList.contains("dark");
+    const isDark = !document.body.classList.contains("dark-theme");
     applyTheme(isDark);
     localStorage.setItem("restro-theme", isDark ? "dark" : "light");
   });
@@ -33,15 +34,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const desktopToggle = document.getElementById("sidebarToggle");
 
   document.querySelectorAll(".profile").forEach((profile) => {
-    profile.setAttribute("role", "link");
+    profile.setAttribute("role", "button");
     profile.setAttribute("tabindex", "0");
     profile.addEventListener("click", () => {
-      window.location.assign("./profile.html");
+      const menu = document.getElementById("profileMenu");
+      menu?.classList.toggle("is-open");
     });
     profile.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        window.location.assign("./profile.html");
+        const menu = document.getElementById("profileMenu");
+        menu?.classList.toggle("is-open");
       }
     });
   });

@@ -23,7 +23,7 @@
     --sidebar-collapsed-width: 80px; */
 }
 
-body.dark {
+body.dark-theme {
     --section-light-bg: #18191c;
     --card-light-bg: #202124;
     --text-dark: #f5f5f7;
@@ -220,6 +220,15 @@ body {
 .sidebar.collapsed .brand-toggle-arrow {
     transform: rotate(180deg);
     padding: 0 15px 0 0;
+}
+
+.sidebar.collapsed .sidebar-brand,
+.sidebar.collapsed .sidebar-brand-wrapper,
+.sidebar.collapsed .sidebar-brand .brand-logo-icon,
+.sidebar.collapsed .brand-toggle-arrow {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .sidebar.collapsed .nav-link-custom {
