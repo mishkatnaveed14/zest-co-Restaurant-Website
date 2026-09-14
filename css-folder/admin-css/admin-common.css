@@ -312,22 +312,39 @@ body.mobile-sidebar-open .overlay {
         opacity: 0;
     }
 
+    .sidebar.collapsed,
+    body.sidebar-collapsed .sidebar {
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
+    }
+
     /* Ensure all link text and chevron icons show up instantly without reload */
     .sidebar .link-text,
     .sidebar .sidebar-brand span,
-    .sidebar .chevron-icon {
+    .sidebar .chevron-icon,
+    .sidebar.collapsed .link-text,
+    .sidebar.collapsed .sidebar-brand span,
+    .sidebar.collapsed .chevron-icon {
         display: inline-block !important;
         opacity: 1 !important;
         visibility: visible !important;
     }
 
-    .sidebar .nav-link-custom {
+    .sidebar .nav-link-custom,
+    .sidebar.collapsed .nav-link-custom {
         justify-content: space-between !important;
         padding: 0.75rem 0.85rem !important;
     }
 
-    .sidebar .nav-link-custom .link-content {
+    .sidebar .nav-link-custom .link-content,
+    .sidebar.collapsed .nav-link-custom .link-content {
         gap: 14px !important;
+    }
+
+    .sidebar.collapsed .sidebar-brand-wrapper {
+        justify-content: space-between !important;
+        padding: 1.2rem 1rem 1.25rem !important;
     }
 
     .mobile-header {

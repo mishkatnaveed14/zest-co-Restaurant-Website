@@ -164,6 +164,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("mobile-sidebar-open");
     mobileToggles.forEach((toggle) => toggle.classList.remove("active"));
     if (window.innerWidth < 992) {
+      document.body.classList.remove("sidebar-collapsed");
+      sidebar.classList.remove("collapsed");
+      sidebar.style.setProperty("width", "260px", "important");
+      sidebar.style.setProperty("min-width", "260px", "important");
+      sidebar.style.setProperty("max-width", "260px", "important");
       sidebar.style.setProperty("transform", "translateX(-105%)", "important");
       sidebar.style.setProperty("visibility", "hidden", "important");
       sidebar.style.setProperty("opacity", "0", "important");
@@ -174,6 +179,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const open = document.body.classList.toggle("mobile-sidebar-open");
     mobileToggles.forEach((toggle) => toggle.classList.toggle("active", open));
     if (window.innerWidth < 992) {
+      document.body.classList.remove("sidebar-collapsed");
+      sidebar.classList.remove("collapsed");
+      sidebar.style.setProperty("width", "260px", "important");
+      sidebar.style.setProperty("min-width", "260px", "important");
+      sidebar.style.setProperty("max-width", "260px", "important");
       sidebar.style.setProperty(
         "transform",
         open ? "translateX(0)" : "translateX(-105%)",
