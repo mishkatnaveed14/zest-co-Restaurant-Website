@@ -3,7 +3,7 @@
 .settings-page {
     max-width: 1180px;
     margin: 0 auto;
-    padding: 8px 0 40px;
+    padding: 20px 20px 40px;
 }
 
 .settings-intro {
@@ -255,12 +255,21 @@
 }
 
 @media (max-width: 760px) {
+    .settings-page {
+        padding: 16px 14px 28px;
+    }
+
     .settings-layout {
         grid-template-columns: 1fr;
     }
 
     .settings-tabs {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    .topbar-context-copy {
+        display: grid !important;
+        gap: 2px;
     }
 
     .settings-tab {
@@ -285,5 +294,9 @@
 
     .settings-card {
         padding: 16px;
+    }
+
+    .topbar {
+        padding-inline: 14px;
     }
 }

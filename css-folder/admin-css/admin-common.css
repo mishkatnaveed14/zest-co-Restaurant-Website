@@ -2032,7 +2032,7 @@ body.sidebar-collapsed .brand-toggle-arrow {
     }
 
     .mobile-header .hamburger-btn {
-        display: none;
+        display: flex;
     }
 
     .sidebar .drawer-close-btn {
@@ -2052,10 +2052,13 @@ body.sidebar-collapsed .brand-toggle-arrow {
     .topbar-context {
         flex: 1 1 auto;
         min-width: 0;
+        gap: 8px;
     }
 
     .topbar-context-copy {
-        display: none;
+        display: grid !important;
+        min-width: 0;
+        gap: 3px;
     }
 
     .profile-copy {
