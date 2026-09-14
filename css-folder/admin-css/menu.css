@@ -1,7 +1,7 @@
 @import url("./admin-common.css");
 
 :root {
-    --menu-orange: #ff6b2c;
+    --menu-orange: var(--accent-gold-bright);
     --menu-green: #2c9b70;
     --menu-blue: #5488f5;
     --menu-surface: #fff;
@@ -9,7 +9,7 @@
     --menu-text: #252525;
     --menu-muted: #85888f;
     --menu-line: #ece9e4;
-    --menu-radius: 16px
+    --menu-radius: 16px;
 }
 
 body {
@@ -23,7 +23,17 @@ body.dark {
     --menu-bg: #151619;
     --menu-text: #f4f3ef;
     --menu-muted: #a5a5a7;
-    --menu-line: #333437
+    --menu-line: #333437;
+}
+
+body.dark .menu-panel,
+body.dark .stat-card,
+body.dark .panel,
+body.dark .dish-modal,
+body.dark .dish-details-modal {
+    color: var(--menu-text);
+    background: var(--menu-surface);
+    border-color: var(--menu-line);
 }
 
 button,
@@ -377,7 +387,7 @@ textarea {
 }
 
 .primary-button:hover {
-    background: #ec5c20;
+    background: #b8941f;
     transform: translateY(-1px)
 }
 
@@ -418,7 +428,7 @@ textarea {
 }
 
 .stat-icon.orange {
-    background: #fff0e9;
+    background: rgba(212, 175, 55, .14);
     color: var(--menu-orange)
 }
 

@@ -1,4 +1,4 @@
-import { db } from "../../../firebase.config.js";
+import { db } from "../../firebase.config.js";
 import {
   collection,
   onSnapshot,
@@ -500,7 +500,7 @@ document.addEventListener("DOMContentLoaded", () => {
     currentPage = 1;
     render();
   });
-  $("globalSearch").addEventListener("input", () => {
+  $("globalSearch")?.addEventListener("input", () => {
     $("menuSearch").value = $("globalSearch").value;
     currentPage = 1;
     render();
