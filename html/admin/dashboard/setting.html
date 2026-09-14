@@ -95,8 +95,8 @@
                             preferences</small></span></div>
                 <div class="top-actions"><button class="icon-button" id="themeToggle" type="button"
                         aria-label="Toggle dark mode"><i class="fa-regular fa-moon"></i></button><button
-                        class="icon-button notification" id="notificationBtn" type="button" aria-label="Notifications"><i
-                            class="fa-regular fa-bell"></i></button>
+                        class="icon-button notification" id="notificationBtn" type="button"
+                        aria-label="Notifications"><i class="fa-regular fa-bell"></i></button>
                     <div class="profile">
                         <div class="avatar">AR</div>
                         <div class="profile-copy"><strong>Ahmed Raza</strong><small>Administrator</small></div>
@@ -110,10 +110,12 @@
                     <p>Manage your administrator profile, restaurant preferences, and notifications in one place.</p>
                 </div>
                 <div class="settings-layout">
-                        <nav class="settings-tabs" aria-label="Settings sections"><button class="settings-tab active"
-                            type="button" data-settings-target="profileSettingsCard"><i class="fa-regular fa-user"></i>Profile</button><button class="settings-tab"
-                            type="button" data-settings-target="preferencesSettingsCard"><i class="fa-solid fa-sliders"></i>Preferences</button><button
-                            class="settings-tab" type="button" data-settings-target="profileSettingsCard"><i
+                    <nav class="settings-tabs" aria-label="Settings sections"><button class="settings-tab active"
+                            type="button" data-settings-target="profileSettingsCard"><i
+                                class="fa-regular fa-user"></i>Profile</button><button class="settings-tab"
+                            type="button" data-settings-target="preferencesSettingsCard"><i
+                                class="fa-solid fa-sliders"></i>Preferences</button><button class="settings-tab"
+                            type="button" data-settings-target="profileSettingsCard"><i
                                 class="fa-solid fa-shield-halved"></i>Security</button></nav>
                     <div class="settings-content">
                         <section class="settings-card" id="profileSettingsCard">
@@ -179,12 +181,64 @@
     <script type="module" src="../../../js/admin-js/admin-session.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const theme = document.getElementById("settingsTheme");
+            const storageKey = "zestco-admin-settings";
+            const settings = JSON.parse(localStorage.getItem(storageKey) || "{}");
+            const get = (id) => document.getElementById(id);
+            const profileFields = ["settingsName", "settingsEmail", "settingsPhone", "settingsRole", "settingsRestaurant"];
+            const profileForm = get("profileSettingsForm");
+            const theme = get("settingsTheme");
+            const notifications = get("settingsNotifications");
+            const compact = get("settingsCompact");
+
+            profileFields.forEach((id) => {
+                if (settings[id] !== undefined) get(id).value = settings[id];
+            });
             theme.checked = document.body.classList.contains("dark");
-            theme.addEventListener("change", () => document.getElementById("themeToggle").click());
+            notifications.checked = settings.settingsNotifications !== false;
+            compact.checked = settings.settingsCompact === true;
+
+            const saveSettings = () => {
+                const next = { ...settings };
+                profileFields.forEach((id) => { next[id] = get(id).value.trim(); });
+                next.settingsNotifications = notifications.checked;
+                next.settingsCompact = compact.checked;
+                localStorage.setItem(storageKey, JSON.stringify(next));
+            };
+
+            const applyCompact = (value) => {
+                document.body.classList.toggle("sidebar-collapsed", value);
+                get("sidebar")?.classList.toggle("collapsed", value);
+                if (window.innerWidth >= 992) {
+                    get("sidebar")?.style.setProperty("width", value ? "88px" : "260px", "important");
+                }
+            };
+
+            theme.addEventListener("change", () => get("themeToggle")?.click());
+            compact.addEventListener("change", () => { applyCompact(compact.checked); saveSettings(); });
+            notifications.addEventListener("change", saveSettings);
             document.addEventListener("admin:theme-change", () => { theme.checked = document.body.classList.contains("dark"); });
-            document.getElementById("profileSettingsForm").addEventListener("submit", (event) => { event.preventDefault(); const button = event.currentTarget.querySelector("button[type=submit]"); button.textContent = "Saved"; setTimeout(() => { button.textContent = "Save changes"; }, 1400); });
-            document.getElementById("settingsCompact").addEventListener("change", (event) => document.body.classList.toggle("sidebar-collapsed", event.target.checked));
+
+            profileForm.addEventListener("submit", (event) => {
+                event.preventDefault();
+                saveSettings();
+                const button = profileForm.querySelector("button[type=submit]");
+                button.textContent = "Saved";
+                setTimeout(() => { button.textContent = "Save changes"; }, 1400);
+            });
+
+            profileForm.addEventListener("reset", () => setTimeout(() => {
+                localStorage.removeItem(storageKey);
+                window.location.reload();
+            }));
+
+            applyCompact(compact.checked);
+            document.querySelectorAll("[data-settings-target]").forEach((tab) => {
+                tab.addEventListener("click", () => {
+                    document.querySelectorAll(".settings-tab").forEach((item) => item.classList.remove("active"));
+                    tab.classList.add("active");
+                    get(tab.dataset.settingsTarget)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                });
+            });
         });
     </script>
 </body>
