@@ -586,16 +586,7 @@
             }
         });
 
-        themeButton.addEventListener("click", () => {
-            document.body.classList.toggle("dark");
-            const isDark = document.body.classList.contains("dark");
-
-            themeButton.innerHTML = isDark
-                ? '<i class="fa-regular fa-sun"></i>'
-                : '<i class="fa-regular fa-moon"></i>';
-
-            localStorage.setItem("restro-theme", isDark ? "dark" : "light");
-
+        document.addEventListener("admin:theme-change", () => {
             setTimeout(updateChartTheme, 50);
         });
 
@@ -633,7 +624,8 @@
         });
 
         document.addEventListener("DOMContentLoaded", () => {
-            if (localStorage.getItem("restro-theme") === "dark") {
+            if (localStorage.getItem("restro-theme") === "dark" ||
+                localStorage.getItem("zestco-admin-theme") === "dark") {
                 document.body.classList.add("dark");
                 themeButton.innerHTML = '<i class="fa-regular fa-sun"></i>';
             }
@@ -644,4 +636,3 @@
             animateInterface();
             loadOrdersFromFirebase();
         });
-

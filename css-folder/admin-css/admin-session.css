@@ -1,0 +1,236 @@
+/* Shared runtime controls for every admin page, including the inline-styled dashboard. */
+.admin-notification-button,
+.admin-theme-toggle {
+    position: relative;
+}
+
+.admin-wishlist-button {
+    position: relative;
+}
+
+.top-actions,
+.header-actions,
+.header-right,
+.user-profile-dropdown {
+    position: relative;
+}
+
+.admin-notification-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    display: grid;
+    place-items: center;
+    border: 2px solid var(--card-light-bg, #fff);
+    border-radius: 999px;
+    color: #fff;
+    background: #ef6f51;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.admin-notifications-panel {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    z-index: 1060;
+    width: min(350px, calc(100vw - 30px));
+    padding: 8px;
+    display: none;
+    border: 1px solid var(--border-card, rgba(197, 168, 128, .22));
+    border-radius: 14px;
+    background: var(--card-light-bg, #fff);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, .14);
+}
+
+.admin-notifications-panel.is-open {
+    display: block;
+}
+
+.admin-notifications-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--border-card, #eee);
+    color: var(--text-dark, #1e1f22);
+    font-size: 12px;
+}
+
+.admin-notifications-heading button {
+    border: 0;
+    color: var(--accent-gold-bright, #d4af37);
+    background: transparent;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.admin-notification-item {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 25px 1fr auto;
+    gap: 8px;
+    align-items: center;
+    padding: 10px;
+    border: 0;
+    border-radius: 8px;
+    color: var(--text-dark, #1e1f22);
+    background: transparent;
+    text-align: left;
+}
+
+.admin-notification-item:hover {
+    background: var(--gold-soft-tint, #faf5ec);
+}
+
+.admin-notification-item>i {
+    color: var(--accent-gold-bright, #d4af37);
+}
+
+.admin-notification-item strong,
+.admin-notification-item small {
+    display: block;
+}
+
+.admin-notification-item strong {
+    font-size: 11px;
+}
+
+.admin-notification-item small,
+.admin-notification-item time,
+.admin-notifications-empty {
+    color: var(--text-muted, #6b7280);
+    font-size: 10px;
+}
+
+.admin-notifications-empty {
+    padding: 18px 10px;
+    margin: 0;
+    text-align: center;
+}
+
+.admin-profile-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    z-index: 1060;
+    width: 220px;
+    padding: 8px;
+    display: none;
+    border: 1px solid var(--border-card, #eee);
+    border-radius: 14px;
+    background: var(--card-light-bg, #fff);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, .14);
+}
+
+.admin-profile-menu.is-open {
+    display: block;
+}
+
+.admin-profile-menu .profile-menu-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 10px;
+    border: 0;
+    border-radius: 8px;
+    color: var(--text-dark, #1e1f22);
+    background: transparent;
+    text-decoration: none;
+    text-align: left;
+    font-size: 12px;
+}
+
+.admin-profile-menu .profile-menu-item:hover {
+    background: var(--gold-soft-tint, #faf5ec);
+    color: var(--accent-gold-bright, #d4af37);
+}
+
+.admin-profile-menu .profile-menu-item.danger {
+    color: #d95a4e;
+}
+
+@media (max-width: 575px) {
+    .admin-notifications-panel {
+        right: -45px;
+    }
+
+    .admin-profile-menu {
+        right: -8px;
+    }
+}
+
+.admin-wishlist-panel {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    z-index: 1060;
+    width: min(300px, calc(100vw - 30px));
+    padding: 8px;
+    display: none;
+    border: 1px solid var(--border-card, #eee);
+    border-radius: 14px;
+    background: var(--card-light-bg, #fff);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, .14)
+}
+
+.admin-wishlist-panel.is-open {
+    display: block
+}
+
+.admin-wishlist-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--border-card, #eee);
+    color: var(--text-dark, #1e1f22);
+    font-size: 12px
+}
+
+.admin-wishlist-heading button {
+    border: 0;
+    background: transparent;
+    color: var(--accent-gold-bright, #d4af37);
+    font-size: 10px;
+    cursor: pointer
+}
+
+.admin-wishlist-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 10px;
+    color: var(--text-dark, #1e1f22);
+    font-size: 11px
+}
+
+.admin-wishlist-item>i {
+    color: #ef6f51
+}
+
+.admin-wishlist-item span {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.admin-wishlist-item button {
+    border: 0;
+    background: transparent;
+    color: var(--text-muted, #6b7280);
+    cursor: pointer
+}
+
+.admin-wishlist-empty {
+    padding: 18px 10px;
+    margin: 0;
+    color: var(--text-muted, #6b7280);
+    font-size: 10px;
+    text-align: center
+}

@@ -10,6 +10,7 @@ import {
   sendEmailVerification,
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+<<<<<<< HEAD
 import {
   getFirestore,
   collection,
@@ -18,6 +19,15 @@ import {
   orderBy,
   onSnapshot,
   serverTimestamp,
+=======
+import{
+  getFirestore, 
+    collection, 
+    onSnapshot, 
+    doc, 
+    updateDoc, 
+    deleteDoc 
+>>>>>>> 14a21fe26338d6e8fb158df9ded9853ce3a82b19
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -51,5 +61,14 @@ export {
   GoogleAuthProvider,
   signOut,
   sendEmailVerification,
+<<<<<<< HEAD
   onAuthStateChanged,
+=======
+  getFirestore, 
+    collection, 
+    onSnapshot, 
+    doc, 
+    updateDoc, 
+    deleteDoc 
+>>>>>>> 14a21fe26338d6e8fb158df9ded9853ce3a82b19
 };

@@ -1,0 +1,108 @@
+/* Stats Card Styling */
+.stat-card {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid var(--border-card);
+    box-shadow: var(--card-shadow);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+/* Filter Card */
+.filter-bar-card {
+    border-radius: 14px;
+    border: 1px solid var(--border-card);
+    box-shadow: var(--card-shadow);
+    background: #FFFFFF;
+}
+
+.btn-filter {
+    background-color: var(--main-bg);
+    border: 1px solid var(--border-card);
+    color: var(--text-dark);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+.btn-filter:hover,
+.btn-filter.active {
+    background-color: var(--gold-soft-tint);
+    border-color: var(--accent-gold-bright);
+    color: var(--accent-gold-bright);
+}
+
+.status-select {
+    width: 150px;
+    border-radius: 20px;
+    border-color: var(--border-card);
+}
+
+.status-select:focus {
+    border-color: var(--accent-gold-bright);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+/* Review Cards */
+.review-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid var(--border-card);
+    box-shadow: var(--card-shadow);
+    padding: 1.25rem;
+    transition: box-shadow 0.25s ease;
+}
+
+.review-card:hover {
+    box-shadow: 0 10px 25px rgba(197, 168, 128, 0.15);
+}
+
+.avatar-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--accent-gold);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.reply-box {
+    background-color: var(--gold-soft-tint);
+    border-left: 3px solid var(--accent-gold-bright);
+    border-radius: 0 8px 8px 0;
+    padding: 0.75rem 1rem;
+}
+
+/* Action Buttons */
+.btn-gold {
+    background-color: var(--accent-gold-bright);
+    color: #FFFFFF;
+    border: none;
+    font-weight: 500;
+}
+
+.btn-gold:hover {
+    background-color: #c5a880;
+    color: #FFFFFF;
+}
+
+.badge-approved { background-color: #dcfce7; color: #15803d; }
+.badge-pending { background-color: #fef3c7; color: #d97706; }
+.badge-hidden { background-color: #fee2e2; color: #b91c1c; }
