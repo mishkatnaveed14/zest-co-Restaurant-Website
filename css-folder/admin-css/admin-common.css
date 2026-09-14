@@ -193,7 +193,7 @@ body.dark-theme .sidebar {
 .nav-link-custom:hover,
 .nav-link-custom.active {
     background-color: var(--gold-soft-tint);
-    color: var(--text-dark);
+    color: var(--nav-text-light);
 }
 
 .nav-link-custom:hover i.icon,
