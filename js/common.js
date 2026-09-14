@@ -231,7 +231,7 @@ import {
   setDoc,
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 // sign up form autnentication
-const name = document.getElementById('signupName');
+const name = document.getElementById("signupName");
 const email = document.getElementById("signupEmail");
 const password = document.getElementById("signupPassword");
 const signupForm = document.getElementById("authSignupForm");
@@ -254,14 +254,12 @@ const signup = async (e) => {
     const user = credential.user;
     console.log("User created successfully:", user);
 
-
     await setDoc(doc(db, "users", user.uid), {
       name: name?.value.trim() || "",
       email: user.email,
       role: "user",
       timestamp: serverTimestamp(),
     });
-
 
     if (!credential.user.emailVerified) {
       await sendEmailVerification(user);
@@ -270,6 +268,7 @@ const signup = async (e) => {
     } else {
       closeAuthModal();
       alert("Account created successfully! Welcome to Zest & Co.");
+      await redirectByRole(user);
     }
   } catch (error) {
     const errorCode = error.code;
@@ -284,6 +283,18 @@ signupForm?.addEventListener("submit", signup);
 const signinEmail = document.getElementById("loginEmail");
 const signinPassword = document.getElementById("loginPassword");
 const signinForm = document.getElementById("authLoginForm");
+
+const redirectByRole = async (user) => {
+  const userDocument = await getDoc(doc(db, "users", user.uid));
+  const role = userDocument.exists()
+    ? userDocument.data().role?.toLowerCase()
+    : "user";
+  const destination =
+    role === "admin"
+      ? "/html/admin/dashboard/dasboard.html"
+      : "/html/admin/user/menu.html";
+  window.location.assign(destination);
+};
 
 const signin = async (e) => {
   e.preventDefault();
@@ -305,18 +316,9 @@ const signin = async (e) => {
       signOut(auth);
       alert("Please verify your Email!");
     } else {
-      const userDocument = await getDoc(doc(db, "users", user.uid));
-      const userData = userDocument.exists() ? userDocument.data() : null;
-
-      if (userData?.role?.toLowerCase() !== "admin") {
-        await signOut(auth);
-        alert("This account does not have administrator access.");
-        return;
-      }
-
       closeAuthModal();
       alert("Welcome back to Zest & Co.!");
-      window.location.assign("/html/admin/dashboard/dasboard.html");
+      await redirectByRole(user);
     }
   } catch (error) {
     const errorCode = error.code;
@@ -339,16 +341,7 @@ const handleGoogleRedirectResult = async () => {
     const result = await getRedirectResult(auth);
     if (result?.user) {
       console.log("Google sign-in successful:", result.user);
-      const userDocument = await getDoc(doc(db, "users", result.user.uid));
-      const userData = userDocument.exists() ? userDocument.data() : null;
-
-      if (userData?.role?.toLowerCase() !== "admin") {
-        await signOut(auth);
-        alert("This account does not have administrator access.");
-        return;
-      }
-
-      window.location.assign("/html/admin/dashboard/dasboard.html");
+      await redirectByRole(result.user);
     }
   } catch (error) {
     const errorCode = error.code;
