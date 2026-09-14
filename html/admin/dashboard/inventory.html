@@ -8,6 +8,8 @@
     <!-- Bootstrap 5 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../css-folder/admin-css/admin-common.css">
     <link rel="stylesheet" href="../../../css-folder/admin-css/admin-session.css">
@@ -15,198 +17,99 @@
 </head>
 
 <body>
-    <!-- ===================================== aside bar start ======================================= -->
-    <!-- Mobile Header -->
-    <div class="mobile-header">
-        <div class="d-flex align-items-center gap-3">
-            <button class="hamburger-btn" id="mobileSidebarToggle" aria-label="Toggle Navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <a href="./dasboard.html" class="sidebar-brand p-0 mb-0">
-                <i class="bi bi-cup-hot-fill brand-logo-icon"></i>
-                <span>ZestCo</span>
-            </a>
-        </div>
-    </div>
-
-    <!-- Mobile Overlay Backdrop -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-    <!-- Sidebar Drawer -->
-    <aside class="sidebar" id="sidebar">
-        <div>
-            <!-- Clean Header Trigger -->
-            <div class="sidebar-brand-wrapper" id="brandToggleTrigger" title="Click to Collapse / Expand Sidebar">
-                <div class="sidebar-brand">
-                    <i class="bi bi-cup-hot-fill brand-logo-icon"></i>
-                    <span class="link-text">ZestCo</span>
-                </div>
-                <i class="bi bi-chevron-left brand-toggle-arrow d-none d-lg-inline-block"></i>
-                <button class="drawer-close-btn d-lg-none" id="mobileDrawerClose" aria-label="Close Drawer">
-                    <i class="bi bi-x-lg"></i>
-                </button>
-            </div>
-
-            <!-- Navigation Links -->
-            <ul class="nav-list">
-                <li class="nav-item">
-                    <a href="./dasboard.html" class="nav-link-custom" title="Dashboard">
-                        <span class="link-content">
-                            <i class="bi bi-grid-1x2-fill icon"></i>
-                            <span class="link-text">Dashboard</span>
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="./orders.html" class="nav-link-custom" title="Orders">
-                        <span class="link-content">
-                            <i class="bi bi-cart3 icon"></i>
-                            <span class="link-text">Orders</span>
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="./menu.html" class="nav-link-custom" title="Menu">
-                        <span class="link-content">
-                            <i class="bi bi-journal-richtext icon"></i>
-                            <span class="link-text">Menu</span>
-                        </span>
-                    </a>
-                </li>
-
-                <!-- Inventory Dropdown Toggle -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link-custom active" id="inventoryToggle" title="Inventory">
-                        <span class="link-content">
-                            <i class="bi bi-box-seam icon"></i>
-                            <span class="link-text">Inventory</span>
-                        </span>
-                        <i class="bi bi-chevron-down chevron-icon"></i>
-                    </a>
-
-                    <!-- Submenu Pages -->
-                    <ul class="submenu" id="inventorySubmenu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link-custom active" id="sidebarInventoryLink">
-                                <span class="link-content">
-                                    <i class="bi bi-dot icon"></i>
-                                    <span class="link-text">Stock Inventory</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link-custom" id="sidebarPurchaseLink">
-                                <span class="link-content">
-                                    <i class="bi bi-dot icon"></i>
-                                    <span class="link-text">Purchase Order</span>
-                                </span>
-                            </a>
-                        </li>
+ <div class="app">
+        <!-- ===================================================== MOBILE HEADER ===================================================== -->
+        <div class="mobile-header"> <button class="hamburger-btn" id="mobileSidebarToggle" type="button"
+                aria-label="Open navigation"> <span class="bar"></span> <span class="bar"></span> <span
+                    class="bar"></span> </button> <a href="./dasboard.html" class="mobile-header-brand"> <i
+                    class="fa-solid fa-utensils"></i> <span>ZestCo</span> </a> </div>
+        <!-- ===================================================== SIDEBAR ===================================================== -->
+        <aside class="sidebar" id="sidebar">
+            <div> <!-- BRAND -->
+                <div class="sidebar-brand-wrapper" id="brandToggleTrigger" title="Collapse or expand sidebar"> <a
+                        href="./dasboard.html" class="sidebar-brand"> <i
+                            class="fa-solid fa-utensils brand-logo-icon"></i> <span class="link-text"> ZestCo </span>
+                    </a> <button class="drawer-close-btn mobile-menu" id="mobileDrawerClose" type="button"
+                        aria-label="Close sidebar"> <i class="fa-solid fa-xmark"></i> </button> <i
+                        class="fa-solid fa-chevron-left brand-toggle-arrow desktop-menu" aria-hidden="true"></i> </div>
+                <!-- WORKSPACE -->
+                <div class="nav-title"> Workspace </div>
+                <nav aria-label="Workspace navigation">
+                    <ul class="nav-list"> <!-- DASHBOARD -->
+                        <li class="nav-item"> <a href="./dasboard.html" class="nav-link-custom active"
+                                title="Dashboard"> <span class="link-content"> <i
+                                        class="fa-solid fa-table-columns icon"></i> <span class="link-text"> Dashboard
+                                    </span> </span> </a> </li> <!-- ORDERS -->
+                        <li class="nav-item"> <a href="./orders.html" class="nav-link-custom" title="Orders"> <span
+                                    class="link-content"> <i class="fa-solid fa-cart-shopping icon"></i> <span
+                                        class="link-text"> Orders </span> </span> </a> </li> <!-- MENU -->
+                        <li class="nav-item"> <a href="./menu.html" class="nav-link-custom" title="Menu"> <span
+                                    class="link-content"> <i class="fa-solid fa-book-open icon"></i> <span
+                                        class="link-text"> Menu </span> </span> </a> </li> <!-- INVENTORY -->
+                        <li class="nav-item"> <a href="#" class="nav-link-custom" id="inventoryToggle" title="Inventory"
+                                aria-expanded="false"> <span class="link-content"> <i
+                                        class="fa-solid fa-boxes-stacked icon"></i> <span class="link-text"> Inventory
+                                    </span> </span> <i class="fa-solid fa-chevron-down chevron-icon"></i> </a>
+                            <!-- INVENTORY SUBMENU -->
+                            <ul class="submenu" id="inventorySubmenu">
+                                <li class="nav-item"> <a href="./inventory.html" class="nav-link-custom"> <span
+                                            class="link-content"> <i class="fa-solid fa-cubes icon"></i> <span
+                                                class="link-text"> Stock Inventory </span> </span> </a> </li>
+                                <li class="nav-item"> <a href="./purchase-order.html" class="nav-link-custom"> <span
+                                            class="link-content"> <i class="fa-solid fa-file-invoice-dollar icon"></i>
+                                            <span class="link-text"> Purchase Order </span> </span> </a> </li>
+                            </ul>
+                        </li> <!-- MESSAGES -->
+                        <li class="nav-item"> <a href="./messages.html" class="nav-link-custom" title="Messages"> <span
+                                    class="link-content"> <i class="fa-solid fa-comments icon"></i> <span
+                                        class="link-text"> Messages </span> </span> </a> </li> <!-- CALENDAR -->
+                        <li class="nav-item"> <a href="./calendar.html" class="nav-link-custom" title="Calendar"> <span
+                                    class="link-content"> <i class="fa-solid fa-calendar-days icon"></i> <span
+                                        class="link-text"> Calendar </span> </span> </a> </li> <!-- REVIEWS -->
+                        <li class="nav-item"> <a href="./reveiws.html" class="nav-link-custom" title="Reviews"> <span
+                                    class="link-content"> <i class="fa-solid fa-star icon"></i> <span class="link-text">
+                                        Reviews </span> </span> </a> </li>
                     </ul>
-                </li>
-
-                <li class="nav-item">
-                    <a href="./messages.html" class="nav-link-custom" title="Messages">
-                        <span class="link-content">
-                            <i class="bi bi-chat-dots icon"></i>
-                            <span class="link-text">Messages</span>
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="./calendar.html" class="nav-link-custom" title="Calendar">
-                        <span class="link-content">
-                            <i class="bi bi-calendar-event icon"></i>
-                            <span class="link-text">Calendar</span>
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="./reveiws.html" class="nav-link-custom" title="Reviews">
-                        <span class="link-content">
-                            <i class="bi bi-star icon"></i>
-                            <span class="link-text">Reviews</span>
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="./setting.html" class="nav-link-custom" title="Settings">
-                        <span class="link-content">
-                            <i class="bi bi-gear icon"></i>
-                            <span class="link-text">Settings</span>
-                        </span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </aside>
-    <!-- ===================================== aside bar end ======================================= -->
-
-    <!--================= Top Navbar Header start ======================== -->
-    <!-- Top Synchronized Header Bar -->
-    <main class="main-content">
-        <!-- Top Navbar Header -->
-        <header class="top-navbar" id="topNavbar">
-            <div class="header-left">
-                <div class="header-title">
-                    <h1 class="m-0 fs-4 fw-bold title-text">Dashboard</h1>
-                    <p class="text-muted m-0 small subtitle-text">Hello Alexander, welcome back!</p>
-                </div>
+                </nav> <!-- MANAGEMENT -->
+                <div class="nav-title"> Management </div>
+                <nav aria-label="Management navigation">
+                    <ul class="nav-list"> <!-- SETTINGS -->
+                        <li class="nav-item"> <a href="./setting.html" class="nav-link-custom" title="Settings"> <span
+                                    class="link-content"> <i class="fa-solid fa-gear icon"></i> <span class="link-text">
+                                        Settings </span> </span> </a> </li>
+                    </ul>
+                </nav>
+            </div> <!-- SIDEBAR FOOTER -->
+            <div class="sidebar-footer">
+                <div class="upgrade-card"> <i class="fa-solid fa-crown"></i> <strong> Unlock Premium </strong> <small>
+                        Get advanced restaurant reports and AI insights. </small> <button type="button"> Upgrade Plan
+                    </button> </div>
             </div>
-
-            <!-- Right Controls -->
-            <div class="header-right">
-                <div class="search-box d-none d-md-flex" id="searchBox">
-                    <i class="bi bi-search search-icon"></i>
-                    <input type="text" placeholder="Search anything..." class="search-input">
-                </div>
-
-                <div class="header-actions">
-                    <button class="action-btn d-md-none" id="mobileSearchBtn" title="Search">
-                        <i class="bi bi-search"></i>
-                    </button>
-                    <button class="action-btn position-relative" id="notificationBtn" title="Notifications">
-                        <i class="bi bi-bell"></i>
-                        <span class="notification-badge"></span>
-                    </button>
-                    <button class="action-btn position-relative" id="messageBtn" title="Messages">
-                        <i class="bi bi-chat-text"></i>
-                        <span class="notification-badge bg-gold"></span>
-                    </button>
-                </div>
-
-                <!-- User Profile Dropdown -->
-                <div class="user-profile-dropdown" id="userProfileDropdown">
-                    <div class="profile-trigger" id="profileTrigger">
-                        <img src="https://ui-avatars.com/api/?name=Alexander+R&background=D4AF37&color=fff"
-                            alt="User Profile" class="profile-avatar">
-                        <div class="profile-info d-none d-xl-block">
-                            <span class="profile-name">Alexander R.</span>
-                            <span class="profile-role">Admin</span>
-                        </div>
-                        <i class="bi bi-chevron-down profile-chevron d-none d-sm-inline-block"></i>
-                    </div>
-
-                    <div class="profile-menu" id="profileMenu">
-                        <a href="./setting.html" class="profile-menu-item">
-                            <i class="bi bi-person"></i>
-                            <span>My Profile</span>
-                        </a>
-                        <a href="./setting.html" class="profile-menu-item">
-                            <i class="bi bi-gear"></i>
-                            <span>Account Settings</span>
-                        </a>
-                        <hr class="dropdown-divider my-1">
-                        <a href="#" class="profile-menu-item text-danger">
-                            <i class="bi bi-box-arrow-right"></i>
-                            <span>Logout</span>
-                        </a>
+        </aside> <!-- MOBILE OVERLAY -->
+        <div class="overlay" id="overlay"></div>
+        <!-- ===================================================== MAIN ===================================================== -->
+        <main class="main-content">
+            <!-- ================================================= TOPBAR ================================================= -->
+            <header class="topbar"> <!-- DESKTOP SIDEBAR TOGGLE --> <button class="icon-button desktop-menu"
+                    id="sidebarToggle" type="button" aria-label="Collapse sidebar"> <i
+                        class="fa-solid fa-bars-staggered"></i> </button> <!-- MOBILE MENU --> <button
+                    class="icon-button mobile-menu" id="mobileMenu" type="button" aria-label="Open sidebar"> <i
+                        class="fa-solid fa-bars"></i> </button> <!-- PAGE CONTEXT -->
+                <div class="topbar-context" role="button" tabindex="0" title="Return to dashboard overview"> <span
+                        class="topbar-context-icon"> <i class="fa-solid fa-chart-line"></i> </span> <span
+                        class="topbar-context-copy"> <strong> Operations center </strong> <small> <i
+                                class="fa-solid fa-circle"></i> Live restaurant overview </small> </span> </div>
+                <!-- TOP ACTIONS -->
+                <div class="top-actions"> <!-- THEME --> <button class="icon-button" id="themeToggle" type="button"
+                        aria-label="Toggle dark mode"> <i class="fa-regular fa-moon"></i> </button>
+                    <!-- NOTIFICATIONS --> <button class="icon-button notification" type="button"
+                        aria-label="Notifications"> <i class="fa-regular fa-bell"></i> </button> <!-- PROFILE -->
+                    <div class="profile">
+                        <div class="avatar"> AR </div>
+                        <div class="profile-copy"> <strong> Ahmed Raza </strong> <small> Administrator </small> </div>
                     </div>
                 </div>
-            </div>
-        </header>
+            </header>
 
         <div class="dashboard-container">
 
@@ -403,9 +306,6 @@
         </div>
     </main>
     <!--================= Top Navbar Header end ======================== -->
-
-
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>

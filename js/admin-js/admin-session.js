@@ -51,11 +51,10 @@ function ensureThemeButton() {
   };
   updateIcon();
   button.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    localStorage.setItem(
-      "zestco-admin-theme",
-      document.body.classList.contains("dark") ? "dark" : "light",
-    );
+      document.body.classList.toggle("dark");
+      const theme = document.body.classList.contains("dark") ? "dark" : "light";
+      localStorage.setItem("zestco-admin-theme", theme);
+      localStorage.setItem("restro-theme", theme);
     updateIcon();
     document.dispatchEvent(new CustomEvent("admin:theme-change"));
   });
@@ -304,7 +303,10 @@ function connectNotifications(notificationControls) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (localStorage.getItem("zestco-admin-theme") === "dark")
+  if (
+    localStorage.getItem("zestco-admin-theme") === "dark" ||
+    localStorage.getItem("restro-theme") === "dark"
+  )
     document.body.classList.add("dark");
   ensureThemeButton();
   const notificationControls = ensureNotificationButton();
