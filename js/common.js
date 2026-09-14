@@ -1,3 +1,42 @@
+// ===== USER PAGE LOADER =====
+(function initPageLoader() {
+  if (document.getElementById("zestPageLoader")) return;
+
+  const loader = document.createElement("div");
+  loader.id = "zestPageLoader";
+  loader.className = "zest-page-loader";
+  loader.innerHTML = `
+    <div class="zest-loader-mark" aria-hidden="true">Z</div>
+    <span class="zest-loader-name">Zest &amp; Co.</span>
+    <span class="zest-loader-line" aria-hidden="true"></span>
+  `;
+  document.body.appendChild(loader);
+
+  const hideLoader = () => {
+    if (loader.dataset.hidden === "true") return;
+    loader.dataset.hidden = "true";
+    if (window.gsap) {
+      window.gsap.to(loader, {
+        duration: 0.55,
+        opacity: 0,
+        ease: "power2.out",
+        onComplete: () => loader.remove(),
+      });
+    } else {
+      loader.classList.add("is-hidden");
+      window.setTimeout(() => loader.remove(), 600);
+    }
+  };
+
+  if (document.readyState === "complete") {
+    window.setTimeout(hideLoader, 250);
+  } else {
+    window.addEventListener("load", () => window.setTimeout(hideLoader, 250), {
+      once: true,
+    });
+  }
+})();
+
 // ===== STICKY NAVBAR SHRINK ON SCROLL (every page) =====
 (function initStickyNavbar() {
   const header = document.querySelector(".site-header");
@@ -141,11 +180,10 @@ function getScrollbarWidth() {
 }
 
 function updateNavbarForAuth(user) {
-  document
-    .querySelectorAll(".navbar-actions [data-auth-open]")
-    .forEach((button) => {
-      button.hidden = Boolean(user);
-    });
+  document.body.classList.toggle("authenticated", Boolean(user));
+  document.querySelectorAll("[data-auth-open]").forEach((button) => {
+    button.hidden = Boolean(user);
+  });
   document.querySelectorAll(".chat-with-us").forEach((button) => {
     button.hidden = !user;
   });
@@ -185,8 +223,6 @@ document.querySelectorAll(".chat-with-us").forEach((button) => {
 
 // ===== CHATLING CUSTOMER CHATBOT (only for signed-in users) =====
 (function initChatlingWidget() {
-  if (window.location.pathname.includes("/admin/")) return;
-
   const chatbotId = "1425934228";
   const scriptId = "chtl-script";
 

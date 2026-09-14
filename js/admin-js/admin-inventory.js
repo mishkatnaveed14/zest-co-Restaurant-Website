@@ -4,6 +4,7 @@ import {
   collection,
   doc,
   getDocs,
+  onSnapshot,
   updateDoc,
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
@@ -163,6 +164,8 @@ let currentPage = 1;
 const rowsPerPage = 5;
 let filteredData = [];
 let editingInventoryId = null;
+let inventoryListener = null;
+let purchaseListener = null;
 
 document.addEventListener("DOMContentLoaded", () => {
   setupEventListeners();
@@ -172,13 +175,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadInventoryData() {
   try {
-    const inventorySnapshot = await getDocs(collection(db, "inventory"));
-    const purchaseSnapshot = await getDocs(collection(db, "purchaseOrders"));
+    const inventoryReference = collection(db, "inventory");
+    const purchaseReference = collection(db, "purchaseOrders");
+    const inventorySnapshot = await getDocs(inventoryReference);
+    const purchaseSnapshot = await getDocs(purchaseReference);
 
     if (inventorySnapshot.empty) {
       const seededItems = await Promise.all(
         defaultInventoryData.map(async (item) => {
-          const itemReference = await addDoc(collection(db, "inventory"), item);
+          const itemReference = await addDoc(inventoryReference, item);
           return { ...item, id: itemReference.id };
         }),
       );
@@ -193,7 +198,7 @@ async function loadInventoryData() {
     if (purchaseSnapshot.empty) {
       const seededOrders = await Promise.all(
         defaultPurchaseData.map(async (order) => {
-          await addDoc(collection(db, "purchaseOrders"), order);
+          await addDoc(purchaseReference, order);
           return order;
         }),
       );
@@ -204,6 +209,23 @@ async function loadInventoryData() {
         ...purchaseDocument.data(),
       }));
     }
+
+    inventoryListener?.();
+    purchaseListener?.();
+    inventoryListener = onSnapshot(inventoryReference, (snapshot) => {
+      inventoryData = snapshot.docs.map((inventoryDocument) => ({
+        id: inventoryDocument.id,
+        ...inventoryDocument.data(),
+      }));
+      if (currentView === "inventory") handleFilter();
+    });
+    purchaseListener = onSnapshot(purchaseReference, (snapshot) => {
+      purchaseData = snapshot.docs.map((purchaseDocument) => ({
+        firestoreId: purchaseDocument.id,
+        ...purchaseDocument.data(),
+      }));
+      if (currentView === "purchase") handleFilter();
+    });
 
     switchView(
       window.location.hash === "#purchase-orders" ? "purchase" : "inventory",
