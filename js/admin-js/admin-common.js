@@ -45,6 +45,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("overlay");
   const desktopToggle = document.getElementById("sidebarToggle");
 
+  const syncMobileDrawerState = (open) => {
+    document.body.classList.toggle("mobile-sidebar-open", open);
+    mobileToggles.forEach((toggle) => {
+      const isHamburger = toggle.classList.contains("hamburger-btn");
+      toggle.classList.toggle("active", open && isHamburger);
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+  };
+
   document.querySelectorAll(".profile").forEach((profile) => {
     profile.setAttribute("role", "button");
     profile.setAttribute("tabindex", "0");
@@ -161,8 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const closeDrawer = () => {
-    document.body.classList.remove("mobile-sidebar-open");
-    mobileToggles.forEach((toggle) => toggle.classList.remove("active"));
+    syncMobileDrawerState(false);
     if (window.innerWidth < 992) {
       document.body.classList.remove("sidebar-collapsed");
       sidebar.classList.remove("collapsed");
@@ -176,8 +184,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const toggleMobileDrawer = () => {
-    const open = document.body.classList.toggle("mobile-sidebar-open");
-    mobileToggles.forEach((toggle) => toggle.classList.toggle("active", open));
+    const open = !document.body.classList.contains("mobile-sidebar-open");
+    syncMobileDrawerState(open);
     if (window.innerWidth < 992) {
       document.body.classList.remove("sidebar-collapsed");
       sidebar.classList.remove("collapsed");

@@ -1798,6 +1798,25 @@ body.dark-theme .icon-button {
     text-decoration: none;
 }
 
+.mobile-header-brand .brand-logo-icon {
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+    place-items: center;
+
+    color: #121315;
+
+    font-size: 15px;
+    font-weight: 900;
+
+    background: linear-gradient(145deg, var(--accent-gold-bright), var(--accent-gold));
+    border: 1px solid rgba(197, 168, 128, 0.24);
+    border-radius: 9px;
+
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
 .mobile-header-brand i {
     color: var(--accent-gold-bright);
 
@@ -2089,6 +2108,11 @@ body.sidebar-collapsed .brand-toggle-arrow {
 
     .mobile-header .hamburger-btn {
         display: flex;
+        color: var(--text-dark);
+    }
+
+    .hamburger-btn .bar {
+        background: currentColor;
     }
 
     .sidebar .drawer-close-btn {
