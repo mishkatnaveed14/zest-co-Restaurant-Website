@@ -87,3 +87,31 @@
     border-left: 3px solid #D4AF37;
     padding-left: 10px;
 }
+
+@media (max-width: 991.98px) {
+    .calendar-layout {
+        display: block;
+    }
+
+    .calendar-card,
+    .calendar-sidebar-card {
+        border-radius: 14px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .fc-header-toolbar {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .fc-toolbar-chunk {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .fc .fc-toolbar-title {
+        text-align: center;
+    }
+}
