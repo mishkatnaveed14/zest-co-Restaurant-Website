@@ -601,7 +601,11 @@ textarea {
 }
 
 .table-wrap {
-    overflow: auto
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
 }
 
 .menu-panel table {
@@ -1071,6 +1075,15 @@ textarea {
     .full-width {
         grid-column: auto
     }
+
+    .menu-panel {
+        overflow: hidden;
+    }
+
+    .table-wrap {
+        margin: 0 -4px;
+        padding-bottom: 4px;
+    }
 }
 
 @media(max-width:430px) {
@@ -1090,6 +1103,18 @@ textarea {
 
     .featured-card img {
         height: 140px
+    }
+
+    .menu-controls {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .inline-search,
+    .menu-controls select {
+        width: 100%;
+        max-width: none;
     }
 }
 
