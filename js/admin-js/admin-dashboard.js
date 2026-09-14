@@ -658,8 +658,11 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.getItem("restro-theme") === "dark" ||
     localStorage.getItem("zestco-admin-theme") === "dark"
   ) {
-    document.body.classList.add("dark");
-    themeButton.innerHTML = '<i class="fa-regular fa-sun"></i>';
+    document.body.classList.add("dark-theme");
+    document.body.classList.remove("dark");
+    if (themeButton) {
+      themeButton.innerHTML = '<i class="fa-regular fa-sun"></i>';
+    }
   }
 
   updateDashboardStats();

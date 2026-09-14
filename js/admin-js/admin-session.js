@@ -45,16 +45,18 @@ function ensureThemeButton() {
     actions.prepend(button);
   }
   const updateIcon = () => {
-    const dark = document.body.classList.contains("dark");
+    const dark = document.body.classList.contains("dark-theme");
     button.innerHTML = `<i class="fa-${dark ? "solid fa-sun" : "regular fa-moon"}"></i>`;
     button.title = dark ? "Switch to light mode" : "Switch to dark mode";
   };
   updateIcon();
   button.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-      const theme = document.body.classList.contains("dark") ? "dark" : "light";
-      localStorage.setItem("zestco-admin-theme", theme);
-      localStorage.setItem("restro-theme", theme);
+    const enabled = !document.body.classList.contains("dark-theme");
+    document.body.classList.toggle("dark-theme", enabled);
+    document.body.classList.remove("dark");
+    const theme = enabled ? "dark" : "light";
+    localStorage.setItem("zestco-admin-theme", theme);
+    localStorage.setItem("restro-theme", theme);
     updateIcon();
     document.dispatchEvent(new CustomEvent("admin:theme-change"));
   });
@@ -303,11 +305,11 @@ function connectNotifications(notificationControls) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (
-    localStorage.getItem("zestco-admin-theme") === "dark" ||
-    localStorage.getItem("restro-theme") === "dark"
-  )
-    document.body.classList.add("dark");
+  const savedTheme = localStorage.getItem("restro-theme") || localStorage.getItem("zestco-admin-theme") || "light";
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-theme");
+    document.body.classList.remove("dark");
+  }
   ensureThemeButton();
   const notificationControls = ensureNotificationButton();
   ensureWishlistButton();
