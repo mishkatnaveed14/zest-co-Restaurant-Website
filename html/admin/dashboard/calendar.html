@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css">
     <!-- Custom Admin CSS -->
     <link rel="stylesheet" href="../../../css-folder/admin-css/admin-common.css">
+    <link rel="stylesheet" href="../../../css-folder/admin-css/admin-session.css">
     <link rel="stylesheet" href="../../../css-folder/admin-css/admin-dashboard.css">
     <link rel="stylesheet" href="../../../css-folder/admin-css/calendar.css">
 </head>
@@ -144,7 +145,8 @@
             <div class="header-left">
                 <div class="header-title">
                     <h1 class="m-0 fs-4 fw-bold title-text">Calendar & Reservations</h1>
-                    <p class="text-muted m-0 small subtitle-text">Manage table bookings, staff shifts, and restaurant events</p>
+                    <p class="text-muted m-0 small subtitle-text">Manage table bookings, staff shifts, and restaurant
+                        events</p>
                 </div>
             </div>
 
@@ -155,7 +157,8 @@
 
                 <div class="user-profile-dropdown" id="userProfileDropdown">
                     <div class="profile-trigger" id="profileTrigger">
-                        <img src="https://ui-avatars.com/api/?name=Alexander+R&background=D4AF37&color=fff" alt="User Profile" class="profile-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Alexander+R&background=D4AF37&color=fff"
+                            alt="User Profile" class="profile-avatar">
                         <div class="profile-info d-none d-xl-block">
                             <span class="profile-name">Alexander R.</span>
                             <span class="profile-role">Admin</span>
@@ -173,25 +176,29 @@
                         <div class="card-body">
                             <h6 class="fw-bold mb-3">Filter Event Types</h6>
                             <div class="form-check custom-checkbox mb-2">
-                                <input class="form-check-input filter-check" type="checkbox" value="Reservation" id="checkReservation" checked>
+                                <input class="form-check-input filter-check" type="checkbox" value="Reservation"
+                                    id="checkReservation" checked>
                                 <label class="form-check-label d-flex align-items-center gap-2" for="checkReservation">
                                     <span class="event-dot bg-reservation"></span> Table Reservations
                                 </label>
                             </div>
                             <div class="form-check custom-checkbox mb-2">
-                                <input class="form-check-input filter-check" type="checkbox" value="Shift" id="checkShift" checked>
+                                <input class="form-check-input filter-check" type="checkbox" value="Shift"
+                                    id="checkShift" checked>
                                 <label class="form-check-label d-flex align-items-center gap-2" for="checkShift">
                                     <span class="event-dot bg-shift"></span> Staff Shifts
                                 </label>
                             </div>
                             <div class="form-check custom-checkbox mb-2">
-                                <input class="form-check-input filter-check" type="checkbox" value="Special" id="checkSpecial" checked>
+                                <input class="form-check-input filter-check" type="checkbox" value="Special"
+                                    id="checkSpecial" checked>
                                 <label class="form-check-label d-flex align-items-center gap-2" for="checkSpecial">
                                     <span class="event-dot bg-special"></span> Private Parties
                                 </label>
                             </div>
                             <div class="form-check custom-checkbox">
-                                <input class="form-check-input filter-check" type="checkbox" value="Maintenance" id="checkMaintenance" checked>
+                                <input class="form-check-input filter-check" type="checkbox" value="Maintenance"
+                                    id="checkMaintenance" checked>
                                 <label class="form-check-label d-flex align-items-center gap-2" for="checkMaintenance">
                                     <span class="event-dot bg-maintenance"></span> Maintenance
                                 </label>
@@ -205,7 +212,7 @@
                             <h6 class="fw-bold mb-3">Upcoming Schedules</h6>
                             <div id="upcomingEventsList" class="d-flex flex-column gap-3">
                                 <div class="spinner-border text-warning mb-2" role="status"></div>
-                           
+
                                 <p class="text-muted small mb-0">Loading Schedule...</p>
                             </div>
                         </div>
@@ -235,7 +242,8 @@
                         <input type="hidden" id="eventId">
                         <div class="mb-3">
                             <label class="form-label fw-semibold small">Event Title / Customer Name</label>
-                            <input type="text" class="form-control" id="eventTitle" placeholder="e.g., Table for 4 - Mr. Khan" required>
+                            <input type="text" class="form-control" id="eventTitle"
+                                placeholder="e.g., Table for 4 - Mr. Khan" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-semibold small">Category</label>
@@ -258,7 +266,8 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-semibold small">Notes / Special Instructions</label>
-                            <textarea class="form-control" id="eventNotes" rows="3" placeholder="Add guest preference, table number, etc."></textarea>
+                            <textarea class="form-control" id="eventNotes" rows="3"
+                                placeholder="Add guest preference, table number, etc."></textarea>
                         </div>
                     </div>
                     <div class="modal-footer border-top-0 d-flex justify-content-between">
@@ -266,7 +275,8 @@
                             <i class="bi bi-trash"></i> Delete
                         </button>
                         <div>
-                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-secondary btn-sm"
+                                data-bs-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-gold btn-sm">Save Event</button>
                         </div>
                     </div>
@@ -282,6 +292,7 @@
 
     <!-- Custom Modules -->
     <script src="../../../js/admin-js/admin-common.js"></script>
+    <script type="module" src="../../../js/admin-js/admin-session.js"></script>
     <script src="../../../js/admin-js/admin-calendar.js" type="module"></script>
 </body>
 
