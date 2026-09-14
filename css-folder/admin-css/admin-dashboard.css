@@ -555,3 +555,87 @@ body.dark-theme .activity-item:hover {
     font-size: 10px;
 }
 
+@media (max-width: 1200px) {
+    .dashboard {
+        padding: 24px 20px 36px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .dashboard {
+        padding: 18px 14px 28px;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px 18px 16px;
+    }
+
+    .date-filter {
+        width: 100%;
+    }
+
+    .stats-grid,
+    .split-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .card-actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .chart-wrap {
+        height: 240px;
+    }
+
+    .chart-wrap.small {
+        height: 200px;
+    }
+
+    .orders-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .orders-search {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-header {
+        padding: 16px 14px 14px;
+    }
+
+    .stat-card {
+        padding: 16px 14px;
+    }
+
+    .card {
+        padding: 18px 14px;
+    }
+
+    .food-item {
+        grid-template-columns: 52px minmax(0, 1fr);
+    }
+
+    .food-price {
+        grid-column: 2;
+    }
+}
+
