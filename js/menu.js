@@ -1,3 +1,15 @@
+import { auth, db } from "../firebase.config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import {
+    addDoc,
+    collection,
+    deleteDoc,
+    doc,
+    onSnapshot,
+    serverTimestamp,
+    setDoc,
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('menuSearchInput');
     const dishItems = document.querySelectorAll('.dish-item');
@@ -14,14 +26,149 @@ document.addEventListener('DOMContentLoaded', () => {
     const detailRatingText = document.getElementById('dishDetailRatingText');
     const detailStars = document.getElementById('dishDetailStars');
     const detailOrders = document.getElementById('dishDetailOrders');
-    const detailChef = document.getElementById('dishDetailChef');
-    const detailPrep = document.getElementById('dishDetailPrep');
-    const detailIngredients = document.getElementById('dishDetailIngredients');
     const detailServed = document.getElementById('dishDetailServedWith');
     const detailSpiceRow = document.getElementById('dishDetailSpiceRow');
     const detailSpice = document.getElementById('dishDetailSpice');
 
     let activeCategory = '';
+    let currentUser = null;
+    let cartItems = [];
+    let stopCartListener = null;
+
+    const cartAction = document.getElementById('menuCartAction');
+    const cartCount = document.getElementById('menuCartCount');
+    const cartPanel = document.getElementById('menuCartPanel');
+    const cartBackdrop = document.getElementById('menuCartBackdrop');
+    const cartClose = document.getElementById('menuCartClose');
+    const cartItemsContainer = document.getElementById('menuCartItems');
+    const cartTotal = document.getElementById('menuCartTotal');
+    const cartCheckout = document.getElementById('menuCartCheckout');
+
+    function showOrderNotice(message, type = 'success') {
+        let notice = document.getElementById('menuOrderNotice');
+        if (!notice) {
+            notice = document.createElement('div');
+            notice.id = 'menuOrderNotice';
+            notice.className = 'menu-order-notice';
+            notice.setAttribute('role', 'status');
+            document.body.appendChild(notice);
+        }
+        notice.textContent = message;
+        notice.classList.remove('success', 'error', 'visible');
+        notice.classList.add(type);
+        requestAnimationFrame(() => notice.classList.add('visible'));
+        window.setTimeout(() => notice.classList.remove('visible'), 5000);
+    }
+
+    const cartDocumentId = (name) => name.toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '');
+    const parsePrice = (value) => Number.parseFloat(String(value).replace(/[^0-9.]/g, '')) || 0;
+    const formatPrice = (value) => `$${Number(value || 0).toFixed(2)}`;
+
+    function closeCart() {
+        cartPanel?.classList.remove('open');
+        cartBackdrop?.classList.remove('open');
+        cartPanel?.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('menu-cart-open');
+    }
+
+    function renderCart() {
+        const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+        const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        if (cartCount) cartCount.textContent = String(itemCount);
+        if (cartTotal) cartTotal.textContent = formatPrice(total);
+        if (!cartItems.length) {
+            cartItemsContainer.innerHTML = '<p class="menu-cart-empty">Your cart is waiting for something delicious.</p>';
+            return;
+        }
+
+        cartItemsContainer.innerHTML = cartItems.map((item) => `
+            <div class="menu-cart-item" data-cart-item="${item.id}">
+                <img src="${item.image}" alt="${item.name}">
+                <div class="menu-cart-item-copy">
+                    <strong>${item.name}</strong>
+                    <span>${formatPrice(item.price)}</span>
+                    <div class="menu-cart-quantity">
+                        <button type="button" data-cart-decrease aria-label="Decrease ${item.name}">-</button>
+                        <span>${item.quantity}</span>
+                        <button type="button" data-cart-increase aria-label="Increase ${item.name}">+</button>
+                    </div>
+                </div>
+                <button type="button" class="menu-cart-remove" data-cart-remove aria-label="Remove ${item.name}">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+        `).join('');
+    }
+
+    function openCart() {
+        if (!currentUser) return;
+        cartPanel?.classList.add('open');
+        cartBackdrop?.classList.add('open');
+        cartPanel?.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('menu-cart-open');
+    }
+
+    function listenToCart(user) {
+        stopCartListener?.();
+        stopCartListener = onSnapshot(
+            collection(db, 'users', user.uid, 'cart'),
+            (snapshot) => {
+                cartItems = snapshot.docs.map((cartDocument) => ({
+                    id: cartDocument.id,
+                    ...cartDocument.data(),
+                    quantity: Math.max(1, Number(cartDocument.data().quantity) || 1),
+                    price: Number(cartDocument.data().price) || 0,
+                }));
+                renderCart();
+            },
+            (error) => console.error('Unable to load cart from Firebase:', error),
+        );
+    }
+
+    function updateCartItem(item, quantity) {
+        if (!currentUser) return;
+        const itemReference = doc(db, 'users', currentUser.uid, 'cart', item.id);
+        if (quantity < 1) {
+            return deleteDoc(itemReference);
+        }
+        return setDoc(itemReference, { quantity }, { merge: true });
+    }
+
+    async function addToCart(card) {
+        if (!currentUser || !card) return;
+        const title = card.querySelector('.dish-title')?.textContent?.trim();
+        const price = parsePrice(card.querySelector('.current-price')?.textContent);
+        if (!title || !price) return;
+        const id = cartDocumentId(title);
+        const existing = cartItems.find((item) => item.id === id);
+        await setDoc(doc(db, 'users', currentUser.uid, 'cart', id), {
+            name: title,
+            price,
+            image: card.querySelector('img')?.src || '',
+            quantity: (existing?.quantity || 0) + 1,
+        }, { merge: true });
+        openCart();
+    }
+
+    onAuthStateChanged(auth, (user) => {
+        currentUser = user;
+        if (cartAction) cartAction.hidden = !user;
+        document.querySelectorAll('.overlay-btn[title="Cart"]').forEach((button) => {
+            button.hidden = !user;
+            button.classList.toggle('cart-visible', Boolean(user));
+        });
+        if (user) {
+            listenToCart(user);
+        } else {
+            stopCartListener?.();
+            stopCartListener = null;
+            cartItems = [];
+            renderCart();
+            closeCart();
+        }
+    });
 
     function syncFilterButtons() {
         if (clearFilterBtn) {
@@ -553,6 +700,79 @@ document.addEventListener('DOMContentLoaded', () => {
                 openDishDetails(dishItem);
             }
         });
+    });
+
+    document.querySelectorAll('.overlay-btn[title="Cart"]').forEach((button) => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            addToCart(button.closest('.dish-item')).catch((error) => {
+                console.error('Unable to add item to cart:', error);
+            });
+        });
+    });
+
+    cartAction?.addEventListener('click', openCart);
+    cartClose?.addEventListener('click', closeCart);
+    cartBackdrop?.addEventListener('click', closeCart);
+    cartItemsContainer?.addEventListener('click', (event) => {
+        const cartItem = event.target.closest('[data-cart-item]');
+        if (!cartItem) return;
+        const item = cartItems.find((entry) => entry.id === cartItem.dataset.cartItem);
+        if (!item) return;
+        if (event.target.closest('[data-cart-increase]')) {
+            updateCartItem(item, item.quantity + 1);
+        } else if (event.target.closest('[data-cart-decrease]')) {
+            updateCartItem(item, item.quantity - 1);
+        } else if (event.target.closest('[data-cart-remove]')) {
+            updateCartItem(item, 0);
+        }
+    });
+
+    cartCheckout?.addEventListener('click', async () => {
+        if (!currentUser || !cartItems.length) return;
+
+        const totalAmount = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        cartCheckout.disabled = true;
+        cartCheckout.textContent = 'Placing order...';
+
+        try {
+            await addDoc(collection(db, 'orders'), {
+                orderId: `ORD-${Date.now()}`,
+                customerId: currentUser.uid,
+                customerName: currentUser.displayName || currentUser.email?.split('@')[0] || 'Registered customer',
+                customerEmail: currentUser.email || '',
+                items: cartItems.map((item) => ({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    quantity: item.quantity,
+                })),
+                totalAmount,
+                paymentMethod: 'Pending',
+                serviceType: 'Online Order',
+                status: 'Pending',
+                createdAt: serverTimestamp(),
+            });
+
+            cartCheckout.textContent = 'Order placed';
+            renderCart();
+            showOrderNotice('Your order has been placed successfully.');
+            window.setTimeout(closeCart, 900);
+
+            try {
+                await Promise.all(cartItems.map((item) => deleteDoc(
+                    doc(db, 'users', currentUser.uid, 'cart', item.id),
+                )));
+            } catch (cleanupError) {
+                console.warn('Order placed, but the cart could not be cleared:', cleanupError);
+            }
+        } catch (error) {
+            console.error('Unable to place order in Firebase:', error);
+            cartCheckout.disabled = false;
+            cartCheckout.textContent = 'Checkout';
+            showOrderNotice('Your order could not be placed. Please try again.', 'error');
+        }
     });
 
     if (detailModal) {

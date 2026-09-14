@@ -6,374 +6,319 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Management | ZestCo Admin</title>
     <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../css-folder/admin-css/admin-common.css">
+    <link rel="stylesheet" href="../../../css-folder/admin-css/admin-session.css">
     <link rel="stylesheet" href="../../../css-folder/admin-css/admin-dashboard.css">
     <link rel="stylesheet" href="../../../css-folder/admin-css/orders.css">
 </head>
 
 <body>
-    <!-- Mobile Header -->
-    <div class="mobile-header">
-        <div class="d-flex align-items-center gap-3">
-            <button class="hamburger-btn" id="mobileSidebarToggle" aria-label="Toggle Navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <a href="./dasboard.html" class="sidebar-brand p-0 mb-0">
-                <i class="bi bi-cup-hot-fill brand-logo-icon"></i>
-                <span>ZestCo</span>
-            </a>
-        </div>
-    </div>
-
-    <!-- Mobile Overlay Backdrop -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-    <!-- Sidebar Drawer -->
-    <aside class="sidebar" id="sidebar">
-        <div>
-            <div class="sidebar-brand-wrapper" id="brandToggleTrigger" title="Click to Collapse / Expand Sidebar">
-                <div class="sidebar-brand">
-                    <i class="bi bi-cup-hot-fill brand-logo-icon"></i>
-                    <span class="link-text">ZestCo</span>
-                </div>
-                <button class="drawer-close-btn d-lg-none" id="mobileDrawerClose" aria-label="Close Drawer">
-                    <i class="bi bi-x-lg"></i>
-                </button>
-            </div>
-
-            <ul class="nav-list">
-                <li class="nav-item">
-                    <a href="./dasboard.html" class="nav-link-custom" title="Dashboard">
-                        <span class="link-content">
-                            <i class="bi bi-grid-1x2-fill icon"></i>
-                            <span class="link-text">Dashboard</span>
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="./orders.html" class="nav-link-custom active" title="Orders">
-                        <span class="link-content">
-                            <i class="bi bi-cart3 icon"></i>
-                            <span class="link-text">Orders</span>
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="./menu.html" class="nav-link-custom" title="Menu">
-                        <span class="link-content">
-                            <i class="bi bi-journal-richtext icon"></i>
-                            <span class="link-text">Menu</span>
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link-custom" id="inventoryToggle" title="Inventory">
-                        <span class="link-content">
-                            <i class="bi bi-box-seam icon"></i>
-                            <span class="link-text">Inventory</span>
-                        </span>
-                        <i class="bi bi-chevron-down chevron-icon"></i>
-                    </a>
-                    <ul class="submenu" id="inventorySubmenu">
-                        <li class="nav-item">
-                            <a href="./inventory.html" class="nav-link-custom">
-                                <span class="link-content">
-                                    <i class="bi bi-dot icon"></i>
-                                    <span class="link-text">Stock Inventory</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./purchase-order.html" class="nav-link-custom">
-                                <span class="link-content">
-                                    <i class="bi bi-dot icon"></i>
-                                    <span class="link-text">Purchase Order</span>
-                                </span>
-                            </a>
-                        </li>
+    <div class="app">
+        <!-- ===================================================== MOBILE HEADER ===================================================== -->
+        <div class="mobile-header"> <button class="hamburger-btn" id="mobileSidebarToggle" type="button"
+                aria-label="Open navigation"> <span class="bar"></span> <span class="bar"></span> <span
+                    class="bar"></span> </button> <a href="./dashboard.html" class="mobile-header-brand"> <span
+                    class="brand-logo-icon" aria-hidden="true">Z</span> <span>ZestCo</span> </a> </div>
+        <!-- ===================================================== SIDEBAR ===================================================== -->
+        <aside class="sidebar" id="sidebar">
+            <div> <!-- BRAND -->
+                <div class="sidebar-brand-wrapper" id="brandToggleTrigger" title="Collapse or expand sidebar"> <a
+                        href="./dashboard.html" class="sidebar-brand"> <span class="brand-logo-icon"
+                            aria-hidden="true">Z</span> <span class="link-text"> ZestCo </span>
+                    </a> <button class="drawer-close-btn mobile-menu" id="mobileDrawerClose" type="button"
+                        aria-label="Close sidebar"> <i class="fa-solid fa-xmark"></i> </button> <i
+                        class="fa-solid fa-chevron-left brand-toggle-arrow desktop-menu" aria-hidden="true"></i> </div>
+                <!-- WORKSPACE -->
+                <div class="nav-title"> Workspace </div>
+                <nav aria-label="Workspace navigation">
+                    <ul class="nav-list"> <!-- DASHBOARD -->
+                        <li class="nav-item"> <a href="./dashboard.html" class="nav-link-custom active"
+                                title="Dashboard"> <span class="link-content"> <i
+                                        class="fa-solid fa-table-columns icon"></i> <span class="link-text"> Dashboard
+                                    </span> </span> </a> </li> <!-- ORDERS -->
+                        <li class="nav-item"> <a href="./orders.html" class="nav-link-custom" title="Orders"> <span
+                                    class="link-content"> <i class="fa-solid fa-cart-shopping icon"></i> <span
+                                        class="link-text"> Orders </span> </span> </a> </li> <!-- MENU -->
+                        <li class="nav-item"> <a href="./menu.html" class="nav-link-custom" title="Menu"> <span
+                                    class="link-content"> <i class="fa-solid fa-book-open icon"></i> <span
+                                        class="link-text"> Menu </span> </span> </a> </li> <!-- INVENTORY -->
+                        <li class="nav-item"> <a href="#" class="nav-link-custom" id="inventoryToggle" title="Inventory"
+                                aria-expanded="false"> <span class="link-content"> <i
+                                        class="fa-solid fa-boxes-stacked icon"></i> <span class="link-text"> Inventory
+                                    </span> </span> <i class="fa-solid fa-chevron-down chevron-icon"></i> </a>
+                            <!-- INVENTORY SUBMENU -->
+                            <ul class="submenu" id="inventorySubmenu">
+                                <li class="nav-item"> <a href="./inventory.html" class="nav-link-custom"> <span
+                                            class="link-content"> <i class="fa-solid fa-cubes icon"></i> <span
+                                                class="link-text"> Stock Inventory </span> </span> </a> </li>
+                                <li class="nav-item"> <a href="./purchase-order.html" class="nav-link-custom"> <span
+                                            class="link-content"> <i class="fa-solid fa-file-invoice-dollar icon"></i>
+                                            <span class="link-text"> Purchase Order </span> </span> </a> </li>
+                            </ul>
+                        </li>  <!-- CALENDAR -->
+                        <li class="nav-item"> <a href="./calendar.html" class="nav-link-custom" title="Calendar"> <span
+                                    class="link-content"> <i class="fa-solid fa-calendar-days icon"></i> <span
+                                        class="link-text"> Calendar </span> </span> </a> </li> <!-- REVIEWS -->
+                        <li class="nav-item"> <a href="./reveiws.html" class="nav-link-custom" title="Reviews"> <span
+                                    class="link-content"> <i class="fa-solid fa-star icon"></i> <span class="link-text">
+                                        Reviews </span> </span> </a> </li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="./messages.html" class="nav-link-custom" title="Messages">
-                        <span class="link-content">
-                            <i class="bi bi-chat-dots icon"></i>
-                            <span class="link-text">Messages</span>
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="./calendar.html" class="nav-link-custom" title="Calendar">
-                        <span class="link-content">
-                            <i class="bi bi-calendar-event icon"></i>
-                            <span class="link-text">Calendar</span>
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="./reveiws.html" class="nav-link-custom" title="Reviews">
-                        <span class="link-content">
-                            <i class="bi bi-star icon"></i>
-                            <span class="link-text">Reviews</span>
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="./setting.html" class="nav-link-custom" title="Settings">
-                        <span class="link-content">
-                            <i class="bi bi-gear icon"></i>
-                            <span class="link-text">Settings</span>
-                        </span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </aside>
-
-    <!-- Main Content Area -->
-    <main class="main-content">
-        <!-- Top Navbar Header -->
-        <header class="top-navbar" id="topNavbar">
-            <div class="header-left">
-                <div class="header-title">
-                    <h1 class="m-0 fs-4 fw-bold title-text">Order Management</h1>
-                    <p class="text-muted m-0 small subtitle-text">Track, update, and manage customer orders real-time</p>
-                </div>
+                </nav> <!-- MANAGEMENT -->
+                <div class="nav-title"> Management </div>
+                <nav aria-label="Management navigation">
+                    <ul class="nav-list"> <!-- SETTINGS -->
+                        <li class="nav-item"> <a href="setting.html" class="nav-link-custom" title="Settings"> <span
+                                    class="link-content"> <i class="fa-solid fa-gear icon"></i> <span class="link-text">
+                                        Settings </span> </span> </a> </li>
+                    </ul>
+                </nav>
+            </div> <!-- SIDEBAR FOOTER -->
+            <div class="sidebar-footer">
+                <div class="upgrade-card"> <i class="fa-solid fa-crown"></i> <strong> Unlock Premium </strong> <small>
+                        Get advanced restaurant reports and AI insights. </small> <button type="button"> Upgrade Plan
+                    </button> </div>
             </div>
-
-            <div class="header-right">
-                <div class="search-box d-none d-md-flex">
-                    <i class="bi bi-search search-icon"></i>
-                    <input type="text" id="orderSearchInput" placeholder="Search by Order ID or Customer..." class="search-input">
-                </div>
-
-                <div class="header-actions">
-                    <button class="action-btn position-relative" id="notificationBtn" title="Notifications">
-                        <i class="bi bi-bell"></i>
-                        <span class="notification-badge"></span>
-                    </button>
-                </div>
-
-                <div class="user-profile-dropdown" id="userProfileDropdown">
-                    <div class="profile-trigger" id="profileTrigger">
-                        <img src="https://ui-avatars.com/api/?name=Alexander+R&background=D4AF37&color=fff" alt="User Profile" class="profile-avatar">
-                        <div class="profile-info d-none d-xl-block">
-                            <span class="profile-name">Alexander R.</span>
-                            <span class="profile-role">Admin</span>
-                        </div>
+        </aside> <!-- MOBILE OVERLAY -->
+        <div class="overlay" id="overlay"></div>
+        <!-- ===================================================== MAIN ===================================================== -->
+        <main class="main-content">
+            <!-- ================================================= TOPBAR ================================================= -->
+            <header class="topbar"> <!-- DESKTOP SIDEBAR TOGGLE --> <button class="icon-button desktop-menu"
+                    id="sidebarToggle" type="button" aria-label="Collapse sidebar"> <i
+                        class="fa-solid fa-bars-staggered"></i> </button> <!-- MOBILE MENU --> <button
+                    class="icon-button mobile-menu" id="mobileMenu" type="button" aria-label="Open sidebar"> <i
+                        class="fa-solid fa-bars"></i> </button> <!-- PAGE CONTEXT -->
+                <div class="topbar-context" role="button" tabindex="0" title="Return to dashboard overview"> <span
+                        class="topbar-context-icon"> <i class="fa-solid fa-chart-line"></i> </span> <span
+                        class="topbar-context-copy"> <strong> Orders center </strong> <small> <i
+                                class="fa-solid fa-circle"></i> Live order activity </small> </span> </div>
+                <!-- TOP ACTIONS -->
+                <div class="top-actions"> <!-- THEME --> <button class="icon-button" id="themeToggle" type="button"
+                        aria-label="Toggle dark mode"> <i class="fa-regular fa-moon"></i> </button>
+                    <!-- NOTIFICATIONS --> <button class="icon-button notification" type="button"
+                        aria-label="Notifications"> <i class="fa-regular fa-bell"></i> </button> <!-- PROFILE -->
+                    <div class="profile">
+                        <div class="avatar"> AR </div>
+                        <div class="profile-copy"> <strong> Ahmed Raza </strong> <small> Administrator </small> </div>
                     </div>
                 </div>
-            </div>
-        </header>
+            </header>
 
-        <div class="container-fluid px-3 mt-4">
-            <!-- Summary Metric Cards -->
-            <div class="row g-3 mb-4">
-                <div class="col-12 col-sm-6 col-xl-3">
-                    <div class="stat-card">
-                        <div class="stat-icon bg-warning-subtle text-warning">
-                            <i class="bi bi-clock-history"></i>
-                        </div>
-                        <div>
-                            <h6 class="text-muted mb-1 small text-uppercase">Pending Orders</h6>
-                            <h3 class="fw-bold mb-0" id="statPending">0</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-xl-3">
-                    <div class="stat-card">
-                        <div class="stat-icon bg-info-subtle text-info">
-                            <i class="bi bi-fire"></i>
-                        </div>
-                        <div>
-                            <h6 class="text-muted mb-1 small text-uppercase">Preparing</h6>
-                            <h3 class="fw-bold mb-0" id="statPreparing">0</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-xl-3">
-                    <div class="stat-card">
-                        <div class="stat-icon bg-success-subtle text-success">
-                            <i class="bi bi-check-circle"></i>
-                        </div>
-                        <div>
-                            <h6 class="text-muted mb-1 small text-uppercase">Completed Today</h6>
-                            <h3 class="fw-bold mb-0" id="statDelivered">0</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-xl-3">
-                    <div class="stat-card">
-                        <div class="stat-icon bg-primary-subtle text-primary">
-                            <i class="bi bi-currency-dollar"></i>
-                        </div>
-                        <div>
-                            <h6 class="text-muted mb-1 small text-uppercase">Total Revenue</h6>
-                            <h3 class="fw-bold mb-0" id="statRevenue">$0.00</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Visual Charts Analytics Section -->
-            <div class="row g-3 mb-4">
-                <div class="col-12 col-lg-8">
-                    <div class="card order-card border-0 shadow-sm p-3 h-100">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <h6 class="fw-bold mb-0">Orders Volume & Revenue Trend</h6>
-                            <span class="badge bg-light text-muted border">Real-time Analytics</span>
-                        </div>
-                        <div style="position: relative; height: 260px;">
-                            <canvas id="ordersTrendChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="card order-card border-0 shadow-sm p-3 h-100">
-                        <h6 class="fw-bold mb-3">Order Status Distribution</h6>
-                        <div style="position: relative; height: 260px;" class="d-flex align-items-center justify-content-center">
-                            <canvas id="ordersStatusChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Orders Management Table Card -->
-<div class="card order-card shadow-sm border-0">
-    <div class="card-header bg-transparent border-0 py-3 d-flex flex-wrap align-items-center justify-content-between gap-3">
-        <h5 class="fw-bold mb-0">Recent Orders</h5>
-        <div class="d-flex align-items-center gap-2">
-            <!-- Status Filter -->
-            <select class="form-select form-select-sm filter-select" id="statusFilter">
-                <option value="All">All Statuses</option>
-                <option value="Pending">Pending</option>
-                <option value="Preparing">Preparing</option>
-                <option value="Ready">Ready</option>
-                <option value="Delivered">Delivered</option>
-                <option value="Cancelled">Cancelled</option>
-            </select>
-        </div>
-    </div>
-    <div class="card-body p-0">
-        <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th class="ps-4">Order ID</th>
-                        <th>Customer</th>
-                        <th>Items</th>
-                        <th>Total Price</th>
-                        <th>Status</th>
-                        <th>Date/Time</th>
-                        <th class="text-end pe-4">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="ordersTableBody">
-                    <tr>
-                        <td colspan="7" class="text-center py-4 text-muted">
-                            <div class="spinner-border text-warning mb-2" role="status"></div>
-                           <p class="mb-0">Loading Orders...</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!-- Pagination Footer -->
-    <div class="card-footer bg-transparent border-0 py-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
-        <small class="text-muted" id="paginationInfo">Showing 0 of 0 orders</small>
-        <nav aria-label="Order table navigation">
-            <ul class="pagination pagination-sm mb-0" id="paginationControls">
-                <!-- Dynamic Pagination Buttons -->
-            </ul>
-        </nav>
-    </div>
-</div>
-        </div>
-    </main>
-
-    <!-- Modal for Viewing & Editing Order Status -->
-    <div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0">
-                <div class="modal-header border-bottom-0">
-                    <h5 class="modal-title fw-bold" id="modalOrderId">Order #---</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <div class="p-3 rounded bg-light">
-                                <h6 class="fw-semibold text-muted mb-2">Customer Details</h6>
-                                <p class="mb-1"><strong>Name:</strong> <span id="modalCustomerName"></span></p>
-                                <p class="mb-1"><strong>Phone:</strong> <span id="modalCustomerPhone"></span></p>
-                                <p class="mb-0"><strong>Address:</strong> <span id="modalCustomerAddress"></span></p>
+            <div class="container-fluid px-3 mt-4">
+                <!-- Summary Metric Cards -->
+                <div class="row g-3 mb-4">
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-warning-subtle text-warning">
+                                <i class="bi bi-clock-history"></i>
+                            </div>
+                            <div>
+                                <h6 class="text-muted mb-1 small text-uppercase">Pending Orders</h6>
+                                <h3 class="fw-bold mb-0" id="statPending">0</h3>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="p-3 rounded bg-light">
-                                <h6 class="fw-semibold text-muted mb-2">Order Information</h6>
-                                <p class="mb-1"><strong>Date:</strong> <span id="modalOrderDate"></span></p>
-                                <p class="mb-1"><strong>Payment:</strong> <span id="modalPaymentMethod"></span></p>
-                                <div class="mt-2">
-                                    <label for="modalStatusSelect" class="form-label mb-1 fw-bold">Update Status</label>
-                                    <select class="form-select form-select-sm" id="modalStatusSelect">
-                                        <option value="Pending">Pending</option>
-                                        <option value="Preparing">Preparing</option>
-                                        <option value="Ready">Ready</option>
-                                        <option value="Delivered">Delivered</option>
-                                        <option value="Cancelled">Cancelled</option>
-                                    </select>
+                    </div>
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-info-subtle text-info">
+                                <i class="bi bi-fire"></i>
+                            </div>
+                            <div>
+                                <h6 class="text-muted mb-1 small text-uppercase">Preparing</h6>
+                                <h3 class="fw-bold mb-0" id="statPreparing">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-success-subtle text-success">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                            <div>
+                                <h6 class="text-muted mb-1 small text-uppercase">Completed Today</h6>
+                                <h3 class="fw-bold mb-0" id="statDelivered">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-primary-subtle text-primary">
+                                <i class="bi bi-currency-dollar"></i>
+                            </div>
+                            <div>
+                                <h6 class="text-muted mb-1 small text-uppercase">Total Revenue</h6>
+                                <h3 class="fw-bold mb-0" id="statRevenue">$0.00</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Charts Analytics Section -->
+                <div class="row g-3 mb-4">
+                    <div class="col-12 col-lg-8">
+                        <div class="card order-card border-0 shadow-sm p-3 h-100">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <h6 class="fw-bold mb-0">Orders Volume & Revenue Trend</h6>
+                                <span class="badge bg-light text-muted border">Real-time Analytics</span>
+                            </div>
+                            <div style="position: relative; height: 260px;">
+                                <canvas id="ordersTrendChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="card order-card border-0 shadow-sm p-3 h-100">
+                            <h6 class="fw-bold mb-3">Order Status Distribution</h6>
+                            <div style="position: relative; height: 260px;"
+                                class="d-flex align-items-center justify-content-center">
+                                <canvas id="ordersStatusChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orders Management Table Card -->
+                <div class="card order-card shadow-sm border-0">
+                    <div
+                        class="card-header bg-transparent border-0 py-3 d-flex flex-wrap align-items-center justify-content-between gap-3">
+                        <h5 class="fw-bold mb-0">Recent Orders</h5>
+                        <div class="d-flex align-items-center gap-2">
+                            <!-- Status Filter -->
+                            <select class="form-select form-select-sm filter-select" id="statusFilter">
+                                <option value="All">All Statuses</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Preparing">Preparing</option>
+                                <option value="Ready">Ready</option>
+                                <option value="Delivered">Delivered</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="ps-4">Order ID</th>
+                                        <th>Customer</th>
+                                        <th>Items</th>
+                                        <th>Total Price</th>
+                                        <th>Status</th>
+                                        <th>Date/Time</th>
+                                        <th class="text-end pe-4">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ordersTableBody">
+                                    <tr>
+                                        <td colspan="7" class="text-center py-4 text-muted">
+                                            <div class="spinner-border text-warning mb-2" role="status"></div>
+                                            <p class="mb-0">Loading Orders...</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Pagination Footer -->
+                    <div
+                        class="card-footer bg-transparent border-0 py-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
+                        <small class="text-muted" id="paginationInfo">Showing 0 of 0 orders</small>
+                        <nav aria-label="Order table navigation">
+                            <ul class="pagination pagination-sm mb-0" id="paginationControls">
+                                <!-- Dynamic Pagination Buttons -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal for Viewing & Editing Order Status -->
+        <div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content border-0">
+                    <div class="modal-header border-bottom-0">
+                        <h5 class="modal-title fw-bold" id="modalOrderId">Order #---</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="p-3 rounded bg-light">
+                                    <h6 class="fw-semibold text-muted mb-2">Customer Details</h6>
+                                    <p class="mb-1"><strong>Name:</strong> <span id="modalCustomerName"></span></p>
+                                    <p class="mb-1"><strong>Phone:</strong> <span id="modalCustomerPhone"></span></p>
+                                    <p class="mb-0"><strong>Address:</strong> <span id="modalCustomerAddress"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 rounded bg-light">
+                                    <h6 class="fw-semibold text-muted mb-2">Order Information</h6>
+                                    <p class="mb-1"><strong>Date:</strong> <span id="modalOrderDate"></span></p>
+                                    <p class="mb-1"><strong>Payment:</strong> <span id="modalPaymentMethod"></span></p>
+                                    <div class="mt-2">
+                                        <label for="modalStatusSelect" class="form-label mb-1 fw-bold">Update
+                                            Status</label>
+                                        <select class="form-select form-select-sm" id="modalStatusSelect">
+                                            <option value="Pending">Pending</option>
+                                            <option value="Preparing">Preparing</option>
+                                            <option value="Ready">Ready</option>
+                                            <option value="Delivered">Delivered</option>
+                                            <option value="Cancelled">Cancelled</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <h6 class="fw-bold mt-4 mb-2">Ordered Items</h6>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-sm mb-0 align-middle">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Item</th>
-                                    <th class="text-center">Qty</th>
-                                    <th class="text-end">Price</th>
-                                    <th class="text-end">Subtotal</th>
-                                </tr>
-                            </thead>
-                            <tbody id="modalItemsTableBody">
-                                <!-- Populated dynamically -->
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="3" class="text-end fw-bold">Grand Total:</td>
-                                    <td class="text-end fw-bold text-success" id="modalGrandTotal">$0.00</td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                        <h6 class="fw-bold mt-4 mb-2">Ordered Items</h6>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm mb-0 align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Item</th>
+                                        <th class="text-center">Qty</th>
+                                        <th class="text-end">Price</th>
+                                        <th class="text-end">Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="modalItemsTableBody">
+                                    <!-- Populated dynamically -->
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" class="text-end fw-bold">Grand Total:</td>
+                                        <td class="text-end fw-bold text-success" id="modalGrandTotal">$0.00</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer border-top-0">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-gold btn-sm" id="saveStatusBtn">Save Status</button>
+                    <div class="modal-footer border-top-0">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-gold btn-sm" id="saveStatusBtn">Save Status</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    
-    <!-- Chart.js Engine Library -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <!-- Bootstrap JS Bundle -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
-    <!-- Modular JavaScript Files -->
-    <script src="../../../js/admin-js/admin-common.js"></script>
-    <script src="../../../js/admin-js/admin-orders.js" type="module"></script>
+        <!-- Chart.js Engine Library -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <!-- Modular JavaScript Files -->
+        <script src="../../../js/admin-js/admin-common.js"></script>
+        <script type="module" src="../../../js/admin-js/admin-session.js"></script>
+        <script src="../../../js/admin-js/admin-orders.js" type="module"></script>
 </body>
 
 </html>
