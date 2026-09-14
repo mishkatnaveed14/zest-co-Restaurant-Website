@@ -10,12 +10,13 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../css-folder/admin-css/admin-common.css">
+    <link rel="stylesheet" href="../../../css-folder/admin-css/admin-session.css">
     <link rel="stylesheet" href="../../../css-folder/admin-css/admin-inventory.css">
 </head>
 
 <body>
     <!-- ===================================== aside bar start ======================================= -->
-<!-- Mobile Header -->
+    <!-- Mobile Header -->
     <div class="mobile-header">
         <div class="d-flex align-items-center gap-3">
             <button class="hamburger-btn" id="mobileSidebarToggle" aria-label="Toggle Navigation">
@@ -143,7 +144,7 @@
     </aside>
     <!-- ===================================== aside bar end ======================================= -->
 
-     <!--================= Top Navbar Header start ======================== -->
+    <!--================= Top Navbar Header start ======================== -->
     <!-- Top Synchronized Header Bar -->
     <main class="main-content">
         <!-- Top Navbar Header -->
@@ -179,7 +180,8 @@
                 <!-- User Profile Dropdown -->
                 <div class="user-profile-dropdown" id="userProfileDropdown">
                     <div class="profile-trigger" id="profileTrigger">
-                        <img src="https://ui-avatars.com/api/?name=Alexander+R&background=D4AF37&color=fff" alt="User Profile" class="profile-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Alexander+R&background=D4AF37&color=fff"
+                            alt="User Profile" class="profile-avatar">
                         <div class="profile-info d-none d-xl-block">
                             <span class="profile-name">Alexander R.</span>
                             <span class="profile-role">Admin</span>
@@ -202,210 +204,214 @@
                             <span>Logout</span>
                         </a>
                     </div>
-                </div>  
+                </div>
             </div>
         </header>
-        
+
         <div class="dashboard-container">
-        
-        <!-- Analytics/Chart Grid Section -->
-        <div class="analytics-grid">
-            <!-- Line Chart Container -->
-            <div class="chart-card">
-                <div class="chart-header">
-                    <div>
-                        <div class="chart-title">Supply Overview</div>
-                        <div class="chart-metric"><span id="supplyMetric">1,654</span> <span class="chart-unit">Items In</span></div>
-                    </div>
-                    <select class="chart-select" id="supplyRange">
-                        <option value="months">Last 6 Months</option>
-                        <option value="days">Last 30 Days</option>
-                    </select>
-                </div>
-                <div class="chart-wrapper">
-                    <canvas id="supplyOverviewChart"></canvas>
-                </div>
-            </div>
 
-            <!-- Bar Chart Container -->
-            <div class="chart-card">
-                <div class="chart-header">
-                    <div>
-                        <div class="chart-title">Stock Level</div>
-                        <div class="chart-metric"><span id="stockMetric">205</span> <span class="chart-unit">Products</span></div>
-                    </div>
-                    <select class="chart-select" id="stockRange">
-                        <option value="month">This Month</option>
-                        <option value="week">This Week</option>
-                    </select>
-                </div>
-                <div class="chart-wrapper">
-                    <canvas id="stockLevelChart"></canvas>
-                </div>
-                <div class="stock-legend">
-                    <div class="legend-item">
-                        <span class="legend-dot in-stock-dot"></span>
-                        <span><b id="inStockMetric">120</b> In Stock</span>
-                    </div>
-                    <div class="legend-item">
-                        <span class="legend-dot low-stock-dot"></span>
-                        <span><b id="lowStockMetric">55</b> Low Stock</span>
-                    </div>
-                    <div class="legend-item">
-                        <span class="legend-dot out-stock-dot"></span>
-                        <span><b id="outStockMetric">30</b> Out of Stock</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Main Data Table Container -->
-        <div class="data-section">
-            
-            <!-- Table Header Bar -->
-            <div class="controls-header">
-                <!-- Toggle View Buttons -->
-                <div class="toggle-container">
-                    <button class="toggle-btn active" id="btn-inventory">Inventory</button>
-                    <button class="toggle-btn" id="btn-purchase">Purchase Order</button>
-                </div>
-
-                <!-- Filters & Action Buttons -->
-                <div class="filter-group">
-                    <div class="search-box">
-                        <i class="bi bi-search"></i>
-                        <input type="text" id="searchInput" class="search-input" placeholder="Search...">
-                    </div>
-
-                    <select id="categoryFilter" class="filter-select">
-                        <option value="all">All Category</option>
-                        <option value="Food Ingredients">Food Ingredients</option>
-                        <option value="Kitchen Tools & Equipment">Kitchen Tools</option>
-                        <option value="Cleaning Supplies">Cleaning Supplies</option>
-                    </select>
-
-                    <select id="statusFilter" class="filter-select">
-                        <option value="all">All Status</option>
-                        <option value="Available">Available</option>
-                        <option value="Low">Low</option>
-                        <option value="Out of Stock">Out of Stock</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Completed">Completed</option>
-                    </select>
-
-                    <button class="primary-btn" id="actionButton">
-                        <i class="bi bi-plus-lg"></i> <span id="actionButtonText">Add Product</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Dynamic Table Container -->
-            <div class="table-wrapper">
-                <table id="dataTable">
-                    <thead>
-                        <tr id="tableHeadRow">
-                            <!-- JS Dynamically injects Header -->
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                        <!-- JS Dynamically injects Rows -->
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Table Footer / Pagination -->
-            <div class="table-footer">
-                <div id="paginationInfo">Showing 0 to 0 of 0 entries</div>
-                <div class="pagination" id="paginationControls">
-                    <!-- JS Dynamically generates pagination -->
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Add Item Modal -->
-    <div class="modal-overlay" id="productModal">
-        <div class="modal-container" id="modalCard">
-            <div class="modal-header">
-                <h3 id="modalTitle">Add New Product</h3>
-                <button class="close-modal-btn" id="closeModalBtn">&times;</button>
-            </div>
-            <form id="productForm">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="itemName">Item Name / Supplier</label>
-                        <input type="text" id="itemName" required placeholder="e.g. Fresh Salmon or Ocean Catch Ltd">
-                    </div>
-                    <div class="form-group">
-                        <label for="itemCategory">Category</label>
-                        <select id="itemCategory" required>
-                            <option value="Food Ingredients">Food Ingredients</option>
-                            <option value="Kitchen Tools & Equipment">Kitchen Tools & Equipment</option>
-                            <option value="Cleaning Supplies">Cleaning Supplies</option>
+            <!-- Analytics/Chart Grid Section -->
+            <div class="analytics-grid">
+                <!-- Line Chart Container -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div>
+                            <div class="chart-title">Supply Overview</div>
+                            <div class="chart-metric"><span id="supplyMetric">1,654</span> <span
+                                    class="chart-unit">Items In</span></div>
+                        </div>
+                        <select class="chart-select" id="supplyRange">
+                            <option value="months">Last 6 Months</option>
+                            <option value="days">Last 30 Days</option>
                         </select>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="itemQty" id="itemQtyLabel">Quantity</label>
-                            <input type="number" id="itemQty" min="0" required placeholder="e.g. 50">
+                    <div class="chart-wrapper">
+                        <canvas id="supplyOverviewChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Bar Chart Container -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div>
+                            <div class="chart-title">Stock Level</div>
+                            <div class="chart-metric"><span id="stockMetric">205</span> <span
+                                    class="chart-unit">Products</span></div>
                         </div>
-                        <div class="form-group">
-                            <label for="itemMax" id="itemMaxLabel">Reorder Point</label>
-                            <input type="number" id="itemMax" min="0" placeholder="e.g. 100">
+                        <select class="chart-select" id="stockRange">
+                            <option value="month">This Month</option>
+                            <option value="week">This Week</option>
+                        </select>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="stockLevelChart"></canvas>
+                    </div>
+                    <div class="stock-legend">
+                        <div class="legend-item">
+                            <span class="legend-dot in-stock-dot"></span>
+                            <span><b id="inStockMetric">120</b> In Stock</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot low-stock-dot"></span>
+                            <span><b id="lowStockMetric">55</b> Low Stock</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot out-stock-dot"></span>
+                            <span><b id="outStockMetric">30</b> Out of Stock</span>
                         </div>
                     </div>
-                    <div class="form-row" id="purchaseDetails" hidden>
-                        <div class="form-group">
-                            <label for="itemCost">Order Cost</label>
-                            <input type="number" id="itemCost" min="0" step="0.01" placeholder="e.g. 450.00">
-                        </div>
-                        <div class="form-group">
-                            <label for="itemDate">Order Date</label>
-                            <input type="date" id="itemDate">
-                        </div>
+                </div>
+            </div>
+
+            <!-- Main Data Table Container -->
+            <div class="data-section">
+
+                <!-- Table Header Bar -->
+                <div class="controls-header">
+                    <!-- Toggle View Buttons -->
+                    <div class="toggle-container">
+                        <button class="toggle-btn active" id="btn-inventory">Inventory</button>
+                        <button class="toggle-btn" id="btn-purchase">Purchase Order</button>
                     </div>
-                    <div class="form-group">
-                        <label for="itemStatus">Status</label>
-                        <select id="itemStatus" required>
+
+                    <!-- Filters & Action Buttons -->
+                    <div class="filter-group">
+                        <div class="search-box">
+                            <i class="bi bi-search"></i>
+                            <input type="text" id="searchInput" class="search-input" placeholder="Search...">
+                        </div>
+
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="all">All Category</option>
+                            <option value="Food Ingredients">Food Ingredients</option>
+                            <option value="Kitchen Tools & Equipment">Kitchen Tools</option>
+                            <option value="Cleaning Supplies">Cleaning Supplies</option>
+                        </select>
+
+                        <select id="statusFilter" class="filter-select">
+                            <option value="all">All Status</option>
                             <option value="Available">Available</option>
                             <option value="Low">Low</option>
                             <option value="Out of Stock">Out of Stock</option>
                             <option value="Pending">Pending</option>
                             <option value="Completed">Completed</option>
                         </select>
+
+                        <button class="primary-btn" id="actionButton">
+                            <i class="bi bi-plus-lg"></i> <span id="actionButtonText">Add Product</span>
+                        </button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="cancel-btn" id="cancelModalBtn">Cancel</button>
-                    <button type="submit" class="primary-btn">Save Item</button>
+
+                <!-- Dynamic Table Container -->
+                <div class="table-wrapper">
+                    <table id="dataTable">
+                        <thead>
+                            <tr id="tableHeadRow">
+                                <!-- JS Dynamically injects Header -->
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- JS Dynamically injects Rows -->
+                        </tbody>
+                    </table>
                 </div>
-            </form>
-        </div>
-    </div>
 
-    <div class="modal-overlay" id="detailsModal">
-        <div class="modal-container" id="detailsModalCard">
-            <div class="modal-header">
-                <h3>Purchase Order Details</h3>
-                <button class="close-modal-btn" id="closeDetailsBtn" type="button">&times;</button>
-            </div>
-            <div class="modal-body" id="detailsContent"></div>
-            <div class="modal-footer">
-                <button class="cancel-btn" id="closeDetailsFooterBtn" type="button">Close</button>
+                <!-- Table Footer / Pagination -->
+                <div class="table-footer">
+                    <div id="paginationInfo">Showing 0 to 0 of 0 entries</div>
+                    <div class="pagination" id="paginationControls">
+                        <!-- JS Dynamically generates pagination -->
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
+
+        <!-- Add Item Modal -->
+        <div class="modal-overlay" id="productModal">
+            <div class="modal-container" id="modalCard">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Add New Product</h3>
+                    <button class="close-modal-btn" id="closeModalBtn">&times;</button>
+                </div>
+                <form id="productForm">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="itemName">Item Name / Supplier</label>
+                            <input type="text" id="itemName" required
+                                placeholder="e.g. Fresh Salmon or Ocean Catch Ltd">
+                        </div>
+                        <div class="form-group">
+                            <label for="itemCategory">Category</label>
+                            <select id="itemCategory" required>
+                                <option value="Food Ingredients">Food Ingredients</option>
+                                <option value="Kitchen Tools & Equipment">Kitchen Tools & Equipment</option>
+                                <option value="Cleaning Supplies">Cleaning Supplies</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="itemQty" id="itemQtyLabel">Quantity</label>
+                                <input type="number" id="itemQty" min="0" required placeholder="e.g. 50">
+                            </div>
+                            <div class="form-group">
+                                <label for="itemMax" id="itemMaxLabel">Reorder Point</label>
+                                <input type="number" id="itemMax" min="0" placeholder="e.g. 100">
+                            </div>
+                        </div>
+                        <div class="form-row" id="purchaseDetails" hidden>
+                            <div class="form-group">
+                                <label for="itemCost">Order Cost</label>
+                                <input type="number" id="itemCost" min="0" step="0.01" placeholder="e.g. 450.00">
+                            </div>
+                            <div class="form-group">
+                                <label for="itemDate">Order Date</label>
+                                <input type="date" id="itemDate">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemStatus">Status</label>
+                            <select id="itemStatus" required>
+                                <option value="Available">Available</option>
+                                <option value="Low">Low</option>
+                                <option value="Out of Stock">Out of Stock</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="cancel-btn" id="cancelModalBtn">Cancel</button>
+                        <button type="submit" class="primary-btn">Save Item</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="detailsModal">
+            <div class="modal-container" id="detailsModalCard">
+                <div class="modal-header">
+                    <h3>Purchase Order Details</h3>
+                    <button class="close-modal-btn" id="closeDetailsBtn" type="button">&times;</button>
+                </div>
+                <div class="modal-body" id="detailsContent"></div>
+                <div class="modal-footer">
+                    <button class="cancel-btn" id="closeDetailsFooterBtn" type="button">Close</button>
+                </div>
+            </div>
+        </div>
     </main>
-        <!--================= Top Navbar Header end ======================== -->
+    <!--================= Top Navbar Header end ======================== -->
 
 
 
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
-        <script src="../../../js/admin-js/admin-common.js"></script>
-        <script type="module" src="../../../js/admin-js/admin-inventory.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <script src="../../../js/admin-js/admin-common.js"></script>
+    <script type="module" src="../../../js/admin-js/admin-session.js"></script>
+    <script type="module" src="../../../js/admin-js/admin-inventory.js"></script>
 </body>
 
 </html>

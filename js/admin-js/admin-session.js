@@ -3,9 +3,6 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.18.0/f
 import {
   collection,
   onSnapshot,
-  query,
-  orderBy,
-  limit,
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 const $ = (selector, root = document) => root.querySelector(selector);
@@ -66,7 +63,8 @@ function ensureThemeButton() {
 }
 
 function ensureNotificationButton() {
-  let button = $("#notificationBtn") || $(".notification");
+  let button =
+    $("#notificationBtn") || $(".notification") || $(".notification-btn");
   if (!button) {
     const actions =
       $(".top-actions") || $(".header-actions") || $(".header-right");
@@ -109,6 +107,84 @@ function ensureNotificationButton() {
     $(".admin-notification-count", button).hidden = true;
   });
   return { button, panel };
+}
+
+function ensureWishlistButton() {
+  const actions =
+    $(".top-actions") || $(".header-actions") || $(".header-right");
+  if (!actions) return;
+  let button = $("#wishlistBtn");
+  if (!button) {
+    button = document.createElement("button");
+    button.id = "wishlistBtn";
+    button.type = "button";
+    button.className = "admin-wishlist-button icon-button action-btn";
+    button.setAttribute("aria-label", "Wishlist");
+    button.title = "Wishlist";
+    button.innerHTML = '<i class="fa-regular fa-heart"></i>';
+    actions.prepend(button);
+  }
+  let panel = $("#adminWishlist");
+  if (!panel) {
+    panel = document.createElement("div");
+    panel.id = "adminWishlist";
+    panel.className = "admin-wishlist-panel";
+    panel.innerHTML =
+      '<div class="admin-wishlist-heading"><strong>Wishlist</strong><button type="button" data-clear-wishlist>Clear</button></div><div class="admin-wishlist-list"></div>';
+    (
+      button.closest(".top-actions") ||
+      button.closest(".header-actions") ||
+      button.parentElement
+    ).append(panel);
+  }
+  const render = () => {
+    let saved = [];
+    try {
+      saved = JSON.parse(localStorage.getItem("zestco-admin-wishlist") || "[]");
+    } catch {}
+    const list = $(".admin-wishlist-list", panel);
+    list.innerHTML = saved.length
+      ? saved
+          .map((item) => {
+            const dish =
+              typeof item === "string"
+                ? { id: item, name: "Saved dish" }
+                : item;
+            return `<div class="admin-wishlist-item"><i class="fa-solid fa-heart"></i><span>${escapeHtml(dish.name)}</span><button type="button" data-remove-wishlist="${escapeHtml(dish.id)}" aria-label="Remove from wishlist"><i class="fa-solid fa-xmark"></i></button></div>`;
+          })
+          .join("")
+      : '<p class="admin-wishlist-empty">No saved dishes yet.</p>';
+  };
+  render();
+  button.addEventListener("click", (event) => {
+    event.stopPropagation();
+    panel.classList.toggle("is-open");
+    render();
+  });
+  $("[data-clear-wishlist]", panel)?.addEventListener("click", () => {
+    localStorage.removeItem("zestco-admin-wishlist");
+    render();
+  });
+  panel.addEventListener("click", (event) => {
+    const remove = event.target.closest("[data-remove-wishlist]");
+    if (!remove) return;
+    let saved = [];
+    try {
+      saved = JSON.parse(localStorage.getItem("zestco-admin-wishlist") || "[]");
+    } catch {}
+    localStorage.setItem(
+      "zestco-admin-wishlist",
+      JSON.stringify(
+        saved.filter(
+          (item) =>
+            (typeof item === "string" ? item : item.id) !==
+            remove.dataset.removeWishlist,
+        ),
+      ),
+    );
+    render();
+  });
+  window.addEventListener("storage", render);
 }
 
 function hydrateProfile(user) {
@@ -184,7 +260,7 @@ function connectNotifications(notificationControls) {
   const watch = (path, icon, title, detailKey) => {
     try {
       onSnapshot(
-        query(collection(db, path), orderBy("createdAt", "desc"), limit(8)),
+        collection(db, path),
         (snapshot) => {
           snapshot.docs.forEach((item) => {
             const data = item.data();
@@ -203,8 +279,12 @@ function connectNotifications(notificationControls) {
                     "New activity",
                 ),
                 time: "Just now",
+                createdAt: data.createdAt?.toMillis?.() || Date.now(),
               });
           });
+          notifications.sort(
+            (first, second) => second.createdAt - first.createdAt,
+          );
           render();
         },
         () => {},
@@ -228,6 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("dark");
   ensureThemeButton();
   const notificationControls = ensureNotificationButton();
+  ensureWishlistButton();
   connectProfile();
   connectNotifications(notificationControls);
   onAuthStateChanged(auth, (user) => hydrateProfile(user));

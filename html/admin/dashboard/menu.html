@@ -8,6 +8,7 @@
     <title>Menu Management | ZestCo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="../../../css-folder/admin-css/admin-common.css">
+    <link rel="stylesheet" href="../../../css-folder/admin-css/admin-session.css">
     <link rel="stylesheet" href="../../../css-folder/admin-css/menu.css">
 </head>
 
@@ -75,6 +76,8 @@
     <main class="main-content">
         <header class="top-navbar">
             <div class="header-left">
+                <button class="menu-shell-toggle action-btn" id="sidebarToggle" type="button"
+                    aria-label="Collapse sidebar"><i class="fa-solid fa-bars-staggered"></i></button>
                 <div class="page-heading"><span class="eyebrow">Restaurant workspace</span>
                     <h1>Menu</h1>
                 </div>
@@ -169,6 +172,14 @@
                                 class="fa-solid fa-plate-wheat"></i><strong>No dishes found</strong><span>Try another
                                 search or category.</span></div>
                     </div>
+                    <div class="pagination-bar" id="menuPagination" aria-label="Menu pagination">
+                        <span class="pagination-summary" id="paginationSummary"></span>
+                        <div class="pagination-controls"><button type="button" class="page-button" id="previousPage"
+                                aria-label="Previous page"><i class="fa-solid fa-chevron-left"></i></button>
+                            <div id="pageNumbers"></div><button type="button" class="page-button" id="nextPage"
+                                aria-label="Next page"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                    </div>
                 </article>
             </div>
             <aside class="insights-column">
@@ -226,9 +237,39 @@
             </form>
         </section>
     </div>
+    <div class="modal-backdrop" id="dishDetailsModal" aria-hidden="true">
+        <section class="dish-details-modal" role="dialog" aria-modal="true" aria-labelledby="detailsTitle">
+            <button class="modal-close" data-close-details aria-label="Close menu details"><i
+                    class="fa-solid fa-xmark"></i></button>
+            <div class="details-hero"><img id="detailsImage" src="" alt=""><span class="status-pill"
+                    id="detailsStatus"></span></div>
+            <div class="details-content">
+                <div class="details-heading">
+                    <div><span class="section-kicker">Menu details</span>
+                        <h2 id="detailsTitle"></h2><span class="category-pill" id="detailsCategory"></span>
+                    </div><strong class="details-price" id="detailsPrice"></strong>
+                </div>
+                <p class="details-description" id="detailsDescription"></p>
+                <div class="details-metrics">
+                    <div><span>Rating</span><strong><span class="stars" id="detailsRatingStars"></span> <b
+                                id="detailsRating"></b></strong></div>
+                    <div><span>Orders this week</span><strong id="detailsOrders"></strong></div>
+                    <div><span>Availability</span><strong id="detailsAvailability"></strong></div>
+                </div>
+                <div class="details-section">
+                    <h3>About this dish</h3>
+                    <p id="detailsAbout"></p>
+                </div>
+                <div class="details-actions"><button type="button" class="secondary-button"
+                        data-close-details>Close</button><button type="button" class="primary-button"
+                        id="detailsEditButton"><i class="fa-solid fa-pen"></i> Edit dish</button></div>
+            </div>
+        </section>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="../../../js/admin-js/admin-common.js"></script>
+    <script type="module" src="../../../js/admin-js/admin-session.js"></script>
     <script type="module" src="../../../js/admin-js/menu.js"></script>
 </body>
 
