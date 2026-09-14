@@ -105,6 +105,7 @@ function listenToReviews() {
 
       if (globalReviews.length === 0) {
         globalReviews = [...mockReviews];
+        
       }
 
       updateMetrics(globalReviews);
@@ -116,6 +117,7 @@ function listenToReviews() {
         error,
       );
       globalReviews = [...mockReviews];
+      
       updateMetrics(globalReviews);
       renderReviews();
     },
@@ -138,22 +140,17 @@ function updateMetrics(reviews) {
   document.getElementById("statPositiveCount").textContent = positive;
   document.getElementById("statPendingReply").textContent = pendingReply;
 }
-
+ 
 // Render Review Cards
 function renderReviews() {
-  const searchTerm = searchInput.value.toLowerCase().trim();
-  const statusVal = statusFilter.value;
+  const statusVal = statusFilter?.value;
 
   const filtered = globalReviews.filter((rev) => {
     const matchesSearch =
-      (rev.customerName &&
-        rev.customerName.toLowerCase().includes(searchTerm)) ||
-      (rev.comment && rev.comment.toLowerCase().includes(searchTerm)) ||
-      (rev.dishOrdered && rev.dishOrdered.toLowerCase().includes(searchTerm));
+      rev.customerName || rev.comment || rev.dishOrdered;
     const matchesStar =
       activeStarFilter === "All" || rev.rating == activeStarFilter;
     const matchesStatus = statusVal === "All" || rev.status === statusVal;
-
     return matchesSearch && matchesStar && matchesStatus;
   });
 
@@ -176,47 +173,61 @@ function renderReviews() {
         { length: 5 },
         (_, i) => `
             <i class="bi bi-star-fill ${i < rev.rating ? "text-warning" : "text-muted opacity-25"}"></i>
-        `,
+        `
       ).join("");
 
       return `
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-6 mb-3">
                 <div class="review-card gsap-review-item">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="avatar-circle">${rev.customerName ? rev.customerName.charAt(0) : "G"}</div>
-                            <div>
-                                <h6 class="fw-bold mb-0">${rev.customerName || "Anonymous Guest"}</h6>
-                                <small class="text-muted">${rev.dishOrdered ? "Ordered: " + rev.dishOrdered : ""}</small>
+                    <div class="review-content-body">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="avatar-circle">${rev.customerName ? rev.customerName.charAt(0) : "G"}</div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">${rev.customerName || "Anonymous Guest"}</h6>
+                                    <small class="text-muted">${rev.dishOrdered ? "Ordered: " + rev.dishOrdered : ""}</small>
+                                </div>
                             </div>
+                            <span class="badge ${getStatusBadgeClass(rev.status)}">${rev.status || "Approved"}</span>
                         </div>
-                        <span class="badge ${getStatusBadgeClass(rev.status)}">${rev.status || "Approved"}</span>
+
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <div class="d-flex align-items-center gap-1">${starsHtml}</div>
+                            <small class="text-muted">${dateStr}</small>
+                        </div>
+
+                        <p class="text-dark mb-3">${rev.comment}</p>
+
+                        ${
+                          rev.adminReply
+                            ? `
+                            <div class="reply-box mb-3" id="replyBox-${rev.id}">
+                                <div class="d-flex align-items-center justify-content-between mb-1">
+                                    <span class="fw-bold small text-dark"><i class="bi bi-reply-fill text-warning me-1"></i>Owner Response</span>
+                                </div>
+                                <p class="small text-muted mb-0">${rev.adminReply}</p>
+                            </div>
+                        `
+                            : ""
+                        }
                     </div>
 
-                    <div class="d-flex align-items-center justify-content-between mb-2">
-                        <div class="d-flex align-items-center gap-1">${starsHtml}</div>
-                        <small class="text-muted">${dateStr}</small>
-                    </div>
-
-                    <p class="text-dark mb-3">${rev.comment}</p>
-
-                    ${
-                      rev.adminReply
-                        ? `
-                        <div class="reply-box mb-3">
-                            <div class="d-flex align-items-center justify-content-between mb-1">
-                                <span class="fw-bold small text-dark"><i class="bi bi-reply-fill text-warning me-1"></i>Owner Response</span>
-                            </div>
-                            <p class="small text-muted mb-0">${rev.adminReply}</p>
+                    <div class="d-flex align-items-center justify-content-between pt-2 border-top mt-auto">
+                        <div class="d-flex align-items-center gap-2">
+                            <button class="btn btn-sm btn-outline-warning rounded-pill reply-btn" data-id="${rev.id}">
+                                <i class="bi bi-arrow-return-right me-1"></i> ${rev.adminReply ? "Edit Reply" : "Reply"}
+                            </button>
+                            
+                            ${
+                              rev.adminReply
+                                ? `
+                                <button class="btn btn-sm btn-light text-secondary rounded-pill toggle-reply-btn" data-id="${rev.id}">
+                                    <i class="bi bi-eye me-1"></i> View Reply
+                                </button>
+                            `
+                                : ""
+                            }
                         </div>
-                    `
-                        : ""
-                    }
-
-                    <div class="d-flex align-items-center justify-content-between pt-2 border-top">
-                        <button class="btn btn-sm btn-outline-warning rounded-pill reply-btn" data-id="${rev.id}">
-                            <i class="bi bi-arrow-return-right me-1"></i> ${rev.adminReply ? "Edit Reply" : "Reply"}
-                        </button>
 
                         <div class="d-flex align-items-center gap-1">
                             <button class="btn btn-sm btn-light text-success status-btn" data-id="${rev.id}" data-status="Approved" title="Approve">
@@ -236,7 +247,6 @@ function renderReviews() {
     })
     .join("");
 
-  // GSAP Stagger Entrance for Review Cards
   gsap.from(".gsap-review-item", {
     duration: 0.4,
     y: 15,
@@ -248,6 +258,46 @@ function renderReviews() {
   attachActionListeners();
 }
 
+// Action Button Listeners
+function attachActionListeners() {
+  // Reply Modal
+  document.querySelectorAll(".reply-btn").forEach((btn) => {
+    btn.addEventListener("click", () => openReplyModal(btn.dataset.id));
+  });
+
+ // Toggle View/Hide Reply
+document.querySelectorAll(".toggle-reply-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const replyBox = document.getElementById(`replyBox-${btn.dataset.id}`);
+    if (replyBox) {
+      const isShown = replyBox.classList.contains("show-reply");
+      
+      if (!isShown) {
+        replyBox.classList.add("show-reply");
+        btn.innerHTML = `<i class="bi bi-eye-slash me-1"></i> Hide Reply`;
+      } else {
+        replyBox.classList.remove("show-reply");
+        btn.innerHTML = `<i class="bi bi-eye me-1"></i> View Reply`;
+      }
+    }
+  });
+});
+
+  // Update Status
+  document.querySelectorAll(".status-btn").forEach((btn) => {
+    btn.addEventListener("click", () =>
+      updateStatus(btn.dataset.id, btn.dataset.status)
+    );
+  });
+
+  // Delete Review
+  document.querySelectorAll(".delete-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const cardEl = e.target.closest(".col-12");
+      deleteReview(btn.dataset.id, cardEl);
+    });
+  });
+}
 // Badge Helpers
 function getStatusBadgeClass(status) {
   switch (status) {
@@ -260,28 +310,7 @@ function getStatusBadgeClass(status) {
   }
 }
 
-// Action Button Listeners
-function attachActionListeners() {
-  // Reply
-  document.querySelectorAll(".reply-btn").forEach((btn) => {
-    btn.addEventListener("click", () => openReplyModal(btn.dataset.id));
-  });
 
-  // Update Status
-  document.querySelectorAll(".status-btn").forEach((btn) => {
-    btn.addEventListener("click", () =>
-      updateStatus(btn.dataset.id, btn.dataset.status),
-    );
-  });
-
-  // Delete Review with GSAP Card Dismissal
-  document.querySelectorAll(".delete-btn").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const cardEl = e.target.closest(".col-12");
-      deleteReview(btn.dataset.id, cardEl);
-    });
-  });
-}
 
 // Open Reply Modal
 function openReplyModal(id) {

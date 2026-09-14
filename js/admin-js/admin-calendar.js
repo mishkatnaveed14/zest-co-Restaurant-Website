@@ -181,19 +181,19 @@ function openEventModal(event = null, defaultStart = '', defaultEnd = '') {
 }
 
 // Trigger New Event Modal from Header Button
-document.getElementById('createEventBtn').addEventListener('click', () => openEventModal());
+document.getElementById('createEventBtn')?.addEventListener('click', () => openEventModal());
 
 // Form Submit Handler (Add / Update)
-document.getElementById('eventForm').addEventListener('submit', async (e) => {
+document.getElementById('eventForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const id = document.getElementById('eventId').value;
+    const id = document.getElementById('eventId')?.value;
     const eventData = {
-        title: document.getElementById('eventTitle').value,
-        type: document.getElementById('eventType').value,
-        start: document.getElementById('eventStart').value,
-        end: document.getElementById('eventEnd').value,
-        notes: document.getElementById('eventNotes').value
+        title: document.getElementById('eventTitle')?.value,
+        type: document.getElementById('eventType')?.value,
+        start: document.getElementById('eventStart')?.value,
+        end: document.getElementById('eventEnd')?.value,
+        notes: document.getElementById('eventNotes')?.value
     };
 
     if (id) {
