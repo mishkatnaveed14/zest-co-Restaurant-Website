@@ -1,4 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -8,27 +8,34 @@ import {
   GoogleAuthProvider,
   signOut,
   sendEmailVerification,
-} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
-const currentHost = window.location.hostname;
-// const isLocalDev = ["localhost", "127.0.0.1"].includes(currentHost);
-// const authDomain = isLocalDev ? "localhost" : "zestandco-7b360.firebaseapp.com";
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import{
+  getFirestore, 
+    collection, 
+    onSnapshot, 
+    doc, 
+    updateDoc, 
+    deleteDoc 
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBm9kCZhDtXJOK148a-8acVIoLBux4w2Pc",
-  authDomain,
-  projectId: "zestandco-7b360",
-  storageBucket: "zestandco-7b360.firebasestorage.app",
-  messagingSenderId: "345032386958",
-  appId: "1:345032386958:web:ea3bba37f8d0a8d46a1cdf",
+  apiKey: "AIzaSyBfGPlgUuzJgDa4kNVV1ksjRZwfhFMXW9I",
+  authDomain: "zest-and-co.firebaseapp.com",
+  projectId: "zest-and-co",
+  storageBucket: "zest-and-co.firebasestorage.app",
+  messagingSenderId: "6345256410",
+  appId: "1:6345256410:web:c53faff8f8051dfeb9a4e3"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 //  export
 export {
   auth,
+  db,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithRedirect,
@@ -36,4 +43,10 @@ export {
   GoogleAuthProvider,
   signOut,
   sendEmailVerification,
+  getFirestore, 
+    collection, 
+    onSnapshot, 
+    doc, 
+    updateDoc, 
+    deleteDoc 
 };

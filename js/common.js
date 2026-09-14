@@ -211,19 +211,27 @@ authModal?.querySelectorAll(".auth-form").forEach((form) => {
   });
 });
 
-// ---------firebase authentication working start ---------------
+// =======================firebase authentication working start========================
 import {
   auth,
+  db,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  // goo  gle authentication
+  // google authentication
   signInWithRedirect,
   getRedirectResult,
   GoogleAuthProvider,
   signOut,
   sendEmailVerification,
 } from "../firebase.config.js";
+import {
+  doc,
+  getDoc,
+  serverTimestamp,
+  setDoc,
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 // sign up form autnentication
+const name = document.getElementById('signupName');
 const email = document.getElementById("signupEmail");
 const password = document.getElementById("signupPassword");
 const signupForm = document.getElementById("authSignupForm");
@@ -245,10 +253,23 @@ const signup = async (e) => {
     );
     const user = credential.user;
     console.log("User created successfully:", user);
+
+
+    await setDoc(doc(db, "users", user.uid), {
+      name: name?.value.trim() || "",
+      email: user.email,
+      role: "user",
+      timestamp: serverTimestamp(),
+    });
+
+
     if (!credential.user.emailVerified) {
+      await sendEmailVerification(user);
       signOut(auth);
-      await sendEmailVerification(auth.currentUser);
       alert("Please verify your Email!");
+    } else {
+      closeAuthModal();
+      alert("Account created successfully! Welcome to Zest & Co.");
     }
   } catch (error) {
     const errorCode = error.code;
@@ -280,9 +301,22 @@ const signin = async (e) => {
     const user = credential.user;
     console.log("User signed in successfully:", user);
     if (!credential.user.emailVerified) {
+      await sendEmailVerification(user);
       signOut(auth);
-      await sendEmailVerification(auth.currentUser);
       alert("Please verify your Email!");
+    } else {
+      const userDocument = await getDoc(doc(db, "users", user.uid));
+      const userData = userDocument.exists() ? userDocument.data() : null;
+
+      if (userData?.role?.toLowerCase() !== "admin") {
+        await signOut(auth);
+        alert("This account does not have administrator access.");
+        return;
+      }
+
+      closeAuthModal();
+      alert("Welcome back to Zest & Co.!");
+      window.location.assign("/html/admin/dashboard/dasboard.html");
     }
   } catch (error) {
     const errorCode = error.code;
@@ -305,8 +339,16 @@ const handleGoogleRedirectResult = async () => {
     const result = await getRedirectResult(auth);
     if (result?.user) {
       console.log("Google sign-in successful:", result.user);
-      const redirectTo = new URL("/", window.location.origin);
-      window.location.assign(redirectTo.href);
+      const userDocument = await getDoc(doc(db, "users", result.user.uid));
+      const userData = userDocument.exists() ? userDocument.data() : null;
+
+      if (userData?.role?.toLowerCase() !== "admin") {
+        await signOut(auth);
+        alert("This account does not have administrator access.");
+        return;
+      }
+
+      window.location.assign("/html/admin/dashboard/dasboard.html");
     }
   } catch (error) {
     const errorCode = error.code;
@@ -344,4 +386,4 @@ const _singOut = () => {
 
 document.getElementById("logout")?.addEventListener("click", _singOut);
 
-// -------- firebase authentication working end-------------------
+// ================== firebase authentication working end ============================
