@@ -668,3 +668,38 @@ body.mobile-sidebar-open .overlay {
         transform: none;
     }
 }
+
+/* Shared dashboard shell for every admin workspace page. */
+.sidebar {
+    background: radial-gradient(circle at 20% 10%, rgba(197, 168, 128, .13), transparent 35%), #121315;
+    border-right-color: rgba(197, 168, 128, .18);
+    color: #f5f5f7;
+}
+
+.sidebar-brand,
+.sidebar-brand:visited {
+    color: #f5f5f7;
+}
+
+.sidebar-brand-wrapper {
+    border-bottom-color: rgba(197, 168, 128, .12);
+}
+
+.sidebar-brand-wrapper:hover {
+    background: rgba(197, 168, 128, .1);
+}
+
+.nav-link-custom {
+    color: #a7a7aa;
+}
+
+.nav-link-custom:hover,
+.nav-link-custom.active {
+    background-color: rgba(197, 168, 128, .14);
+    color: #fff;
+}
+
+.nav-link-custom:hover i.icon,
+.nav-link-custom.active i.icon {
+    color: #d4af37;
+}
