@@ -1938,3 +1938,14 @@ body.sidebar-collapsed .brand-toggle-arrow {
         display: inline-flex;
     }
 }
+.mobile-header-brand .brand-logo-icon {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    color: #121315;
+    background: linear-gradient(145deg, var(--accent-gold-bright), var(--accent-gold));
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: 900;
+}
