@@ -205,14 +205,18 @@ async function loadInventoryData() {
       }));
     }
 
-    switchView("inventory");
+    switchView(
+      window.location.hash === "#purchase-orders" ? "purchase" : "inventory",
+    );
     animateDashboardEntrance();
   } catch (error) {
     console.error("Unable to load inventory from Firebase:", error);
     inventoryData = [...defaultInventoryData];
     purchaseData = [...defaultPurchaseData];
     const errorCode = error.code ? ` (${error.code})` : "";
-    switchView("inventory");
+    switchView(
+      window.location.hash === "#purchase-orders" ? "purchase" : "inventory",
+    );
     animateDashboardEntrance();
   }
 }
