@@ -553,3 +553,18 @@ body.mobile-sidebar-open .overlay {
     background-color: var(--gold-soft-tint);
     color: var(--accent-gold-bright);
 }
+
+.admin-notification-button { position: relative; }
+.admin-notification-count { position: absolute; top: -5px; right: -5px; min-width: 17px; height: 17px; padding: 0 4px; display: grid; place-items: center; border: 2px solid var(--card-light-bg); border-radius: 999px; color: #fff; background: #ef6f51; font-size: 9px; font-weight: 800; }
+.admin-notifications-panel { position: absolute; top: calc(100% + 12px); right: 0; z-index: 1060; width: min(350px, calc(100vw - 30px)); padding: 8px; display: none; border: 1px solid var(--border-card); border-radius: 14px; background: var(--card-light-bg); box-shadow: var(--card-shadow); }
+.admin-notifications-panel.is-open { display: block; animation: admin-pop .18s ease both; }
+.admin-notifications-heading { display: flex; align-items: center; justify-content: space-between; padding: 9px 10px; border-bottom: 1px solid var(--border-card); color: var(--text-dark); font-size: 12px; }
+.admin-notifications-heading button { border: 0; color: var(--accent-gold-bright); background: transparent; font-size: 10px; cursor: pointer; }
+.admin-notification-item { width: 100%; display: grid; grid-template-columns: 25px 1fr auto; gap: 8px; align-items: center; padding: 10px; border: 0; border-radius: 8px; color: var(--text-dark); background: transparent; text-align: left; }
+.admin-notification-item:hover { background: var(--gold-soft-tint); }
+.admin-notification-item > i { color: var(--accent-gold-bright); }
+.admin-notification-item strong, .admin-notification-item small { display: block; }
+.admin-notification-item strong { font-size: 11px; }
+.admin-notification-item small, .admin-notification-item time { color: var(--text-muted); font-size: 10px; }
+.admin-notifications-empty { padding: 18px 10px; margin: 0; color: var(--text-muted); font-size: 11px; text-align: center; }
+@keyframes admin-pop { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
