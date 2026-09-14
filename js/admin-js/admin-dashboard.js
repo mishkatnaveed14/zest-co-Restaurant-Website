@@ -659,7 +659,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.getItem("zestco-admin-theme") === "dark"
   ) {
     document.body.classList.add("dark-theme");
-    document.body.classList.remove("dark");
+    document.body.classList.add("dark");
     if (themeButton) {
       themeButton.innerHTML = '<i class="fa-regular fa-sun"></i>';
     }

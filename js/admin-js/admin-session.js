@@ -44,22 +44,25 @@ function ensureThemeButton() {
     button.setAttribute("aria-label", "Toggle dark mode");
     actions.prepend(button);
   }
+  if (button.dataset.themeBound === "true") return button;
+
   const updateIcon = () => {
-    const dark = document.body.classList.contains("dark-theme");
+    const dark = document.body.classList.contains("dark-theme") || document.body.classList.contains("dark");
     button.innerHTML = `<i class="fa-${dark ? "solid fa-sun" : "regular fa-moon"}"></i>`;
     button.title = dark ? "Switch to light mode" : "Switch to dark mode";
   };
   updateIcon();
   button.addEventListener("click", () => {
-    const enabled = !document.body.classList.contains("dark-theme");
+    const enabled = !(document.body.classList.contains("dark-theme") || document.body.classList.contains("dark"));
     document.body.classList.toggle("dark-theme", enabled);
-    document.body.classList.remove("dark");
+    document.body.classList.toggle("dark", enabled);
     const theme = enabled ? "dark" : "light";
     localStorage.setItem("zestco-admin-theme", theme);
     localStorage.setItem("restro-theme", theme);
     updateIcon();
     document.dispatchEvent(new CustomEvent("admin:theme-change"));
   });
+  button.dataset.themeBound = "true";
   return button;
 }
 
@@ -308,7 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("restro-theme") || localStorage.getItem("zestco-admin-theme") || "light";
   if (savedTheme === "dark") {
     document.body.classList.add("dark-theme");
-    document.body.classList.remove("dark");
+    document.body.classList.add("dark");
   }
   ensureThemeButton();
   const notificationControls = ensureNotificationButton();

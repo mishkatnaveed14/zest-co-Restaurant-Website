@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeButton = document.getElementById("themeToggle");
   const applyTheme = (isDark) => {
     document.body.classList.toggle("dark-theme", isDark);
-    document.body.classList.remove("dark");
+    document.body.classList.toggle("dark", isDark);
     if (themeButton) {
       themeButton.innerHTML = isDark
         ? '<i class="fa-regular fa-sun"></i>'
@@ -13,12 +13,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  applyTheme(localStorage.getItem("restro-theme") === "dark");
-  themeButton?.addEventListener("click", () => {
-    const isDark = !document.body.classList.contains("dark-theme");
-    applyTheme(isDark);
-    localStorage.setItem("restro-theme", isDark ? "dark" : "light");
-  });
+  const savedDark =
+    localStorage.getItem("restro-theme") === "dark" ||
+    localStorage.getItem("zestco-admin-theme") === "dark";
+  applyTheme(savedDark);
+
+  if (themeButton && !themeButton.dataset.themeBound) {
+    themeButton.dataset.themeBound = "true";
+    themeButton.addEventListener("click", () => {
+      const isDark = !(document.body.classList.contains("dark-theme") || document.body.classList.contains("dark"));
+      applyTheme(isDark);
+      localStorage.setItem("restro-theme", isDark ? "dark" : "light");
+      localStorage.setItem("zestco-admin-theme", isDark ? "dark" : "light");
+    });
+  }
 
   const brandTrigger = document.getElementById("brandToggleTrigger");
   const brandArrow = document.querySelector(".brand-toggle-arrow");
@@ -40,14 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
     profile.setAttribute("role", "button");
     profile.setAttribute("tabindex", "0");
     profile.addEventListener("click", () => {
-      const menu = document.getElementById("profileMenu");
-      menu?.classList.toggle("is-open");
+      window.location.assign("./setting.html");
     });
     profile.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        const menu = document.getElementById("profileMenu");
-        menu?.classList.toggle("is-open");
+        window.location.assign("./setting.html");
       }
     });
   });

@@ -23,7 +23,8 @@
     --sidebar-collapsed-width: 80px; */
 }
 
-body.dark-theme {
+body.dark-theme,
+body.dark {
     --section-light-bg: #18191c;
     --card-light-bg: #202124;
     --text-dark: #f5f5f7;
