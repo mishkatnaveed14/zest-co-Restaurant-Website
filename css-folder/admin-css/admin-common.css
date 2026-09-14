@@ -1092,7 +1092,7 @@ body {
     overflow-x: hidden;
 
     background: var(--main-bg);
-    color: var(--text-dark);
+    color: var(--text-dark) !important;
 
     font-family:
         Inter,
@@ -1106,6 +1106,18 @@ body {
     transition:
         background 0.3s ease,
         color 0.3s ease;
+}
+
+body,
+body * {
+    color: var(--text-dark);
+}
+
+body.dark,
+body.dark *,
+body.dark-theme,
+body.dark-theme * {
+    color: var(--text-dark);
 }
 
 button,
@@ -1647,6 +1659,7 @@ body.dark-theme .icon-button {
 
 .topbar-context-copy strong {
     font-size: 13px;
+    color: var(--text-dark);
 }
 
 .topbar-context-copy small {
@@ -1749,6 +1762,7 @@ body.dark-theme .icon-button {
 
 .profile-copy strong {
     font-size: 13px;
+    color: var(--text-dark);
 }
 
 .profile-copy small {
@@ -1801,7 +1815,9 @@ body.dark-theme .icon-button {
 .mobile-header-brand .brand-logo-icon,
 .sidebar-brand .brand-logo-icon,
 body.mobile-sidebar-open .mobile-header-brand .brand-logo-icon,
-body.mobile-sidebar-open .sidebar-brand .brand-logo-icon {
+body.mobile-sidebar-open .sidebar-brand .brand-logo-icon,
+body:not(.mobile-sidebar-open) .mobile-header-brand .brand-logo-icon,
+body:not(.mobile-sidebar-open) .sidebar-brand .brand-logo-icon {
     width: 30px;
     height: 30px;
 
