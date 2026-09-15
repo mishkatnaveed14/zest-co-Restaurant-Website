@@ -87,3 +87,156 @@
     border-left: 3px solid #D4AF37;
     padding-left: 10px;
 }
+/* ==========================================================================
+   FULL PAGE DARK THEME OVERRIDES (Applied when .dark-theme is active)
+   ========================================================================== */
+
+/* 1. Main Background & Global Text Color */
+body.dark-theme,
+.dark-theme .app,
+.dark-theme .main {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+}
+
+/* 2. Header & Navigation Components */
+.dark-theme .topbar,
+.dark-theme .sidebar,
+.dark-theme .mobile-header {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+.dark-theme .topbar-context,
+.dark-theme .icon-button {
+    background-color: #0f172a !important;
+    color: #cbd5e1 !important;
+    border-color: #334155 !important;
+}
+
+/* 3. Cards & Sidebar Sections Dark Mode */
+.dark-theme .card,
+.dark-theme .calendar-card,
+.dark-theme .calendar-sidebar-card,
+.dark-theme .modal-content,
+.dark-theme .upgrade-card {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+    box-shadow: none !important;
+}
+
+.dark-theme .card h6,
+.dark-theme .fw-bold,
+.dark-theme .modal-title {
+    color: #f8fafc !important;
+}
+
+.dark-theme .form-check-label {
+    color: #cbd5e1 !important;
+}
+
+/* 4. FullCalendar Library Specific Dark Overrides */
+.dark-theme .fc {
+    color: #f8fafc !important;
+}
+
+.dark-theme .fc .fc-toolbar-title {
+    color: #f8fafc !important;
+}
+
+.dark-theme .fc-theme-standard th {
+    background-color: #0f172a !important;
+    border-color: #334155 !important;
+    color: #cbd5e1 !important;
+}
+
+.dark-theme .fc-theme-standard td,
+.dark-theme .fc-theme-standard .fc-scrollgrid {
+    border-color: #334155 !important;
+}
+
+.dark-theme .fc-daygrid-day-number,
+.dark-theme .fc-col-header-cell-cushion {
+    color: #cbd5e1 !important;
+    text-decoration: none !important;
+}
+
+.dark-theme .fc-day-today {
+    background-color: rgba(212, 175, 55, 0.12) !important;
+}
+
+.dark-theme .fc .fc-button-primary {
+    background-color: #0f172a !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+.dark-theme .fc .fc-button-primary:hover {
+    background-color: #334155 !important;
+    border-color: #475569 !important;
+    color: #ffffff !important;
+}
+
+.dark-theme .fc .fc-button-active {
+    background-color: #d4af37 !important;
+    border-color: #d4af37 !important;
+    color: #ffffff !important;
+}
+
+/* 5. Modals & Form Controls Dark Mode */
+.dark-theme .modal-header,
+.dark-theme .modal-footer {
+    border-color: #334155 !important;
+}
+
+.dark-theme .form-control,
+.dark-theme .form-select {
+    background-color: #0f172a !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+.dark-theme .form-control:focus,
+.dark-theme .form-select:focus {
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25) !important;
+}
+
+.dark-theme .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.dark-theme .upcoming-item .badge.bg-light {
+    background-color: #0f172a !important;
+    color: #94a3b8 !important;
+    border-color: #334155 !important;
+}
+@media (max-width: 991.98px) {
+    .calendar-layout {
+        display: block;
+    }
+
+    .calendar-card,
+    .calendar-sidebar-card {
+        border-radius: 14px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .fc-header-toolbar {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .fc-toolbar-chunk {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .fc .fc-toolbar-title {
+        text-align: center;
+    }
+}

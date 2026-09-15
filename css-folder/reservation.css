@@ -266,6 +266,8 @@ body {
   z-index: 1;
   transition: all 0.4s ease;
   box-shadow: 0 8px 20px rgba(212, 175, 55, 0.18);
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .custom-btn::before {
@@ -287,6 +289,26 @@ body {
 
 .custom-btn:hover::before {
   width: 100%;
+}
+
+.reservation-notice {
+  min-height: 24px;
+  margin: 18px 0 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.reservation-notice.success {
+  color: #65c18c;
+}
+
+.reservation-notice.error {
+  color: #e58d84;
+}
+
+.reservation-notice.pending {
+  color: var(--accent-gold);
 }
 
 /* btn styling end */
@@ -374,7 +396,7 @@ body {
 }
 
 .testimonials-header .title {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Poppins', Arial, sans-serif;
   font-size: 3rem;
   font-weight: 700;
   color: var(--text-dark);

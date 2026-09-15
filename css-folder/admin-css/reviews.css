@@ -56,7 +56,18 @@
     box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
 }
 
-/* Review Cards */
+/* =====================================================
+   REVIEWS CONTAINER & EQUAL HEIGHT CARDS
+   ===================================================== */
+#reviewsContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#reviewsContainer > [class*="col-"] {
+    display: flex;
+}
+
 .review-card {
     background: #FFFFFF;
     border-radius: 16px;
@@ -64,10 +75,19 @@
     box-shadow: var(--card-shadow);
     padding: 1.25rem;
     transition: box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
 }
 
 .review-card:hover {
     box-shadow: 0 10px 25px rgba(197, 168, 128, 0.15);
+}
+
+.review-content-body {
+    flex-grow: 1;
 }
 
 .avatar-circle {
@@ -83,11 +103,23 @@
     font-size: 1rem;
 }
 
+/* Smooth Collapse/Expand Transition */
 .reply-box {
-    background-color: var(--gold-soft-tint);
-    border-left: 3px solid var(--accent-gold-bright);
-    border-radius: 0 8px 8px 0;
-    padding: 0.75rem 1rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    transition: all 0.4s ease-in-out;
+}
+
+.reply-box.show-reply {
+    max-height: 200px; /* Text ke mutabiq adjust ho jayega */
+    opacity: 1;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    margin-top: 10px;
 }
 
 /* Action Buttons */
@@ -106,3 +138,164 @@
 .badge-approved { background-color: #dcfce7; color: #15803d; }
 .badge-pending { background-color: #fef3c7; color: #d97706; }
 .badge-hidden { background-color: #fee2e2; color: #b91c1c; }
+/* ==========================================================================
+   REVIEWS PAGE DARK THEME OVERRIDES (Triggered by .dark-theme)
+   ========================================================================== */
+
+/* 1. Global Page & Body Background */
+body.dark-theme,
+.dark-theme .app,
+.dark-theme .main-content {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+}
+
+/* 2. Topbar, Sidebar & Mobile Navigation */
+.dark-theme .topbar,
+.dark-theme .sidebar,
+.dark-theme .mobile-header {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+.dark-theme .topbar-context,
+.dark-theme .icon-button {
+    background-color: #0f172a !important;
+    color: #cbd5e1 !important;
+    border-color: #334155 !important;
+}
+
+/* 3. Cards (Stats, Filter Bar & Review Cards) */
+.dark-theme .stat-card,
+.dark-theme .filter-bar-card,
+.dark-theme .review-card,
+.dark-theme .upgrade-card,
+.dark-theme .modal-content {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+    box-shadow: none !important;
+}
+
+.dark-theme .review-card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* 4. Text & Typography Fixes */
+.dark-theme h3,
+.dark-theme h5,
+.dark-theme h6,
+.dark-theme .fw-bold,
+.dark-theme .modal-title,
+.dark-theme .review-card p.text-dark,
+.dark-theme .reply-box .text-dark {
+    color: #f8fafc !important;
+}
+
+.dark-theme .text-muted {
+    color: #94a3b8 !important;
+}
+
+/* 5. Buttons, Filters & Status Select Input */
+.dark-theme .btn-filter {
+    background-color: #0f172a !important;
+    border-color: #334155 !important;
+    color: #cbd5e1 !important;
+}
+
+.dark-theme .btn-filter:hover,
+.dark-theme .btn-filter.active {
+    background-color: rgba(212, 175, 55, 0.15) !important;
+    border-color: #d4af37 !important;
+    color: #d4af37 !important;
+}
+
+.dark-theme .status-select,
+.dark-theme .form-control {
+    background-color: #0f172a !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+.dark-theme .status-select:focus,
+.dark-theme .form-control:focus {
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25) !important;
+}
+
+.dark-theme .btn-light {
+    background-color: #0f172a !important;
+    border-color: #334155 !important;
+    color: #cbd5e1 !important;
+}
+
+.dark-theme .btn-light:hover {
+    background-color: #334155 !important;
+    color: #ffffff !important;
+}
+
+/* 6. Reply Section & Modals Specifics */
+.dark-theme .reply-box {
+    background-color: #0f172a !important;
+    border-radius: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.dark-theme .modal-header,
+.dark-theme .modal-footer,
+.dark-theme .review-card .border-top {
+    border-color: #334155 !important;
+}
+
+.dark-theme .modal-body .bg-light {
+    background-color: #0f172a !important;
+}
+
+.dark-theme .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* 7. Status Badges in Dark Mode */
+.dark-theme .badge-approved {
+    background-color: rgba(34, 197, 94, 0.15) !important;
+    color: #4ade80 !important;
+}
+
+.dark-theme .badge-pending {
+    background-color: rgba(245, 158, 11, 0.15) !important;
+    color: #fbbf24 !important;
+}
+
+.dark-theme .badge-hidden {
+    background-color: rgba(239, 68, 68, 0.15) !important;
+    color: #f87171 !important;
+}
+
+@media (max-width: 767.98px) {
+    .review-card {
+        padding: 1rem;
+    }
+
+    #reviewsContainer > [class*="col-"] {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 520px) {
+    .review-card .d-flex.align-items-center.justify-content-between {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .review-card .btn-group {
+        width: 100%;
+    }
+
+    .review-card .btn-group .btn {
+        flex: 1 1 auto;
+    }
+}

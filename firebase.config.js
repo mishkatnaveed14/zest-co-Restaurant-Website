@@ -8,23 +8,27 @@ import {
   GoogleAuthProvider,
   signOut,
   sendEmailVerification,
+  onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import{
-  getFirestore, 
-    collection, 
-    onSnapshot, 
-    doc, 
-    updateDoc, 
-    deleteDoc 
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  onSnapshot,
+  serverTimestamp,
+  doc,
+  updateDoc,
+  deleteDoc,
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-
 const firebaseConfig = {
   apiKey: "AIzaSyBfGPlgUuzJgDa4kNVV1ksjRZwfhFMXW9I",
   authDomain: "zest-and-co.firebaseapp.com",
   projectId: "zest-and-co",
   storageBucket: "zest-and-co.firebasestorage.app",
   messagingSenderId: "6345256410",
-  appId: "1:6345256410:web:c53faff8f8051dfeb9a4e3"
+  appId: "1:6345256410:web:c53faff8f8051dfeb9a4e3",
 };
 
 // Initialize Firebase
@@ -36,6 +40,12 @@ const db = getFirestore(app);
 export {
   auth,
   db,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  onSnapshot,
+  serverTimestamp,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithRedirect,
@@ -43,10 +53,9 @@ export {
   GoogleAuthProvider,
   signOut,
   sendEmailVerification,
-  getFirestore, 
-    collection, 
-    onSnapshot, 
-    doc, 
-    updateDoc, 
-    deleteDoc 
+  onAuthStateChanged,
+  getFirestore,
+  doc,
+  updateDoc,
+  deleteDoc,
 };

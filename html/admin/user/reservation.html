@@ -117,6 +117,9 @@
                 <a href="tel:+9988776345">+998-8776345</a>
               </div>
             </div>
+            <button type="button" class="chat-with-us nav-btn" hidden>
+              <i class="bi bi-chat-dots me-1"></i>Chat With Us
+            </button>
             <a href="#" class="login-link d-none d-sm-inline-block d-lg-inline-block" data-auth-open="login">Login</a>
             <a href="#" class="nav-btn" data-auth-open="signup">
               <span>Signup</span>
@@ -197,7 +200,7 @@
 
 
   <!-- /////////////////////////////////////RESERVATION FORM START///////////////////////////////////////////// -->
-  <section class="reservation-section" data-aos="zoom-in-up">
+  <section class="reservation-section" id="reservations" data-aos="zoom-in-up">
     <div class="container">
 
       <div class="row justify-content-center">
@@ -211,20 +214,20 @@
                 making your visit truly exceptional.
               </p>
             </div>
-            <form action="#" method="POST">
+            <form id="reservationForm" action="#" method="POST">
 
               <div class="row g-4 mb-4">
 
                 <div class="col-md-4">
-                  <input type="text" class="form-control" placeholder="Full Name *" required>
+                  <input type="text" id="reservationName" class="form-control" placeholder="Full Name *" required>
                 </div>
 
                 <div class="col-md-4">
-                  <input type="email" class="form-control" placeholder="Email Address *" required>
+                  <input type="email" id="reservationEmail" class="form-control" placeholder="Email Address *" required>
                 </div>
 
                 <div class="col-md-4">
-                  <input type="tel" class="form-control" placeholder="Contact No *" required>
+                  <input type="tel" id="reservationPhone" class="form-control" placeholder="Contact No *" required>
                 </div>
 
               </div>
@@ -232,8 +235,8 @@
               <div class="row g-4 mb-5">
 
                 <div class="col-md-4">
-                  <select class="form-select" required>
-                    <option selected>2 People</option>
+                  <select id="reservationGuests" class="form-select" required>
+                    <option value="2" selected>2 People</option>
                     <option value="1">1 Person</option>
                     <option value="2">2 People</option>
                     <option value="3">3 People</option>
@@ -248,19 +251,20 @@
                 </div>
 
                 <div class="col-md-4">
-                  <select class="form-select" required>
-                    <option selected>10:00 AM</option>
-                    <option value="10:00">11:00 AM</option>
-                    <option value="11:00">12:00 PM</option>
-                    <option value="12:00">1:00 PM</option>
+                  <select id="reservationTime" class="form-select" required>
+                    <option value="10:00" selected>10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="13:00">1:00 PM</option>
                   </select>
                 </div>
 
               </div>
 
-              <a href="#" class="custom-btn">
+              <button type="submit" class="custom-btn">
                 <span class="btn-text">Book a table <span>&rarr;</span></span>
-              </a>
+              </button>
+              <p id="reservationNotice" class="reservation-notice" role="status" aria-live="polite"></p>
 
             </form>
           </div>
@@ -532,11 +536,11 @@
 
       <div class="footer-col">
         <h4>Explore</h4>
-        <a href="#home">Home</a>
-        <a href="#menu">Menu</a>
-        <a href="#about">About Us</a>
-        <a href="#chefs">Our Chefs</a>
-        <a href="#reserve">Reservations</a>
+          <a href="../../../index.html">Home</a>
+          <a href="./menu.html">Menu</a>
+          <a href="./about.html">About Us</a>
+          <a href="./about.html#team">Our Chefs</a>
+          <a href="./reservation.html#reservations">Reservations</a>
       </div>
 
       <div class="footer-col">
@@ -738,7 +742,7 @@
   <!-- bootstrap js -->
   <script src="../../../js/bootstrap.bundle.min.js"></script>
   <!-- custom js -->
-  <script src="../../../js/reservation.js"></script>
+  <script type="module" src="../../../js/reservation.js"></script>
 
 <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
   <div class="mobile-menu-panel" id="mobileMenuPanel">
@@ -751,7 +755,7 @@
     <nav class="mobile-nav-links">
       <a href="../../../index.html">Home</a>
       <a href="../../../html/admin/user/about.html">About</a>
-      <a href="../../../html/menu.html">Menu</a>
+      <a href="../../../html/admin/user/menu.html">Menu</a>
       <div class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" aria-haspopup="true" aria-expanded="false">
           PAGES <i class="bi bi-chevron-down nav-arrow"></i>
@@ -913,7 +917,7 @@
   <!-- bootstrap js -->
   <script src="../../../js/bootstrap.bundle.min.js"></script>
   <!-- custom js -->
-  <script src="../../../js/reservation.js"></script>
+  <script type="module" src="../../../js/reservation.js"></script>
 
 
 <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
@@ -927,7 +931,7 @@
     <nav class="mobile-nav-links">
       <a href="../../../index.html">Home</a>
       <a href="../../../html/admin/user/about.html">About</a>
-      <a href="../../../html/menu.html">Menu</a>
+      <a href="../../../html/admin/user/menu.html">Menu</a>
       <div class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" aria-haspopup="true" aria-expanded="false">
           PAGES <i class="bi bi-chevron-down nav-arrow"></i>
@@ -1089,7 +1093,7 @@
   <!-- bootstrap js -->
   <script src="../../../js/bootstrap.bundle.min.js"></script>
   <!-- custom js -->
-  <script src="../../../js/reservation.js"></script>
+  <script type="module" src="../../../js/reservation.js"></script>
   <script type="module" src="../../../js/common.js"></script>
 
 </body>

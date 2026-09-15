@@ -1,4 +1,6 @@
-/* Metric Stats Styling */
+/* =====================================================
+   METRIC STATS STYLING
+===================================================== */
 .stat-card {
     background: #FFFFFF;
     border-radius: 14px;
@@ -25,7 +27,9 @@
     font-size: 1.4rem;
 }
 
-/* Table & Card Styles */
+/* =====================================================
+   TABLE & CARD BASE LIGHT STYLES
+===================================================== */
 .order-card {
     border-radius: 16px;
     box-shadow: var(--card-shadow);
@@ -40,11 +44,11 @@
 }
 
 .filter-select:focus {
-    border-color: var(--accent-gold-bright);
+    border-color: var(--accent-gold-bright, #d4af37);
     box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
 }
 
-/* Badge Tweaks */
+/* Status Badges */
 .badge-pending { background-color: #fef3c7; color: #d97706; }
 .badge-preparing { background-color: #e0f2fe; color: #0284c7; }
 .badge-ready { background-color: #f3e8ff; color: #7e22ce; }
@@ -52,7 +56,7 @@
 .badge-cancelled { background-color: #fee2e2; color: #b91c1c; }
 
 .btn-gold {
-    background-color: var(--accent-gold-bright);
+    background-color: var(--accent-gold-bright, #d4af37);
     color: #ffffff;
     border: none;
     font-weight: 500;
@@ -62,13 +66,13 @@
     background-color: #c5a880;
     color: #ffffff;
 }
-/* Custom Pagination Container */
+
+/* Pagination Light Base */
 .pagination {
     margin-bottom: 0;
     gap: 4px;
 }
 
-/* Base Page Link Styling */
 .pagination .page-item .page-link {
     color: #4b5563;
     border: 1px solid #e5e7eb;
@@ -81,7 +85,6 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-/* Hover & Focus States */
 .pagination .page-item .page-link:hover {
     color: #111827;
     background-color: #f9fafb;
@@ -94,16 +97,14 @@
     outline: none;
 }
 
-/* Active Page State */
 .pagination .page-item.active .page-link {
     color: #ffffff;
-    background-color: #d4af37; /* Theme Accent Color */
+    background-color: #d4af37;
     border-color: #d4af37;
     font-weight: 600;
     box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
 }
 
-/* Disabled State */
 .pagination .page-item.disabled .page-link {
     color: #9ca3af;
     background-color: #f3f4f6;
@@ -112,4 +113,201 @@
     opacity: 0.7;
     box-shadow: none;
     transform: none;
+}
+
+
+/* ==========================================================================
+   FULL PAGE DARK THEME OVERRIDES (Applied ONLY when .dark-theme is toggled)
+   ========================================================================== */
+
+/* 1. Main Canvas & Layout Containers Dark Mode */
+.dark-theme,
+body.dark-theme,
+.dark-theme .app,
+.dark-theme .main-content {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+}
+
+/* 2. Full Navigation Dark Mode (Sidebar, Topbar & Mobile Header) */
+.dark-theme .sidebar,
+.dark-theme .topbar,
+.dark-theme .mobile-header {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+.dark-theme .nav-link-custom {
+    color: #cbd5e1 !important;
+}
+
+.dark-theme .nav-link-custom:hover,
+.dark-theme .nav-link-custom.active {
+    background-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+.dark-theme .topbar-context,
+.dark-theme .icon-button {
+    background-color: #0f172a !important;
+    color: #cbd5e1 !important;
+    border-color: #334155 !important;
+}
+
+/* 3. Cards, Chart Wrappers & Stat Cards Dark Mode */
+.dark-theme .card,
+.dark-theme .order-card,
+.dark-theme .stat-card,
+.dark-theme .modal-content,
+.dark-theme .upgrade-card {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+    box-shadow: none !important;
+}
+
+.dark-theme .card-header,
+.dark-theme .card-body,
+.dark-theme .card-footer,
+.dark-theme .modal-header,
+.dark-theme .modal-footer {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+.dark-theme .card h5,
+.dark-theme .card h6,
+.dark-theme .card .fw-bold,
+.dark-theme .stat-card h3,
+.dark-theme .stat-card h6,
+.dark-theme .modal-title {
+    color: #f8fafc !important;
+}
+
+/* 4. Full Table Wrapper & Headers Dark Mode */
+.dark-theme .table-responsive,
+.dark-theme table,
+.dark-theme .table {
+    background-color: #1e293b !important;
+    color: #cbd5e1 !important;
+    border-color: #334155 !important;
+}
+
+.dark-theme .table > :not(caption) > * > * {
+    background-color: #1e293b !important;
+    color: #cbd5e1 !important;
+    border-color: #334155 !important;
+}
+
+.dark-theme .table .table-light,
+.dark-theme .table thead.table-light,
+.dark-theme .table thead.table-light tr,
+.dark-theme .table thead.table-light th {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
+}
+
+.dark-theme .table-hover > tbody > tr:hover > * {
+    background-color: #334155 !important;
+    color: #ffffff !important;
+}
+
+/* 5. Inputs, Badges, Modals & Pagination Dark Mode */
+.dark-theme .filter-select,
+.dark-theme .form-select,
+.dark-theme .form-control {
+    background-color: #0f172a !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+.dark-theme .card .badge.bg-light {
+    background-color: #0f172a !important;
+    color: #94a3b8 !important;
+    border-color: #334155 !important;
+}
+
+.dark-theme .modal-body .bg-light {
+    background-color: #0f172a !important;
+    color: #e2e8f0 !important;
+}
+
+.dark-theme .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.dark-theme .pagination .page-item .page-link {
+    background-color: #0f172a !important;
+    border-color: #334155 !important;
+    color: #94a3b8 !important;
+}
+
+.dark-theme .pagination .page-item .page-link:hover {
+    background-color: #334155 !important;
+    color: #ffffff !important;
+}
+
+.dark-theme .pagination .page-item.active .page-link {
+    background-color: #d4af37 !important;
+    border-color: #d4af37 !important;
+    color: #ffffff !important;
+}
+@media (max-width: 991.98px) {
+    .container-fluid {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    .order-card .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .order-card .card-header .d-flex {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .row.g-3 > [class*="col-"] {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .card.order-card {
+        border-radius: 14px;
+    }
+
+    .table-responsive {
+        margin: 0 -8px;
+        padding: 0 8px;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container-fluid {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    .stat-card {
+        gap: 0.7rem;
+    }
+
+    .stat-icon {
+        width: 42px;
+        height: 42px;
+    }
 }

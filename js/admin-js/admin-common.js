@@ -2,18 +2,71 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.getElementById("sidebar");
   if (!sidebar) return;
 
+  const themeButton = document.getElementById("themeToggle");
+  const applyTheme = (isDark) => {
+    document.body.classList.toggle("dark-theme", isDark);
+    document.body.classList.toggle("dark", isDark);
+    if (themeButton) {
+      themeButton.innerHTML = isDark
+        ? '<i class="fa-regular fa-sun"></i>'
+        : '<i class="fa-regular fa-moon"></i>';
+    }
+  };
+
+  const savedDark =
+    localStorage.getItem("restro-theme") === "dark" ||
+    localStorage.getItem("zestco-admin-theme") === "dark";
+  applyTheme(savedDark);
+
+  if (themeButton && !themeButton.dataset.themeBound) {
+    themeButton.dataset.themeBound = "true";
+    themeButton.addEventListener("click", () => {
+      const isDark = !(document.body.classList.contains("dark-theme") || document.body.classList.contains("dark"));
+      applyTheme(isDark);
+      localStorage.setItem("restro-theme", isDark ? "dark" : "light");
+      localStorage.setItem("zestco-admin-theme", isDark ? "dark" : "light");
+    });
+  }
+
   const brandTrigger = document.getElementById("brandToggleTrigger");
   const brandArrow = document.querySelector(".brand-toggle-arrow");
   const inventoryToggle = document.getElementById("inventoryToggle");
   const inventorySubmenu = document.getElementById("inventorySubmenu");
-  const mobileToggle =
-    document.getElementById("mobileSidebarToggle") ||
-    document.getElementById("mobileMenu");
+  const inventoryLinks = inventorySubmenu
+    ? inventorySubmenu.querySelectorAll(".nav-link-custom")
+    : [];
+  const mobileToggles = [
+    document.getElementById("mobileSidebarToggle"),
+    document.getElementById("mobileMenu"),
+  ].filter(Boolean);
   const mobileClose = document.getElementById("mobileDrawerClose");
   const overlay =
     document.getElementById("sidebarOverlay") ||
     document.getElementById("overlay");
   const desktopToggle = document.getElementById("sidebarToggle");
+
+  const syncMobileDrawerState = (open) => {
+    document.body.classList.toggle("mobile-sidebar-open", open);
+    mobileToggles.forEach((toggle) => {
+      const isHamburger = toggle.classList.contains("hamburger-btn");
+      toggle.classList.toggle("active", open && isHamburger);
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+  };
+
+  document.querySelectorAll(".profile").forEach((profile) => {
+    profile.setAttribute("role", "button");
+    profile.setAttribute("tabindex", "0");
+    profile.addEventListener("click", () => {
+      window.location.assign("./setting.html");
+    });
+    profile.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        window.location.assign("./setting.html");
+      }
+    });
+  });
 
   const setCollapsed = (collapsed) => {
     document.body.classList.toggle("sidebar-collapsed", collapsed);
@@ -52,26 +105,104 @@ document.addEventListener("DOMContentLoaded", () => {
       ?.classList.remove("is-open");
   };
 
-  const toggleInventory = (event) => {
-    event.preventDefault();
-    if (sidebar.classList.contains("collapsed")) setCollapsed(false);
-    const open = inventoryToggle.getAttribute("aria-expanded") === "true";
-    inventoryToggle.setAttribute("aria-expanded", String(!open));
-    inventorySubmenu.style.height = open
-      ? "0px"
-      : `${inventorySubmenu.scrollHeight}px`;
+  const openInventory = () => {
+    if (!inventorySubmenu) return;
+    inventorySubmenu.style.height = `${inventorySubmenu.scrollHeight}px`;
+    inventoryToggle?.setAttribute("aria-expanded", "true");
     inventoryToggle
-      .querySelector(".chevron-icon")
-      ?.classList.toggle("is-open", !open);
+      ?.querySelector(".chevron-icon")
+      ?.classList.add("is-open");
+  };
+
+  const syncSidebarState = () => {
+    const page = window.location.pathname.split("/").pop() || "dashboard.html";
+    document.querySelectorAll(".nav-link-custom").forEach((link) => {
+      link.classList.remove("active");
+    });
+
+    const directMatch = document.querySelector(
+      `.nav-link-custom[href="./${page}"]`,
+    );
+
+    if (directMatch) {
+      directMatch.classList.add("active");
+    }
+
+    if (page === "inventory.html" || page === "purchase-order.html") {
+      inventoryToggle?.classList.add("active");
+      inventoryToggle?.setAttribute("aria-expanded", "true");
+      inventorySubmenu && (inventorySubmenu.style.height = `${inventorySubmenu.scrollHeight}px`);
+      inventoryLinks.forEach((link) => {
+        const href = link.getAttribute("href") || "";
+        const shouldBeActive =
+          (page === "inventory.html" && href.includes("inventory.html") && !href.includes("purchase-order.html")) ||
+          (page === "purchase-order.html" && href.includes("purchase-order.html"));
+        link.classList.toggle("active", shouldBeActive);
+      });
+    }
+
+    if (page === "orders.html") {
+      const ordersLink = document.querySelector('.nav-link-custom[href="./orders.html"]');
+      ordersLink?.classList.add("active");
+    }
+
+    if (page === "setting.html") {
+      const settingsLink = document.querySelector('.nav-link-custom[href="setting.html"]');
+      settingsLink?.classList.add("active");
+    }
+  };
+
+  if (inventoryToggle?.dataset.keepOpen === "true") openInventory();
+  syncSidebarState();
+
+  const toggleInventory = (event) => {
+    if (inventoryToggle?.dataset.keepOpen === "true") {
+      event.preventDefault();
+      openInventory();
+      return;
+    }
+
+    if (inventoryToggle && inventoryToggle.getAttribute("href") === "#") {
+      event.preventDefault();
+      window.location.assign("./inventory.html");
+      return;
+    }
   };
 
   const closeDrawer = () => {
-    document.body.classList.remove("mobile-sidebar-open");
-    mobileToggle?.classList.remove("active");
+    syncMobileDrawerState(false);
     if (window.innerWidth < 992) {
+      document.body.classList.remove("sidebar-collapsed");
+      sidebar.classList.remove("collapsed");
+      sidebar.style.setProperty("width", "260px", "important");
+      sidebar.style.setProperty("min-width", "260px", "important");
+      sidebar.style.setProperty("max-width", "260px", "important");
       sidebar.style.setProperty("transform", "translateX(-105%)", "important");
       sidebar.style.setProperty("visibility", "hidden", "important");
       sidebar.style.setProperty("opacity", "0", "important");
+    }
+  };
+
+  const toggleMobileDrawer = () => {
+    const open = !document.body.classList.contains("mobile-sidebar-open");
+    syncMobileDrawerState(open);
+    if (window.innerWidth < 992) {
+      document.body.classList.remove("sidebar-collapsed");
+      sidebar.classList.remove("collapsed");
+      sidebar.style.setProperty("width", "260px", "important");
+      sidebar.style.setProperty("min-width", "260px", "important");
+      sidebar.style.setProperty("max-width", "260px", "important");
+      sidebar.style.setProperty(
+        "transform",
+        open ? "translateX(0)" : "translateX(-105%)",
+        "important",
+      );
+      sidebar.style.setProperty(
+        "visibility",
+        open ? "visible" : "hidden",
+        "important",
+      );
+      sidebar.style.setProperty("opacity", open ? "1" : "0", "important");
     }
   };
 
@@ -87,22 +218,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   inventoryToggle?.addEventListener("click", toggleInventory);
 
-  mobileToggle?.addEventListener("click", () => {
-    const open = document.body.classList.toggle("mobile-sidebar-open");
-    mobileToggle.classList.toggle("active", open);
-    if (window.innerWidth < 992) {
-      sidebar.style.setProperty(
-        "transform",
-        open ? "translateX(0)" : "translateX(-105%)",
-        "important",
-      );
-      sidebar.style.setProperty(
-        "visibility",
-        open ? "visible" : "hidden",
-        "important",
-      );
-      sidebar.style.setProperty("opacity", open ? "1" : "0", "important");
-    }
+  mobileToggles.forEach((toggle) => {
+    toggle.addEventListener("click", toggleMobileDrawer);
   });
 
   mobileClose?.addEventListener("click", closeDrawer);
