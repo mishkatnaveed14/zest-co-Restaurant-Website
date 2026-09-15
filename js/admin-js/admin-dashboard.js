@@ -92,6 +92,7 @@ const ordersBody = $("#ordersBody");
 const emptyState = $("#emptyState");
 const searchInput = $("#ordersSearch");
 const themeButton = $("#themeToggle");
+const viewAllOrdersButton = $("#viewAllOrders");
 
 let showAllOrders = false;
 let revenueChart;
@@ -620,21 +621,21 @@ document.addEventListener("admin:theme-change", () => {
   setTimeout(updateChartTheme, 50);
 });
 
-searchInput.addEventListener("input", (event) => {
+searchInput?.addEventListener("input", (event) => {
   renderOrders(event.target.value);
 
   if (event.target.value.trim()) {
-    $("#orders").scrollIntoView({
+    $("#orders")?.scrollIntoView({
       behavior: "smooth",
       block: "center",
     });
   }
 });
 
-$("#viewAllOrders").addEventListener("click", (event) => {
+viewAllOrdersButton?.addEventListener("click", (event) => {
   showAllOrders = !showAllOrders;
   event.currentTarget.textContent = showAllOrders ? "Show less" : "View all";
-  renderOrders(searchInput.value);
+  renderOrders(searchInput?.value || "");
 });
 
 $$(".range-btn").forEach((button) => {

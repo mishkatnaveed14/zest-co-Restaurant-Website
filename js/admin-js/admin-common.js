@@ -45,6 +45,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("overlay");
   const desktopToggle = document.getElementById("sidebarToggle");
 
+  const syncMobileDrawerState = (open) => {
+    document.body.classList.toggle("mobile-sidebar-open", open);
+    mobileToggles.forEach((toggle) => {
+      const isHamburger = toggle.classList.contains("hamburger-btn");
+      toggle.classList.toggle("active", open && isHamburger);
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+  };
+
   document.querySelectorAll(".profile").forEach((profile) => {
     profile.setAttribute("role", "button");
     profile.setAttribute("tabindex", "0");
@@ -161,9 +170,13 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const closeDrawer = () => {
-    document.body.classList.remove("mobile-sidebar-open");
-    mobileToggles.forEach((toggle) => toggle.classList.remove("active"));
+    syncMobileDrawerState(false);
     if (window.innerWidth < 992) {
+      document.body.classList.remove("sidebar-collapsed");
+      sidebar.classList.remove("collapsed");
+      sidebar.style.setProperty("width", "260px", "important");
+      sidebar.style.setProperty("min-width", "260px", "important");
+      sidebar.style.setProperty("max-width", "260px", "important");
       sidebar.style.setProperty("transform", "translateX(-105%)", "important");
       sidebar.style.setProperty("visibility", "hidden", "important");
       sidebar.style.setProperty("opacity", "0", "important");
@@ -171,9 +184,14 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const toggleMobileDrawer = () => {
-    const open = document.body.classList.toggle("mobile-sidebar-open");
-    mobileToggles.forEach((toggle) => toggle.classList.toggle("active", open));
+    const open = !document.body.classList.contains("mobile-sidebar-open");
+    syncMobileDrawerState(open);
     if (window.innerWidth < 992) {
+      document.body.classList.remove("sidebar-collapsed");
+      sidebar.classList.remove("collapsed");
+      sidebar.style.setProperty("width", "260px", "important");
+      sidebar.style.setProperty("min-width", "260px", "important");
+      sidebar.style.setProperty("max-width", "260px", "important");
       sidebar.style.setProperty(
         "transform",
         open ? "translateX(0)" : "translateX(-105%)",

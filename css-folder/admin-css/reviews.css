@@ -272,3 +272,30 @@ body.dark-theme,
     background-color: rgba(239, 68, 68, 0.15) !important;
     color: #f87171 !important;
 }
+
+@media (max-width: 767.98px) {
+    .review-card {
+        padding: 1rem;
+    }
+
+    #reviewsContainer > [class*="col-"] {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 520px) {
+    .review-card .d-flex.align-items-center.justify-content-between {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .review-card .btn-group {
+        width: 100%;
+    }
+
+    .review-card .btn-group .btn {
+        flex: 1 1 auto;
+    }
+}
