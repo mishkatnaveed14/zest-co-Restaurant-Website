@@ -146,7 +146,9 @@ const mockOrders = [
     ],
   },
 ];
-
+// document.getElementById('themeToggle').addEventListener('click', () => {
+//     document.body.classList.toggle('dark-theme');
+// });
 // Global Cache & State
 let globalOrders = [];
 let activeSelectedOrderId = null;
@@ -383,6 +385,21 @@ function getStatusBadgeClass(status) {
   }
 }
 
+// Dynamic Canvas Background Plugin
+const chartBackgroundPlugin = {
+  id: 'customCanvasBackgroundColor',
+  beforeDraw: (chart, args, options) => {
+    const { ctx } = chart;
+    ctx.save();
+    ctx.globalCompositeOperation = 'destination-over';
+    // Fallback based on dark-theme class on body
+    const isDark = document.body.classList.contains("dark-theme") || document.body.classList.contains("dark");
+    ctx.fillStyle = options.color || (isDark ? '#1e293b' : '#ffffff');
+    ctx.fillRect(0, 0, chart.width, chart.height);
+    ctx.restore();
+  }
+};
+
 // Animated & Moving Chart Rendering Setup
 function initMovingCharts(orders) {
   const statusCounts = {
@@ -405,9 +422,18 @@ function initMovingCharts(orders) {
 
   if (!ctxStatus || !ctxTrend) return;
 
+  // Dark Mode Dynamic State Evaluation
+  const isDarkMode = document.body.classList.contains("dark-theme");
+  const textColor = isDarkMode ? "#cbd5e1" : "#4b5563";
+  const gridColor = isDarkMode ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.05)";
+  const doughnutBorder = isDarkMode ? "#1e293b" : "#ffffff";
+  const areaFillColor = isDarkMode ? "rgba(212, 175, 55, 0.25)" : "rgba(212, 175, 55, 0.15)";
+  const chartBg = isDarkMode ? "#1e293b" : "#ffffff";
+
   // 1. Doughnut Chart
   statusChartInstance = new Chart(ctxStatus.getContext("2d"), {
     type: "doughnut",
+    plugins: [chartBackgroundPlugin],
     data: {
       labels: ["Pending", "Preparing", "Ready", "Delivered", "Cancelled"],
       datasets: [
@@ -420,7 +446,8 @@ function initMovingCharts(orders) {
             "#10b981",
             "#ef4444",
           ],
-          borderWidth: 0,
+          borderWidth: 2,
+          borderColor: doughnutBorder,
         },
       ],
     },
@@ -428,7 +455,13 @@ function initMovingCharts(orders) {
       responsive: true,
       maintainAspectRatio: false,
       animation: { duration: 500 },
-      plugins: { legend: { position: "bottom" } },
+      plugins: {
+        customCanvasBackgroundColor: { color: chartBg },
+        legend: {
+          position: "bottom",
+          labels: { color: textColor }
+        }
+      },
       cutout: "70%",
     },
   });
@@ -448,6 +481,7 @@ function initMovingCharts(orders) {
   // 2. Animated Line Chart (Moving Effect)
   trendChartInstance = new Chart(ctxTrend.getContext("2d"), {
     type: "line",
+    plugins: [chartBackgroundPlugin],
     data: {
       labels: initialLabels,
       datasets: [
@@ -455,7 +489,7 @@ function initMovingCharts(orders) {
           label: "Realtime Orders",
           data: initialValues,
           borderColor: "#d4af37",
-          backgroundColor: "rgba(212, 175, 55, 0.15)",
+          backgroundColor: areaFillColor,
           fill: true,
           tension: 0.4,
           pointRadius: 4,
@@ -470,15 +504,25 @@ function initMovingCharts(orders) {
         duration: 800,
         easing: "linear",
       },
-      plugins: { legend: { display: false } },
+      plugins: {
+        customCanvasBackgroundColor: { color: chartBg },
+        legend: { display: false }
+      },
       scales: {
-        y: { beginAtZero: true },
-        x: { grid: { display: false } },
+        y: {
+          beginAtZero: true,
+          ticks: { color: textColor },
+          grid: { color: gridColor }
+        },
+        x: {
+          ticks: { color: textColor },
+          grid: { display: false }
+        },
       },
     },
   });
 
-  // Chart Shift Loop (Smoothly moves chart points every 3 seconds)
+  // Chart Shift Loop
   liveMoveInterval = setInterval(() => {
     if (!trendChartInstance) return;
 
@@ -605,6 +649,23 @@ statusFilter?.addEventListener("change", () => {
   currentPage = 1;
   renderOrders();
 });
+// Window event listener for dynamic theme re-rendering
+window.addEventListener('themeChanged', () => {
+  if (globalOrders && globalOrders.length > 0) {
+    initMovingCharts(globalOrders);
+  }
+});
 
+// Also trigger re-render on direct theme button click
+const themeBtn = document.getElementById("themeToggle");
+if (themeBtn) {
+  themeBtn.addEventListener("click", () => {
+    setTimeout(() => {
+      if (globalOrders && globalOrders.length > 0) {
+        initMovingCharts(globalOrders);
+      }
+    }, 50);
+  });
+}
 // Initialize Page Load Execution
 listenToOrders();
