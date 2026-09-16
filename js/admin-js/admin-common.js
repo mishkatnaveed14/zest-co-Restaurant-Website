@@ -7,7 +7,6 @@ onAuthStateChanged(auth, async(user) => {
     let userData = await getDoc(userRef);
     if (userData.exists()) {
       let data = userData.data();
-      alert(data.role)
   if(data && data.role !== "admin"){
 
       window.location.href = "../access-denied.html";
@@ -265,4 +264,12 @@ document.addEventListener("DOMContentLoaded", () => {
       sidebar.classList.remove("collapsed");
     }
   });
+});
+// --------Logout Admin ---------------
+document.getElementById("logout")?.addEventListener("click", function () {
+  signOut(auth).then(() => {
+    window.location.href = "../../../index.html"; // Redirect to login page
+  }).catch((error) => {
+    console.error("Error logging out:", error.message);
+  })
 });

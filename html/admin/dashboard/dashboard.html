@@ -1,434 +1,647 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Responsive restaurant analytics dashboard" />
+    <meta
+      name="description"
+      content="Responsive restaurant analytics dashboard"
+    />
     <title>Zest and Co- Restaurant Dashboard</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-    <link rel="stylesheet" href="../../../css-folder/admin-css/admin-session.css" />
-    <link rel="stylesheet" href="../../../css-folder/admin-css/admin-common.css" />
-    <link rel="stylesheet" href="../../../css-folder/admin-css/admin-dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../css-folder/admin-css/admin-session.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../css-folder/admin-css/admin-common.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../css-folder/admin-css/admin-dashboard.css"
+    />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="app">
-        <!-- ===================================================== MOBILE HEADER ===================================================== -->
-        <div class="mobile-header"> <button class="hamburger-btn" id="mobileSidebarToggle" type="button"
-                aria-label="Open navigation"> <span class="bar"></span> <span class="bar"></span> <span
-                    class="bar"></span> </button> <a href="./dashboard.html" class="mobile-header-brand"> <span
-                    class="brand-logo-icon" aria-hidden="true">Z</span> <span>ZestCo</span> </a> </div>
-        <!-- ===================================================== SIDEBAR ===================================================== -->
-        <aside class="sidebar" id="sidebar">
-            <div> <!-- BRAND -->
-                <div class="sidebar-brand-wrapper" id="brandToggleTrigger" title="Collapse or expand sidebar"> <a
-                        href="./dashboard.html" class="sidebar-brand"> <span class="brand-logo-icon"
-                            aria-hidden="true">Z</span> <span class="link-text"> ZestCo </span>
-                    </a> <button class="drawer-close-btn mobile-menu" id="mobileDrawerClose" type="button"
-                        aria-label="Close sidebar"> <i class="fa-solid fa-xmark"></i> </button> <i
-                        class="fa-solid fa-chevron-left brand-toggle-arrow desktop-menu" aria-hidden="true"></i> </div>
-                <!-- WORKSPACE -->
-                <div class="nav-title"> Workspace </div>
-                <nav aria-label="Workspace navigation">
-                    <ul class="nav-list"> <!-- DASHBOARD -->
-                        <li class="nav-item"> <a href="./dashboard.html" class="nav-link-custom active"
-                                title="Dashboard"> <span class="link-content"> <i
-                                        class="fa-solid fa-table-columns icon"></i> <span class="link-text"> Dashboard
-                                    </span> </span> </a> </li> <!-- ORDERS -->
-                        <li class="nav-item"> <a href="./orders.html" class="nav-link-custom" title="Orders"> <span
-                                    class="link-content"> <i class="fa-solid fa-cart-shopping icon"></i> <span
-                                        class="link-text"> Orders </span> </span> </a> </li> <!-- MENU -->
-                        <li class="nav-item"> <a href="./menu.html" class="nav-link-custom" title="Menu"> <span
-                                    class="link-content"> <i class="fa-solid fa-book-open icon"></i> <span
-                                        class="link-text"> Menu </span> </span> </a> </li> <!-- INVENTORY -->
-                        <li class="nav-item"> <a href="#" class="nav-link-custom" id="inventoryToggle" title="Inventory"
-                                aria-expanded="false"> <span class="link-content"> <i
-                                        class="fa-solid fa-boxes-stacked icon"></i> <span class="link-text"> Inventory
-                                    </span> </span> <i class="fa-solid fa-chevron-down chevron-icon"></i> </a>
-                            <!-- INVENTORY SUBMENU -->
-                            <ul class="submenu" id="inventorySubmenu">
-                                <li class="nav-item"> <a href="./inventory.html" class="nav-link-custom"> <span
-                                            class="link-content"> <i class="fa-solid fa-cubes icon"></i> <span
-                                                class="link-text"> Stock Inventory </span> </span> </a> </li>
-                                <li class="nav-item"> <a href="./purchase-order.html" class="nav-link-custom"> <span
-                                            class="link-content"> <i class="fa-solid fa-file-invoice-dollar icon"></i>
-                                            <span class="link-text"> Purchase Order </span> </span> </a> </li>
-                            </ul>
-                        </li> 
-                        <!-- CALENDAR -->
-                        <li class="nav-item"> <a href="./calendar.html" class="nav-link-custom" title="Calendar"> <span
-                                    class="link-content"> <i class="fa-solid fa-calendar-days icon"></i> <span
-                                        class="link-text"> Calendar </span> </span> </a> </li> <!-- REVIEWS -->
-                        <li class="nav-item"> <a href="./reveiws.html" class="nav-link-custom" title="Reviews"> <span
-                                    class="link-content"> <i class="fa-solid fa-star icon"></i> <span class="link-text">
-                                        Reviews </span> </span> </a> </li>
-                    </ul>
-                </nav> <!-- MANAGEMENT -->
-                <div class="nav-title"> Management </div>
-                <nav aria-label="Management navigation">
-                    <ul class="nav-list"> <!-- SETTINGS -->
-                        <li class="nav-item"> <a href="setting.html" class="nav-link-custom" title="Settings"> <span
-                                    class="link-content"> <i class="fa-solid fa-gear icon"></i> <span class="link-text">
-                                        Settings </span> </span> </a> </li>
-                    </ul>
-                </nav>
-            </div> <!-- SIDEBAR FOOTER -->
-            <div class="sidebar-footer">
-                <div class="upgrade-card"> <i class="fa-solid fa-crown"></i> <strong> Unlock Premium </strong> <small>
-                        Get advanced restaurant reports and AI insights. </small> <button type="button"> Upgrade Plan
-                    </button> </div>
+      <!-- ===================================================== MOBILE HEADER ===================================================== -->
+      <div class="mobile-header">
+        <button
+          class="hamburger-btn"
+          id="mobileSidebarToggle"
+          type="button"
+          aria-label="Open navigation"
+        >
+          <span class="bar"></span> <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+        <a href="./dashboard.html" class="mobile-header-brand">
+          <span class="brand-logo-icon" aria-hidden="true">Z</span>
+          <span>ZestCo</span>
+        </a>
+      </div>
+      <!-- ===================================================== SIDEBAR ===================================================== -->
+      <aside class="sidebar" id="sidebar">
+        <div>
+          <!-- BRAND -->
+          <div
+            class="sidebar-brand-wrapper"
+            id="brandToggleTrigger"
+            title="Collapse or expand sidebar"
+          >
+            <a href="./dashboard.html" class="sidebar-brand">
+              <span class="brand-logo-icon" aria-hidden="true">Z</span>
+              <span class="link-text"> ZestCo </span>
+            </a>
+            <button
+              class="drawer-close-btn mobile-menu"
+              id="mobileDrawerClose"
+              type="button"
+              aria-label="Close sidebar"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <i
+              class="fa-solid fa-chevron-left brand-toggle-arrow desktop-menu"
+              aria-hidden="true"
+            ></i>
+          </div>
+          <!-- WORKSPACE -->
+          <div class="nav-title">Workspace</div>
+          <nav aria-label="Workspace navigation">
+            <ul class="nav-list">
+              <!-- DASHBOARD -->
+              <li class="nav-item">
+                <a
+                  href="./dashboard.html"
+                  class="nav-link-custom active"
+                  title="Dashboard"
+                >
+                  <span class="link-content">
+                    <i class="fa-solid fa-table-columns icon"></i>
+                    <span class="link-text"> Dashboard </span>
+                  </span>
+                </a>
+              </li>
+              <!-- ORDERS -->
+              <li class="nav-item">
+                <a href="./orders.html" class="nav-link-custom" title="Orders">
+                  <span class="link-content">
+                    <i class="fa-solid fa-cart-shopping icon"></i>
+                    <span class="link-text"> Orders </span>
+                  </span>
+                </a>
+              </li>
+              <!-- MENU -->
+              <li class="nav-item">
+                <a href="./menu.html" class="nav-link-custom" title="Menu">
+                  <span class="link-content">
+                    <i class="fa-solid fa-book-open icon"></i>
+                    <span class="link-text"> Menu </span>
+                  </span>
+                </a>
+              </li>
+              <!-- INVENTORY -->
+              <li class="nav-item">
+                <a
+                  href="#"
+                  class="nav-link-custom"
+                  id="inventoryToggle"
+                  title="Inventory"
+                  aria-expanded="false"
+                >
+                  <span class="link-content">
+                    <i class="fa-solid fa-boxes-stacked icon"></i>
+                    <span class="link-text"> Inventory </span>
+                  </span>
+                  <i class="fa-solid fa-chevron-down chevron-icon"></i>
+                </a>
+                <!-- INVENTORY SUBMENU -->
+                <ul class="submenu" id="inventorySubmenu">
+                  <li class="nav-item">
+                    <a href="./inventory.html" class="nav-link-custom">
+                      <span class="link-content">
+                        <i class="fa-solid fa-cubes icon"></i>
+                        <span class="link-text"> Stock Inventory </span>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./purchase-order.html" class="nav-link-custom">
+                      <span class="link-content">
+                        <i class="fa-solid fa-file-invoice-dollar icon"></i>
+                        <span class="link-text"> Purchase Order </span>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!-- CALENDAR -->
+              <li class="nav-item">
+                <a
+                  href="./calendar.html"
+                  class="nav-link-custom"
+                  title="Calendar"
+                >
+                  <span class="link-content">
+                    <i class="fa-solid fa-calendar-days icon"></i>
+                    <span class="link-text"> Calendar </span>
+                  </span>
+                </a>
+              </li>
+              <!-- REVIEWS -->
+              <li class="nav-item">
+                <a
+                  href="./reveiws.html"
+                  class="nav-link-custom"
+                  title="Reviews"
+                >
+                  <span class="link-content">
+                    <i class="fa-solid fa-star icon"></i>
+                    <span class="link-text"> Reviews </span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <!-- MANAGEMENT -->
+          <div class="nav-title">Management</div>
+          <nav aria-label="Management navigation">
+            <ul class="nav-list">
+              <!-- SETTINGS -->
+              <li class="nav-item">
+                <a href="setting.html" class="nav-link-custom" title="Settings">
+                  <span class="link-content">
+                    <i class="fa-solid fa-gear icon"></i>
+                    <span class="link-text"> Settings </span>
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link-custom" id="logout" title="Logout">
+                  <span class="link-content">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="link-text"> Logout </span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <!-- SIDEBAR FOOTER -->
+        <div class="sidebar-footer">
+          <div class="upgrade-card">
+            <i class="fa-solid fa-crown"></i> <strong> Unlock Premium </strong>
+            <small> Get advanced restaurant reports and AI insights. </small>
+            <button type="button">Upgrade Plan</button>
+          </div>
+        </div>
+      </aside>
+      <!-- MOBILE OVERLAY -->
+      <div class="overlay" id="overlay"></div>
+      <!-- ===================================================== MAIN ===================================================== -->
+      <main class="main">
+        <!-- ================================================= TOPBAR ================================================= -->
+        <header class="topbar">
+          <!-- DESKTOP SIDEBAR TOGGLE -->
+          <button
+            class="icon-button desktop-menu"
+            id="sidebarToggle"
+            type="button"
+            aria-label="Collapse sidebar"
+          >
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+          <!-- MOBILE MENU -->
+          <button
+            class="icon-button mobile-menu"
+            id="mobileMenu"
+            type="button"
+            aria-label="Open sidebar"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <!-- PAGE CONTEXT -->
+          <div
+            class="topbar-context"
+            role="button"
+            tabindex="0"
+            title="Return to dashboard overview"
+          >
+            <span class="topbar-context-icon">
+              <i class="fa-solid fa-chart-line"></i>
+            </span>
+            <span class="topbar-context-copy">
+              <strong> Dashboard overview </strong>
+              <small>
+                <i class="fa-solid fa-circle"></i> Live restaurant overview
+              </small>
+            </span>
+          </div>
+          <!-- TOP ACTIONS -->
+          <div class="top-actions">
+            <!-- THEME -->
+            <button
+              class="icon-button"
+              id="themeToggle"
+              type="button"
+              aria-label="Toggle dark mode"
+            >
+              <i class="fa-regular fa-moon"></i>
+            </button>
+            <!-- NOTIFICATIONS -->
+            <button
+              class="icon-button notification"
+              type="button"
+              aria-label="Notifications"
+            >
+              <i class="fa-regular fa-bell"></i>
+            </button>
+            <!-- PROFILE -->
+            <div class="profile">
+              <div class="avatar">AR</div>
+              <div class="profile-copy">
+                <strong> Ahmed Raza </strong> <small> Administrator </small>
+              </div>
             </div>
-        </aside> <!-- MOBILE OVERLAY -->
-        <div class="overlay" id="overlay"></div>
-        <!-- ===================================================== MAIN ===================================================== -->
-        <main class="main">
-            <!-- ================================================= TOPBAR ================================================= -->
-            <header class="topbar"> <!-- DESKTOP SIDEBAR TOGGLE --> <button class="icon-button desktop-menu"
-                    id="sidebarToggle" type="button" aria-label="Collapse sidebar"> <i
-                        class="fa-solid fa-bars-staggered"></i> </button> <!-- MOBILE MENU --> <button
-                    class="icon-button mobile-menu" id="mobileMenu" type="button" aria-label="Open sidebar"> <i
-                        class="fa-solid fa-bars"></i> </button> <!-- PAGE CONTEXT -->
-                <div class="topbar-context" role="button" tabindex="0" title="Return to dashboard overview"> <span
-                        class="topbar-context-icon"> <i class="fa-solid fa-chart-line"></i> </span> <span
-                        class="topbar-context-copy"> <strong> Dashboard overview </strong> <small> <i
-                                class="fa-solid fa-circle"></i> Live restaurant overview </small> </span> </div>
-                <!-- TOP ACTIONS -->
-                <div class="top-actions"> <!-- THEME --> <button class="icon-button" id="themeToggle" type="button"
-                        aria-label="Toggle dark mode"> <i class="fa-regular fa-moon"></i> </button>
-                    <!-- NOTIFICATIONS --> <button class="icon-button notification" type="button"
-                        aria-label="Notifications"> <i class="fa-regular fa-bell"></i> </button> <!-- PROFILE -->
-                    <div class="profile">
-                        <div class="avatar"> AR </div>
-                        <div class="profile-copy"> <strong> Ahmed Raza </strong> <small> Administrator </small> </div>
+          </div>
+        </header>
+
+        <section class="dashboard" id="dashboard">
+          <div class="dashboard-header reveal">
+            <div>
+              <p class="eyebrow">Performance overview</p>
+              <h1>Restaurant Dashboard</h1>
+              <p>Track your sales, orders and restaurant performance.</p>
+            </div>
+
+            <select class="date-filter" id="dateFilter" aria-label="Date range">
+              <option value="week">Last 7 days</option>
+              <option value="month" selected>Last 30 days</option>
+              <option value="quarter">Last 3 months</option>
+            </select>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card reveal">
+              <div class="stat-icon">
+                <i class="fa-solid fa-sack-dollar"></i>
+              </div>
+              <div class="stat-content">
+                <span class="stat-label">Total Revenue</span>
+                <strong
+                  class="stat-value"
+                  id="revenueValue"
+                  data-prefix="$"
+                  data-value="48632"
+                >
+                  $0
+                </strong>
+                <span class="trend up">
+                  <i class="fa-solid fa-arrow-trend-up"></i> 12.8%
+                </span>
+              </div>
+            </article>
+
+            <article class="stat-card reveal">
+              <div class="stat-icon">
+                <i class="fa-solid fa-receipt"></i>
+              </div>
+              <div class="stat-content">
+                <span class="stat-label">Total Orders</span>
+                <strong class="stat-value" id="ordersValue" data-value="1248"
+                  >0</strong
+                >
+                <span class="trend up">
+                  <i class="fa-solid fa-arrow-trend-up"></i> 8.4%
+                </span>
+              </div>
+            </article>
+
+            <article class="stat-card reveal">
+              <div class="stat-icon">
+                <i class="fa-solid fa-wallet"></i>
+              </div>
+              <div class="stat-content">
+                <span class="stat-label">Average Order</span>
+                <strong
+                  class="stat-value"
+                  id="averageValue"
+                  data-prefix="$"
+                  data-value="38.97"
+                >
+                  $0
+                </strong>
+                <span class="trend up">
+                  <i class="fa-solid fa-arrow-trend-up"></i> 4.1%
+                </span>
+              </div>
+            </article>
+
+            <article class="stat-card reveal">
+              <div class="stat-icon">
+                <i class="fa-solid fa-user-plus"></i>
+              </div>
+              <div class="stat-content">
+                <span class="stat-label">New Customers</span>
+                <strong class="stat-value" id="customersValue" data-value="186"
+                  >0</strong
+                >
+                <span class="trend down">
+                  <i class="fa-solid fa-arrow-trend-down"></i> 1.2%
+                </span>
+              </div>
+            </article>
+          </div>
+
+          <div class="dashboard-grid">
+            <div class="left-column">
+              <article class="card reveal" id="analytics">
+                <div class="card-header">
+                  <div class="card-title">
+                    <h2>
+                      <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                      Revenue Analytics
+                    </h2>
+                    <p>Revenue and order performance</p>
+                  </div>
+
+                  <div class="card-actions">
+                    <button class="small-button range-btn" data-range="week">
+                      7D
+                    </button>
+                    <button
+                      class="small-button range-btn active"
+                      data-range="month"
+                    >
+                      30D
+                    </button>
+                    <button class="small-button range-btn" data-range="quarter">
+                      3M
+                    </button>
+                  </div>
+                </div>
+
+                <div class="chart-wrap">
+                  <canvas id="revenueChart"></canvas>
+                </div>
+              </article>
+
+              <div class="split-grid">
+                <article class="card reveal">
+                  <div class="card-header">
+                    <div class="card-title">
+                      <h2>
+                        <i
+                          class="fa-solid fa-layer-group"
+                          aria-hidden="true"
+                        ></i>
+                        Order Categories
+                      </h2>
+                      <p>Distribution by service type</p>
                     </div>
-                </div>
-            </header>
+                  </div>
 
-            <section class="dashboard" id="dashboard">
-                <div class="dashboard-header reveal">
-                    <div>
-                        <p class="eyebrow">Performance overview</p>
-                        <h1>Restaurant Dashboard</h1>
-                        <p>Track your sales, orders and restaurant performance.</p>
+                  <div class="chart-wrap small">
+                    <canvas id="categoryChart"></canvas>
+                  </div>
+                </article>
+
+                <article class="card reveal">
+                  <div class="card-header">
+                    <div class="card-title">
+                      <h2>
+                        <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                        Peak Order Hours
+                      </h2>
+                      <p>Orders received throughout the day</p>
                     </div>
+                  </div>
 
-                    <select class="date-filter" id="dateFilter" aria-label="Date range">
-                        <option value="week">Last 7 days</option>
-                        <option value="month" selected>Last 30 days</option>
-                        <option value="quarter">Last 3 months</option>
-                    </select>
+                  <div class="chart-wrap small">
+                    <canvas id="ordersChart"></canvas>
+                  </div>
+                </article>
+              </div>
+
+              <article class="card reveal" id="orders">
+                <div class="card-header">
+                  <div class="card-title">
+                    <h2>
+                      <i class="fa-solid fa-receipt" aria-hidden="true"></i>
+                      Recent Orders
+                    </h2>
+                    <p>Latest restaurant order activity</p>
+                  </div>
+
+                  <button class="small-button" id="viewAllOrders" type="button">
+                    <i class="fa-solid fa-list" aria-hidden="true"></i> View all
+                  </button>
                 </div>
 
-                <div class="stats-grid">
-                    <article class="stat-card reveal">
-                        <div class="stat-icon">
-                            <i class="fa-solid fa-sack-dollar"></i>
-                        </div>
-                        <div class="stat-content">
-                            <span class="stat-label">Total Revenue</span>
-                            <strong class="stat-value" id="revenueValue" data-prefix="$" data-value="48632">
-                                $0
-                            </strong>
-                            <span class="trend up">
-                                <i class="fa-solid fa-arrow-trend-up"></i> 12.8%
-                            </span>
-                        </div>
-                    </article>
-
-                    <article class="stat-card reveal">
-                        <div class="stat-icon">
-                            <i class="fa-solid fa-receipt"></i>
-                        </div>
-                        <div class="stat-content">
-                            <span class="stat-label">Total Orders</span>
-                            <strong class="stat-value" id="ordersValue" data-value="1248">0</strong>
-                            <span class="trend up">
-                                <i class="fa-solid fa-arrow-trend-up"></i> 8.4%
-                            </span>
-                        </div>
-                    </article>
-
-                    <article class="stat-card reveal">
-                        <div class="stat-icon">
-                            <i class="fa-solid fa-wallet"></i>
-                        </div>
-                        <div class="stat-content">
-                            <span class="stat-label">Average Order</span>
-                            <strong class="stat-value" id="averageValue" data-prefix="$" data-value="38.97">
-                                $0
-                            </strong>
-                            <span class="trend up">
-                                <i class="fa-solid fa-arrow-trend-up"></i> 4.1%
-                            </span>
-                        </div>
-                    </article>
-
-                    <article class="stat-card reveal">
-                        <div class="stat-icon">
-                            <i class="fa-solid fa-user-plus"></i>
-                        </div>
-                        <div class="stat-content">
-                            <span class="stat-label">New Customers</span>
-                            <strong class="stat-value" id="customersValue" data-value="186">0</strong>
-                            <span class="trend down">
-                                <i class="fa-solid fa-arrow-trend-down"></i> 1.2%
-                            </span>
-                        </div>
-                    </article>
+                <div class="orders-toolbar">
+                  <label class="search-box orders-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input
+                      id="ordersSearch"
+                      type="search"
+                      placeholder="Search order or customer..."
+                      autocomplete="off"
+                    />
+                  </label>
+                  <small id="ordersSummary" class="card-title"
+                    >Live order data</small
+                  >
                 </div>
 
-                <div class="dashboard-grid">
-                    <div class="left-column">
-                        <article class="card reveal" id="analytics">
-                            <div class="card-header">
-                                <div class="card-title">
-                                    <h2><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Revenue Analytics</h2>
-                                    <p>Revenue and order performance</p>
-                                </div>
+                <div class="orders-table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Item</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody id="ordersBody"></tbody>
+                  </table>
 
-                                <div class="card-actions">
-                                    <button class="small-button range-btn" data-range="week">
-                                        7D
-                                    </button>
-                                    <button class="small-button range-btn active" data-range="month">
-                                        30D
-                                    </button>
-                                    <button class="small-button range-btn" data-range="quarter">
-                                        3M
-                                    </button>
-                                </div>
-                            </div>
+                  <div class="empty-state" id="emptyState" hidden>
+                    No matching orders found.
+                  </div>
+                </div>
+              </article>
+            </div>
 
-                            <div class="chart-wrap">
-                                <canvas id="revenueChart"></canvas>
-                            </div>
-                        </article>
+            <aside class="right-column">
+              <article class="card reveal" id="menu">
+                <div class="card-header">
+                  <div class="card-title">
+                    <h2>
+                      <i class="fa-solid fa-fire" aria-hidden="true"></i> Top
+                      Selling Dishes
+                    </h2>
+                    <p>Popular choices this month</p>
+                  </div>
+                </div>
 
-                        <div class="split-grid">
-                            <article class="card reveal">
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        <h2><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Order Categories
-                                        </h2>
-                                        <p>Distribution by service type</p>
-                                    </div>
-                                </div>
-
-                                <div class="chart-wrap small">
-                                    <canvas id="categoryChart"></canvas>
-                                </div>
-                            </article>
-
-                            <article class="card reveal">
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        <h2><i class="fa-solid fa-clock" aria-hidden="true"></i> Peak Order Hours</h2>
-                                        <p>Orders received throughout the day</p>
-                                    </div>
-                                </div>
-
-                                <div class="chart-wrap small">
-                                    <canvas id="ordersChart"></canvas>
-                                </div>
-                            </article>
-                        </div>
-
-                        <article class="card reveal" id="orders">
-                            <div class="card-header">
-                                <div class="card-title">
-                                    <h2><i class="fa-solid fa-receipt" aria-hidden="true"></i> Recent Orders</h2>
-                                    <p>Latest restaurant order activity</p>
-                                </div>
-
-                                <button class="small-button" id="viewAllOrders" type="button">
-                                    <i class="fa-solid fa-list" aria-hidden="true"></i> View all
-                                </button>
-                            </div>
-
-                            <div class="orders-toolbar">
-                                <label class="search-box orders-search">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                    <input id="ordersSearch" type="search" placeholder="Search order or customer..."
-                                        autocomplete="off" />
-                                </label>
-                                <small id="ordersSummary" class="card-title">Live order data</small>
-                            </div>
-
-                            <div class="orders-table-wrap">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Order ID</th>
-                                            <th>Customer</th>
-                                            <th>Item</th>
-                                            <th>Amount</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="ordersBody"></tbody>
-                                </table>
-
-                                <div class="empty-state" id="emptyState" hidden>
-                                    No matching orders found.
-                                </div>
-                            </div>
-                        </article>
+                <div class="food-list">
+                  <div class="food-item">
+                    <div class="food-image">🥩</div>
+                    <div class="food-info">
+                      <strong>Grilled Chicken Delight</strong>
+                      <small>328 orders - 4.9 rating</small>
                     </div>
+                    <span class="food-price">$18.50</span>
+                  </div>
 
-                    <aside class="right-column">
-                        <article class="card reveal" id="menu">
-                            <div class="card-header">
-                                <div class="card-title">
-                                    <h2><i class="fa-solid fa-fire" aria-hidden="true"></i> Top Selling Dishes</h2>
-                                    <p>Popular choices this month</p>
-                                </div>
-                            </div>
+                  <div class="food-item">
+                    <div class="food-image">🍤</div>
+                    <div class="food-info">
+                      <strong>Sunny Citrus Catch</strong>
+                      <small>294 orders - 4.8 rating</small>
+                    </div>
+                    <span class="food-price">$16.00</span>
+                  </div>
 
-                            <div class="food-list">
-                                <div class="food-item">
-                                    <div class="food-image">🥩</div>
-                                    <div class="food-info">
-                                        <strong>Grilled Chicken Delight</strong>
-                                        <small>328 orders - 4.9 rating</small>
-                                    </div>
-                                    <span class="food-price">$18.50</span>
-                                </div>
+                  <div class="food-item">
+                    <div class="food-image">🥗</div>
+                    <div class="food-info">
+                      <strong>Green Spring Salad</strong>
+                      <small>241 orders - 4.7 rating</small>
+                    </div>
+                    <span class="food-price">$12.50</span>
+                  </div>
 
-                                <div class="food-item">
-                                    <div class="food-image">🍤</div>
-                                    <div class="food-info">
-                                        <strong>Sunny Citrus Catch</strong>
-                                        <small>294 orders - 4.8 rating</small>
-                                    </div>
-                                    <span class="food-price">$16.00</span>
-                                </div>
-
-                                <div class="food-item">
-                                    <div class="food-image">🥗</div>
-                                    <div class="food-info">
-                                        <strong>Green Spring Salad</strong>
-                                        <small>241 orders - 4.7 rating</small>
-                                    </div>
-                                    <span class="food-price">$12.50</span>
-                                </div>
-
-                                <div class="food-item">
-                                    <div class="food-image">🍕</div>
-                                    <div class="food-info">
-                                        <strong>Classic Italian Pizza</strong>
-                                        <small>226 orders - 4.8 rating</small>
-                                    </div>
-                                    <span class="food-price">$15.25</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="card reveal" id="customers">
-                            <div class="card-header">
-                                <div class="card-title">
-                                    <h2><i class="fa-solid fa-users" aria-hidden="true"></i> Customer Sources</h2>
-                                    <p>Where your customers order</p>
-                                </div>
-                            </div>
-
-                            <div class="progress-item">
-                                <div class="progress-head">
-                                    <span>Restaurant website</span>
-                                    <span>76%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-bar" style="--progress: 76%"></div>
-                                </div>
-                            </div>
-
-                            <div class="progress-item">
-                                <div class="progress-head">
-                                    <span>Food delivery apps</span>
-                                    <span>58%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-bar" style="--progress: 58%"></div>
-                                </div>
-                            </div>
-
-                            <div class="progress-item">
-                                <div class="progress-head">
-                                    <span>Walk-in customers</span>
-                                    <span>47%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-bar" style="--progress: 47%"></div>
-                                </div>
-                            </div>
-
-                            <div class="progress-item">
-                                <div class="progress-head">
-                                    <span>Phone orders</span>
-                                    <span>32%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-bar" style="--progress: 32%"></div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="card reveal" id="reviews">
-                            <div class="card-header">
-                                <div class="card-title">
-                                    <h2><i class="fa-solid fa-bolt" aria-hidden="true"></i> Recent Activity</h2>
-                                    <p>Live updates from your restaurant</p>
-                                </div>
-                            </div>
-
-                            <div class="activity-list">
-                                <div class="activity-item">
-                                    <div class="activity-icon">
-                                        <i class="fa-solid fa-bag-shopping"></i>
-                                    </div>
-                                    <div class="activity-copy">
-                                        <p><strong>New order #ORD-1092</strong> was received.</p>
-                                        <time>2 minutes ago</time>
-                                    </div>
-                                </div>
-
-                                <div class="activity-item">
-                                    <div class="activity-icon">
-                                        <i class="fa-solid fa-star"></i>
-                                    </div>
-                                    <div class="activity-copy">
-                                        <p><strong>Hamza Khan</strong> submitted a 5-star review.</p>
-                                        <time>18 minutes ago</time>
-                                    </div>
-                                </div>
-
-                                <div class="activity-item">
-                                    <div class="activity-icon">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                    </div>
-                                    <div class="activity-copy">
-                                        <p><strong>Order #ORD-1089</strong> was delivered.</p>
-                                        <time>32 minutes ago</time>
-                                    </div>
-                                </div>
-
-                                <div class="activity-item">
-                                    <div class="activity-icon">
-                                        <i class="fa-solid fa-user-plus"></i>
-                                    </div>
-                                    <div class="activity-copy">
-                                        <p><strong>Sarah Ahmed</strong> created a new account.</p>
-                                        <time>1 hour ago</time>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </aside>
+                  <div class="food-item">
+                    <div class="food-image">🍕</div>
+                    <div class="food-info">
+                      <strong>Classic Italian Pizza</strong>
+                      <small>226 orders - 4.8 rating</small>
+                    </div>
+                    <span class="food-price">$15.25</span>
+                  </div>
                 </div>
-            </section>
-        </main>
+              </article>
+
+              <article class="card reveal" id="customers">
+                <div class="card-header">
+                  <div class="card-title">
+                    <h2>
+                      <i class="fa-solid fa-users" aria-hidden="true"></i>
+                      Customer Sources
+                    </h2>
+                    <p>Where your customers order</p>
+                  </div>
+                </div>
+
+                <div class="progress-item">
+                  <div class="progress-head">
+                    <span>Restaurant website</span>
+                    <span>76%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-bar" style="--progress: 76%"></div>
+                  </div>
+                </div>
+
+                <div class="progress-item">
+                  <div class="progress-head">
+                    <span>Food delivery apps</span>
+                    <span>58%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-bar" style="--progress: 58%"></div>
+                  </div>
+                </div>
+
+                <div class="progress-item">
+                  <div class="progress-head">
+                    <span>Walk-in customers</span>
+                    <span>47%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-bar" style="--progress: 47%"></div>
+                  </div>
+                </div>
+
+                <div class="progress-item">
+                  <div class="progress-head">
+                    <span>Phone orders</span>
+                    <span>32%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-bar" style="--progress: 32%"></div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card reveal" id="reviews">
+                <div class="card-header">
+                  <div class="card-title">
+                    <h2>
+                      <i class="fa-solid fa-bolt" aria-hidden="true"></i> Recent
+                      Activity
+                    </h2>
+                    <p>Live updates from your restaurant</p>
+                  </div>
+                </div>
+
+                <div class="activity-list">
+                  <div class="activity-item">
+                    <div class="activity-icon">
+                      <i class="fa-solid fa-bag-shopping"></i>
+                    </div>
+                    <div class="activity-copy">
+                      <p><strong>New order #ORD-1092</strong> was received.</p>
+                      <time>2 minutes ago</time>
+                    </div>
+                  </div>
+
+                  <div class="activity-item">
+                    <div class="activity-icon">
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="activity-copy">
+                      <p>
+                        <strong>Hamza Khan</strong> submitted a 5-star review.
+                      </p>
+                      <time>18 minutes ago</time>
+                    </div>
+                  </div>
+
+                  <div class="activity-item">
+                    <div class="activity-icon">
+                      <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div class="activity-copy">
+                      <p><strong>Order #ORD-1089</strong> was delivered.</p>
+                      <time>32 minutes ago</time>
+                    </div>
+                  </div>
+
+                  <div class="activity-item">
+                    <div class="activity-icon">
+                      <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                    <div class="activity-copy">
+                      <p><strong>Sarah Ahmed</strong> created a new account.</p>
+                      <time>1 hour ago</time>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </aside>
+          </div>
+        </section>
+      </main>
     </div>
 
     <!-- <script src="[cdn.jsdelivr.net](https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js)"></script> -->
@@ -436,9 +649,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script type="module" src="../../../js/admin-js/admin-common.js"></script>
     <script type="module" src="../../../js/admin-js/admin-session.js"></script>
-    <script type="module" src="../../../js/admin-js/admin-dashboard.js"></script>
+    <script
+      type="module"
+      src="../../../js/admin-js/admin-dashboard.js"
+    ></script>
 
     <!-- <script src="[cdnjs.cloudflare.com](https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js)"></script> -->
-</body>
-
+  </body>
 </html>
