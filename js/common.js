@@ -1,3 +1,35 @@
+
+onAuthStateChanged(auth, async (user) => {
+
+  if (user) {
+
+    //-------- If User is Signed In -----------
+    let userRef = doc(db, "users", user.uid);
+    let userData = await getDoc(userRef);
+    if (userData.exists()) {
+      let data = userData.data();
+
+      let splitPath = window.location.href.split('/');
+      //  If logged in user redirect to login or signup 
+
+      // ----If Admin or User want to access thier profile -----------
+      if (data.role === "admin") {
+
+        if (splitPath.includes('user')) {
+          window.location.replace('./html/admin/dashboard/dashboard.html')
+        }
+      }
+      if (data.role === "user") {
+
+        if (splitPath.includes('admin')) {
+          window.location.replace('../index.html')
+        }
+      }
+
+    }
+
+  }
+});
 // ===== USER PAGE LOADER =====
 (function initPageLoader() {
   if (document.getElementById("zestPageLoader")) return;
@@ -187,6 +219,7 @@ function updateNavbarForAuth(user) {
   document.querySelectorAll(".chat-with-us").forEach((button) => {
     button.hidden = !user;
   });
+  document.getElementById("logout").hidden = !user;
 }
 
 function openChatlingWidget() {
@@ -262,7 +295,8 @@ document.querySelectorAll(".chat-with-us").forEach((button) => {
     document.head.appendChild(script);
   };
 
-  onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth,  (user) => {
+    //  alert(user.uid)
     updateNavbarForAuth(user);
     if (user) {
       loadChatlingWidget();
@@ -353,6 +387,7 @@ import {
   // google authentication
   signInWithRedirect,
   getRedirectResult,
+  signInWithPopup,
   GoogleAuthProvider,
   signOut,
   sendEmailVerification,
@@ -609,16 +644,18 @@ const signinPassword = document.getElementById("loginPassword");
 const signinForm = document.getElementById("authLoginForm");
 
 const redirectByRole = async (user) => {
-  const userDocument = await getDoc(doc(db, "users", user.uid));
-  const role = userDocument.exists()
-    ? userDocument.data().role?.toLowerCase()
-    : "user";
-  const destination =
-    role === "admin"
-      ? "/html/admin/dashboard/dashboard.html"
-      : "/html/admin/user/menu.html";
-  window.location.assign(destination);
-};
+     const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      let data = docSnap.data();
+      if (data.role === "admin") {
+        window.location.href = "./html/admin/dashboard/dashboard.html"; // Redirect to admin dashboard page
+      }
+      else {
+        window.location.href = "./index.html"; // Redirect to user dashboard page
+      }
+    }
+}
 
 const signin = async (e) => {
   e.preventDefault();
@@ -645,16 +682,21 @@ const signin = async (e) => {
       email: user.email,
       role: userData?.role || "user",
     });
-
-    if (!credential.user.emailVerified) {
-      await sendEmailVerification(user);
-      signOut(auth);
-      alert("Please verify your Email!");
-    } else {
-      closeAuthModal();
-      alert("Welcome back to Zest & Co.!");
-      await redirectByRole(user);
+if(userData?.role === "admin") {
+      window.location.assign("/html/admin/dashboard/dashboard.html");
     }
+      closeAuthModal();
+      // alert("Welcome back to Zest & Co.!");
+      await redirectByRole(user);
+    // if (!credential.user.emailVerified) {
+    //   await sendEmailVerification(user);
+    //   signOut(auth);
+    //   alert("Please verify your Email!");
+    // } else {
+    //   closeAuthModal();
+    //   alert("Welcome back to Zest & Co.!");
+    //   await redirectByRole(user);
+    // }
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -671,32 +713,32 @@ provider.setCustomParameters({
   prompt: "select_account",
 });
 
-const handleGoogleRedirectResult = async () => {
-  try {
-    const result = await getRedirectResult(auth);
-    if (result?.user) {
-      console.log("Google sign-in successful:", result.user);
-      await redirectByRole(result.user);
-    }
-  } catch (error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    const email = error.email;
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    console.log(errorCode, errorMessage, email, credential);
+// const handleGoogleRedirectResult = async () => {
+//   try {
+//     const result = await getRedirectResult(auth);
+//     if (result?.user) {
+//       console.log("Google sign-in successful:", result.user);
+//       await redirectByRole(result.user);
+//     }
+//   } catch (error) {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     const email = error.email;
+//     const credential = GoogleAuthProvider.credentialFromError(error);
+//     console.log(errorCode, errorMessage, email, credential);
 
-    if (errorCode === "auth/unauthorized-domain") {
-      alert(
-        "This domain is not authorized in Firebase. Please add localhost or 127.0.0.1 in Firebase Authentication > Settings > Authorized domains.",
-      );
-    }
-  }
-};
+//     if (errorCode === "auth/unauthorized-domain") {
+//       alert(
+//         "This domain is not authorized in Firebase. Please add localhost or 127.0.0.1 in Firebase Authentication > Settings > Authorized domains.",
+//       );
+//     }
+//   }
+// };
 
 const google = async (e) => {
   e.preventDefault();
   try {
-    await signInWithRedirect(auth, provider);
+    await signInWithPopup(auth, provider);
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -804,7 +846,7 @@ window.addEventListener("message", (event) => {
 });
 
 googleButtons.forEach((btn) => btn.addEventListener("click", google));
-handleGoogleRedirectResult();
+// handleGoogleRedirectResult();
 // //////////////////////////// Signout
 
 const _singOut = () => {

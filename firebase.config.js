@@ -9,6 +9,7 @@ import {
   signOut,
   sendEmailVerification,
   onAuthStateChanged,
+  signInWithPopup,
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 import {
   getFirestore,
@@ -21,6 +22,7 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  getDoc,
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 const firebaseConfig = {
   apiKey: "AIzaSyBfGPlgUuzJgDa4kNVV1ksjRZwfhFMXW9I",
@@ -51,6 +53,7 @@ export {
   signInWithRedirect,
   getRedirectResult,
   GoogleAuthProvider,
+  signInWithPopup,
   signOut,
   sendEmailVerification,
   onAuthStateChanged,
@@ -58,4 +61,5 @@ export {
   doc,
   updateDoc,
   deleteDoc,
+  getDoc,
 };

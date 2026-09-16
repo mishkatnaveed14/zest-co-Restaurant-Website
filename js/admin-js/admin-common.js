@@ -1,3 +1,23 @@
+import{auth,onAuthStateChanged,signOut,db,doc,getDoc} from "../../firebase.config.js";
+
+onAuthStateChanged(auth, async(user) => {
+  
+  if(user){
+  let userRef = doc(db, "users", user.uid);
+    let userData = await getDoc(userRef);
+    if (userData.exists()) {
+      let data = userData.data();
+      alert(data.role)
+  if(data && data.role !== "admin"){
+
+      window.location.href = "../access-denied.html";
+  }
+}
+}
+else{
+  window.location.href = "../access-denied.html";
+}
+});
 document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.getElementById("sidebar");
   if (!sidebar) return;
