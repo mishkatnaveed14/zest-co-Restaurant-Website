@@ -1,6 +1,4 @@
-import { auth, db } from "./firebase-config.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.x.x/firebase-auth.js";
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.x.x/firebase-firestore.js";
+import{auth,onAuthStateChanged,signOut,db,doc,getDoc} from "../../firebase.config.js";
 
 // By default the visibility of page will be hidden until we verify the user role. This prevents unauthorized users from seeing the content briefly before redirection.
 document.documentElement.style.visibility = "hidden";
@@ -27,8 +25,6 @@ onAuthStateChanged(auth, async (user) => {
     window.location.href = "../../index.html";
   }
 });
-
-// ------------------Dark/Light Theme Toggle------------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.getElementById("sidebar");
