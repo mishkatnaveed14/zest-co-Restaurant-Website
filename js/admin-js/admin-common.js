@@ -1,22 +1,35 @@
-import{auth,onAuthStateChanged,signOut,db,doc,getDoc} from "../../firebase.config.js";
+import { auth, db } from "./firebase-config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.x.x/firebase-auth.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.x.x/firebase-firestore.js";
 
-onAuthStateChanged(auth, async(user) => {
-  
-  if(user){
-  let userRef = doc(db, "users", user.uid);
-    let userData = await getDoc(userRef);
-    if (userData.exists()) {
-      let data = userData.data();
-  if(data && data.role !== "admin"){
+// By default the visibility of page will be hidden until we verify the user role. This prevents unauthorized users from seeing the content briefly before redirection.
+document.documentElement.style.visibility = "hidden";
 
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    try {
+      let userRef = doc(db, "users", user.uid);
+      let userData = await getDoc(userRef);
+
+      if (userData.exists() && userData.data()?.role === "admin") {
+        // Id user is an admin, make the page visible
+        document.documentElement.style.visibility = "visible";
+      } else {
+        // If user is not an admin, redirect to access denied page
+        window.location.href = "../access-denied.html";
+      }
+    } catch (error) {
+      console.error("Auth Error:", error);
       window.location.href = "../access-denied.html";
+    }
+  } else {
+    // If user is not logged in, redirect to login page
+    window.location.href = "../../index.html";
   }
-}
-}
-else{
-  window.location.href = "../access-denied.html";
-}
 });
+
+// ------------------Dark/Light Theme Toggle------------------------------
+
 document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.getElementById("sidebar");
   if (!sidebar) return;
