@@ -22,7 +22,7 @@ onAuthStateChanged(auth, async (user) => {
     }
   } else {
     // If user is not logged in, redirect to login page
-    window.location.href = "../../index.html";
+    window.location.href = "../../../index.html";
   }
 });
 
