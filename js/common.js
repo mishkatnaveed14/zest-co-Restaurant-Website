@@ -1,35 +1,33 @@
 
-onAuthStateChanged(auth, async (user) => {
+// onAuthStateChanged(auth, async (user) => {
+//   if (user) {
+//     //-------- If User is Signed In -----------
+//     let userRef = doc(db, "users", user.uid);
+//     let userData = await getDoc(userRef);
+//     if (userData.exists()) {
+//       let data = userData.data();
 
-  if (user) {
+//       let splitPath = window.location.href.split('/');
+//       //  If logged in user redirect to login or signup 
 
-    //-------- If User is Signed In -----------
-    let userRef = doc(db, "users", user.uid);
-    let userData = await getDoc(userRef);
-    if (userData.exists()) {
-      let data = userData.data();
+//       // ----If Admin or User want to access thier profile -----------
+//       if (data.role === "admin") {
 
-      let splitPath = window.location.href.split('/');
-      //  If logged in user redirect to login or signup 
+//         if (splitPath.includes('user')) {
+//           window.location.replace('./html/admin/dashboard/dashboard.html')
+//         }
+//       }
+//       if (data.role === "user") {
 
-      // ----If Admin or User want to access thier profile -----------
-      if (data.role === "admin") {
+//         if (splitPath.includes('admin')) {
+//           window.location.replace('../index.html')
+//         }
+//       }
 
-        if (splitPath.includes('user')) {
-          window.location.replace('./html/admin/dashboard/dashboard.html')
-        }
-      }
-      if (data.role === "user") {
+//     }
 
-        if (splitPath.includes('admin')) {
-          window.location.replace('../index.html')
-        }
-      }
-
-    }
-
-  }
-});
+//   }
+// });
 // ===== USER PAGE LOADER =====
 (function initPageLoader() {
   if (document.getElementById("zestPageLoader")) return;
@@ -620,15 +618,18 @@ const signup = async (e) => {
       email: user.email,
       role: "user",
     });
-    if (!credential.user.emailVerified) {
-      await sendEmailVerification(user);
-      signOut(auth);
-      alert("Please verify your Email!");
-    } else {
-      closeAuthModal();
+    // if (!credential.user.emailVerified) {
+    //   await sendEmailVerification(user);
+    //   signOut(auth);
+    //   alert("Please verify your Email!");
+    // } else {
+    //   closeAuthModal();
+    //   alert("Account created successfully! Welcome to Zest & Co.");
+    //   await redirectByRole(user);
+    // }
+    closeAuthModal();
       alert("Account created successfully! Welcome to Zest & Co.");
       await redirectByRole(user);
-    }
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;

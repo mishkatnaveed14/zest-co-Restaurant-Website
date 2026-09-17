@@ -11,19 +11,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <!-- Custom Admin CSS -->
+    <!-- Common Style CSS -->
     <link rel="stylesheet" href="../../../css-folder/admin-css/admin-common.css">
     <link rel="stylesheet" href="../../../css-folder/admin-css/admin-session.css">
+    <!-- Custome CSS for rreview page -->
     <link rel="stylesheet" href="../../../css-folder/admin-css/reviews.css">
 </head>
 
 <body>
     <div class="app">
         <!-- ===================================================== MOBILE HEADER ===================================================== -->
-        <div class="mobile-header"> <button class="hamburger-btn" id="mobileSidebarToggle" type="button"
-                aria-label="Open navigation"> <span class="bar"></span> <span class="bar"></span> <span
-                    class="bar"></span> </button> <a href="./dashboard.html" class="mobile-header-brand"> <span
-                    class="brand-logo-icon" aria-hidden="true">Z</span> <span>ZestCo</span> </a> </div>
+        <div class="mobile-header">
+            <button class="hamburger-btn" id="mobileSidebarToggle" type="button" aria-label="Open navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <a href="./dashboard.html" class="mobile-header-brand"> <span class="brand-logo-icon" aria-hidden="true">
+                    Z
+                </span>
+                <span>ZestCo</span>
+            </a>
+        </div>
         <!-- ===================================================== SIDEBAR ===================================================== -->
         <aside class="sidebar" id="sidebar">
             <div> <!-- BRAND -->
@@ -37,10 +46,11 @@
                 <div class="nav-title"> Workspace </div>
                 <nav aria-label="Workspace navigation">
                     <ul class="nav-list"> <!-- DASHBOARD -->
-                        <li class="nav-item"> <a href="./dashboard.html" class="nav-link-custom"
-                                title="Dashboard"> <span class="link-content"> <i
-                                        class="fa-solid fa-table-columns icon"></i> <span class="link-text"> Dashboard
-                                    </span> </span> </a> </li> <!-- ORDERS -->
+                        <li class="nav-item"> <a href="./dashboard.html" class="nav-link-custom" title="Dashboard"></a>
+                            <span class="link-content"> <i class="fa-solid fa-table-columns icon"></i> <span
+                                    class="link-text"> Dashboard
+                                </span> </span> </a>
+                        </li> <!-- ORDERS -->
                         <li class="nav-item"> <a href="./orders.html" class="nav-link-custom" title="Orders"> <span
                                     class="link-content"> <i class="fa-solid fa-cart-shopping icon"></i> <span
                                         class="link-text"> Orders </span> </span> </a> </li> <!-- MENU -->
@@ -64,8 +74,9 @@
                         <li class="nav-item"> <a href="./calendar.html" class="nav-link-custom" title="Calendar"> <span
                                     class="link-content"> <i class="fa-solid fa-calendar-days icon"></i> <span
                                         class="link-text"> Calendar </span> </span> </a> </li> <!-- REVIEWS -->
-                        <li class="nav-item"> <a href="./reveiws.html" class="nav-link-custom active" title="Reviews"> <span
-                                    class="link-content"> <i class="fa-solid fa-star icon"></i> <span class="link-text">
+                        <li class="nav-item"> <a href="./reveiws.html" class="nav-link-custom active" title="Reviews">
+                                <span class="link-content"> <i class="fa-solid fa-star icon"></i> <span
+                                        class="link-text">
                                         Reviews </span> </span> </a> </li>
                     </ul>
                 </nav> <!-- MANAGEMENT -->
@@ -75,28 +86,56 @@
                         <li class="nav-item"> <a href="setting.html" class="nav-link-custom" title="Settings"> <span
                                     class="link-content"> <i class="fa-solid fa-gear icon"></i> <span class="link-text">
                                         Settings </span> </span> </a> </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link-custom" id="logout" title="Logout">
+                                <span class="link-content">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                    <span class="link-text"> Logout </span>
+                                </span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div> <!-- SIDEBAR FOOTER -->
             <div class="sidebar-footer">
-                <div class="upgrade-card"> <i class="fa-solid fa-crown"></i> <strong> Unlock Premium </strong> <small>
-                        Get advanced restaurant reports and AI insights. </small> <button type="button"> Upgrade Plan
-                    </button> </div>
+                <div class="upgrade-card">
+                    <i class="fa-solid fa-crown"></i>
+                    <strong> Unlock Premium </strong>
+                    <small>
+                        Get advanced restaurant reports and AI insights.
+                    </small>
+                    <button type="button"> Upgrade Plan
+                    </button>
+                </div>
             </div>
-        </aside> <!-- MOBILE OVERLAY -->
+        </aside>
+        <!-- MOBILE OVERLAY -->
         <div class="overlay" id="overlay"></div>
-        <!-- ===================================================== MAIN ===================================================== -->
+        <!-- ============= Main Content Area ================ -->
         <main class="main-content">
             <!-- ================================================= TOPBAR ================================================= -->
-            <header class="topbar"> <!-- DESKTOP SIDEBAR TOGGLE --> <button class="icon-button desktop-menu"
-                    id="sidebarToggle" type="button" aria-label="Collapse sidebar"> <i
-                        class="fa-solid fa-bars-staggered"></i> </button> <!-- MOBILE MENU --> <button
-                    class="icon-button mobile-menu" id="mobileMenu" type="button" aria-label="Open sidebar"> <i
-                        class="fa-solid fa-bars"></i> </button> <!-- PAGE CONTEXT -->
-                <div class="topbar-context" role="button" tabindex="0" title="Return to dashboard overview"> <span
-                        class="topbar-context-icon"> <i class="fa-solid fa-chart-line"></i> </span> <span
-                        class="topbar-context-copy"> <strong> Reviews center </strong> <small> <i
-                                class="fa-solid fa-circle"></i> Guest feedback and ratings </small> </span> </div>
+            <header class="topbar">
+                <!-- DESKTOP SIDEBAR TOGGLE -->
+                <button class="icon-button desktop-menu" id="sidebarToggle" type="button" aria-label="Collapse sidebar">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                 </button>
+                <!-- MOBILE MENU -->
+                  <button class="icon-button mobile-menu" id="mobileMenu" type="button"
+                    aria-label="Open sidebar"> 
+                    <i class="fa-solid fa-bars"></i> 
+                </button> <!-- PAGE CONTEXT -->
+                <div class="topbar-context" role="button" tabindex="0" title="Return to dashboard overview"> 
+                    <span
+                        class="topbar-context-icon"> <i class="fa-solid fa-chart-line"></i> </span> 
+                        <span
+                        class="topbar-context-copy">
+                         <strong> Reviews center </strong>
+                          <small>
+                             <i class="fa-solid fa-circle"></i> 
+                                Guest feedback and ratings
+                             </small>
+                             </span>
+                             </div>
                 <!-- TOP ACTIONS -->
                 <div class="top-actions"> <!-- THEME --> <button class="icon-button" id="themeToggle" type="button"
                         aria-label="Toggle dark mode"> <i class="fa-regular fa-moon"></i> </button>
@@ -232,7 +271,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
         <!-- Custom Modules -->
-        <script src="../../../js/admin-js/admin-common.js"></script>
+        <script type="module" src="../../../js/admin-js/admin-common.js"></script>
         <script type="module" src="../../../js/admin-js/admin-session.js"></script>
         <script src="../../../js/admin-js/admin-reveiws.js" type="module"></script>
 </body>
