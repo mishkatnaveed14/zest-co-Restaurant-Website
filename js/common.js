@@ -714,37 +714,42 @@ provider.setCustomParameters({
   prompt: "select_account",
 });
 
-// const handleGoogleRedirectResult = async () => {
-//   try {
-//     const result = await getRedirectResult(auth);
-//     if (result?.user) {
-//       console.log("Google sign-in successful:", result.user);
-//       await redirectByRole(result.user);
-//     }
-//   } catch (error) {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     const email = error.email;
-//     const credential = GoogleAuthProvider.credentialFromError(error);
-//     console.log(errorCode, errorMessage, email, credential);
-
-//     if (errorCode === "auth/unauthorized-domain") {
-//       alert(
-//         "This domain is not authorized in Firebase. Please add localhost or 127.0.0.1 in Firebase Authentication > Settings > Authorized domains.",
-//       );
-//     }
-//   }
-// };
 
 const google = async (e) => {
   e.preventDefault();
+
+  
   try {
-    await signInWithPopup(auth, provider);
+    let result = await signInWithPopup(auth, provider)
+    // The signed-in user info.
+    const user = result.user;
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      let data = docSnap.data();
+      if (data.role === "admin") {
+        window.location.href = "./html/admin/dashboard/dashboard.html"; // Redirect to admin dashboard page
+      }
+      else {
+        window.location.replace("../index.html"); // Redirect to user dashboard page
+      }
+    } else {
+
+      // Add a new document in collection "users"
+      await setDoc(doc(db, "users", user?.uid), {
+        email: user.email,
+        name: user.displayName,
+        role: "user",
+        createdAt: serverTimestamp()
+      });
+
+    }
   } catch (error) {
-    const errorCode = error.code;
+
     const errorMessage = error.message;
-    console.log(errorCode, errorMessage);
-  }
+    console.error("Error signing in with Google:", errorMessage);
+
+  };
 };
 
 window.addEventListener("message", (event) => {
@@ -852,6 +857,7 @@ googleButtons.forEach((btn) => btn.addEventListener("click", google));
 
 const _singOut = () => {
   signOut(auth);
+  window.location.replace("../index.html");
 };
 
 document.getElementById("logout")?.addEventListener("click", _singOut);
